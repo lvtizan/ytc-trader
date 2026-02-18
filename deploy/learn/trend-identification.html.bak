@@ -1,0 +1,161 @@
+<!doctype html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="UTF-8" />
+        <title>趋势识别方法 - YTC Trader</title>
+        <link rel="stylesheet" href="../css/modern-premium.css" />
+        <style>
+            body {
+                background: linear-gradient(
+                    to bottom,
+                    #0a0a0f 0%,
+                    #0f172a 50%,
+                    #0a0a0f 100%
+                );
+                min-height: 100vh;
+            }
+            .hero-section {
+                text-align: center;
+                padding: 60px 20px;
+                background: radial-gradient(
+                    ellipse at top,
+                    rgba(99, 102, 241, 0.15) 0%,
+                    transparent 50%
+                );
+            }
+            .hero-badge {
+                display: inline-block;
+                padding: 8px 16px;
+                background: rgba(99, 102, 241, 0.2);
+                border: 1px solid rgba(99, 102, 241, 0.3);
+                border-radius: 20px;
+                color: #a5b4fc;
+                font-size: 0.875rem;
+                margin-bottom: 24px;
+            }
+            .hero-title {
+                font-size: 3rem;
+                font-weight: 800;
+                background: linear-gradient(135deg, #6366f1 0%, #06b6d4 100%);
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+                margin-bottom: 16px;
+            }
+            .content-section {
+                max-width: 900px;
+                margin: 0 auto;
+                padding: 40px 20px;
+            }
+            .card {
+                background: rgba(30, 41, 59, 0.5);
+                backdrop-filter: blur(10px);
+                border: 1px solid rgba(99, 102, 241, 0.2);
+                border-radius: 16px;
+                padding: 32px;
+                margin-bottom: 24px;
+            }
+            .card::before {
+                content: "";
+                position: absolute;
+                top: 0;
+                left: 0;
+                right: 0;
+                height: 4px;
+                background: linear-gradient(90deg, #6366f1 0%, #06b6d4 100%);
+            }
+            .card-header {
+                display: flex;
+                align-items: center;
+                gap: 16px;
+                margin-bottom: 20px;
+            }
+            .card-icon {
+                font-size: 2.5rem;
+            }
+            .card-title {
+                font-size: 1.5rem;
+                font-weight: 700;
+                color: var(--text-primary);
+            }
+            .card-content {
+                color: var(--text-secondary);
+                line-height: 1.8;
+            }
+            .back-link {
+                display: inline-block;
+                margin: 20px;
+                padding: 12px 24px;
+                background: rgba(99, 102, 241, 0.2);
+                border: 1px solid rgba(99, 102, 241, 0.3);
+                border-radius: 12px;
+                color: #a5b4fc;
+                text-decoration: none;
+                font-weight: 600;
+            }
+        </style>
+    </head>
+    <body>
+        <!-- 科技光晕背景层 -->
+        <div class="tech-glow"></div>
+
+        <a href="../stage1-new.html" class="back-link">← 返回阶段一</a>
+        <div class="hero-section">
+            <span class="hero-badge">阶段一 · 模块3 · 基础知识</span>
+            <h1 class="hero-title">趋势识别方法</h1>
+        </div>
+        <div class="content-section">
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-icon">📈</div>
+                    <h2 class="card-title">上升趋势识别</h2>
+                </div>
+                <div class="card-content">
+                    <p>上升趋势的明确信号：</p>
+                    <ol style="margin-top: 20px; line-height: 2">
+                        <li>价格创出更高高点（HH）和更高低点（HL）</li>
+                        <li>价格在上升趋势线上方运行</li>
+                        <li>回调幅度逐渐缩小</li>
+                        <li>回调时间逐渐缩短</li>
+                        <li>成交量配合价格上涨放大</li>
+                    </ol>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-icon">📉</div>
+                    <h2 class="card-title">下降趋势识别</h2>
+                </div>
+                <div class="card-content">
+                    <p>下降趋势的特征（YTC只做多，但需识别避免）：</p>
+                    <ul style="line-height: 2">
+                        <li>价格创出更低高点（LH）和更低低点（LL）</li>
+                        <li>价格在下降趋势线下方运行</li>
+                        <li>反弹幅度逐渐减弱</li>
+                        <li>反弹时间逐渐缩短</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-icon">⚠️</div>
+                    <h2 class="card-title">趋势强度评估</h2>
+                </div>
+                <div class="card-content">
+                    <ul style="line-height: 2">
+                        <li>
+                            <strong>强势趋势：</strong
+                            >HH和HL清晰，回调浅且时间短
+                        </li>
+                        <li>
+                            <strong>弱势趋势：</strong
+                            >HH和HL不明显，回调深且时间长
+                        </li>
+                        <li><strong>趋势转换：</strong>HH失败或跌破HL时警惕</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

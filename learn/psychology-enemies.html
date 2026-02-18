@@ -1,0 +1,406 @@
+<!doctype html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>交易心理的5大敌人 - YTC Trader</title>
+        <link rel="stylesheet" href="../css/modern-premium.css" />
+        <style>
+            body {
+                background: var(--bg-deep);
+                min-height: 100vh;
+            }
+            .hero-section {
+                background: linear-gradient(
+                    135deg,
+                    rgba(99, 102, 241, 0.1) 0%,
+                    rgba(6, 182, 212, 0.1) 100%
+                );
+                border-bottom: 1px solid var(--border-color);
+                padding: 4rem 1.5rem 3rem;
+                text-align: center;
+            }
+            .hero-badge {
+                display: inline-block;
+                background: var(--gradient-1);
+                color: white;
+                padding: 0.5rem 1.5rem;
+                border-radius: 2rem;
+                font-size: 0.875rem;
+                font-weight: 600;
+                margin-bottom: 1.5rem;
+            }
+            .hero-title {
+                font-size: clamp(2rem, 5vw, 3rem);
+                font-weight: 800;
+                margin-bottom: 1rem;
+                background: var(--gradient-1);
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+                line-height: 1.2;
+            }
+            .hero-subtitle {
+                color: #94a3b8;
+                font-size: 1.125rem;
+                max-width: 600px;
+                margin: 0 auto;
+                line-height: 1.6;
+            }
+            .content-container {
+                max-width: 900px;
+                margin: 0 auto;
+                padding: 3rem 1.5rem;
+            }
+            .enemy-card {
+                background: rgba(15, 23, 42, 0.6);
+                backdrop-filter: blur(10px);
+                border: 1px solid rgba(99, 102, 241, 0.2);
+                border-radius: 1.5rem;
+                padding: 2.5rem;
+                margin-bottom: 2.5rem;
+                transition: all 0.3s ease;
+            }
+            .enemy-card:hover {
+                border-color: rgba(99, 102, 241, 0.5);
+                transform: translateY(-2px);
+                box-shadow: 0 8px 32px rgba(99, 102, 241, 0.15);
+            }
+            .enemy-header {
+                display: flex;
+                align-items: center;
+                gap: 1.5rem;
+                margin-bottom: 2rem;
+                padding-bottom: 1.5rem;
+                border-bottom: 1px solid var(--border-color);
+            }
+            .enemy-icon {
+                width: 70px;
+                height: 70px;
+                background: var(--gradient-1);
+                border-radius: 1.5rem;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-size: 2.5rem;
+                flex-shrink: 0;
+            }
+            .enemy-title {
+                font-size: 1.75rem;
+                font-weight: 700;
+                color: #f1f5f9;
+                margin: 0;
+            }
+            .enemy-description {
+                color: #cbd5e1;
+                line-height: 1.8;
+                font-size: 1.0625rem;
+                margin-bottom: 2rem;
+            }
+            .enemy-section {
+                background: rgba(15, 23, 42, 0.4);
+                border-radius: 1rem;
+                padding: 2rem;
+                margin-bottom: 1.5rem;
+            }
+            .enemy-section.symptoms {
+                border-left: 4px solid var(--danger);
+            }
+            .enemy-section.solution {
+                border-left: 4px solid var(--success);
+            }
+            .section-title {
+                font-size: 1.125rem;
+                font-weight: 700;
+                margin-bottom: 1rem;
+                display: flex;
+                align-items: center;
+                gap: 0.5rem;
+            }
+            .symptoms .section-title {
+                color: var(--danger);
+            }
+            .solution .section-title {
+                color: var(--success);
+            }
+            .enemy-section ul {
+                list-style: none;
+                padding: 0;
+                margin: 0;
+            }
+            .enemy-section li {
+                color: #cbd5e1;
+                line-height: 1.8;
+                padding: 0.5rem 0;
+                padding-left: 1.5rem;
+                position: relative;
+            }
+            .enemy-section li::before {
+                content: "•";
+                position: absolute;
+                left: 0;
+                color: #94a3b8;
+            }
+            .summary-card {
+                background: linear-gradient(
+                    135deg,
+                    rgba(99, 102, 241, 0.15) 0%,
+                    rgba(6, 182, 212, 0.15) 100%
+                );
+                border: 2px solid rgba(99, 102, 241, 0.3);
+                border-radius: 1.5rem;
+                padding: 3rem;
+                text-align: center;
+            }
+            .summary-title {
+                font-size: 1.75rem;
+                font-weight: 700;
+                margin-bottom: 1.5rem;
+                color: #f1f5f9;
+            }
+            .summary-text {
+                color: #cbd5e1;
+                line-height: 1.8;
+                margin-bottom: 2rem;
+                font-size: 1.0625rem;
+            }
+            .summary-list {
+                color: #cbd5e1;
+                line-height: 1.8;
+                text-align: left;
+                max-width: 500px;
+                margin: 0 auto 2rem;
+            }
+            .summary-list li {
+                padding: 0.75rem 0;
+                font-size: 1.0625rem;
+            }
+            .summary-list li::before {
+                content: "✓ ";
+                color: var(--success);
+                font-weight: 700;
+                margin-right: 0.5rem;
+            }
+            .nav-buttons {
+                display: flex;
+                gap: 1rem;
+                justify-content: center;
+                flex-wrap: wrap;
+                margin-top: 2rem;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="app-container">
+            <nav class="navbar">
+                <div class="nav-container">
+                    <a href="../stage4-new.html" class="brand">
+                        <div class="brand-logo">YT</div>
+                        <div class="brand-text">
+                            <span class="brand-title">YTC Trader</span>
+                        </div>
+                    </a>
+                    <ul class="nav-menu">
+                        <li>
+                            <a href="../stage4-new.html" class="nav-link"
+                                >← 返回阶段四</a
+                            >
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+
+            <div class="hero-section">
+                <span class="hero-badge">阶段四 · 模块1 · 第16周</span>
+                <h1 class="hero-title">交易心理的5大敌人</h1>
+                <p class="hero-subtitle">
+                    了解并克服阻碍交易成功的心理障碍，建立强大的交易心态
+                </p>
+            </div>
+
+            <div class="content-container">
+                <!-- 敌人1: 恐惧与贪婪 -->
+                <div class="enemy-card">
+                    <div class="enemy-header">
+                        <div class="enemy-icon">😨</div>
+                        <h2 class="enemy-title">敌人1: 恐惧与贪婪</h2>
+                    </div>
+                    <p class="enemy-description">
+                        这是交易中最常见的两大情绪。贪婪让你在盈利时过度持仓，恐惧让你在亏损时过早止损或不敢入场。
+                    </p>
+                    <div class="enemy-section symptoms">
+                        <div class="section-title">⚠️ 症状表现</div>
+                        <ul>
+                            <li>盈利时想赚更多，不愿止盈，最终利润回吐</li>
+                            <li>亏损时害怕承认错误，死扛亏损，越亏越多</li>
+                            <li>看到交易信号不敢入场，害怕亏损</li>
+                            <li>市场正常波动时过度焦虑，无法理性判断</li>
+                            <li>盈利时得意忘形，亏损时沮丧绝望</li>
+                        </ul>
+                    </div>
+                    <div class="enemy-section solution">
+                        <div class="section-title">✅ 克服方法</div>
+                        <ul>
+                            <li>制定明确的交易计划并严格执行，不受情绪影响</li>
+                            <li>提前设置止盈止损位，让系统管理交易</li>
+                            <li>每次交易只承担1-2%的风险，保持理性</li>
+                            <li>接受亏损是交易的一部分，不是失败</li>
+                            <li>关注交易过程是否正确，而非单次结果</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- 敌人2: 过度自信 -->
+                <div class="enemy-card">
+                    <div class="enemy-header">
+                        <div class="enemy-icon">😤</div>
+                        <h2 class="enemy-title">敌人2: 过度自信</h2>
+                    </div>
+                    <p class="enemy-description">
+                        连续盈利后产生的盲目自信，让你放松警惕，违反交易规则，最终导致巨大亏损。
+                    </p>
+                    <div class="enemy-section symptoms">
+                        <div class="section-title">⚠️ 症状表现</div>
+                        <ul>
+                            <li>觉得自己"不会亏""这次肯定对"</li>
+                            <li>忽视风险管理，随意加大仓位</li>
+                            <li>不做复盘分析，认为自己都懂</li>
+                            <li>频繁交易，过度交易，不等待最佳信号</li>
+                            <li>停止学习，固步自封，认为自己已经掌握一切</li>
+                        </ul>
+                    </div>
+                    <div class="enemy-section solution">
+                        <div class="section-title">✅ 克服方法</div>
+                        <ul>
+                            <li>保持谦逊，市场永远是对的，你永远只是学生</li>
+                            <li>严格遵守交易系统规则，不找例外</li>
+                            <li>定期复盘，客观评估自己，不自我欺骗</li>
+                            <li>连续盈利后主动降低仓位，保持谨慎</li>
+                            <li>
+                                记住：一次大错就能毁掉所有盈利，永远保持敬畏
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- 敌人3: 报复性交易 -->
+                <div class="enemy-card">
+                    <div class="enemy-header">
+                        <div class="enemy-icon">😡</div>
+                        <h2 class="enemy-title">敌人3: 报复性交易</h2>
+                    </div>
+                    <p class="enemy-description">
+                        亏损后想要立即"回本"的心理，让你加大仓位、冒险交易，越亏越多，陷入恶性循环。
+                    </p>
+                    <div class="enemy-section symptoms">
+                        <div class="section-title">⚠️ 症状表现</div>
+                        <ul>
+                            <li>亏损后立即加大仓位，想要一次性回本</li>
+                            <li>愤怒、沮丧时继续交易，无法控制情绪</li>
+                            <li>完全忽视交易计划，凭感觉交易</li>
+                            <li>越亏越想赌一把，想要翻盘</li>
+                            <li>陷入亏损-报复-更大亏损的恶性循环</li>
+                        </ul>
+                    </div>
+                    <div class="enemy-section solution">
+                        <div class="section-title">✅ 克服方法</div>
+                        <ul>
+                            <li>设置每日最大亏损限制，达到后立即停止交易</li>
+                            <li>亏损后至少冷静24小时，绝不立即交易</li>
+                            <li>分析亏损原因，详细记录在交易日志</li>
+                            <li>接受今天的亏损，明天重新开始</li>
+                            <li>记住：保住本金比盈利更重要</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- 敌人4: FOMO -->
+                <div class="enemy-card">
+                    <div class="enemy-header">
+                        <div class="enemy-icon">😱</div>
+                        <h2 class="enemy-title">敌人4: FOMO（错失恐惧）</h2>
+                    </div>
+                    <p class="enemy-description">
+                        害怕错过机会的心理，让你在不利的位置追涨杀跌，或盲目跟风热点，放弃自己的交易系统。
+                    </p>
+                    <div class="enemy-section symptoms">
+                        <div class="section-title">⚠️ 症状表现</div>
+                        <ul>
+                            <li>看到价格上涨就焦虑地追高，买在高位</li>
+                            <li>害怕错过"大行情"，没等信号就入场</li>
+                            <li>频繁查看账户，无法专注其他事情</li>
+                            <li>看到别人盈利就嫉妒，想要跟随</li>
+                            <li>不断刷社交媒体，害怕错过任何信息</li>
+                        </ul>
+                    </div>
+                    <div class="enemy-section solution">
+                        <div class="section-title">✅ 克服方法</div>
+                        <ul>
+                            <li>记住：市场永远有机会，错过的不是你的机会</li>
+                            <li>坚持等待自己的系统信号，不追涨杀跌</li>
+                            <li>错过机会比亏损好，保存资本最重要</li>
+                            <li>培养耐心，空仓也是一种策略</li>
+                            <li>专注于自己的系统，不要和别人比较</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- 敌人5: 缺乏耐心 -->
+                <div class="enemy-card">
+                    <div class="enemy-header">
+                        <div class="enemy-icon">🙄</div>
+                        <h2 class="enemy-title">敌人5: 缺乏耐心</h2>
+                    </div>
+                    <p class="enemy-description">
+                        交易需要等待最佳机会，但缺乏耐心让你过早入场、频繁交易、退出太早，错失真正的大利润。
+                    </p>
+                    <div class="enemy-section symptoms">
+                        <div class="section-title">⚠️ 症状表现</div>
+                        <ul>
+                            <li>完美的信号没出现就急于入场</li>
+                            <li>盈利很少就提前平仓，不敢持有</li>
+                            <li>日内过度频繁交易，无法空仓等待</li>
+                            <li>不能等待价格回调到关键位置</li>
+                            <li>想要一夜暴富，没有长期视角</li>
+                        </ul>
+                    </div>
+                    <div class="enemy-section solution">
+                        <div class="section-title">✅ 克服方法</div>
+                        <ul>
+                            <li>记住：耐心是交易者最重要的品质</li>
+                            <li>只交易最完美的A类信号，放弃B类和C类</li>
+                            <li>设置交易闹钟，只在特定时间交易</li>
+                            <li>培养其他爱好，减少盯盘时间</li>
+                            <li>交易是马拉松，不是百米冲刺，慢慢来</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- 总结 -->
+                <div class="summary-card">
+                    <h2 class="summary-title">💡 总结：认识自己的心理敌人</h2>
+                    <p class="summary-text">
+                        每个交易者都会遇到这些心理敌人。关键是要能够识别它们，并使用正确的方法对抗它们。
+                    </p>
+                    <ul class="summary-list">
+                        <li>
+                            意识到这些敌人存在于每个人的心中，你不是一个人在战斗
+                        </li>
+                        <li>学会识别自己当前的心理状态，诚实地面对自己</li>
+                        <li>使用检查清单、交易日志等工具对抗它们</li>
+                        <li>持续练习，不断改进，心理素质是可以培养的</li>
+                    </ul>
+                    <div class="nav-buttons">
+                        <a href="../stage4-new.html" class="btn btn-secondary"
+                            >返回阶段四</a
+                        >
+                        <a
+                            href="trading-discipline.html"
+                            class="btn btn-primary"
+                            >下一个：交易纪律 →</a
+                        >
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>风险管理手册 - YTC Trader</title>
+    <link rel="stylesheet" href="../css/modern-premium.css">
+</head>
+<body style="background: linear-gradient(to bottom, #0a0a0f 0%, #0f172a 50%, #0a0a0f 100%); min-height: 100vh;">
+    <div style="text-align: center; padding: 60px 20px;">
+        <h1 style="font-size: 3rem; font-weight: 800; background: linear-gradient(135deg, #6366f1 0%, #06b6d4 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">风险管理手册</h1>
+    </div>
+    <div style="max-width: 900px; margin: 0 auto; padding: 40px 20px;">
+        <div style="background: rgba(30, 41, 59, 0.5); backdrop-filter: blur(10px); border: 1px solid rgba(99, 102, 241, 0.2); border-radius: 16px; padding: 32px; margin-bottom: 24px;">
+            <h2>风险管理核心原则</h2>
+            <ul style="color: var(--text-secondary); line-height: 2; margin-top: 20px;">
+                <li>单笔风险不超过账户2%</li>
+                <li>永远设置止损</li>
+                <li>组合总风险不超过8%</li>
+                <li>盈亏比至少2:1</li>
+                <li>保持现金储备</li>
+            </ul>
+        </div>
+    </div>
+</body>
+</html>

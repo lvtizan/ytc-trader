@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CPB策略：复杂回调 - YTC Trader</title>
+    <link rel="stylesheet" href="../css/modern-premium.css">
+    <style>
+        body { background: linear-gradient(to bottom, #0a0a0f 0%, #0f172a 50%, #0a0a0f 100%); min-height: 100vh; }
+        .hero-section { text-align: center; padding: 60px 20px; background: radial-gradient(ellipse at top, rgba(99, 102, 241, 0.15) 0%, transparent 50%); }
+        .hero-badge { display: inline-block; padding: 8px 16px; background: rgba(99, 102, 241, 0.2); border: 1px solid rgba(99, 102, 241, 0.3); border-radius: 20px; color: #a5b4fc; font-size: 0.875rem; margin-bottom: 24px; }
+        .hero-title { font-size: 3rem; font-weight: 800; background: linear-gradient(135deg, #6366f1 0%, #06b6d4 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 16px; }
+        .hero-subtitle { color: var(--text-secondary); font-size: 1.25rem; max-width: 700px; margin: 0 auto; }
+        .content-section { max-width: 900px; margin: 0 auto; padding: 40px 20px; }
+        .card { background: rgba(30, 41, 59, 0.5); backdrop-filter: blur(10px); border: 1px solid rgba(99, 102, 241, 0.2); border-radius: 16px; padding: 32px; margin-bottom: 24px; position: relative; overflow: hidden; }
+        .card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px; background: linear-gradient(90deg, #6366f1 0%, #06b6d4 100%); }
+        .card-header { display: flex; align-items: center; gap: 16px; margin-bottom: 20px; }
+        .card-icon { font-size: 2.5rem; }
+        .card-title { font-size: 1.5rem; font-weight: 700; color: var(--text-primary); }
+        .card-content { color: var(--text-secondary); line-height: 1.8; }
+        .back-link { display: inline-block; margin: 20px; padding: 12px 24px; background: rgba(99, 102, 241, 0.2); border: 1px solid rgba(99, 102, 241, 0.3); border-radius: 12px; color: #a5b4fc; text-decoration: none; font-weight: 600; }
+    </style>
+</head>
+<body>
+        <!-- 科技光晕背景层 -->
+        <div class="tech-glow"></div>
+
+    <a href="../stage2-new.html" class="back-link">← 返回阶段二</a>
+    <div class="hero-section">
+        <span class="hero-badge">阶段二 · CPB策略 · 第8-9周</span>
+        <h1 class="hero-title">CPB策略：复杂回调买入</h1>
+        <p class="hero-subtitle">掌握复杂回调模式，识别多浪回调中的交易机会</p>
+    </div>
+    <div class="content-section">
+        <div class="card">
+            <div class="card-header">
+                <div class="card-icon">🔄</div>
+                <h2 class="card-title">CPB与PB的区别</h2>
+            </div>
+            <div class="card-content">
+                <p>Complex Pullback（复杂回调）是指回调形成两个或更多波浪的情况。相比简单回调，CPB需要更多耐心，但往往提供更好的入场位置。</p>
+                <ul style="margin-top: 20px; line-height: 2;">
+                    <li><strong>PB（简单回调）：</strong>价格直接回调到支撑区域，形成单浪结构</li>
+                    <li><strong>CPB（复杂回调）：</strong>价格回调形成双浪或三浪结构，更充分</li>
+                </ul>
+                <div style="background: rgba(245, 158, 11, 0.1); border: 1px solid rgba(245, 158, 11, 0.3); border-radius: 12px; padding: 20px; margin: 20px 0;">
+                    <div style="color: #fbbf24; font-weight: 600; margin-bottom: 8px;">💡 为什么CPB往往更好</div>
+                    <div style="color: var(--text-secondary);">复杂回调让更多急于出场的交易者离场，也清理了更多的浮动筹码，一旦突破往往动能更强。</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header">
+                <div class="card-icon">🏗️</div>
+                <h2 class="card-title">CPB的结构特征</h2>
+            </div>
+            <div class="card-content">
+                <p>识别CPB需要理解其独特的结构特征。</p>
+                <ul style="margin-top: 20px; line-height: 2;">
+                    <li><strong>双浪回调：</strong>价格形成ABC三个点的回调结构</li>
+                    <li><strong>三浪回调：</strong>价格形成ABCDE五个点的回调结构</li>
+                    <li><strong>横向整理：</strong>价格在一定区间内震荡整理</li>
+                    <li><strong>时间更长：</strong>相比简单回调需要更多时间完成</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header">
+                <div class="card-icon">✅</div>
+                <h2 class="card-title">CPB入场条件</h2>
+            </div>
+            <div class="card-content">
+                <p>CPB的入场条件和PB类似，但需要更严格的确认：</p>
+                <ol style="margin-top: 20px; line-height: 2;">
+                    <li>确认上升趋势完整</li>
+                    <li>识别复杂回调结构（至少2浪）</li>
+                    <li>第二浪回调进入支撑区域</li>
+                    <li>第二浪形成明确的低点结构</li>
+                    <li>在第二浪低点附近出现买入信号</li>
+                    <li>止损设在第二浪最低点下方</li>
+                </ol>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header">
+                <div class="card-icon">🎯</div>
+                <h2 class="card-title">CPB风险控制</h2>
+            </div>
+            <div class="card-content">
+                <p>CPB的风险控制和PB类似，但有一些特殊考虑：</p>
+                <ul style="margin-top: 20px; line-height: 2;">
+                    <li><strong>止损位置：</strong>设在回调结构的最低点下方</li>
+                    <li><strong>风险更大：</strong>CPB回调更深，止损距离可能更大</li>
+                    <li><strong>仓位调整：</strong>考虑降低仓位以控制总风险</li>
+                    <li><strong>耐心等待：</strong>CPB需要更长时间完成，不要过早入场</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header">
+                <div class="card-icon">⚠️</div>
+                <h2 class="card-title">CPB常见错误</h2>
+            </div>
+            <div class="card-content">
+                <ul style="line-height: 2;">
+                    <li>在第一浪回调就急于入场（等待第二浪）</li>
+                    <li>误将反转当作复杂回调</li>
+                    <li>在回调未完成时就入场</li>
+                    <li>止损设置过紧被正常波动止损</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div style="text-align: center; padding: 40px 20px;">
+        <a href="../stage2-new.html" style="display: inline-block; padding: 16px 32px; background: linear-gradient(135deg, #6366f1 0%, #06b6d4 100%); color: white; text-decoration: none; border-radius: 12px; font-weight: 600;">继续学习STS策略 →</a>
+    </div>
+</body>
+</html>

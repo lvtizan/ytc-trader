@@ -1,0 +1,723 @@
+<!doctype html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>回调类型详解 - YTC Trader</title>
+        <link rel="stylesheet" href="../css/modern-premium.css" />
+        <style>
+            body {
+                background: linear-gradient(to bottom, #0a0a0f 0%, #0f172a 50%, #0a0a0f 100%);
+            }
+            .knowledge-container {
+                max-width: 1200px;
+                margin: 0 auto;
+                padding: 3rem 1.5rem;
+            }
+            .knowledge-header {
+                text-align: center;
+                margin-bottom: 3rem;
+            }
+            .knowledge-title {
+                font-size: 2.5rem;
+                font-weight: 800;
+                margin-bottom: 1rem;
+                background: var(--gradient-1);
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+            }
+            .knowledge-meta {
+                display: flex;
+                gap: 2rem;
+                color: var(--text-muted);
+                font-size: 0.9375rem;
+                justify-content: center;
+            }
+
+            .section {
+                background: var(--bg-card);
+                border: 1px solid var(--border-color);
+                border-radius: 1.5rem;
+                padding: 2.5rem;
+                margin-bottom: 3rem;
+            }
+            .section-title {
+                font-size: 1.75rem;
+                font-weight: 700;
+                margin-bottom: 2rem;
+                padding-bottom: 1rem;
+                border-bottom: 3px solid var(--primary);
+            }
+
+            .type-card {
+                background: var(--bg-secondary);
+                border: 1px solid var(--border-color);
+                border-radius: 1rem;
+                overflow: hidden;
+                margin-bottom: 2rem;
+                transition: all 0.3s ease;
+            }
+            .type-card:hover {
+                transform: translateY(-4px);
+                box-shadow: 0 12px 40px rgba(0, 212, 255, 0.15);
+            }
+            .type-header {
+                background: var(--gradient-1);
+                padding: 1.5rem 2rem;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+            }
+            .type-title {
+                font-size: 1.5rem;
+                font-weight: 700;
+                color: white;
+            }
+            .type-badge {
+                padding: 0.5rem 1.5rem;
+                background: rgba(255, 255, 255, 0.2);
+                color: white;
+                border-radius: 0.5rem;
+                font-size: 0.875rem;
+                font-weight: 600;
+            }
+            .type-content {
+                padding: 2rem;
+            }
+            .type-description {
+                color: var(--text-secondary);
+                line-height: 1.8;
+                margin-bottom: 1.5rem;
+            }
+            .type-features {
+                list-style: none;
+            }
+            .type-features li {
+                padding: 0.75rem 0;
+                color: var(--text-secondary);
+                display: flex;
+                align-items: flex-start;
+                gap: 0.75rem;
+            }
+            .type-features li::before {
+                content: "✓";
+                color: var(--success);
+                font-weight: 700;
+                flex-shrink: 0;
+            }
+
+            .diagram-showcase {
+                background: var(--bg-secondary);
+                border: 1px solid var(--border-color);
+                border-radius: 1.5rem;
+                padding: 2rem;
+                margin: 2rem 0;
+            }
+            .diagram-grid {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+                gap: 2rem;
+            }
+            .diagram-card {
+                background: var(--bg-card);
+                border: 1px solid var(--border-color);
+                border-radius: 1rem;
+                overflow: hidden;
+                transition: all 0.3s ease;
+            }
+            .diagram-card:hover {
+                transform: translateY(-4px);
+                box-shadow: 0 12px 40px rgba(0, 212, 255, 0.2);
+            }
+            .diagram-image-container {
+                width: 100%;
+                height: 350px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                background: #0f172a;
+                border-radius: 0.5rem;
+                overflow: hidden;
+            }
+            .diagram-image-container img {
+                max-width: 100%;
+                max-height: 100%;
+                object-fit: contain;
+            }
+            .diagram-caption {
+                padding: 1.5rem;
+            }
+            .diagram-title {
+                font-size: 1.125rem;
+                font-weight: 600;
+                margin-bottom: 0.75rem;
+                color: var(--text-primary);
+            }
+            .diagram-description {
+                font-size: 0.9375rem;
+                color: var(--text-muted);
+                line-height: 1.6;
+                margin-bottom: 0.75rem;
+            }
+            .pdf-extract {
+                background: rgba(245, 158, 11, 0.1);
+                border-left: 3px solid var(--warning);
+                padding: 1rem 1.5rem;
+                margin-top: 1rem;
+                font-size: 0.9375rem;
+                color: var(--text-secondary);
+                border-radius: 0.5rem;
+            }
+            .extract-title {
+                font-weight: 600;
+                color: var(--warning);
+                margin-bottom: 0.5rem;
+            }
+
+            .comparison-table {
+                width: 100%;
+                border-collapse: collapse;
+                margin: 2rem 0;
+            }
+            .comparison-table th,
+            .comparison-table td {
+                padding: 1rem;
+                text-align: left;
+                border-bottom: 1px solid var(--border-color);
+            }
+            .comparison-table th {
+                background: var(--bg-secondary);
+                color: var(--text-primary);
+                font-weight: 600;
+            }
+            .comparison-table td {
+                color: var(--text-secondary);
+            }
+
+            .practice-section {
+                background: var(--bg-card);
+                border: 2px solid var(--primary);
+                border-radius: 1.5rem;
+                padding: 2.5rem;
+                margin-bottom: 3rem;
+            }
+            .practice-header {
+                font-size: 1.5rem;
+                font-weight: 700;
+                margin-bottom: 2rem;
+                color: var(--text-primary);
+            }
+            .practice-item {
+                background: var(--bg-secondary);
+                border: 1px solid var(--border-color);
+                border-radius: 1rem;
+                padding: 2rem;
+                margin-bottom: 2rem;
+            }
+            .practice-question {
+                font-size: 1.125rem;
+                font-weight: 600;
+                margin-bottom: 1rem;
+                color: var(--text-primary);
+            }
+            .practice-image {
+                width: 100%;
+                max-height: 300px;
+                background: #0f172a;
+                border-radius: 0.75rem;
+                margin-bottom: 1.1rem;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+            .practice-image img {
+                max-width: 100%;
+                max-height: 300px;
+                object-fit: contain;
+            }
+            .practice-options {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+                gap: 1rem;
+            }
+            .practice-option {
+                padding: 1rem 1.25rem;
+                background: var(--bg-card);
+                border: 2px solid var(--border-color);
+                border-radius: 0.75rem;
+                cursor: pointer;
+                transition: all 0.3s ease;
+                color: var(--text-secondary);
+            }
+            .practice-option:hover {
+                border-color: var(--primary);
+                background: rgba(99, 102, 241, 0.1);
+                transform: scale(1.02);
+            }
+            .practice-option.correct {
+                background: rgba(16, 185, 129, 0.2);
+                border-color: var(--success);
+                color: var(--success);
+            }
+            .practice-option.wrong {
+                background: rgba(239, 68, 68, 0.1);
+                border-color: var(--danger);
+                color: var(--danger);
+                opacity: 0.6;
+            }
+            .explanation {
+                margin-top: 1rem;
+                padding: 1rem;
+                background: rgba(99, 102, 241, 0.05);
+                border-radius: 0.5rem;
+                display: none;
+                font-size: 0.9375rem;
+                line-height: 1.6;
+            }
+            .explanation.show {
+                display: block;
+            }
+            .score-display {
+                text-align: center;
+                padding: 2rem;
+                background: var(--bg-secondary);
+                border-radius: 1rem;
+                margin-top: 2rem;
+            }
+            .score-number {
+                font-size: 3rem;
+                font-weight: 800;
+                background: var(--gradient-1);
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+            }
+            @media (max-width: 768px) {
+                .diagram-grid {
+                    grid-template-columns: 1fr;
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <!-- 科技光晕背景层 -->
+        <div class="tech-glow"></div>
+
+        <div class="app-container">
+            <nav class="navbar">
+                <div class="nav-container">
+                    <a href="../stage1-new.html" class="brand">
+                        <div class="brand-logo">YT</div>
+                        <div class="brand-text">
+                            <span class="brand-title">YTC Trader</span>
+                        </div>
+                    </a>
+                    <ul class="nav-menu">
+                        <li>
+                            <a href="../stage1-new.html" class="nav-link"
+                                >← 返回阶段一</a
+                            >
+                        </li>
+                        <li><a href="#types" class="nav-link">回调类型</a></li>
+                        <li><a href="#diagrams" class="nav-link">图例</a></li>
+                        <li><a href="#practice" class="nav-link">练习</a></li>
+                    </ul>
+                </div>
+            </nav>
+
+            <div class="knowledge-container">
+                <div class="knowledge-header">
+                    <p
+                        style="
+                            color: var(--primary);
+                            font-weight: 600;
+                            margin-bottom: 0.5rem;
+                        "
+                    >
+                        阶段一 · 模块2
+                    </p>
+                    <h1 class="knowledge-title">回调的分类与识别</h1>
+                    <div class="knowledge-meta">
+                        <span>⏱️ 学习时间：40分钟</span>
+                        <span>📚 难度：中级</span>
+                        <span>📖 来源：YTC PDF 卷三 第4章</span>
+                    </div>
+                </div>
+
+                <!-- 回调类型定义 -->
+                <div class="section" id="types">
+                    <h2 class="section-title">回调的主要类型</h2>
+
+                    <div class="type-card">
+                        <div class="type-header">
+                            <h3 class="type-title">简单回调（Pullback）</h3>
+                            <span class="type-badge">PB</span>
+                        </div>
+                        <div class="type-content">
+                            <p class="type-description">
+                                <strong>趋势内的简单（单腿）回撤。</strong>
+                                当我们预期当前的上升或下降趋势会继续时，我们会密切关注任意回撤的价格行为，寻找弱势征兆。
+                            </p>
+                            <ul class="type-features">
+                                <li>
+                                    回撤结构清晰，通常由单腿（2-3根K线）组成
+                                </li>
+                                <li>回撤表现出弱势，停止上涨或下跌</li>
+                                <li>在波段高点/低点区域密切关注价格行为</li>
+                                <li>
+                                    失败的逆势交易者被迫退出，帮助我们的交易获利
+                                </li>
+                                <li>是最安全的趋势继续入场机会</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="type-card">
+                        <div class="type-header">
+                            <h3 class="type-title">
+                                复杂回调（Complex Pullback）
+                            </h3>
+                            <span class="type-badge">CPB</span>
+                        </div>
+                        <div class="type-content">
+                            <p class="type-description">
+                                <strong
+                                    >趋势环境中的复杂回撤——或者包含多条腿，或者持续时间较长，或者既包含多条腿，又持续了较长时间。</strong
+                                >
+                                当辨识出一轮趋势正在变弱时，我们预期出现一波复杂回撤，而非简单回撤。
+                            </p>
+                            <ul class="type-features">
+                                <li>回撤结构复杂，包含多条腿</li>
+                                <li>持续时间较长，可能包含横盘整理</li>
+                                <li>发生在趋势变弱时</li>
+                                <li>失败的PB可能演变成CPB机会</li>
+                                <li>需要更多耐心等待确认</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- PDF图例展示 -->
+                <div class="diagram-showcase" id="diagrams">
+                    <h2 class="section-title">📊 教学图例（来自PDF）</h2>
+
+                    <div class="diagram-grid">
+                        <!-- PB图例 -->
+                        <div class="diagram-card">
+                            <div class="diagram-image-container">
+                                <img
+                                    src="../images/diagrams/pullback_page_22_img_1.png"
+                                    alt="下降趋势内的PB"
+                                />
+                            </div>
+                            <div class="diagram-caption">
+                                <div class="diagram-title">下降趋势内的PB</div>
+                                <div class="diagram-description">
+                                    展示下降趋势中的简单回调。注意回撤A和B都是简单的单腿回撤，随后都是下降趋势的继续。
+                                </div>
+                                <div class="pdf-extract">
+                                    <div class="extract-title">
+                                        📖 PDF内容要点：
+                                    </div>
+                                    回撤A到达前一波段低点支撑区，现在是阻力区，然后停止上涨，下降趋势恢复。停止上涨是回撤内存在弱势的明确证据。
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- PB图例2 -->
+                        <div class="diagram-card">
+                            <div class="diagram-image-container">
+                                <img
+                                    src="../images/diagrams/pullback_page_23_img_1.png"
+                                    alt="上升趋势内的PB"
+                                />
+                            </div>
+                            <div class="diagram-caption">
+                                <div class="diagram-title">上升趋势内的PB</div>
+                                <div class="diagram-description">
+                                    展示上升趋势中的简单回调机会。单腿回撤C在进入交易密集区D时停止。
+                                </div>
+                                <div class="pdf-extract">
+                                    <div class="extract-title">
+                                        📖 PDF内容要点：
+                                    </div>
+                                    回调E在进入前一波段高点G区时停止。还要注意F处对波段高点G的向上突破；这是强供需失衡的证据。
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- CPB图例 -->
+                        <div class="diagram-card">
+                            <div class="diagram-image-container">
+                                <img
+                                    src="../images/diagrams/pullback_page_23_img_2.png"
+                                    alt="CPB架构示意图"
+                                />
+                            </div>
+                            <div class="diagram-caption">
+                                <div class="diagram-title">CPB架构示意图</div>
+                                <div class="diagram-description">
+                                    展示复杂回调的结构特征，包含多条腿或持续时间较长的回撤。
+                                </div>
+                                <div class="pdf-extract">
+                                    <div class="extract-title">
+                                        📖 PDF内容要点：
+                                    </div>
+                                    CPB是趋势环境中的复杂回撤。当我们辨识出一轮趋势正在变弱时，我们预期出现一波复杂回撤，而非简单回撤。
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- PB结构图 -->
+                        <div class="diagram-card">
+                            <div class="diagram-image-container">
+                                <img
+                                    src="../images/diagrams/pullback_page_20_img_1.png"
+                                    alt="PB回撤结构"
+                                />
+                            </div>
+                            <div class="diagram-caption">
+                                <div class="diagram-title">PB回撤结构</div>
+                                <div class="diagram-description">
+                                    展示趋势内简单回调的基本结构和原理。
+                                </div>
+                                <div class="pdf-extract">
+                                    <div class="extract-title">
+                                        📖 PDF内容要点：
+                                    </div>
+                                    很多交易者倾向于去尝试捕捉反转点。虽然每个人都声称自己理解"趋势是你的朋友"，但是我们中间大多数人总是在寻找逆势机会。
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 互动练习 -->
+                <div class="practice-section" id="practice">
+                    <div class="practice-header">✏️ 基于图片的互动练习</div>
+
+                    <!-- 练习1 -->
+                    <div class="practice-item" data-practice="1">
+                        <div class="practice-question">
+                            练习1：观察"下降趋势内的PB"图例
+                        </div>
+                        <div class="practice-image">
+                            <img
+                                src="../images/diagrams/pullback_page_22_img_1.png"
+                                alt="PB练习"
+                            />
+                        </div>
+                        <div class="practice-description">
+                            根据图片，判断图中展示了什么类型的回调：
+                        </div>
+                        <div class="practice-options">
+                            <div
+                                class="practice-option"
+                                onclick="checkAnswer(1, this, true)"
+                            >
+                                A. 简单回调（PB）
+                            </div>
+                            <div
+                                class="practice-option"
+                                onclick="checkAnswer(1, this, false)"
+                            >
+                                B. 复杂回调（CPB）
+                            </div>
+                            <div
+                                class="practice-option"
+                                onclick="checkAnswer(1, this, false)"
+                            >
+                                C. 突破失败（BOF）
+                            </div>
+                        </div>
+                        <div class="explanation" id="explanation-1"></div>
+                    </div>
+
+                    <!-- 练习2 -->
+                    <div class="practice-item" data-practice="2">
+                        <div class="practice-question">
+                            练习2：观察所有图例，判断PB和CPB的核心区别
+                        </div>
+                        <div class="practice-description">
+                            根据上面展示的图例，选择最准确的说法：
+                        </div>
+                        <div class="practice-options">
+                            <div
+                                class="practice-option"
+                                onclick="checkAnswer(2, this, false)"
+                            >
+                                A. PB和CPB没有区别
+                            </div>
+                            <div
+                                class="practice-option"
+                                onclick="checkAnswer(2, this, true)"
+                            >
+                                B. PB是单腿简单回撤，CPB是多腿复杂回撤
+                            </div>
+                            <div
+                                class="practice-option"
+                                onclick="checkAnswer(2, this, false)"
+                            >
+                                C. CPB比PB更安全
+                            </div>
+                        </div>
+                        <div class="explanation" id="explanation-2"></div>
+                    </div>
+
+                    <!-- 练习3 -->
+                    <div class="practice-item" data-practice="3">
+                        <div class="practice-question">
+                            练习3：观察"上升趋势内的PB"图例
+                        </div>
+                        <div class="practice-image">
+                            <img
+                                src="../images/diagrams/pullback_page_23_img_1.png"
+                                alt="上升趋势PB练习"
+                            />
+                        </div>
+                        <div class="practice-description">
+                            根据图片，回撤在什么位置停止并恢复上升趋势：
+                        </div>
+                        <div class="practice-options">
+                            <div
+                                class="practice-option"
+                                onclick="checkAnswer(3, this, false)"
+                            >
+                                A. 在任意位置
+                            </div>
+                            <div
+                                class="practice-option"
+                                onclick="checkAnswer(3, this, true)"
+                            >
+                                B. 在波段高点/低点区域
+                            </div>
+                            <div
+                                class="practice-option"
+                                onclick="checkAnswer(3, this, false)"
+                            >
+                                C. 在图表边缘
+                            </div>
+                        </div>
+                        <div class="explanation" id="explanation-3"></div>
+                    </div>
+
+                    <!-- 得分显示 -->
+                    <div
+                        class="score-display"
+                        id="score-display"
+                        style="display: none"
+                    >
+                        <div>练习得分</div>
+                        <div class="score-number" id="score-number">0/3</div>
+                    </div>
+                </div>
+
+                <!-- 学习提示 -->
+                <div
+                    style="
+                        background: var(--bg-card);
+                        border: 1px solid var(--border-color);
+                        border-radius: 1rem;
+                        padding: 2rem;
+                        margin-top: 2rem;
+                        text-align: center;
+                    "
+                >
+                    <h3
+                        style="
+                            font-size: 1.25rem;
+                            margin-bottom: 1rem;
+                            color: var(--text-primary);
+                        "
+                    >
+                        📚 学习提示
+                    </h3>
+                    <p
+                        style="
+                            color: var(--text-muted);
+                            line-height: 1.8;
+                            margin-bottom: 1.5rem;
+                        "
+                    >
+                        PB和CPB是YTC策略的核心架构。PB是趋势内的简单回调，CPB是复杂回调。关键是在趋势变弱时预期CPB，在强势趋势中寻找PB机会。
+                    </p>
+                    <div
+                        style="
+                            display: flex;
+                            gap: 1rem;
+                            justify-content: center;
+                            flex-wrap: wrap;
+                        "
+                    >
+                        <a
+                            href="trend-identification.html"
+                            class="btn btn-primary"
+                            >下一个：多时间周期分析 →</a
+                        >
+                        <a href="../stage1-new.html" class="btn btn-secondary"
+                            >返回阶段一</a
+                        >
+                    </div>
+                </div>
+            </div>
+
+            <script>
+                let score = 0;
+                const totalQuestions = 3;
+
+                function checkAnswer(questionNum, element, isCorrect) {
+                    const parent = element.parentElement;
+                    const options = parent.querySelectorAll(".practice-option");
+                    const explanation = document.getElementById(
+                        "explanation-" + questionNum,
+                    );
+
+                    options.forEach((opt) => {
+                        opt.classList.remove("correct", "wrong");
+                    });
+
+                    element.classList.add(isCorrect ? "correct" : "wrong");
+
+                    explanation.classList.add("show");
+
+                    if (isCorrect) {
+                        score++;
+                        element.innerHTML +=
+                            ' <span style="margin-left: 10px;">✓</span>';
+                        explanation.innerHTML =
+                            "<strong>✅ 正确！</strong><br>" +
+                            getExplanation(questionNum, true);
+                    } else {
+                        element.innerHTML +=
+                            ' <span style="margin-left: 10px;">✗</span>';
+                        explanation.innerHTML =
+                            "<strong>❌ 不正确</strong><br>" +
+                            getExplanation(questionNum, false);
+                    }
+
+                    document.getElementById("score-number").textContent =
+                        score + "/" + totalQuestions;
+                    document.getElementById("score-display").style.display =
+                        "block";
+                }
+
+                function getExplanation(questionNum, correct) {
+                    const explanations = {
+                        1: {
+                            true: "正确！图中展示了下降趋势中的简单回调（PB），回撤A和B都是单腿结构，随后趋势继续。",
+                            false: "不正确。请仔细观察图中回撤的结构特征。",
+                        },
+                        2: {
+                            true: "正确！PB是单腿简单回撤，CPB是多腿或持续时间较长的复杂回撤，这是它们的核心区别。",
+                            false: "不正确。PB和CPB有明确的结构差异。",
+                        },
+                        3: {
+                            true: "正确！PB回调通常在波段高点/低点区域停止，这些区域是潜在新订单流的源泉。",
+                            false: "不正确。PB回调通常在关键结构区域停止。",
+                        },
+                    };
+                    return explanations[questionNum][correct];
+                }
+            </script>
+        </div>
+    </body>
+</html>

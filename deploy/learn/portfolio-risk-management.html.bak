@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>组合风险管理 - YTC Trader</title>
+    <link rel="stylesheet" href="../css/modern-premium.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background: linear-gradient(to bottom, #0a0a0f 0%, #0f172a 50%, #0a0a0f 100%);
+            min-height: 100vh;
+        }
+        .hero-section {
+            text-align: center;
+            padding: 60px 20px;
+            background: radial-gradient(ellipse at top, rgba(99, 102, 241, 0.15) 0%, transparent 50%);
+        }
+        .hero-badge {
+            display: inline-block;
+            padding: 8px 16px;
+            background: rgba(99, 102, 241, 0.2);
+            border: 1px solid rgba(99, 102, 241, 0.3);
+            border-radius: 20px;
+            color: #a5b4fc;
+            font-size: 0.875rem;
+            margin-bottom: 24px;
+        }
+        .hero-title {
+            font-size: 3rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #6366f1 0%, #06b6d4 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 16px;
+        }
+        .hero-subtitle {
+            color: var(--text-secondary);
+            font-size: 1.25rem;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        .content-section {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+        .card {
+            background: rgba(30, 41, 59, 0.5);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(99, 102, 241, 0.2);
+            border-radius: 16px;
+            padding: 32px;
+            margin-bottom: 24px;
+            position: relative;
+            overflow: hidden;
+        }
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #6366f1 0%, #06b6d4 100%);
+        }
+        .card-header {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 20px;
+        }
+        .card-icon {
+            font-size: 2.5rem;
+        }
+        .card-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--text-primary);
+        }
+        .card-content {
+            color: var(--text-secondary);
+            line-height: 1.8;
+        }
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 16px;
+            margin-top: 20px;
+        }
+        .info-item {
+            background: rgba(15, 23, 42, 0.5);
+            border: 1px solid rgba(99, 102, 241, 0.1);
+            border-radius: 12px;
+            padding: 20px;
+        }
+        .info-label {
+            color: #a5b4fc;
+            font-size: 0.875rem;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+        .info-value {
+            color: var(--text-primary);
+            font-size: 1rem;
+            font-weight: 600;
+        }
+        .tips-box {
+            background: rgba(245, 158, 11, 0.1);
+            border: 1px solid rgba(245, 158, 11, 0.3);
+            border-radius: 12px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+        .tips-title {
+            color: #fbbf24;
+            font-weight: 600;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .tips-content {
+            color: var(--text-secondary);
+            line-height: 1.7;
+        }
+        .example-box {
+            background: rgba(16, 185, 129, 0.1);
+            border: 1px solid rgba(16, 185, 129, 0.3);
+            border-radius: 12px;
+            padding: 24px;
+            margin: 20px 0;
+        }
+        .example-title {
+            color: #34d399;
+            font-weight: 600;
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .back-link {
+            display: inline-block;
+            margin: 20px;
+            padding: 12px 24px;
+            background: rgba(99, 102, 241, 0.2);
+            border: 1px solid rgba(99, 102, 241, 0.3);
+            border-radius: 12px;
+            color: #a5b4fc;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        .back-link:hover {
+            background: rgba(99, 102, 241, 0.3);
+            transform: translateY(-2px);
+        }
+    </style>
+</head>
+<body>
+        <!-- 科技光晕背景层 -->
+        <div class="tech-glow"></div>
+
+    <a href="../stage3-new.html" class="back-link">← 返回阶段三</a>
+
+    <div class="hero-section">
+        <span class="hero-badge">阶段三 · 模块4 · 第15周</span>
+        <h1 class="hero-title">组合风险管理</h1>
+        <p class="hero-subtitle">管理整个投资组合的风险敞口，实现长期稳定盈利</p>
+    </div>
+
+    <div class="content-section">
+        <!-- 为什么需要组合风险管理 -->
+        <div class="card">
+            <div class="card-header">
+                <div class="card-icon">🎯</div>
+                <h2 class="card-title">为什么需要组合风险管理</h2>
+            </div>
+            <div class="card-content">
+                <p>单笔交易风险管理只是第一步。真正的专业交易者会从整个投资组合的角度来管理风险，确保不会因为多笔交易的同时亏损而造成重大损失。</p>
+
+                <div class="info-grid">
+                    <div class="info-item">
+                        <div class="info-label">分散风险</div>
+                        <div class="info-value">避免单一股票造成过大损失</div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-label">平滑波动</div>
+                        <div class="info-value">降低账户净值的波动幅度</div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-label">提高稳定性</div>
+                        <div class="info-value">实现更稳定的权益曲线</div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-label">心理压力</div>
+                        <div class="info-value">减少因账户波动带来的焦虑</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 相关性分析 -->
+        <div class="card">
+            <div class="card-header">
+                <div class="card-icon">🔗</div>
+                <h2 class="card-title">相关性分析</h2>
+            </div>
+            <div class="card-content">
+                <p>相关性是指不同股票价格变动之间的关系。理解相关性对于组合风险管理至关重要。</p>
+
+                <div class="info-grid">
+                    <div class="info-item">
+                        <div class="info-label">正相关（+0.5到+1）</div>
+                        <div class="info-value">股票同涨同跌，不适合分散风险</div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-label">负相关（-0.5到-1）</div>
+                        <div class="info-value">股票走势相反，适合对冲</div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-label">低相关（-0.5到+0.5）</div>
+                        <div class="info-value">股票走势独立，适合组合</div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-label">零相关（0）</div>
+                        <div class="info-value">完全独立，最佳分散效果</div>
+                    </div>
+                </div>
+
+                <div class="example-box">
+                    <div class="example-title">💡 行业相关性示例</div>
+                    <div style="color: var(--text-secondary); line-height: 1.8;">
+                        <strong>高相关组合（不推荐）：</strong><br>
+                        茅台 + 五粮液 + 泸州老窖<br>
+                        都是白酒股，同时下跌的风险很大<br><br>
+                        <strong>低相关组合（推荐）：</strong><br>
+                        茅台（消费）+ 比亚迪（新能源）+ 万科（地产）<br>
+                        不同行业，相关性较低，风险更分散
+                    </div>
+                </div>
+
+                <div class="tips-box">
+                    <div class="tips-title">💡 相关性分析技巧</div>
+                    <div class="tips-content">
+                        <strong>避免同时持有过多同行业的股票。</strong>即使你看好某个行业，也应该控制该行业的总仓位。理想情况下，你的组合应该涵盖5-8个不同行业，每个行业的仓位不超过总资金的20-30%。
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 组合风险计算 -->
+        <div class="card">
+            <div class="card-header">
+                <div class="card-icon">🧮</div>
+                <h2 class="card-title">组合风险计算</h2>
+            </div>
+            <div class="card-content">
+                <p>组合总风险不是单笔风险的简单相加。相关性会影响组合的总体风险水平。</p>
+
+                <div class="example-box">
+                    <div class="example-title">💡 组合风险计算示例</div>
+                    <div style="color: var(--text-secondary); line-height: 1.8;">
+                        假设你同时持有3笔交易，每笔风险都是账户的2%：<br><br>
+                        <strong>情况1：完全正相关（ρ=1）</strong><br>
+                        组合风险 = 2% + 2% + 2% = <strong style="color: #f87171;">6%</strong> ❌<br><br>
+                        <strong>情况2：零相关（ρ=0）</strong><br>
+                        组合风险 ≈ √(2%² + 2%² + 2%²) ≈ <strong style="color: #34d399;">3.5%</strong> ✓<br><br>
+                        <strong>情况3：负相关（ρ=-0.5）</strong><br>
+                        组合风险 < √(2%² + 2%² + 2%²) ≈ <strong style="color: #34d399;">< 3.5%</strong> ✓✓
+                    </div>
+                </div>
+
+                <div class="tips-box">
+                    <div class="tips-title">⚠️ 实战建议</div>
+                    <div class="tips-content">
+                        <strong>假设最坏情况：所有持仓同时触发止损。</strong>即使理论上低相关性的组合可以降低风险，但在市场恐慌时，所有股票可能同时下跌。因此，计算组合风险时应该将所有持仓的单笔风险相加，确保总和在可承受范围内（如账户的6-8%）。
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 分散度管理 -->
+        <div class="card">
+            <div class="card-header">
+                <div class="card-icon">📊</div>
+                <h2 class="card-title">分散度管理</h2>
+            </div>
+            <div class="card-content">
+                <p>合理的分散度可以降低风险，但过度分散会降低收益。找到合适的平衡点很重要。</p>
+
+                <div class="info-grid">
+                    <div class="info-item">
+                        <div class="info-label">持仓数量</div>
+                        <div class="info-value">建议3-8只股票</div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-label">单只上限</div>
+                        <div class="info-value">不超过账户的20-25%</div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-label">行业分散</div>
+                        <div class="info-value">至少涵盖3-5个行业</div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-label">集中度</div>
+                        <div class="info-value">前两大持仓不超过50%</div>
+                    </div>
+                </div>
+
+                <div class="example-box">
+                    <div class="example-title">💡 100万元账户的合理配置</div>
+                    <div style="color: var(--text-secondary); line-height: 1.8;">
+                        <strong>持仓1：</strong>贵州茅台 20万（20%）- 消费<br>
+                        <strong>持仓2：</strong>比亚迪 18万（18%）- 新能源<br>
+                        <strong>持仓3：</strong>宁德时代 15万（15%）- 电池<br>
+                        <strong>持仓4：</strong>万科A 15万（15%）- 地产<br>
+                        <strong>持仓5：</strong>中国平安 12万（12%）- 金融<br>
+                        <strong>持仓6：</strong>腾讯控股 10万（10%）- 科技<br>
+                        <strong>现金：</strong>10万（10%）- 机会储备<br><br>
+                        <strong>组合总风险：假设每笔2%，最大风险 = 12%</strong>
+                    </div>
+                </div>
+
+                <div class="tips-box">
+                    <div class="tips-title">⚠️ 避免过度分散</div>
+                    <div class="tips-content">
+                        <strong>持有超过10只股票通常没有必要。</strong>过度分散会导致：1）无法有效跟踪每个持仓；2）收益率趋向于指数；3）交易成本增加。专业交易者更倾向于精选5-8只优质股票集中持有。
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 资金分配策略 -->
+        <div class="card">
+            <div class="card-header">
+                <div class="card-icon">💰</div>
+                <h2 class="card-title">资金分配策略</h2>
+            </div>
+            <div class="card-content">
+                <p>在确定组合配置后，如何分配资金给每笔交易同样重要。</p>
+
+                <div class="info-grid">
+                    <div class="info-item">
+                        <div class="info-label">等风险分配</div>
+                        <div class="info-value">每笔交易承担相同风险金额</div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-label">等权重分配</div>
+                        <div class="info-value">每只股票投入相同资金</div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-label">凯利公式分配</div>
+                        <div class="info-value">根据胜率和盈亏比分配</div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-label">金字塔分配</div>
+                        <div class="info-value">高确定性持仓分配更多资金</div>
+                    </div>
+                </div>
+
+                <div class="example-box">
+                    <div class="example-title">💡 等风险分配示例（推荐）</div>
+                    <div style="color: var(--text-secondary); line-height: 1.8;">
+                        账户100万，单笔风险2%（2万）：<br><br>
+                        <strong>交易1：</strong>茅台，风险3元/股 → 买入 6666股<br>
+                        <strong>交易2：</strong>比亚迪，风险5元/股 → 买入 4000股<br>
+                        <strong>交易3：</strong>万科，风险2元/股 → 买入 10000股<br><br>
+                        虽然股数和投入金额不同，但每笔交易的风险都是2万
+                    </div>
+                </div>
+
+                <div class="tips-box">
+                    <div class="tips-title">💡 资金分配原则</div>
+                    <div class="tips-content">
+                        <strong>等风险分配是最简单也最有效的方法。</strong>它确保每笔交易对账户的影响相同，避免某一只股票的波动对账户造成过大影响。这种方法特别适合有明确止损策略的交易者。
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 风险监控系统 -->
+        <div class="card">
+            <div class="card-header">
+                <div class="card-icon">📡</div>
+                <h2 class="card-title">风险监控系统</h2>
+            </div>
+            <div class="card-content">
+                <p>建立有效的风险监控系统，实时掌握组合的风险状况。</p>
+
+                <div class="info-grid">
+                    <div class="info-item">
+                        <div class="info-label">每日检查</div>
+                        <div class="info-value">盘后查看总风险敞口</div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-label">风险预警</div>
+                        <div class="info-value">设定风险上限自动预警</div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-label">相关性监测</div>
+                        <div class="info-value">定期检查持仓相关性变化</div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-label">压力测试</div>
+                        <div class="info-value">模拟极端情况下的最大损失</div>
+                    </div>
+                </div>
+
+                <div class="tips-box">
+                    <div class="tips-title">⚠️ 风险监控清单</div>
+                    <div class="tips-content">
+                        <strong>每天收盘后，回答以下问题：</strong><br>
+                        1. 组合总风险是否超过账户的8%？<br>
+                        2. 是否有单一持仓超过账户的25%？<br>
+                        3. 同行业持仓是否超过账户的40%？<br>
+                        4. 现金比例是否低于5%？<br>
+                        5. 是否有持仓触发追踪止损？
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 组合风险管理总结 -->
+        <div class="card">
+            <div class="card-header">
+                <div class="card-icon">✅</div>
+                <h2 class="card-title">组合风险管理核心原则</h2>
+            </div>
+            <div class="card-content">
+                <p>掌握以下核心原则，让你的交易之路更加稳健：</p>
+
+                <div style="margin-top: 20px;">
+                    <div style="background: rgba(15, 23, 42, 0.5); border-radius: 12px; padding: 20px; margin-bottom: 16px;">
+                        <div style="color: #a5b4fc; font-weight: 600; margin-bottom: 8px;">1. 分散但不过度</div>
+                        <div style="color: var(--text-secondary);">持有3-8只低相关性的股票，涵盖不同行业</div>
+                    </div>
+                    <div style="background: rgba(15, 23, 42, 0.5); border-radius: 12px; padding: 20px; margin-bottom: 16px;">
+                        <div style="color: #a5b4fc; font-weight: 600; margin-bottom: 8px;">2. 控制总风险</div>
+                        <div style="color: var(--text-secondary);">组合总风险不超过账户的6-8%</div>
+                    </div>
+                    <div style="background: rgba(15, 23, 42, 0.5); border-radius: 12px; padding: 20px; margin-bottom: 16px;">
+                        <div style="color: #a5b4fc; font-weight: 600; margin-bottom: 8px;">3. 限制单一持仓</div>
+                        <div style="color: var(--text-secondary);">任何单一股票不超过账户的20-25%</div>
+                    </div>
+                    <div style="background: rgba(15, 23, 42, 0.5); border-radius: 12px; padding: 20px; margin-bottom: 16px;">
+                        <div style="color: #a5b4fc; font-weight: 600; margin-bottom: 8px;">4. 保持现金储备</div>
+                        <div style="color: var(--text-secondary);">至少保留5-10%现金应对机会和风险</div>
+                    </div>
+                    <div style="background: rgba(15, 23, 42, 0.5); border-radius: 12px; padding: 20px;">
+                        <div style="color: #a5b4fc; font-weight: 600; margin-bottom: 8px;">5. 定期再平衡</div>
+                        <div style="color: var(--text-secondary);">每月检查组合，根据变化调整配置</div>
+                    </div>
+                </div>
+
+                <div class="tips-box">
+                    <div class="tips-title">💡 最后的建议</div>
+                    <div class="tips-content">
+                        <strong>组合风险管理的目标不是最大化收益，而是最小化毁灭风险。</strong>在这个基础上，通过持续学习和优化策略，提高收益水平。记住：在市场上活下来比赚大钱更重要。
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div style="text-align: center; padding: 40px 20px;">
+        <a href="../stage4-new.html" style="display: inline-block; padding: 16px 32px; background: linear-gradient(135deg, #6366f1 0%, #06b6d4 100%); color: white; text-decoration: none; border-radius: 12px; font-weight: 600; transition: transform 0.3s ease;">完成阶段三，进入阶段四 →</a>
+    </div>
+</body>
+</html>

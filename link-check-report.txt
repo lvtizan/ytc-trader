@@ -1,0 +1,100 @@
+链接检查报告 - Sun Feb 15 11:30:32 CST 2026
+=========================================
+
+
+📄 检查文件: index-new.html
+
+  ✅ css/modern-premium.css
+  ✅ index-new.html
+  ✅ stage1-new.html
+  ✅ stage2-new.html
+  ✅ stage3-new.html
+  ✅ stage4-new.html
+  ✅ tools/checklist.html
+  ✅ tools/trading-plan-template.html
+  ✅ tools/position-calculator.html
+  ✅ tools/daily-review.html
+  ✅ tools/weekly-review.html
+  ✅ tools/risk-management.html
+
+📄 检查文件: stage1-new.html
+
+  ✅ css/modern-premium.css
+  ✅ css/stage-new.css
+  ✅ index-new.html
+  ✅ index-new.html
+  ❌ 断链: index-new.html#tools
+  ✅ learn/hh-hl-structure.html
+  ✅ learn/high-low-identification.html
+  ✅ learn/trendline-drawing.html
+  ✅ learn/hh-hl-structure.html
+  ✅ learn/callback-types.html
+  ✅ learn/callback-area-identification.html
+  ✅ learn/callback-depth-measurement.html
+  ✅ learn/callback-types.html
+  ✅ learn/trend-identification.html
+  ✅ learn/trend-identification.html
+  ✅ learn/timeframe-selection.html
+  ✅ learn/trend-identification.html
+  ✅ learn/stock-selection-criteria.html
+  ✅ learn/screening-conditions.html
+  ✅ tools/checklist.html
+  ✅ tools/checklist.html
+  ✅ stage2-new.html
+  ✅ index-new.html
+  ✅ stage1.html
+  ✅ stage2-new.html
+  ✅ stage3-new.html
+  ✅ stage4-new.html
+
+📄 检查文件: stage2-new.html
+
+  ✅ css/modern-premium.css
+  ✅ css/stage-new.css
+  ✅ index-new.html
+  ✅ index-new.html
+  ❌ 断链: index-new.html#tools
+  ✅ learn/pb-strategy.html
+  ✅ learn/cpb-strategy.html
+  ✅ learn/sts-strategy.html
+  ✅ stage3.html
+  ✅ index-new.html
+
+📄 检查文件: stage3-new.html
+
+  ✅ css/modern-premium.css
+  ✅ css/stage-new.css
+  ✅ index-new.html
+  ✅ index-new.html
+  ❌ 断链: index-new.html#tools
+  ✅ learn/position-sizing.html
+  ✅ learn/stop-loss-techniques.html
+  ✅ learn/risk-reward-ratio.html
+  ✅ learn/portfolio-risk-management.html
+  ✅ stage4.html
+  ✅ index-new.html
+
+📄 检查文件: stage4-new.html
+
+  ✅ css/modern-premium.css
+  ✅ css/stage-new.css
+  ✅ index-new.html
+  ✅ index-new.html
+  ❌ 断链: index-new.html#tools
+  ✅ learn/psychology-enemies.html
+  ✅ learn/trading-discipline.html
+  ✅ learn/emotion-management.html
+  ✅ learn/review-mechanism.html
+  ✅ final.html
+  ✅ index-new.html
+
+
+=========================================
+检查总结
+=========================================
+总链接数: 71
+有效链接: 67
+断链数量: 4
+忽略链接: 0
+
+❌ 发现 4 个断链，需要修复！

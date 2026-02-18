@@ -1,0 +1,828 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HH+HL结构详解 - YTC Trader</title>
+    <link rel="stylesheet" href="../css/modern-premium.css">
+    <style>
+        .knowledge-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 3rem 1.5rem;
+        }
+        .knowledge-title {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            background: var(--gradient-1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .knowledge-meta {
+            display: flex;
+            gap: 2rem;
+            color: var(--text-muted);
+            margin-bottom: 2rem;
+            font-size: 0.9375rem;
+        }
+        .section {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 1.5rem;
+            padding: 2.5rem;
+            margin-bottom: 3rem;
+        }
+        .section-title {
+            font-size: 1.75rem;
+            font-weight: 700;
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 3px solid var(--primary);
+        }
+        .content-block {
+            margin-bottom: 2rem;
+        }
+        .content-block h3 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--text-primary);
+        }
+        .content-block p {
+            color: var(--text-secondary);
+            line-height: 1.8;
+            margin-bottom: 1rem;
+        }
+        .content-block ul {
+            margin-left: 2rem;
+            color: var(--text-secondary);
+            line-height: 1.8;
+        }
+        .key-point {
+            background: rgba(99, 102, 241, 0.1);
+            border-left: 4px solid var(--primary);
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            border-radius: 0.75rem;
+        }
+        .key-point-title {
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+            font-size: 1.0625rem;
+        }
+        .key-point-content {
+            color: var(--text-secondary);
+            line-height: 1.8;
+        }
+        .example-box {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: 1rem;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+        }
+        .diagram-showcase {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: 1.5rem;
+            padding: 2rem;
+            margin: 2rem 0;
+        }
+        .diagram-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+        .diagram-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 1rem;
+            overflow: hidden;
+        }
+        .diagram-placeholder {
+            width: 100%;
+            height: 250px;
+            background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+        .diagram-placeholder::before {
+            content: '📊 图例占位';
+            position: absolute;
+            font-size: 0.875rem;
+            color: var(--text-muted);
+            text-align: center;
+        }
+        .diagram-caption {
+            padding: 1.5rem;
+        }
+        .diagram-title {
+            font-size: 1.125rem;
+            font-weight: 600;
+            margin-bottom: 0.75rem;
+            color: var(--text-primary);
+        }
+        .diagram-description {
+            font-size: 0.9375rem;
+            color: var(--text-muted);
+            line-height: 1.6;
+        }
+        .source-tag {
+            display: inline-block;
+            background: var(--gradient-1);
+            color: white;
+            padding: 0.25rem 0.75rem;
+            border-radius: 1rem;
+            font-size: 0.75rem;
+            font-weight: 600;
+            margin-top: 0.75rem;
+        }
+        .practice-section {
+            background: var(--bg-card);
+            border: 2px solid var(--primary);
+            border-radius: 1.5rem;
+            padding: 2.5rem;
+            margin-bottom: 3rem;
+        }
+        .practice-header {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 2rem;
+            color: var(--text-primary);
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        .practice-item {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: 1rem;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+        .practice-question {
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--text-primary);
+            font-size: 1.0625rem;
+        }
+        .practice-image {
+            width: 100%;
+            height: 200px;
+            background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+            border-radius: 0.75rem;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-muted);
+            font-size: 0.875rem;
+        }
+        .practice-options {
+            display: grid;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        .practice-option {
+            padding: 1rem 1.25rem;
+            background: var(--bg-card);
+            border: 2px solid var(--border-color);
+            border-radius: 0.75rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            color: var(--text-secondary);
+        }
+        .practice-option:hover {
+            border-color: var(--primary);
+            background: rgba(99, 102, 241, 0.1);
+        }
+        .practice-option.selected {
+            border-color: var(--primary);
+            background: var(--primary);
+            color: white;
+        }
+        .practice-feedback {
+            margin-top: 1rem;
+            padding: 1rem;
+            border-radius: 0.75rem;
+            display: none;
+        }
+        .practice-feedback.correct {
+            background: rgba(16, 185, 129, 0.1);
+            border: 2px solid var(--success);
+            color: var(--success);
+        }
+        .practice-feedback.incorrect {
+            background: rgba(239, 68, 68, 0.1);
+            border: 2px solid var(--danger);
+            color: var(--danger);
+        }
+        .quiz-section {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: 1.5rem;
+            padding: 2.5rem;
+        }
+        .quiz-item {
+            margin-bottom: 2rem;
+        }
+        .quiz-question {
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--text-primary);
+            font-size: 1.0625rem;
+        }
+        .quiz-options {
+            display: grid;
+            gap: 1rem;
+        }
+        .quiz-option {
+            padding: 1rem 1.25rem;
+            background: var(--bg-card);
+            border: 2px solid var(--border-color);
+            border-radius: 0.75rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            color: var(--text-secondary);
+        }
+        .quiz-option:hover {
+            border-color: var(--accent);
+        }
+        .quiz-option.correct-answer {
+            background: rgba(16, 185, 129, 0.2);
+            border-color: var(--success);
+        }
+        .quiz-option.wrong-answer {
+            background: rgba(239, 68, 68, 0.1);
+            border-color: var(--danger);
+            opacity: 0.5;
+        }
+        .score-display {
+            text-align: center;
+            padding: 2rem;
+            background: var(--bg-card);
+            border-radius: 1rem;
+            margin-bottom: 2rem;
+        }
+        .score-number {
+            font-size: 3rem;
+            font-weight: 800;
+            background: var(--gradient-1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .progress-bar {
+            width: 100%;
+            height: 12px;
+            background: var(--bg-tertiary);
+            border-radius: 1rem;
+            overflow: hidden;
+            margin: 1rem 0 2rem;
+        }
+        .progress-fill {
+            height: 100%;
+            background: var(--gradient-1);
+            border-radius: 1rem;
+            transition: width 0.5s ease;
+        }
+        @media (max-width: 768px) {
+            .knowledge-title {
+                font-size: 1.75rem;
+            }
+            .diagram-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="app-container">
+        <nav class="navbar">
+            <div class="nav-container">
+                <a href="../stage1-new.html" class="brand">
+                    <div class="brand-logo">YT</div>
+                    <div class="brand-text">
+                        <span class="brand-title">YTC Trader</span>
+                    </div>
+                </a>
+                <ul class="nav-menu">
+                    <li><a href="#definition" class="nav-link">定义</a></li>
+                    <li><a href="#diagrams" class="nav-link">图例</a></li>
+                    <li><a href="#practice" class="nav-link">练习</a></li>
+                    <li><a href="#quiz" class="nav-link">测验</a></li>
+                </ul>
+            </div>
+        </nav>
+
+        <div class="knowledge-container">
+            <div style="text-align: center; margin-bottom: 3rem;">
+                <p style="color: var(--primary); font-weight: 600; margin-bottom: 0.5rem;">阶段一 · 模块1</p>
+                <h1 class="knowledge-title">上升趋势的完整结构（HH+HL）</h1>
+                <div class="knowledge-meta">
+                    <span>⏱️ 预计学习时间：30分钟</span>
+                    <span>📚 难度：基础</span>
+                    <span>📖 相关章节：YTC PDF 第2-3章</span>
+                </div>
+            </div>
+
+            <!-- 定义部分 -->
+            <div class="section" id="definition">
+                <h2 class="section-title">核心概念定义</h2>
+
+                <div class="content-block">
+                    <h3>🔺 更高高点（Higher High，简称HH）</h3>
+                    <p>在上升趋势中，当价格突破前一个高点并创出新的高点时，这个新的高点就被称为"更高高点"（HH）。</p>
+                    <div class="key-point">
+                        <div class="key-point-title">📌 识别要点：</div>
+                        <div class="key-point-content">
+                            ✓ 当前高点必须高于前一个高点<br>
+                            ✓ 突破必须是有力度的，不能只是触及<br>
+                            ✓ 突破后应该能够维持在新高之上<br>
+                            ✓ 需要明显的K线实体突破，不是影线突破
+                        </div>
+                    </div>
+                </div>
+
+                <div class="content-block">
+                    <h3>🔻 更高低点（Higher Low，简称HL）</h3>
+                    <p>在上升趋势中，当价格回调后形成新的低点，且这个低点高于前一个低点时，这个低点就被称为"更高低点"（HL）。</p>
+                    <div class="key-point">
+                        <div class="key-point-title">📌 识别要点：</div>
+                        <div class="key-point-content">
+                            ✓ 当前低点必须高于前一个低点<br>
+                            ✓ 回调应该是有序的，不是剧烈下跌<br>
+                            ✓ 在更高低点附近应该有支撑迹象<br>
+                            ✓ 回调时成交量通常萎缩
+                        </div>
+                    </div>
+                </div>
+
+                <div class="content-block">
+                    <h3>📈 完整上升趋势结构</h3>
+                    <p>一个完整的上升趋势结构由一系列的HH和HL组成。最简单的上升趋势需要至少：</p>
+                    <div class="key-point">
+                        <div class="key-point-title">💡 核心公式：</div>
+                        <div class="key-point-content" style="font-size: 1.125rem;">
+                            HH + HL = 上升趋势信号<br><br>
+                            HH + HL + HH + HL = 确认的上升趋势<br><br>
+                            <strong>更多连续的HH和HL = 更强的上升趋势</strong>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 图例展示 -->
+            <div class="section" id="diagrams">
+                <h2 class="section-title">📊 教学图例</h2>
+                <p style="color: var(--text-secondary); margin-bottom: 2rem;">以下图例帮助你理解HH+HL结构的识别和应用</p>
+
+                <div class="diagram-grid">
+                    <!-- 图例1：HH+HL基础结构 -->
+                    <div class="diagram-card">
+                        <div class="diagram-placeholder" style="background: linear-gradient(135deg, rgba(99, 102, 241, 0.1) 0%, rgba(6, 182, 212, 0.1) 100%);">
+                            <div style="text-align: center; padding: 2rem;">
+                                <div style="font-size: 3rem; margin-bottom: 1rem;">📈</div>
+                                <div style="font-weight: 600; color: var(--text-primary);">HH+HL 基础结构图</div>
+                                <div style="font-size: 0.875rem; color: var(--text-muted); margin-top: 1rem;">展示基本的上升趋势结构<br>标注HH和HL位置</div>
+                            </div>
+                        </div>
+                        <div class="diagram-caption">
+                            <div class="diagram-title">基础结构示意图</div>
+                            <div class="diagram-description">
+                                显示完整的上升趋势结构，包含两个更高高点（HH1, HH2）和两个更高低点（HL1, HL2）。这是识别上升趋势的最基本图例。
+                            </div>
+                            <div class="source-tag">来源：YTC卷二 P23</div>
+                        </div>
+                    </div>
+
+                    <!-- 图例2：高点识别 -->
+                    <div class="diagram-card">
+                        <div class="diagram-placeholder" style="background: linear-gradient(135deg, rgba(16, 185, 129, 0.1) 0%, rgba(6, 182, 212, 0.1) 100%);">
+                            <div style="text-align: center; padding: 2rem;">
+                                <div style="font-size: 3rem; margin-bottom: 1rem;">🔺</div>
+                                <div style="font-weight: 600; color: var(--text-primary);">高点识别标注</div>
+                                <div style="font-size: 0.875rem; color: var(--text-muted); margin-top: 1rem;">如何准确识别<br>和标注高点</div>
+                            </div>
+                        </div>
+                        <div class="diagram-caption">
+                            <div class="diagram-title">高点识别方法</div>
+                            <div class="diagram-description">
+                                详细展示如何识别图表中的高点位置，包含正确识别的示例和常见错误。
+                            </div>
+                            <div class="source-tag">来源：YTC卷二 P28</div>
+                        </div>
+                    </div>
+
+                    <!-- 图例3：低点识别 -->
+                    <div class="diagram-card">
+                        <div class="diagram-placeholder" style="background: linear-gradient(135deg, rgba(245, 158, 11, 0.1) 0%, rgba(16, 185, 129, 0.1) 100%);">
+                            <div style="text-align: center; padding: 2rem;">
+                                <div style="font-size: 3rem; margin-bottom: 1rem;">🔻</div>
+                                <div style="font-weight: 600; color: var(--text-primary);">低点识别标注</div>
+                                <div style="font-size: 0.875rem; color: var(--text-muted); margin-top: 1rem;">如何准确识别<br>和标注低点</div>
+                            </div>
+                        </div>
+                        <div class="diagram-caption">
+                            <div class="diagram-title">低点识别方法</div>
+                            <div class="diagram-description">
+                                详细展示如何识别图表中的低点位置，强调左右两侧K线的要求。
+                            </div>
+                            <div class="source-tag">来源：YTC卷二 P30</div>
+                        </div>
+                    </div>
+
+                    <!-- 图例4：完整趋势案例 -->
+                    <div class="diagram-card">
+                        <div class="diagram-placeholder" style="background: linear-gradient(135deg, rgba(239, 68, 68, 0.1) 0%, rgba(245, 158, 11, 0.1) 100%);">
+                            <div style="text-align: center; padding: 2rem;">
+                                <div style="font-size: 3rem; margin-bottom: 1rem;">🎯</div>
+                                <div style="font-weight: 600; color: var(--text-primary);">实盘案例图</div>
+                                <div style="font-size: 0.875rem; color: var(--text-muted); margin-top: 1rem;">真实市场的<br>HH+HL结构案例</div>
+                            </div>
+                        </div>
+                        <div class="diagram-caption">
+                            <div class="diagram-title">实盘案例分析</div>
+                            <div class="diagram-description">
+                                真实股票或外汇市场的上升趋势案例，标注所有的HH和HL。展示实际应用场景。
+                            </div>
+                            <div class="source-tag">搜索关键词："HH HL stock example"</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 识别方法 -->
+            <div class="section">
+                <h2 class="section-title">识别方法详解</h2>
+
+                <div class="content-block">
+                    <h3>步骤1：标记所有明显的高低点</h3>
+                    <p>首先，在图表上标记出所有明显的高点和低点。这些点应该是相对明显的转折点，不是微小的波动。</p>
+                    <div class="example-box">
+                        <strong>⚠️ 注意：</strong>不要过度交易微小的波动。关注明显的价格转折点。
+                    </div>
+                </div>
+
+                <div class="content-block">
+                    <h3>步骤2：依次比较高点</h3>
+                    <p>从左到右依次比较连续的高点：</p>
+                    <ul>
+                        <li>如果高点2 > 高点1，则是更高高点（HH）</li>
+                        <li>如果高点2 < 高点1，则趋势可能正在改变</li>
+                        <li>如果高点2 ≈ 高点1，则是双高（Double High）</li>
+                    </ul>
+                </div>
+
+                <div class="content-block">
+                    <h3>步骤3：依次比较低点</h3>
+                    <p>从左到右依次比较连续的低点：</p>
+                    <ul>
+                        <li>如果低点2 > 低点1，则是更高低点（HL）</li>
+                        <li>如果低点2 < 低点1，则趋势已经改变</li>
+                        <li>低点的确认对上升趋势非常重要</li>
+                    </ul>
+                </div>
+
+                <div class="content-block">
+                    <h3>步骤4：确认趋势</h3>
+                    <p>确认上升趋势需要至少：</p>
+                    <div class="key-point">
+                        <div class="key-point-content" style="font-size: 1.0625rem;">
+                            <strong>最小确认：</strong>一个HH和一个HL的组合<br>
+                            <strong>完整确认：</strong>两个HH和两个HL的组合<br>
+                            <strong>持续确认：</strong>随着价格演变，不断更新判断
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 实战技巧 -->
+            <div class="section">
+                <h2 class="section-title">实战技巧与注意事项</h2>
+
+                <div class="content-block">
+                    <h3>技巧1：使用合适的时间周期</h3>
+                    <p>HH+HL结构在不同时间周期上都有效，但对于波段交易：</p>
+                    <ul>
+                        <li><strong>日线图：</strong>用于判断主要趋势，识别HH+HL的主要结构</li>
+                        <li><strong>周线图：</strong>用于确认大趋势方向，过滤假突破</li>
+                        <li><strong>小时图：</strong>用于寻找精确入场点，优化入场价格</li>
+                    </ul>
+                </div>
+
+                <div class="content-block">
+                    <h3>技巧2：关注回调的深度</h3>
+                    <p>不是所有的回调都是机会。健康的上升趋势应该有：</p>
+                    <ul>
+                        <li><strong>浅回调（< 38.2%）：</strong>强势特征，买入机会</li>
+                        <li><strong>中等回调（38.2%-50%）：</strong>健康回调，正常交易机会</li>
+                        <li><strong>深回调（> 61.8%）：</strong>警示信号，趋势可能结束</li>
+                    </ul>
+                </div>
+
+                <div class="content-block">
+                    <h3>技巧3：结合成交量</h3>
+                    <p>成交量可以验证趋势的有效性：</p>
+                    <ul>
+                        <li><strong>创出HH时成交量放大：</strong>确认突破有效</li>
+                        <li><strong>回调时成交量缩小：</strong>健康回调，等待完成</li>
+                        <li><strong>回调时成交量放大：</strong>可能的反转信号，谨慎</li>
+                    </ul>
+                </div>
+
+                <div class="content-block">
+                    <h3>技巧4：等待确认</h3>
+                    <p>不要急于在价格刚开始反转时就入场：</p>
+                    <ul>
+                        <li>等待明显的低点形成</li>
+                        <li>等待价格开始向上反弹</li>
+                        <li>等待确认上升趋势恢复</li>
+                        <li><strong>宁可错过，不可做错</strong></li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- 练习部分 -->
+            <div class="practice-section" id="practice">
+                <div class="practice-header">
+                    <span>✏️</span>
+                    <span>互动练习</span>
+                    <span style="font-size: 0.875rem; color: var(--text-muted); margin-left: auto;">点击正确答案</span>
+                </div>
+
+                <!-- 练习1 -->
+                <div class="practice-item" data-practice="1">
+                    <div class="practice-question">练习1：识别更高高点</div>
+                    <div class="practice-image">
+                        <div style="text-align: center;">
+                            <div style="font-size: 4rem; margin-bottom: 1rem;">📊</div>
+                            <div style="color: var(--text-muted);">图例占位：高点识别练习图</div>
+                            <div style="font-size: 0.75rem; color: var(--text-dimmed); margin-top: 0.5rem;">(需添加实际图例)</div>
+                        </div>
+                    </div>
+                    <p style="color: var(--text-secondary); margin-bottom: 1rem;">上图中，哪个点代表更高高点（HH）？</p>
+                    <div class="practice-options" data-correct="2">
+                        <div class="practice-option" onclick="checkAnswer(this, 1, false)">A点</div>
+                        <div class="practice-option" onclick="checkAnswer(this, 1, true)">B点</div>
+                        <div class="practice-option" onclick="checkAnswer(this, 1, false)">C点</div>
+                    </div>
+                    <div class="practice-feedback" id="feedback-1"></div>
+                </div>
+
+                <!-- 练习2 -->
+                <div class="practice-item" data-practice="2">
+                    <div class="practice-question">练习2：识别更高低点</div>
+                    <div class="practice-image">
+                        <div style="text-align: center;">
+                            <div style="font-size: 4rem; margin-bottom: 1rem;">📊</div>
+                            <div style="color: var(--text-muted);">图例占位：低点识别练习图</div>
+                            <div style="font-size: 0.75rem; color: var(--text-dimmed); margin-top: 0.5rem;">(需添加实际图例)</div>
+                        </div>
+                    </div>
+                    <p style="color: var(--text-secondary); margin-bottom: 1rem;">上图中，哪个点代表更高低点（HL）？</p>
+                    <div class="practice-options" data-correct="1">
+                        <div class="practice-option" onclick="checkAnswer(this, 2, true)">A点</div>
+                        <div class="practice-option" onclick="checkAnswer(this, 2, false)">B点</div>
+                        <div class="practice-option" onclick="checkAnswer(this, 2, false)">C点</div>
+                    </div>
+                    <div class="practice-feedback" id="feedback-2"></div>
+                </div>
+
+                <!-- 练习3 -->
+                <div class="practice-item" data-practice="3">
+                    <div class="practice-question">练习3：判断趋势</div>
+                    <div class="practice-image">
+                        <div style="text-align: center;">
+                            <div style="font-size: 4rem; margin-bottom: 1rem;">📊</div>
+                            <div style="color: var(--text-muted);">图例占位：趋势判断练习图</div>
+                            <div style="font-size: 0.75rem; color: var(--text-dimmed); margin-top: 0.5rem;">(需添加实际图例)</div>
+                        </div>
+                    </div>
+                    <p style="color: var(--text-secondary); margin-bottom: 1rem;">上图显示的是什么趋势？</p>
+                    <div class="practice-options" data-correct="1">
+                        <div class="practice-option" onclick="checkAnswer(this, 3, true)">上升趋势（有HH+HL）</div>
+                        <div class="practice-option" onclick="checkAnswer(this, 3, false)">下降趋势</div>
+                        <div class="practice-option" onclick="checkAnswer(this, 3, false)">横盘整理</div>
+                    </div>
+                    <div class="practice-feedback" id="feedback-3"></div>
+                </div>
+            </div>
+
+            <!-- 测验部分 -->
+            <div class="quiz-section" id="quiz">
+                <div class="practice-header">
+                    <span>📝</span>
+                    <span>知识测验</span>
+                    <span style="font-size: 0.875rem; color: var(--text-muted); margin-left: auto;">选择正确答案</span>
+                </div>
+
+                <div class="score-display" id="score-display" style="display: none;">
+                    <div>本次测验得分</div>
+                    <div class="score-number" id="score-number">0</div>
+                    <div style="color: var(--text-muted);">满分：100分</div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="progress-fill" style="width: 0%;"></div>
+                    </div>
+                </div>
+
+                <!-- 题1 -->
+                <div class="quiz-item">
+                    <div class="quiz-question">1. 什么是更高高点（HH）？</div>
+                    <div class="quiz-options" data-correct="1">
+                        <div class="quiz-option" onclick="checkQuiz(this, 1, false)">A. 价格触及前一个高点</div>
+                        <div class="quiz-option" onclick="checkQuiz(this, 1, true)">B. 价格突破前一个高点并创新高</div>
+                        <div class="quiz-option" onclick="checkQuiz(this, 1, false)">C. 价格低于前一个高点</div>
+                    </div>
+                </div>
+
+                <!-- 题2 -->
+                <div class="quiz-item">
+                    <div class="quiz-question">2. 确认上升趋势需要什么？</div>
+                    <div class="quiz-options" data-correct="2">
+                        <div class="quiz-option" onclick="checkQuiz(this, 2, false)">A. 只需要一个HH</div>
+                        <div class="quiz-option" onclick="checkQuiz(this, 2, true)">B. 至少一个HH和一个HL的组合</div>
+                        <div class="quiz-option" onclick="checkQuiz(this, 2, false)">C. 只需要一个HL</div>
+                    </div>
+                </div>
+
+                <!-- 题3 -->
+                <div class="quiz-item">
+                    <div class="quiz-question">3. 健康的回调特征是什么？</div>
+                    <div class="quiz-options" data-correct="1">
+                        <div class="quiz-option" onclick="checkQuiz(this, 3, true)">A. 回调时成交量放大</div>
+                        <div class="quiz-option" onclick="checkQuiz(this, 3, false)">B. 回调时成交量缩小</div>
+                        <div class="quiz-option" onclick="checkQuiz(this, 3, false)">C. 回调时成交量不变</div>
+                    </div>
+                </div>
+
+                <!-- 题4 -->
+                <div class="quiz-item">
+                    <div class="quiz-question">4. 深回调（> 61.8%）代表什么？</div>
+                    <div class="quiz-options" data-correct="3">
+                        <div class="quiz-option" onclick="checkQuiz(this, 4, true)">A. 警示信号，趋势可能结束</div>
+                        <div class="quiz-option" onclick="checkQuiz(this, 4, false)">B. 强势特征，买入机会</div>
+                        <div class="quiz-option" onclick="checkQuiz(this, 4, false)">C. 正常回调，继续持有</div>
+                    </div>
+                </div>
+
+                <div style="text-align: center; margin-top: 2rem;">
+                    <button class="btn btn-primary" onclick="submitQuiz()">提交答案并查看结果</button>
+                    <button class="btn btn-secondary" onclick="resetQuiz()">重新测验</button>
+                </div>
+            </div>
+
+            <!-- 下一步 -->
+            <div style="text-align: center; background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 1.5rem; padding: 2.5rem;">
+                <h3 style="font-size: 1.5rem; margin-bottom: 1rem; color: var(--text-primary);">🎉 完成本知识点学习</h3>
+                <p style="color: var(--text-secondary); margin-bottom: 2rem;">
+                    掌握HH+HL结构是识别上升趋势的基础。完成练习和测验后，继续学习下一个知识点。
+                </p>
+                <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+                    <a href="callback-types.html" class="btn btn-primary">下一个：回调类型 →</a>
+                    <a href="../stage1-new.html" class="btn btn-secondary">返回阶段一</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let practiceScore = 0;
+        let quizScore = 0;
+        const totalQuestions = 4;
+        const totalPractices = 3;
+
+        function checkAnswer(element, practiceNum, isCorrect) {
+            // 清除同一组其他选项
+            const parent = element.parentElement;
+            const options = parent.querySelectorAll('.practice-option');
+            options.forEach(opt => {
+                opt.classList.remove('selected');
+                opt.style.background = '';
+                opt.style.color = '';
+            });
+
+            // 标记当前选择
+            element.classList.add('selected');
+
+            const feedback = document.getElementById('feedback-' + practiceNum);
+            feedback.style.display = 'block';
+            feedback.className = 'practice-feedback';
+
+            if (isCorrect) {
+                feedback.classList.add('correct');
+                feedback.innerHTML = '<strong>✅ 正确！</strong><br>' + getExplanation(practiceNum, true);
+                element.style.background = 'var(--success)';
+                element.style.color = 'white';
+                practiceScore++;
+            } else {
+                feedback.classList.add('incorrect');
+                feedback.innerHTML = '<strong>❌ 不正确</strong><br>' + getExplanation(practiceNum, false);
+                element.style.background = 'var(--danger)';
+                element.style.color = 'white';
+            }
+
+            updateProgress();
+        }
+
+        function getExplanation(num, correct) {
+            const explanations = {
+                1: {
+                    true: 'B点是正确的更高高点，因为它明显高于前一个高点，且价格维持在突破水平之上。',
+                    false: 'A点和C点不是更高高点。A点与前一高点持平，C点低于前高。'
+                },
+                2: {
+                    true: 'A点是正确的更高低点，因为它明显高于前一个低点，标志着健康回调。',
+                    false: 'B点和C点不是更高低点。B点与前低持平，C点低于前低。'
+                },
+                3: {
+                    true: '正确！图表显示明显的HH+HL结构，价格逐步走高。',
+                    false: '图表显示上升趋势特征。注意高低点的排列。'
+                }
+            };
+            return explanations[num][correct];
+        }
+
+        let quizAnswers = {};
+
+        function checkQuiz(element, questionNum, isCorrect) {
+            const parent = element.parentElement;
+            const options = parent.querySelectorAll('.quiz-option');
+
+            // 如果已经回答过这题，显示结果
+            if (quizAnswers[questionNum] !== undefined) {
+                return;
+            }
+
+            options.forEach(opt => {
+                opt.classList.remove('correct-answer', 'wrong-answer');
+                opt.style.opacity = '1';
+            });
+
+            element.classList.add(isCorrect ? 'correct-answer' : 'wrong-answer');
+
+            if (!isCorrect) {
+                element.style.opacity = '0.5';
+            }
+
+            quizAnswers[questionNum] = isCorrect;
+            if (isCorrect) {
+                quizScore += 25;
+            }
+            updateProgress();
+        }
+
+        function submitQuiz() {
+            const scoreDisplay = document.getElementById('score-display');
+            const scoreNumber = document.getElementById('score-number');
+            const progressFill = document.getElementById('progress-fill');
+
+            scoreDisplay.style.display = 'block';
+            scoreNumber.textContent = quizScore;
+            progressFill.style.width = quizScore + '%';
+
+            // 显示所有正确答案
+            document.querySelectorAll('.quiz-option').forEach(opt => {
+                opt.style.pointerEvents = 'none';
+            });
+
+            // 滚动到成绩显示
+            scoreDisplay.scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function resetQuiz() {
+            quizAnswers = {};
+            quizScore = 0;
+            practiceScore = 0;
+
+            document.querySelectorAll('.quiz-option').forEach(opt => {
+                opt.classList.remove('correct-answer', 'wrong-answer');
+                opt.style.opacity = '1';
+                opt.style.pointerEvents = 'auto';
+            });
+
+            document.querySelectorAll('.practice-option').forEach(opt => {
+                opt.classList.remove('selected');
+                opt.style.background = '';
+                opt.style.color = '';
+            });
+
+            document.querySelectorAll('.practice-feedback').forEach(fb => {
+                fb.style.display = 'none';
+            });
+
+            document.getElementById('score-display').style.display = 'none';
+            updateProgress();
+        }
+
+        function updateProgress() {
+            // 这里可以添加本地存储逻辑
+            console.log('练习得分:', practiceScore, '/', totalPractices);
+            console.log('测验得分:', quizScore, '/', 100);
+        }
+    </script>
+</body>
+</html>

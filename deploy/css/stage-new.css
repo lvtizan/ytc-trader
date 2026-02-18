@@ -1,0 +1,331 @@
+/* 阶段页面样式 */
+
+.stage-header {
+    background: linear-gradient(
+        135deg,
+        rgba(99, 102, 241, 0.2) 0%,
+        rgba(6, 182, 212, 0.2) 100%
+    );
+    border-bottom: 1px solid var(--border-color);
+    padding: calc(70px + var(--space-3xl)) var(--space-lg) var(--space-2xl);
+    text-align: center;
+}
+
+.stage-badge {
+    display: inline-block;
+    padding: var(--space-sm) var(--space-lg);
+    background: var(--gradient-1);
+    color: white;
+    border-radius: var(--radius-full);
+    font-size: 0.875rem;
+    font-weight: 600;
+    margin-bottom: var(--space-lg);
+}
+
+.stage-title {
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 800;
+    margin-bottom: var(--space-md);
+    color: var(--text-primary);
+}
+
+.stage-duration {
+    font-size: 1.125rem;
+    color: var(--text-secondary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-md);
+}
+
+.stage-duration span {
+    display: flex;
+    align-items: center;
+    gap: var(--space-xs);
+}
+
+/* 学习目标列表 */
+.objectives-section {
+    padding: var(--space-3xl) var(--space-lg);
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.objectives-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: var(--space-lg);
+    margin-top: var(--space-xl);
+}
+
+.objective-card {
+    background: var(--bg-card);
+    backdrop-filter: blur(12px);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-lg);
+    padding: var(--space-lg);
+    transition: var(--transition);
+}
+
+.objective-card:hover {
+    border-color: var(--border-highlight);
+    transform: translateY(-4px);
+}
+
+.objective-icon {
+    font-size: 2rem;
+    margin-bottom: var(--space-md);
+}
+
+.objective-title {
+    font-size: 1.125rem;
+    font-weight: 600;
+    margin-bottom: var(--space-sm);
+    color: var(--text-primary);
+}
+
+.objective-description {
+    color: var(--text-secondary);
+    font-size: 0.9375rem;
+    line-height: 1.6;
+}
+
+/* 知识点模块 */
+.modules-section {
+    padding: var(--space-3xl) var(--space-lg);
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.modules-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-xl);
+    margin-top: var(--space-2xl);
+}
+
+@media (max-width: 1024px) {
+    .modules-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+.module-card {
+    background: var(--bg-card);
+    backdrop-filter: blur(12px);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-xl);
+    padding: var(--space-2xl);
+    transition: var(--transition);
+}
+
+.module-card:hover {
+    border-color: var(--border-highlight);
+    box-shadow: var(--shadow-xl);
+}
+
+.module-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: var(--space-lg);
+    flex-wrap: wrap;
+    gap: var(--space-md);
+}
+
+.module-number {
+    padding: var(--space-sm) var(--space-lg);
+    background: var(--gradient-1);
+    color: white;
+    border-radius: var(--radius-md);
+    font-weight: 600;
+    font-size: 0.875rem;
+}
+
+.module-week {
+    color: var(--text-muted);
+    font-size: 0.9375rem;
+}
+
+.module-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: var(--space-md);
+    color: var(--text-primary);
+}
+
+.module-description {
+    color: var(--text-secondary);
+    margin-bottom: var(--space-lg);
+    font-size: 1.0625rem;
+    line-height: 1.6;
+}
+
+.module-topics {
+    list-style: none;
+    margin-bottom: var(--space-xl);
+}
+
+.module-topics li {
+    padding: var(--space-sm) 0;
+    color: var(--text-secondary);
+    display: flex;
+    align-items: center;
+    gap: var(--space-md);
+    font-size: 1rem;
+}
+
+.module-topics li::before {
+    content: "✓";
+    color: var(--success);
+    font-weight: 700;
+    width: 20px;
+    flex-shrink: 0;
+}
+
+/* 知识点列表 */
+.knowledge-points {
+    background: var(--bg-secondary);
+    border-radius: var(--radius-lg);
+    padding: var(--space-lg);
+    margin-bottom: var(--space-lg);
+}
+
+.knowledge-points-title {
+    font-size: 1.125rem;
+    font-weight: 600;
+    margin-bottom: var(--space-md);
+    color: var(--text-primary);
+}
+
+.knowledge-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: var(--space-sm);
+}
+
+.knowledge-link {
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+    padding: var(--space-sm) var(--space-md);
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-md);
+    color: var(--text-secondary);
+    text-decoration: none;
+    font-size: 0.9375rem;
+    transition: var(--transition);
+}
+
+.knowledge-link:hover {
+    color: var(--primary);
+    border-color: var(--border-highlight);
+    background: var(--bg-tertiary);
+}
+
+.knowledge-link::before {
+    content: "→";
+    color: var(--primary);
+}
+
+/* 模块操作 */
+.module-actions {
+    display: flex;
+    gap: var(--space-md);
+    flex-wrap: wrap;
+}
+
+/* 进度指示器 */
+.progress-indicator {
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-lg);
+    padding: var(--space-xl);
+    margin-bottom: var(--space-2xl);
+}
+
+.progress-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: var(--space-lg);
+}
+
+.progress-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+.progress-percentage {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--primary);
+}
+
+.progress-bar-bg {
+    background: var(--bg-tertiary);
+    border-radius: var(--radius-full);
+    height: 12px;
+    overflow: hidden;
+}
+
+.progress-bar-fill {
+    background: var(--gradient-1);
+    height: 100%;
+    border-radius: var(--radius-full);
+    transition: width 0.5s ease;
+}
+
+.progress-steps {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: var(--space-md);
+    margin-top: var(--space-lg);
+}
+
+.progress-step {
+    text-align: center;
+    padding: var(--space-md);
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-md);
+}
+
+.progress-step.completed {
+    border-color: var(--success);
+}
+
+.progress-step.current {
+    border-color: var(--primary);
+    background: rgba(99, 102, 241, 0.1);
+}
+
+.progress-step-label {
+    font-size: 0.875rem;
+    color: var(--text-muted);
+    margin-bottom: var(--space-xs);
+}
+
+.progress-step-value {
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+/* 响应式 */
+@media (max-width: 768px) {
+    .stage-header {
+        padding: calc(70px + var(--space-2xl)) var(--space-lg) var(--space-xl);
+    }
+
+    .module-header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .knowledge-list {
+        grid-template-columns: 1fr;
+    }
+}

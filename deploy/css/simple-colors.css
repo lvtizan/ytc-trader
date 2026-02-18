@@ -1,0 +1,145 @@
+/* YTC Trader - 简化配色版本 */
+
+/* 覆盖原有样式，使用更克制的配色 */
+
+/* 主色调 - 只使用蓝色系 */
+:root {
+    --primary-color: #3b82f6;
+    --primary-hover: #2563eb;
+    --text-primary: #f8fafc;
+    --text-secondary: #94a3b8;
+    --border-color: #334155;
+    --card-bg: #1e293b;
+    --dark-bg: #0f172a;
+    --success-color: #10b981;
+    --warning-color: #f59e0b;
+    --danger-color: #ef4444;
+}
+
+/* 移除所有渐变效果 */
+.hero-title,
+.stat-number,
+.logo-text,
+.goal-number,
+.chapter-number,
+.progress-percentage,
+.section-icon,
+.objective-icon,
+.feature-icon,
+.tool-icon,
+.step-number,
+.concept-number,
+.knowledge-icon,
+.preview-number,
+.tip-icon,
+.placeholder-icon {
+    background: none !important;
+    -webkit-background-clip: border-box !important;
+    -webkit-text-fill-color: initial !important;
+    background-clip: border-box !important;
+    color: var(--text-primary) !important;
+}
+
+/* 使用单一背景色 */
+.btn-primary {
+    background: var(--primary-color) !important;
+}
+
+.btn-success {
+    background: var(--success-color) !important;
+}
+
+/* 卡片hover效果简化 */
+.chapter-card:hover,
+.goal-card:hover,
+.tool-card:hover {
+    border-color: var(--primary-color);
+    transform: none;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+}
+
+/* 移除彩色卡片 */
+.callback-card {
+    background: var(--card-bg) !important;
+    border: 2px solid var(--border-color) !important;
+    color: var(--text-primary) !important;
+}
+
+.callback-card.shallow {
+    border-left: 4px solid var(--success-color) !important;
+}
+
+.callback-card.normal {
+    border-left: 4px solid var(--primary-color) !important;
+}
+
+.callback-card.deep {
+    border-left: 4px solid var(--warning-color) !important;
+}
+
+/* 简化统计数字 */
+.stat-number {
+    font-size: 3rem;
+    font-weight: 600;
+    color: var(--text-primary) !important;
+}
+
+/* 简化进度圆环 */
+.progress-circle {
+    background: var(--card-bg);
+    border: 4px solid var(--border-color);
+}
+
+/* 简化知识点标签 */
+.chapter-number,
+.goal-number,
+.step-number,
+.concept-number {
+    background: var(--dark-bg) !important;
+    color: var(--text-primary) !important;
+    border: 2px solid var(--border-color);
+}
+
+/* 移除emoji装饰 */
+.section-icon:before,
+.objective-icon:before {
+    content: none !important;
+}
+
+/* 简化卡片样式 */
+.concept-box.clickable:hover {
+    border-color: var(--primary-color);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+/* 保持简洁的按钮样式 */
+.btn {
+    border-radius: 6px;
+    transition: background-color 0.2s;
+}
+
+.btn:hover {
+    transform: none;
+}
+
+/* 简化导航 */
+.logo-text {
+    color: var(--text-primary) !important;
+    font-weight: 600;
+}
+
+/* 统一使用蓝色高亮 */
+.nav-menu a:hover,
+.nav-menu a.active {
+    background: rgba(59, 130, 246, 0.1);
+    color: var(--text-primary);
+}
+
+/* 简化链接颜色 */
+a {
+    color: var(--primary-color);
+}
+
+a:hover {
+    color: var(--primary-hover);
+}

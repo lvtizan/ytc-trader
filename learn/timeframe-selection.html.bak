@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>时间周期选择 - YTC Trader</title>
+    <link rel="stylesheet" href="../css/modern-premium.css">
+    <style>
+        body { background: linear-gradient(to bottom, #0a0a0f 0%, #0f172a 50%, #0a0a0f 100%); min-height: 100vh; }
+        .hero-section { text-align: center; padding: 60px 20px; background: radial-gradient(ellipse at top, rgba(99, 102, 241, 0.15) 0%, transparent 50%); }
+        .hero-badge { display: inline-block; padding: 8px 16px; background: rgba(99, 102, 241, 0.2); border: 1px solid rgba(99, 102, 241, 0.3); border-radius: 20px; color: #a5b4fc; font-size: 0.875rem; margin-bottom: 24px; }
+        .hero-title { font-size: 3rem; font-weight: 800; background: linear-gradient(135deg, #6366f1 0%, #06b6d4 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 16px; }
+        .content-section { max-width: 900px; margin: 0 auto; padding: 40px 20px; }
+        .card { background: rgba(30, 41, 59, 0.5); backdrop-filter: blur(10px); border: 1px solid rgba(99, 102, 241, 0.2); border-radius: 16px; padding: 32px; margin-bottom: 24px; }
+        .card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px; background: linear-gradient(90deg, #6366f1 0%, #06b6d4 100%); }
+        .card-header { display: flex; align-items: center; gap: 16px; margin-bottom: 20px; }
+        .card-icon { font-size: 2.5rem; }
+        .card-title { font-size: 1.5rem; font-weight: 700; color: var(--text-primary); }
+        .card-content { color: var(--text-secondary); line-height: 1.8; }
+        .back-link { display: inline-block; margin: 20px; padding: 12px 24px; background: rgba(99, 102, 241, 0.2); border: 1px solid rgba(99, 102, 241, 0.3); border-radius: 12px; color: #a5b4fc; text-decoration: none; font-weight: 600; }
+    </style>
+</head>
+<body>
+        <!-- 科技光晕背景层 -->
+        <div class="tech-glow"></div>
+
+    <a href="../stage1-new.html" class="back-link">← 返回阶段一</a>
+    <div class="hero-section">
+        <span class="hero-badge">阶段一 · 模块3 · 基础知识</span>
+        <h1 class="hero-title">时间周期选择</h1>
+    </div>
+    <div class="content-section">
+        <div class="card">
+            <div class="card-header">
+                <div class="card-icon">⏰</div>
+                <h2 class="card-title">多时间周期分析</h2>
+            </div>
+            <div class="card-content">
+                <p>YTC价格行为交易使用三个关键时间周期：</p>
+                <ul style="margin-top: 20px; line-height: 2;">
+                    <li><strong>周线（高时间周期）：</strong>确定主要趋势方向</li>
+                    <li><strong>日线（交易时间周期）：</strong>寻找具体交易信号</li>
+                    <li><strong>小时线（低时间周期）：</strong>精确入场时机（可选）</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header">
+                <div class="card-icon">📊</div>
+                <h2 class="card-title">时间周期分析流程</h2>
+            </div>
+            <div class="card-content">
+                <ol style="margin-top: 20px; line-height: 2;">
+                    <li><strong>首先看周线：</strong>确定主要趋势方向（上升趋势才交易）</li>
+                    <li><strong>然后看日线：</strong>在上升趋势中寻找回调机会</li>
+                    <li><strong>最后看小时线：</strong>在回调区域精确入场点位</li>
+                </ol>
+                <div style="background: rgba(245, 158, 11, 0.1); border: 1px solid rgba(245, 158, 11, 0.3); border-radius: 12px; padding: 20px; margin: 20px 0;">
+                    <div style="color: #fbbf24; font-weight: 600; margin-bottom: 8px;">⚠️ 重要原则</div>
+                    <div style="color: var(--text-secondary);">高时间周期的趋势优先于低时间周期的信号。如果周线是上升趋势，日线回调就是买入机会。</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

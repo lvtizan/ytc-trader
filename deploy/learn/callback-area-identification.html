@@ -1,0 +1,398 @@
+<!doctype html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>回调区域识别 - YTC Trader</title>
+        <link rel="stylesheet" href="../css/modern-premium.css" />
+        <style>
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+            }
+
+            body {
+                background: linear-gradient(
+                    to bottom,
+                    #0a0a0f 0%,
+                    #0f172a 50%,
+                    #0a0a0f 100%
+                );
+                min-height: 100vh;
+                font-family:
+                    -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+                color: #e2e8f0;
+            }
+
+            .app-container {
+                min-height: 100vh;
+                display: flex;
+                flex-direction: column;
+            }
+
+            /* Navigation */
+            .navbar {
+                background: rgba(15, 23, 42, 0.8);
+                backdrop-filter: blur(20px);
+                border-bottom: 1px solid rgba(99, 102, 241, 0.2);
+                position: sticky;
+                top: 0;
+                z-index: 100;
+            }
+
+            .nav-container {
+                max-width: 1400px;
+                margin: 0 auto;
+                padding: 1rem 2rem;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+            }
+
+            .brand {
+                display: flex;
+                align-items: center;
+                gap: 1rem;
+                text-decoration: none;
+            }
+
+            .brand-logo {
+                width: 48px;
+                height: 48px;
+                background: linear-gradient(135deg, #6366f1 0%, #06b6d4 100%);
+                border-radius: 12px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-weight: 800;
+                font-size: 1.25rem;
+                color: white;
+                box-shadow: 0 4px 20px rgba(99, 102, 241, 0.3);
+            }
+
+            .brand-title {
+                font-size: 1.5rem;
+                font-weight: 700;
+                color: white;
+                background: linear-gradient(135deg, #6366f1 0%, #06b6d4 100%);
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+            }
+
+            .nav-link {
+                color: #94a3b8;
+                text-decoration: none;
+                padding: 0.75rem 1.5rem;
+                border-radius: 8px;
+                transition: all 0.3s ease;
+                font-weight: 500;
+            }
+
+            .nav-link:hover {
+                color: white;
+                background: rgba(99, 102, 241, 0.1);
+            }
+
+            /* Hero Section */
+            .hero {
+                padding: 5rem 2rem 3rem;
+                text-align: center;
+                position: relative;
+                overflow: hidden;
+            }
+
+            .hero::before {
+                content: "";
+                position: absolute;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                background: radial-gradient(
+                    circle at 50% 50%,
+                    rgba(99, 102, 241, 0.15) 0%,
+                    transparent 50%
+                );
+                pointer-events: none;
+            }
+
+            .badge {
+                display: inline-block;
+                background: linear-gradient(135deg, #6366f1 0%, #06b6d4 100%);
+                color: white;
+                padding: 0.5rem 1.5rem;
+                border-radius: 100px;
+                font-size: 0.875rem;
+                font-weight: 600;
+                margin-bottom: 1.5rem;
+                box-shadow: 0 4px 15px rgba(99, 102, 241, 0.3);
+            }
+
+            .hero h1 {
+                font-size: clamp(2.5rem, 6vw, 4rem);
+                font-weight: 800;
+                margin-bottom: 1rem;
+                background: linear-gradient(135deg, #6366f1 0%, #06b6d4 100%);
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+                letter-spacing: -0.02em;
+            }
+
+            .hero p {
+                font-size: 1.25rem;
+                color: #94a3b8;
+                max-width: 600px;
+                margin: 0 auto;
+                line-height: 1.6;
+            }
+
+            /* Content */
+            .container {
+                max-width: 1100px;
+                margin: 0 auto;
+                padding: 0 2rem 4rem;
+            }
+
+            .card {
+                background: rgba(30, 41, 59, 0.5);
+                backdrop-filter: blur(10px);
+                border: 1px solid rgba(99, 102, 241, 0.2);
+                border-radius: 20px;
+                padding: 2.5rem;
+                margin-bottom: 2rem;
+                position: relative;
+                overflow: hidden;
+                box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+            }
+
+            .card::before {
+                content: "";
+                position: absolute;
+                top: 0;
+                left: 0;
+                right: 0;
+                height: 4px;
+                background: linear-gradient(90deg, #6366f1 0%, #06b6d4 100%);
+            }
+
+            .card h2 {
+                font-size: 1.75rem;
+                font-weight: 700;
+                margin-bottom: 0.5rem;
+                color: white;
+                display: flex;
+                align-items: center;
+                gap: 0.75rem;
+            }
+
+            .card h2::before {
+                content: "📍";
+                font-size: 1.5rem;
+            }
+
+            .card-description {
+                color: #94a3b8;
+                line-height: 1.7;
+                margin-bottom: 2rem;
+                font-size: 1.0625rem;
+            }
+
+            .info-grid {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+                gap: 1.5rem;
+            }
+
+            .info-item {
+                background: rgba(99, 102, 241, 0.08);
+                border: 1px solid rgba(99, 102, 241, 0.15);
+                border-radius: 12px;
+                padding: 1.5rem;
+                transition: all 0.3s ease;
+            }
+
+            .info-item:hover {
+                background: rgba(99, 102, 241, 0.12);
+                transform: translateY(-2px);
+            }
+
+            .info-item h3 {
+                font-size: 1.125rem;
+                font-weight: 600;
+                color: white;
+                margin-bottom: 0.5rem;
+            }
+
+            .info-item p {
+                color: #94a3b8;
+                font-size: 0.9375rem;
+                line-height: 1.6;
+                margin: 0;
+            }
+
+            .tips {
+                background: linear-gradient(
+                    135deg,
+                    rgba(245, 158, 11, 0.1) 0%,
+                    rgba(251, 146, 60, 0.05) 100%
+                );
+                border: 1px solid rgba(245, 158, 11, 0.2);
+                border-radius: 16px;
+                padding: 2rem;
+                margin-top: 2rem;
+            }
+
+            .tips h3 {
+                color: #fbbf24;
+                font-size: 1.125rem;
+                font-weight: 600;
+                margin-bottom: 1rem;
+            }
+
+            .tips p {
+                color: #cbd5e1;
+                line-height: 1.7;
+                font-size: 1rem;
+            }
+
+            .nav-buttons {
+                display: flex;
+                gap: 1rem;
+                justify-content: center;
+                margin-top: 3rem;
+            }
+
+            .btn {
+                padding: 0.875rem 2rem;
+                border-radius: 100px;
+                font-weight: 600;
+                text-decoration: none;
+                transition: all 0.3s ease;
+                font-size: 1rem;
+            }
+
+            .btn-primary {
+                background: linear-gradient(135deg, #6366f1 0%, #06b6d4 100%);
+                color: white;
+                box-shadow: 0 4px 15px rgba(99, 102, 241, 0.4);
+            }
+
+            .btn-primary:hover {
+                transform: translateY(-2px);
+                box-shadow: 0 8px 25px rgba(99, 102, 241, 0.5);
+            }
+
+            .btn-secondary {
+                background: rgba(30, 41, 59, 0.8);
+                color: white;
+                border: 1px solid rgba(99, 102, 241, 0.3);
+            }
+
+            .btn-secondary:hover {
+                background: rgba(99, 102, 241, 0.2);
+            }
+
+            @media (max-width: 768px) {
+                .hero h1 {
+                    font-size: 2rem;
+                }
+
+                .container {
+                    padding: 0 1.5rem 3rem;
+                }
+
+                .card {
+                    padding: 2rem 1.5rem;
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <!-- 科技光晕背景层 -->
+        <div class="tech-glow"></div>
+
+        <div class="app-container">
+            <nav class="navbar">
+                <div class="nav-container">
+                    <a href="../stage1-new.html" class="brand">
+                        <div class="brand-logo">YT</div>
+                        <div class="brand-title">YTC Trader</div>
+                    </a>
+                    <a href="../stage1-new.html" class="nav-link"
+                        >← 返回阶段一</a
+                    >
+                </div>
+            </nav>
+
+            <div class="hero">
+                <span class="badge">阶段一 · 模块3</span>
+                <h1>回调区域识别</h1>
+                <p>掌握识别价格回调的关键区域，找到最佳交易机会</p>
+            </div>
+
+            <div class="container">
+                <div class="card">
+                    <h2>关键回调区域类型</h2>
+                    <p class="card-description">
+                        理解不同类型的支撑阻力区域，它们是价格运动的重要转折点
+                    </p>
+                    <div class="info-grid">
+                        <div class="info-item">
+                            <h3>📍 前期波段高点</h3>
+                            <p>上升趋势中的前期高点被突破后，转为支撑区域</p>
+                        </div>
+                        <div class="info-item">
+                            <h3>📍 前期波段低点</h3>
+                            <p>上升趋势中的前期低点，天然的支撑区域</p>
+                        </div>
+                        <div class="info-item">
+                            <h3>📊 横盘整理区</h3>
+                            <p>价格横盘整理的区域，有密集的订单流</p>
+                        </div>
+                        <div class="info-item">
+                            <h3>💎 整数价位</h3>
+                            <p>如100元、50元等心理价位，大量订单</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <h2>识别方法</h2>
+                    <p class="card-description">系统化的区域识别流程</p>
+                    <div class="info-grid">
+                        <div class="info-item">
+                            <h3>1️⃣ 标记高低点</h3>
+                            <p>在周线图上标记所有明显的高点和低点</p>
+                        </div>
+                        <div class="info-item">
+                            <h3>2️⃣ 观察价格行为</h3>
+                            <p>价格在这些区域是快速通过还是停留</p>
+                        </div>
+                        <div class="info-item">
+                            <h3>3️⃣ 判断订单密度</h3>
+                            <p>停留区域说明订单密集，快速通过说明订单稀疏</p>
+                        </div>
+                        <div class="info-item">
+                            <h3>4️⃣ 等待价格到达</h3>
+                            <p>耐心等待价格回调到区域，观察反应</p>
+                        </div>
+                    </div>
+
+                    <div class="tips">
+                        <h3>💡 实战技巧</h3>
+                        <p>
+                            支撑/阻力是一个区域，不是精确的线。不要期望价格刚好停在某一个价位。在区域内部的一定范围内都应该考虑入场和出场。结合K线形态和成交量确认入场时机。
+                        </p>
+                    </div>
+                </div>
+
+                <div class="nav-buttons">
+                    <a href="../stage1-new.html" class="btn btn-secondary"
+                        >返回阶段一</a
+                    >
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

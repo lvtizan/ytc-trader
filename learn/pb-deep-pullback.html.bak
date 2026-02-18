@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>深回调买入(双底) - PB策略详解</title>
+    <link rel="stylesheet" href="../../css/style.css">
+    <style>
+        .page-header { background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); color: white; padding: 50px 40px; text-align: center; border-radius: 15px; margin-bottom: 40px; }
+        .page-header h1 { margin: 0 0 15px 0; font-size: 2.5em; }
+        .content-section { background: white; border-radius: 12px; padding: 40px; margin-bottom: 35px; box-shadow: 0 5px 20px rgba(0,0,0,0.08); }
+        .case-study { background: #fff9e6; border-left: 4px solid #f39c12; padding: 25px; margin: 25px 0; border-radius: 8px; }
+        .back-nav { text-align: center; margin-bottom: 40px; }
+        .back-nav a { display: inline-block; padding: 12px 25px; background: #f5576c; color: white; text-decoration: none; border-radius: 8px; font-weight: 600; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="page-header">
+            <h1>📊 深回调买入(双底)</h1>
+            <p class="subtitle">在深度回调中寻找低吸机会</p>
+        </div>
+        
+        <div class="content-section">
+            <h2>什么是深回调买入</h2>
+            <p>深回调买入是指价格在上升趋势中出现较大幅度回撤(通常超过50%),形成类似双底的形态时买入。这种回调虽然幅度较大,但如果上升趋势保持完整,往往提供更好的风险回报比。</p>
+        </div>
+        
+        <div class="content-section">
+            <h2>识别特征</h2>
+            <ul>
+                <li>回调幅度达到前一波上涨的50%-61.8%</li>
+                <li>在支撑位附近形成双底或多重底形态</li>
+                <li>成交量在回调过程中萎缩</li>
+                <li>第二底部不跌破第一底部</li>
+            </ul>
+        </div>
+        
+        <div class="case-study">
+            <h3>📊 实战案例: 隆基绿能</h3>
+            <p><strong>时间:</strong> 2024年1月 | <strong>回调幅度:</strong> 55%</p>
+            <p>隆基绿能从28元涨至35元后出现深回调,最低回撤至26.5元附近,形成双底形态。随后在2个月时间内反弹至42元,涨幅达58%。</p>
+            <p><strong>操作要点:</strong></p>
+            <ul>
+                <li>入场: 27元,第二底形成确认后</li>
+                <li>止损: 25.5元,跌破双底颈线</li>
+                <li>目标: 38元,前高位置</li>
+                <li>风险回报比: 1:7.3</li>
+            </ul>
+        </div>
+        
+        <div class="back-nav">
+            <a href="pb-strategy.html">← 返回PB策略主页</a>
+        </div>
+    </div>
+</body>
+</html>

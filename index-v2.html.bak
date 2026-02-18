@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YTC Trader - 成为专业的交易者</title>
+    <link rel="stylesheet" href="css/modern.css">
+</head>
+<body>
+    <!-- 导航栏 -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <span class="logo-text">YTC Trader</span>
+                <span class="logo-tagline">成为专业的交易者</span>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="#" class="active">首页</a></li>
+                <li><a href="#chapters">学习目录</a></li>
+                <li><a href="data/knowledge-map.html">知识点图谱</a></li>
+                <li><a href="#tools">工具模板</a></li>
+                <li><a href="#progress">学习进度</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero 区域 -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1 class="hero-title">YTC Trader</h1>
+            <p class="hero-subtitle">系统化学习YTC价格行为交易方法</p>
+            <p class="hero-description">从高低点识别到完整交易策略，构建属于你的交易系统</p>
+
+            <div class="hero-features">
+                <div class="feature-item">
+                    <span class="feature-icon">📈</span>
+                    <span class="feature-text">从高低点识别到完整交易策略</span>
+                </div>
+                <div class="feature-item">
+                    <span class="feature-icon">🎯</span>
+                    <span class="feature-text">构建属于你的交易系统</span>
+                </div>
+                <div class="feature-item">
+                    <span class="feature-icon">💼</span>
+                    <span class="feature-text">股票波段交易实战指南</span>
+                </div>
+            </div>
+
+            <div class="hero-actions">
+                <button class="btn btn-primary">开始学习</button>
+                <button class="btn btn-secondary">查看进度</button>
+            </div>
+        </div>
+
+        <div class="hero-stats">
+            <div class="stat-item">
+                <div class="stat-number">4</div>
+                <div class="stat-label">学习阶段</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">20</div>
+                <div class="stat-label">学习周数</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">3</div>
+                <div class="stat-label">核心策略</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">5</div>
+                <div class="stat-label">核心目标</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 学习者画像 -->
+    <section class="section">
+        <div class="container">
+            <h2 class="section-title">学习者画像</h2>
+            <div class="profile-grid">
+                <div class="profile-item">
+                    <div class="profile-icon">🎯</div>
+                    <div class="profile-content">
+                        <h4>交易风格</h4>
+                        <p>股票市场（仅做多）| 波段交易</p>
+                    </div>
+                </div>
+                <div class="profile-item">
+                    <div class="profile-icon">📊</div>
+                    <div class="profile-content">
+                        <h4>交易经验</h4>
+                        <p>有一定经验</p>
+                    </div>
+                </div>
+                <div class="profile-item">
+                    <div class="profile-icon">⚠️</div>
+                    <div class="profile-content">
+                        <h4>核心问题</h4>
+                        <p>胜率不稳定 · 缺乏盈亏比管理<br>心态控制 · 缺乏完整系统</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 学习目标 -->
+    <section class="section">
+        <div class="container">
+            <h2 class="section-title">学习目标</h2>
+            <div class="goals-grid">
+                <div class="goal-card">
+                    <div class="goal-number">01</div>
+                    <h4>建立完整的交易系统</h4>
+                    <p>趋势跟踪 + 回调买入的完整系统</p>
+                </div>
+                <div class="goal-card">
+                    <div class="goal-number">02</div>
+                    <h4>掌握3个核心策略</h4>
+                    <p>PB · CPB · STS 专业交易策略</p>
+                </div>
+                <div class="goal-card">
+                    <div class="goal-number">03</div>
+                    <h4>标准化风险管理</h4>
+                    <p>仓位管理 · 止损策略 · 盈亏比优化</p>
+                </div>
+                <div class="goal-card">
+                    <div class="goal-number">04</div>
+                    <h4>建立复盘机制</h4>
+                    <p>每日 · 每周 · 每月持续改进</p>
+                </div>
+                <div class="goal-card">
+                    <div class="goal-number">05</div>
+                    <h4>解决交易纪律</h4>
+                    <p>心理控制 · 执行清单 · 情绪管理</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 学习章节 -->
+    <section id="chapters" class="section">
+        <div class="container">
+            <h2 class="section-title">学习章节目录</h2>
+            <p class="section-description">循序渐进的系统化学习路径</p>
+
+            <div class="chapters-grid">
+                <!-- 阶段一 -->
+                <div class="chapter-card">
+                    <div class="chapter-header">
+                        <span class="chapter-number">阶段一</span>
+                        <span class="chapter-weeks">第1-4周</span>
+                    </div>
+                    <h3 class="chapter-title">市场分析与趋势识别</h3>
+                    <p class="chapter-description">建立趋势跟踪+回调买入的分析能力</p>
+                    <ul class="chapter-topics">
+                        <li>上升趋势的完整结构（HH+HL）</li>
+                        <li>回调的分类与识别</li>
+                        <li>多时间周期分析</li>
+                        <li>选股系统建立</li>
+                    </ul>
+                    <a href="stage1.html" class="chapter-link">开始学习 →</a>
+                </div>
+
+                <!-- 阶段二 -->
+                <div class="chapter-card">
+                    <div class="chapter-header">
+                        <span class="chapter-number">阶段二</span>
+                        <span class="chapter-weeks">第5-11周</span>
+                    </div>
+                    <h3 class="chapter-title">三大核心交易策略</h3>
+                    <p class="chapter-description">掌握PB/CPB/STS三个核心做多策略</p>
+                    <ul class="chapter-topics">
+                        <li>PB策略：回调买入</li>
+                        <li>CPB策略：复杂回调</li>
+                        <li>STS策略：结构性交易</li>
+                        <li>策略组合使用</li>
+                    </ul>
+                    <a href="stage2.html" class="chapter-link">开始学习 →</a>
+                </div>
+
+                <!-- 阶段三 -->
+                <div class="chapter-card">
+                    <div class="chapter-header">
+                        <span class="chapter-number">阶段三</span>
+                        <span class="chapter-weeks">第12-15周</span>
+                    </div>
+                    <h3 class="chapter-title">风险管理流程</h3>
+                    <p class="chapter-description">建立标准化的风险管理流程</p>
+                    <ul class="chapter-topics">
+                        <li>仓位规模管理</li>
+                        <li>止损设置技巧</li>
+                        <li>盈亏比优化</li>
+                        <li>组合风险管理</li>
+                    </ul>
+                    <a href="stage3.html" class="chapter-link">开始学习 →</a>
+                </div>
+
+                <!-- 阶段四 -->
+                <div class="chapter-card">
+                    <div class="chapter-header">
+                        <span class="chapter-number">阶段四</span>
+                        <span class="chapter-weeks">第16-19周</span>
+                    </div>
+                    <h3 class="chapter-title">交易心理与持续改进</h3>
+                    <p class="chapter-description">解决纪律问题，建立改进机制</p>
+                    <ul class="chapter-topics">
+                        <li>交易心理的5大敌人</li>
+                        <li>交易纪律检查清单</li>
+                        <li>情绪管理技巧</li>
+                        <li>复盘机制与改进</li>
+                    </ul>
+                    <a href="stage4.html" class="chapter-link">开始学习 →</a>
+                </div>
+
+                <!-- 最终验收 -->
+                <div class="chapter-card">
+                    <div class="chapter-header">
+                        <span class="chapter-number">最终验收</span>
+                        <span class="chapter-weeks">第20周</span>
+                    </div>
+                    <h3 class="chapter-title">系统整合与验收</h3>
+                    <p class="chapter-description">整合所有学习内容，完成最终验收</p>
+                    <ul class="chapter-topics">
+                        <li>系统整合</li>
+                        <li>最终验收</li>
+                        <li>实盘准备</li>
+                    </ul>
+                    <a href="final.html" class="chapter-link">查看详情 →</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 工具模板 -->
+    <section id="tools" class="section">
+        <div class="container">
+            <h2 class="section-title">工具模板</h2>
+            <p class="section-description">实用的交易工具和模板</p>
+
+            <div class="tools-grid">
+                <div class="tool-card">
+                    <div class="tool-icon">✅</div>
+                    <h3>选股检查清单</h3>
+                    <p>每日选股的标准化检查清单</p>
+                    <a href="tools/checklist.html" class="tool-link">使用工具 →</a>
+                </div>
+                <div class="tool-card">
+                    <div class="tool-icon">📝</div>
+                    <h3>交易计划模板</h3>
+                    <p>每笔交易的详细计划模板</p>
+                    <a href="#" class="tool-link">使用工具 →</a>
+                </div>
+                <div class="tool-card">
+                    <div class="tool-icon">📊</div>
+                    <h3>每日复盘模板</h3>
+                    <p>每日交易复盘和记录</p>
+                    <a href="#" class="tool-link">使用工具 →</a>
+                </div>
+                <div class="tool-card">
+                    <div class="tool-icon">📈</div>
+                    <h3>每周复盘模板</h3>
+                    <p>每周绩效评估和改进</p>
+                    <a href="#" class="tool-link">使用工具 →</a>
+                </div>
+                <div class="tool-card">
+                    <div class="tool-icon">💰</div>
+                    <h3>仓位计算器</h3>
+                    <p>风险控制和仓位规模计算</p>
+                    <a href="#" class="tool-link">使用工具 →</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 学习进度 -->
+    <section id="progress" class="section">
+        <div class="container">
+            <h2 class="section-title">学习进度跟踪</h2>
+            <p class="section-description">记录你的学习进度和成就</p>
+
+            <div class="progress-overview">
+                <div class="progress-summary">
+                    <div class="progress-circle">
+                        <div class="progress-percentage">0%</div>
+                        <div class="progress-label">总进度</div>
+                    </div>
+                    <div style="margin-top: 1.5rem;">
+                        <div style="display: flex; justify-content: space-between; margin-bottom: 1rem; padding: 1rem 0; border-bottom: 1px solid var(--border);">
+                            <span>已完成章节</span>
+                            <span style="color: var(--primary); font-weight: 700;">0/5</span>
+                        </div>
+                        <div style="display: flex; justify-content: space-between; margin-bottom: 1rem; padding: 1rem 0; border-bottom: 1px solid var(--border);">
+                            <span>已完成周数</span>
+                            <span style="color: var(--primary); font-weight: 700;">0/20</span>
+                        </div>
+                        <div style="display: flex; justify-content: space-between; padding: 1rem 0;">
+                            <span>模拟交易</span>
+                            <span style="color: var(--primary); font-weight: 700;">0/50</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div style="text-align: center; margin-top: 2rem;">
+                <button class="btn btn-primary" onclick="alert('进度跟踪功能开发中...')">更新进度</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- 页脚 -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>YTC Trader</h4>
+                <p>系统化学习YTC价格行为交易方法</p>
+            </div>
+            <div class="footer-section">
+                <h4>学习资源</h4>
+                <ul>
+                    <li><a href="#chapters">学习目录</a></li>
+                    <li><a href="#tools">工具模板</a></li>
+                    <li><a href="#progress">学习进度</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>学习路径</h4>
+                <ul>
+                    <li><a href="stage1.html">阶段一：市场分析</a></li>
+                    <li><a href="stage2.html">阶段二：核心策略</a></li>
+                    <li><a href="stage3.html">阶段三：风险管理</a></li>
+                    <li><a href="stage4.html">阶段四：交易心理</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 YTC Trader. 系统化学习，专业成长。</p>
+        </div>
+    </footer>
+</body>
+</html>

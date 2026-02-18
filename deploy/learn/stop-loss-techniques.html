@@ -1,0 +1,440 @@
+<!doctype html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>止损设置技巧 - YTC Trader</title>
+        <link rel="stylesheet" href="../css/modern-premium.css" />
+        <style>
+            body {
+                background: linear-gradient(
+                    to bottom,
+                    #0a0a0f 0%,
+                    #0f172a 50%,
+                    #0a0a0f 100%
+                );
+                min-height: 100vh;
+            }
+            .hero-section {
+                text-align: center;
+                padding: 60px 20px;
+                background: radial-gradient(
+                    ellipse at top,
+                    rgba(99, 102, 241, 0.15) 0%,
+                    transparent 50%
+                );
+            }
+            .hero-badge {
+                display: inline-block;
+                padding: 8px 16px;
+                background: rgba(99, 102, 241, 0.2);
+                border: 1px solid rgba(99, 102, 241, 0.3);
+                border-radius: 20px;
+                color: #a5b4fc;
+                font-size: 0.875rem;
+                margin-bottom: 24px;
+            }
+            .hero-title {
+                font-size: 3rem;
+                font-weight: 800;
+                background: linear-gradient(135deg, #6366f1 0%, #06b6d4 100%);
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+                margin-bottom: 16px;
+            }
+            .content-section {
+                max-width: 900px;
+                margin: 0 auto;
+                padding: 40px 20px;
+            }
+            .card {
+                background: rgba(30, 41, 59, 0.5);
+                backdrop-filter: blur(10px);
+                border: 1px solid rgba(99, 102, 241, 0.2);
+                border-radius: 16px;
+                padding: 32px;
+                margin-bottom: 24px;
+            }
+            .card-title {
+                font-size: 1.5rem;
+                font-weight: 700;
+                color: #f1f5f9;
+                margin-bottom: 20px;
+            }
+            .technique-item {
+                background: rgba(15, 23, 42, 0.5);
+                border-radius: 12px;
+                padding: 20px;
+                margin-bottom: 16px;
+                border-left: 3px solid #6366f1;
+            }
+            .technique-title {
+                font-size: 1.1rem;
+                font-weight: 600;
+                color: #a5b4fc;
+                margin-bottom: 8px;
+            }
+            .example-box {
+                background: rgba(245, 158, 11, 0.1);
+                border: 1px solid rgba(245, 158, 11, 0.3);
+                border-radius: 12px;
+                padding: 16px;
+                margin-top: 12px;
+            }
+            .back-link {
+                display: inline-block;
+                margin: 20px;
+                padding: 12px 24px;
+                background: rgba(99, 102, 241, 0.2);
+                border: 1px solid rgba(99, 102, 241, 0.3);
+                border-radius: 12px;
+                color: #a5b4fc;
+                text-decoration: none;
+                font-weight: 600;
+            }
+        </style>
+    </head>
+    <body>
+        <a href="../stage3-new.html" class="back-link">← 返回阶段三</a>
+
+        <div class="hero-section">
+            <span class="hero-badge">阶段三 · 风险管理</span>
+            <h1 class="hero-title">止损设置技巧</h1>
+            <p
+                style="
+                    color: #94a3b8;
+                    font-size: 1.1rem;
+                    max-width: 700px;
+                    margin: 0 auto;
+                "
+            >
+                掌握科学的止损设置方法，保护你的交易资本
+            </p>
+        </div>
+
+        <div class="content-section">
+            <!-- 为什么需要止损 -->
+            <div class="card">
+                <h2 class="card-title">🛡️ 为什么止损如此重要</h2>
+                <div style="color: #cbd5e1; line-height: 1.8">
+                    <p style="margin-bottom: 16px">
+                        止损是交易者最好的朋友。没有止损的交易就像开汽车没有刹车——迟早会出事故。
+                    </p>
+
+                    <div class="technique-item">
+                        <div class="technique-title">✓ 保护资本</div>
+                        <p style="color: #94a3b8; margin: 0">
+                            单笔交易亏损不超过账户的2%，确保能持续交易
+                        </p>
+                    </div>
+
+                    <div class="technique-item">
+                        <div class="technique-title">✓ 消除不确定性</div>
+                        <p style="color: #94a3b8; margin: 0">
+                            入场前就知道最大亏损，心不慌
+                        </p>
+                    </div>
+
+                    <div class="technique-item">
+                        <div class="technique-title">✓ 提高胜率</div>
+                        <p style="color: #94a3b8; margin: 0">
+                            及时止损，避免小亏变大亏
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 止损设置的黄金原则 -->
+            <div class="card">
+                <h2 class="card-title">⭐ 止损设置的黄金原则</h2>
+
+                <div class="technique-item">
+                    <div class="technique-title">1. 结构外侧原则</div>
+                    <p style="color: #cbd5e1; margin: 8px 0">
+                        止损必须设在关键市场结构的外侧，一旦突破就说明交易假设失效。
+                    </p>
+                    <div class="example-box">
+                        <div style="color: #fbbf24; margin-bottom: 8px">
+                            💡 实战应用
+                        </div>
+                        <p style="color: #cbd5e1; margin: 0; font-size: 0.9rem">
+                            PB策略：止损设在回调低点下方<br />
+                            CPB策略：止损设在C浪或E浪最低点下方<br />
+                            STS策略：止损设在突破K线最低点下方
+                        </p>
+                    </div>
+                </div>
+
+                <div class="technique-item">
+                    <div class="technique-title">2. 安全距离原则</div>
+                    <p style="color: #cbd5e1; margin: 8px 0">
+                        止损不要设置得太紧，要给价格正常波动的空间。
+                    </p>
+                    <div class="example-box">
+                        <div style="color: #fbbf24; margin-bottom: 8px">
+                            💡 安全距离
+                        </div>
+                        <p style="color: #cbd5e1; margin: 0; font-size: 0.9rem">
+                            结构下方 0.5% - 1% 处<br />
+                            或根据ATR（平均真实波幅）设置：1.5-2倍ATR
+                        </p>
+                    </div>
+                </div>
+
+                <div class="technique-item">
+                    <div class="technique-title">3. 资金管理原则</div>
+                    <p style="color: #cbd5e1; margin: 8px 0">
+                        止损距离决定了仓位大小，确保单笔风险不超过账户的1-2%。
+                    </p>
+                    <div class="example-box">
+                        <div style="color: #fbbf24; margin-bottom: 8px">
+                            💡 仓位计算公式
+                        </div>
+                        <p style="color: #cbd5e1; margin: 0; font-size: 0.9rem">
+                            仓位大小 = (账户总额 × 风险百分比) ÷ 止损距离<br /><br />
+                            例如：10万元账户，2%风险，止损5元<br />
+                            仓位 = (100,000 × 0.02) ÷ 5 = 400股
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 不同策略的止损设置 -->
+            <div class="card">
+                <h2 class="card-title">📊 三大策略的止损设置</h2>
+
+                <div class="technique-item">
+                    <div class="technique-title">PB策略止损</div>
+                    <p style="color: #cbd5e1; margin: 8px 0">
+                        <strong>位置：</strong>回调低点下方
+                    </p>
+                    <p style="color: #94a3b8; margin: 0">
+                        <strong>理由：</strong
+                        >如果回调低点被跌破，说明回调变成了反转
+                    </p>
+                    <div class="example-box">
+                        <p style="color: #cbd5e1; margin: 0; font-size: 0.9rem">
+                            <strong>案例：</strong
+                            >贵州茅台在1660元买入，回调低点1650元<br />
+                            止损设在1630元（低点下方20元）
+                        </p>
+                    </div>
+                </div>
+
+                <div class="technique-item">
+                    <div class="technique-title">CPB策略止损</div>
+                    <p style="color: #cbd5e1; margin: 8px 0">
+                        <strong>位置：</strong>最终浪（C浪或E浪）最低点下方
+                    </p>
+                    <p style="color: #94a3b8; margin: 0">
+                        <strong>理由：</strong>复杂回调结构最低点是关键支撑
+                    </p>
+                    <div class="example-box">
+                        <p style="color: #cbd5e1; margin: 0; font-size: 0.9rem">
+                            <strong>案例：</strong
+                            >宁德时代ABC结构在245元买入<br />
+                            C浪低点238元，止损设在235元
+                        </p>
+                    </div>
+                </div>
+
+                <div class="technique-item">
+                    <div class="technique-title">STS策略止损</div>
+                    <p style="color: #cbd5e1; margin: 8px 0">
+                        <strong>位置：</strong>突破K线最低点下方
+                    </p>
+                    <p style="color: #94a3b8; margin: 0">
+                        <strong>理由：</strong>突破失败会快速回到突破前位置
+                    </p>
+                    <div class="example-box">
+                        <p style="color: #cbd5e1; margin: 0; font-size: 0.9rem">
+                            <strong>案例：</strong
+                            >比亚迪在285元突破箱体买入<br />
+                            突破K线最低点275元，止损设在270元
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 止损的常见错误 -->
+            <div class="card">
+                <h2 class="card-title">⚠️ 止损设置的常见错误</h2>
+
+                <div class="technique-item">
+                    <div class="technique-title">❌ 错误1：止损太紧</div>
+                    <p style="color: #cbd5e1; margin: 8px 0">
+                        被正常波动止损出局，错过了后面的盈利机会
+                    </p>
+                    <p style="color: #94a3b8; margin: 0">
+                        <strong>解决：</strong>使用ATR指标，给价格足够的波动空间
+                    </p>
+                </div>
+
+                <div class="technique-item">
+                    <div class="technique-title">❌ 错误2：止损太松</div>
+                    <p style="color: #cbd5e1; margin: 8px 0">
+                        单笔风险过大，一次亏损可能造成重大损失
+                    </p>
+                    <p style="color: #94a3b8; margin: 0">
+                        <strong>解决：</strong>严格限制单笔风险不超过账户的2%
+                    </p>
+                </div>
+
+                <div class="technique-item">
+                    <div class="technique-title">❌ 错误3：移动止损</div>
+                    <p style="color: #cbd5e1; margin: 8px 0">
+                        亏损时扩大止损位，让小亏变大亏
+                    </p>
+                    <p style="color: #94a3b8; margin: 0">
+                        <strong>解决：</strong>止损一旦设定，坚决执行，绝不移动
+                    </p>
+                </div>
+
+                <div class="technique-item">
+                    <div class="technique-title">❌ 错误4：不止损</div>
+                    <p style="color: #cbd5e1; margin: 8px 0">
+                        抱有幻想，希望价格会回来
+                    </p>
+                    <p style="color: #94a3b8; margin: 0">
+                        <strong>解决：</strong
+                        >养成自动化止损习惯，使用交易软件设置
+                    </p>
+                </div>
+            </div>
+
+            <!-- 追踪止损 -->
+            <div class="card">
+                <h2 class="card-title">🎯 追踪止损技巧</h2>
+                <p style="color: #cbd5e1; margin-bottom: 20px">
+                    追踪止损是保护利润、让利润奔跑的重要工具。
+                </p>
+
+                <div class="technique-item">
+                    <div class="technique-title">方法1：结构性追踪止损</div>
+                    <p style="color: #cbd5e1; margin: 8px 0">
+                        随着新的高点或低点形成，将止损移动到新的结构位置
+                    </p>
+                    <div class="example-box">
+                        <p style="color: #cbd5e1; margin: 0; font-size: 0.9rem">
+                            <strong>案例：</strong>买入后价格创出新高<br />
+                            将止损从最初位置移动到新的回调低点<br />
+                            这样既保护了部分利润，又给了价格继续上涨的空间
+                        </p>
+                    </div>
+                </div>
+
+                <div class="technique-item">
+                    <div class="technique-title">方法2：固定比例追踪止损</div>
+                    <p style="color: #cbd5e1; margin: 8px 0">
+                        价格每上涨一定幅度，止损按比例上移
+                    </p>
+                    <div class="example-box">
+                        <p style="color: #cbd5e1; margin: 0; font-size: 0.9rem">
+                            <strong>案例：</strong>10%固定比例追踪止损<br />
+                            100元买入，止损90元<br />
+                            涨到110元，止损移到99元<br />
+                            涨到120元，止损移到108元
+                        </p>
+                    </div>
+                </div>
+
+                <div class="technique-item">
+                    <div class="technique-title">💡 追踪止损的最佳实践</div>
+                    <ul
+                        style="
+                            color: #cbd5e1;
+                            margin: 8px 0;
+                            padding-left: 20px;
+                            line-height: 1.8;
+                        "
+                    >
+                        <li>盈利达到1R（1倍风险）后开始考虑追踪止损</li>
+                        <li>第一个目标位可以卖出50%仓位，锁定利润</li>
+                        <li>剩余仓位使用追踪止损，让利润奔跑</li>
+                        <li>趋势强劲时可以放宽追踪止损距离</li>
+                        <li>趋势疲软时收紧追踪止损，快速止盈</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- 止损执行纪律 -->
+            <div class="card">
+                <h2 class="card-title">💪 止损执行纪律</h2>
+                <p style="color: #cbd5e1; margin-bottom: 20px">
+                    知道怎么设置止损不够，关键是执行。
+                </p>
+
+                <div class="technique-item">
+                    <div class="technique-title">执行纪律</div>
+                    <ul
+                        style="
+                            color: #cbd5e1;
+                            margin: 8px 0;
+                            padding-left: 20px;
+                            line-height: 1.8;
+                        "
+                    >
+                        <li>
+                            <strong>入场前设定：</strong>开仓前就必须确定止损位
+                        </li>
+                        <li>
+                            <strong>立即设置：</strong
+                            >成交后立即设置止损，不拖延
+                        </li>
+                        <li><strong>绝不移动：</strong>亏损时绝不扩大止损位</li>
+                        <li>
+                            <strong>坚决执行：</strong>触及止损就平仓，不抱幻想
+                        </li>
+                        <li>
+                            <strong>复盘总结：</strong
+                            >每次止损后分析原因，持续改进
+                        </li>
+                    </ul>
+                </div>
+
+                <div
+                    class="example-box"
+                    style="
+                        background: rgba(16, 185, 129, 0.1);
+                        border-color: rgba(16, 185, 129, 0.3);
+                    "
+                >
+                    <div
+                        style="
+                            color: #34d399;
+                            margin-bottom: 8px;
+                            font-weight: 600;
+                        "
+                    >
+                        ✅ 专业交易员的座右铭
+                    </div>
+                    <p style="color: #cbd5e1; margin: 0">
+                        "止损是交易成本的一部分，就像做生意的成本一样。<br />
+                        接受小亏损，等待下一个大机会。<br />
+                        一次好的止损保住了资本，就有十次新机会。"
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div style="text-align: center; padding: 40px 20px">
+            <a
+                href="../stage3-new.html"
+                style="
+                    display: inline-block;
+                    padding: 16px 32px;
+                    background: linear-gradient(
+                        135deg,
+                        #6366f1 0%,
+                        #06b6d4 100%
+                    );
+                    color: white;
+                    text-decoration: none;
+                    border-radius: 12px;
+                    font-weight: 600;
+                "
+                >继续学习盈亏比优化 →</a
+            >
+        </div>
+    </body>
+</html>

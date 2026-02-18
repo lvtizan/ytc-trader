@@ -1,0 +1,115 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+"""
+YTC Trader - PDF图片提取工具
+从YTC PDF文件中提取所有图片并保存到指定目录
+"""
+
+import os
+import sys
+from pathlib import Path
+
+try:
+    import fitz  # PyMuPDF
+except ImportError:
+    print("❌ 错误：未安装 PyMuPDF")
+    print("请运行: pip3 install PyMuPDF")
+    sys.exit(1)
+
+
+def extract_images_from_pdf(pdf_path, output_dir):
+    """
+    从PDF提取所有图片
+    
+    参数：
+        pdf_path: PDF文件路径
+        output_dir: 输出目录路径
+    """
+    
+    # 创建输出目录
+    os.makedirs(output_dir, exist_ok=True)
+    
+    # 打开PDF
+    print(f"📖 正在打开: {pdf_path}")
+    try:
+        pdf_document = fitz.open(pdf_path)
+    except Exception as e:
+        print(f"❌ 无法打开PDF: {e}")
+        return 0
+    
+    total_images = 0
+    page_count = len(pdf_document)
+    
+    print(f"📄 总页数: {page_count}")
+    print("开始提取图片...")
+    
+    # 遍历每一页
+    for page_num in range(page_count):
+        page = pdf_document[page_num]
+        image_list = page.get_images()
+        
+        # 提取该页的所有图片
+        for img_index, img in enumerate(image_list, start=1):
+            xref = img[0]
+            base_image = pdf_document.extract_image(xref)
+            
+            # 获取图片数据
+            image_bytes = base_image["image"]
+            image_format = base_image["ext"]
+            
+            # 生成文件名: page_1_img_1.png
+            image_filename = f"page_{page_num+1}_img_{img_index}.{image_format}"
+            image_path = os.path.join(output_dir, image_filename)
+            
+            # 保存图片
+            with open(image_path, "wb") as image_file:
+                image_file.write(image_bytes)
+            
+            total_images += 1
+            print(f"  ✓ 提取: {image_filename}")
+    
+    pdf_document.close()
+    
+    print(f"\\n🎉 提取完成!")
+    print(f"📊 总计: {total_images} 张图片")
+    print(f"💾 保存位置: {output_dir}")
+    
+    return total_images
+
+
+def main():
+    # 默认PDF路径
+    default_pdf = "/Users/yiming/Downloads/YTC系列书籍/02 进阶篇 YTC卷二：市场和市场分析.pdf"
+    default_output = "/Users/yiming/Downloads/YTC系列书籍/ytc-trader/images/diagrams"
+    
+    # 检查命令行参数
+    if len(sys.argv) > 1:
+        pdf_path = sys.argv[1]
+    else:
+        pdf_path = default_pdf
+    
+    if len(sys.argv) > 2:
+        output_dir = sys.argv[2]
+    else:
+        output_dir = default_output
+    
+    print("=" * 50)
+    print("🚀 YTC Trader - PDF图片提取工具")
+    print("=" * 50)
+    
+    # 检查文件是否存在
+    if not os.path.exists(pdf_path):
+        print(f"❌ 错误: 文件不存在 - {pdf_path}")
+        print("\\n用法:")
+        print(f"  python3 {sys.argv[0]} [PDF文件路径] [输出目录]")
+        print(f"\\n示例:")
+        print(f"  python3 {sys.argv[0]} ~/Downloads/YTC系列书籍/02进阶篇YTC卷二：市场和市场分析.pdf")
+        sys.exit(1)
+    
+    extract_images_from_pdf(pdf_path, output_dir)
+    
+    print("\\n✅ 完成!")
+
+
+if __name__ == "__main__":
+    main()

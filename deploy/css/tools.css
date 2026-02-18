@@ -1,0 +1,412 @@
+/* YTC Trader - 工具页面样式 */
+
+/* 页面头部 */
+.tool-header {
+    padding: 160px 20px 60px;
+    background: linear-gradient(135deg, rgba(37, 99, 235, 0.1), rgba(124, 58, 237, 0.1));
+    border-bottom: 1px solid var(--border-color);
+}
+
+/* 工具介绍 */
+.tool-intro {
+    margin-bottom: 3rem;
+}
+
+.intro-card {
+    background: linear-gradient(135deg, var(--card-bg), rgba(37, 99, 235, 0.1));
+    border: 2px solid var(--border-color);
+    border-radius: 16px;
+    padding: 2rem;
+}
+
+.intro-card h3 {
+    margin-bottom: 1rem;
+    color: var(--primary-color);
+}
+
+.intro-card p {
+    color: var(--text-secondary);
+    margin-bottom: 1.5rem;
+    line-height: 1.8;
+}
+
+.intro-tips {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1rem;
+}
+
+.tip-item {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 1rem;
+    background: var(--dark-bg);
+    border-radius: 8px;
+}
+
+.tip-icon {
+    font-size: 1.5rem;
+}
+
+/* 检查清单包装器 */
+.checklist-wrapper {
+    max-width: 900px;
+    margin: 0 auto 3rem;
+}
+
+.checklist-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+    padding-bottom: 1rem;
+    border-bottom: 2px solid var(--border-color);
+}
+
+.checklist-header h2 {
+    font-size: 1.75rem;
+}
+
+.progress-indicator {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.progress-label {
+    color: var(--text-secondary);
+}
+
+.progress-value {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--success-color);
+}
+
+/* 表单样式 */
+#stock-checklist {
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 16px;
+    padding: 2rem;
+}
+
+.form-section {
+    margin-bottom: 2rem;
+    padding-bottom: 2rem;
+    border-bottom: 2px solid var(--border-color);
+}
+
+.form-section:last-child {
+    border-bottom: none;
+}
+
+.form-section h3 {
+    font-size: 1.25rem;
+    margin-bottom: 1rem;
+}
+
+.form-row {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group label {
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+    color: var(--text-secondary);
+}
+
+.form-input,
+.form-textarea {
+    padding: 0.75rem 1rem;
+    background: var(--dark-bg);
+    border: 2px solid var(--border-color);
+    border-radius: 8px;
+    color: var(--text-primary);
+    font-family: inherit;
+    transition: all 0.3s ease;
+}
+
+.form-input:focus,
+.form-textarea:focus {
+    outline: none;
+    border-color: var(--primary-color);
+}
+
+.form-textarea {
+    resize: vertical;
+    min-height: 80px;
+}
+
+/* 检查清单部分 */
+.checklist-section {
+    margin-bottom: 2rem;
+    padding: 1.5rem;
+    background: var(--dark-bg);
+    border-radius: 12px;
+    border: 2px solid var(--border-color);
+    transition: all 0.3s ease;
+}
+
+.checklist-section.completed {
+    border-color: var(--success-color);
+}
+
+.checklist-section h3 {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 1.5rem;
+    padding-bottom: 1rem;
+    border-bottom: 2px solid var(--border-color);
+}
+
+.section-icon {
+    font-size: 1.5rem;
+}
+
+.section-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+}
+
+.checklist-items {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    margin-bottom: 1rem;
+}
+
+.checklist-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+    padding: 1rem;
+    background: var(--card-bg);
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.checklist-item:hover {
+    background: rgba(37, 99, 235, 0.1);
+}
+
+.checklist-item input[type="checkbox"] {
+    width: 24px;
+    height: 24px;
+    cursor: pointer;
+    flex-shrink: 0;
+    margin-top: 0.125rem;
+}
+
+.item-content {
+    flex: 1;
+}
+
+.item-text {
+    display: block;
+    font-weight: 500;
+    margin-bottom: 0.25rem;
+}
+
+.item-hint {
+    display: block;
+    font-size: 0.875rem;
+    color: var(--text-secondary);
+}
+
+.section-note {
+    margin-top: 1rem;
+}
+
+/* 决策部分 */
+.decision-section {
+    margin: 3rem 0;
+}
+
+.decision-card {
+    background: linear-gradient(135deg, rgba(16, 185, 129, 0.1), rgba(5, 150, 105, 0.1));
+    border: 3px solid var(--success-color);
+    border-radius: 16px;
+    padding: 2rem;
+    text-align: center;
+}
+
+.decision-card h3 {
+    margin-bottom: 1.5rem;
+    font-size: 1.5rem;
+}
+
+.decision-status {
+    margin-bottom: 1rem;
+}
+
+.status-pending {
+    font-size: 2rem;
+    font-weight: 600;
+}
+
+.status-approved {
+    font-size: 2rem;
+    font-weight: 600;
+    color: var(--success-color);
+}
+
+.status-rejected {
+    font-size: 2rem;
+    font-weight: 600;
+    color: var(--danger-color);
+}
+
+.decision-message {
+    font-size: 1.125rem;
+    color: var(--text-secondary);
+}
+
+/* 操作按钮 */
+.action-buttons {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-top: 3rem;
+}
+
+.btn-success {
+    background: var(--success-color);
+    color: white;
+    border: none;
+}
+
+.btn-success:hover {
+    background: #059669;
+}
+
+/* 历史记录 */
+.history-section {
+    margin-top: 4rem;
+}
+
+.history-section h2 {
+    margin-bottom: 2rem;
+    font-size: 1.75rem;
+}
+
+.history-list {
+    display: grid;
+    gap: 1rem;
+}
+
+.history-item {
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    padding: 1.5rem;
+    transition: all 0.3s ease;
+}
+
+.history-item:hover {
+    border-color: var(--primary-color);
+}
+
+.history-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.history-stock {
+    font-size: 1.25rem;
+    font-weight: 600;
+}
+
+.history-date {
+    color: var(--text-secondary);
+    font-size: 0.875rem;
+}
+
+.history-details {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 1rem;
+}
+
+.history-detail-item {
+    display: flex;
+    flex-direction: column;
+}
+
+.history-detail-label {
+    font-size: 0.875rem;
+    color: var(--text-secondary);
+    margin-bottom: 0.25rem;
+}
+
+.history-detail-value {
+    font-weight: 600;
+}
+
+.history-result {
+    margin-top: 1rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--border-color);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.history-result.approved {
+    color: var(--success-color);
+}
+
+.history-result.rejected {
+    color: var(--danger-color);
+}
+
+.empty-hint {
+    text-align: center;
+    color: var(--text-secondary);
+    padding: 3rem;
+    background: var(--card-bg);
+    border: 2px dashed var(--border-color);
+    border-radius: 12px;
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+    .checklist-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1rem;
+    }
+
+    .form-row {
+        grid-template-columns: 1fr;
+    }
+
+    .history-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.5rem;
+    }
+
+    .action-buttons {
+        flex-direction: column;
+    }
+
+    .action-buttons .btn {
+        width: 100%;
+    }
+}

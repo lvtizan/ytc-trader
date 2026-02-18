@@ -1,0 +1,297 @@
+<!doctype html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>情绪管理技巧 - YTC Trader</title>
+        <link rel="stylesheet" href="../css/modern-premium.css" />
+        <style>
+            body {
+                background: var(--bg-deep);
+                min-height: 100vh;
+            }
+            .hero-section {
+                background: linear-gradient(
+                    135deg,
+                    rgba(99, 102, 241, 0.1) 0%,
+                    rgba(6, 182, 212, 0.1) 100%
+                );
+                border-bottom: 1px solid var(--border-color);
+                padding: 4rem 1.5rem 3rem;
+                text-align: center;
+            }
+            .hero-badge {
+                display: inline-block;
+                background: var(--gradient-1);
+                color: white;
+                padding: 0.5rem 1.5rem;
+                border-radius: 2rem;
+                font-size: 0.875rem;
+                font-weight: 600;
+                margin-bottom: 1.5rem;
+            }
+            .hero-title {
+                font-size: clamp(2rem, 5vw, 3rem);
+                font-weight: 800;
+                margin-bottom: 1rem;
+                background: var(--gradient-1);
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+            }
+            .hero-subtitle {
+                color: var(--text-muted);
+                font-size: 1.125rem;
+                max-width: 600px;
+                margin: 0 auto;
+            }
+            .content-container {
+                max-width: 900px;
+                margin: 0 auto;
+                padding: 3rem 1.5rem;
+            }
+            .technique-card {
+                background: rgba(15, 23, 42, 0.6);
+                backdrop-filter: blur(10px);
+                border: 1px solid rgba(99, 102, 241, 0.2);
+                border-radius: 1.5rem;
+                padding: 3rem;
+                margin-bottom: 2.5rem;
+            }
+            .technique-card:last-child {
+                margin-bottom: 0;
+            }
+            .section-header {
+                text-align: center;
+                margin-bottom: 2rem;
+            }
+            .section-title {
+                font-size: 1.75rem;
+                font-weight: 700;
+                color: var(--text-primary);
+                margin-bottom: 0.5rem;
+            }
+            .section-subtitle {
+                color: var(--text-muted);
+                font-size: 1.0625rem;
+            }
+            .technique-list {
+                list-style: none;
+                padding: 0;
+            }
+            .technique-list li {
+                color: var(--text-secondary);
+                line-height: 1.8;
+                padding: 0.75rem 0;
+                padding-left: 2rem;
+                position: relative;
+                font-size: 1.0625rem;
+            }
+            .technique-list li::before {
+                content: "✓";
+                position: absolute;
+                left: 0;
+                color: var(--success);
+                font-weight: 700;
+            }
+            .technique-list li strong {
+                color: var(--text-primary);
+            }
+            .nav-buttons {
+                display: flex;
+                gap: 1rem;
+                justify-content: center;
+                flex-wrap: wrap;
+                margin-top: 3rem;
+            }
+        </style>
+    </head>
+    <body>
+        <!-- 科技光晕背景层 -->
+        <div class="tech-glow"></div>
+
+        <div class="app-container">
+            <nav class="navbar">
+                <div class="nav-container">
+                    <a href="../stage4-new.html" class="brand">
+                        <div class="brand-logo">YT</div>
+                        <div class="brand-text">
+                            <span class="brand-title">YTC Trader</span>
+                        </div>
+                    </a>
+                    <ul class="nav-menu">
+                        <li>
+                            <a href="../stage4-new.html" class="nav-link"
+                                >← 返回阶段四</a
+                            >
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+
+            <div class="hero-section">
+                <span class="hero-badge">阶段四 · 模块3 · 第18周</span>
+                <h1 class="hero-title">情绪管理技巧</h1>
+                <p class="hero-subtitle">
+                    学会管理交易中的各种情绪，保持冷静理性的交易心态
+                </p>
+            </div>
+
+            <div class="content-container">
+                <div class="technique-card">
+                    <div class="section-header">
+                        <h2 class="section-title">🔍 情绪识别技巧</h2>
+                        <p class="section-subtitle">
+                            第一步是学会识别自己的情绪状态
+                        </p>
+                    </div>
+                    <p
+                        style="
+                            color: var(--text-secondary);
+                            line-height: 1.8;
+                            margin-bottom: 2rem;
+                            font-size: 1.0625rem;
+                        "
+                    >
+                        在交易前、交易中、交易后都要诚实地问自己以下问题：
+                    </p>
+                    <ul class="technique-list">
+                        <li>我现在感到焦虑吗？贪婪吗？恐惧吗？愤怒吗？</li>
+                        <li>我的情绪是否影响到了交易决策？</li>
+                        <li>我是否因为情绪而违反了交易规则？</li>
+                        <li>我现在的心态适合交易吗？</li>
+                        <li>我能客观地看待市场，还是被情绪左右？</li>
+                    </ul>
+                </div>
+
+                <div class="technique-card">
+                    <div class="section-header">
+                        <h2 class="section-title">😌 情绪调节方法</h2>
+                        <p class="section-subtitle">
+                            当负面情绪出现时，使用这些方法快速调节
+                        </p>
+                    </div>
+                    <ul class="technique-list">
+                        <li>
+                            <strong>深呼吸：</strong
+                            >感到压力时，深呼吸5次，重新平静心态
+                        </li>
+                        <li>
+                            <strong>暂停交易：</strong
+                            >情绪强烈时立即停止交易，不要勉强
+                        </li>
+                        <li>
+                            <strong>离开屏幕：</strong
+                            >离开电脑，去散步、运动、转移注意力
+                        </li>
+                        <li>
+                            <strong>正念冥想：</strong
+                            >每天5-10分钟冥想练习，提高自我觉察
+                        </li>
+                        <li>
+                            <strong>情绪日记：</strong
+                            >记录每天的情绪状态，找出情绪触发点
+                        </li>
+                        <li>
+                            <strong>积极自我对话：</strong
+                            >用积极的想法替代消极想法
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="technique-card">
+                    <div class="section-header">
+                        <h2 class="section-title">💪 压力管理</h2>
+                        <p class="section-subtitle">
+                            长期保持良好状态的生活方式
+                        </p>
+                    </div>
+                    <ul class="technique-list">
+                        <li>
+                            <strong>设置交易时间限制：</strong
+                            >每天只交易2-3小时，避免过度疲劳
+                        </li>
+                        <li>
+                            <strong>定期休息：</strong
+                            >每交易1小时休息10分钟，保持清醒
+                        </li>
+                        <li>
+                            <strong>规律运动：</strong
+                            >每天30分钟有氧运动，释放压力
+                        </li>
+                        <li>
+                            <strong>充足睡眠：</strong
+                            >保证7-8小时高质量睡眠，保持精力充沛
+                        </li>
+                        <li>
+                            <strong>健康饮食：</strong
+                            >避免过量咖啡因和糖分，保持血糖稳定
+                        </li>
+                        <li>
+                            <strong>社交活动：</strong
+                            >保持正常的社交生活，不要只关注交易
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="technique-card">
+                    <div class="section-header">
+                        <h2 class="section-title">✨ 建立正向心态</h2>
+                        <p class="section-subtitle">培养积极健康的交易心态</p>
+                    </div>
+                    <ul class="technique-list">
+                        <li>关注交易过程是否正确，而非单次交易的盈亏结果</li>
+                        <li>接受亏损是交易的一部分，不是失败的标志</li>
+                        <li>庆祝遵守纪律的交易，即使结果是亏损</li>
+                        <li>
+                            用积极的自我对话替代消极想法（如"我正在学习"而非"我很差劲"）
+                        </li>
+                        <li>保持学习的态度，把每次交易视为学习机会</li>
+                        <li>感恩心态，感恩每次交易机会和所学到的教训</li>
+                    </ul>
+                </div>
+
+                <div class="technique-card">
+                    <div class="section-header">
+                        <h2 class="section-title">📝 保持交易日志</h2>
+                        <p class="section-subtitle">
+                            交易日志是情绪管理的重要工具
+                        </p>
+                    </div>
+                    <p
+                        style="
+                            color: var(--text-secondary);
+                            line-height: 1.8;
+                            margin-bottom: 2rem;
+                            font-size: 1.0625rem;
+                        "
+                    >
+                        每次交易后记录以下情绪相关信息：
+                    </p>
+                    <ul class="technique-list">
+                        <li>
+                            交易前的情绪状态（1-10分：焦虑度、贪婪度、自信度）
+                        </li>
+                        <li>交易中的情绪变化（何时变得焦虑或兴奋）</li>
+                        <li>
+                            是否因为情绪做出错误决策（如提前出场、加大仓位）
+                        </li>
+                        <li>下次如何改进情绪管理</li>
+                        <li>本周情绪状态的整体趋势</li>
+                    </ul>
+                </div>
+
+                <div class="nav-buttons">
+                    <a href="trading-discipline.html" class="btn btn-secondary"
+                        >上一个：交易纪律</a
+                    >
+                    <a href="../stage4-new.html" class="btn btn-secondary"
+                        >返回阶段四</a
+                    >
+                    <a href="review-mechanism.html" class="btn btn-primary"
+                        >下一个：复盘机制 →</a
+                    >
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

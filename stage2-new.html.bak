@@ -1,0 +1,236 @@
+<!doctype html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>阶段二：三大核心交易策略 - YTC Trader</title>
+        <link rel="stylesheet" href="css/modern-premium.css" />
+        <link rel="stylesheet" href="css/stage-new.css" />
+    </head>
+    <body>
+        <!-- 科技光晕背景层 -->
+        <div class="tech-glow"></div>
+
+        <div class="app-container">
+            <!-- 导航栏 -->
+            <nav class="navbar">
+                <div class="nav-container">
+                    <a href="index-new.html" class="brand">
+                        <div class="brand-logo">YT</div>
+                        <div class="brand-text">
+                            <span class="brand-title">YTC Trader</span>
+                            <span class="brand-tagline">专业交易系统</span>
+                        </div>
+                    </a>
+                    <ul class="nav-menu">
+                        <li>
+                            <a href="index-new.html" class="nav-link"
+                                >返回首页</a
+                            >
+                        </li>
+                        <li>
+                            <a href="#objectives" class="nav-link">学习目标</a>
+                        </li>
+                        <li>
+                            <a href="#modules" class="nav-link">学习内容</a>
+                        </li>
+                        <li>
+                            <a href="index-new.html#tools" class="nav-link"
+                                >交易工具</a
+                            >
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+
+            <!-- 阶段标题 -->
+            <header class="stage-header">
+                <span class="stage-badge">阶段二</span>
+                <h1 class="stage-title">三大核心交易策略</h1>
+                <div class="stage-duration">
+                    <span>📅 第5-11周</span>
+                    <span>⏱️ 约7周</span>
+                    <span>📊 7个学习模块</span>
+                </div>
+            </header>
+
+            <!-- 学习目标 -->
+            <section class="objectives-section" id="objectives">
+                <div class="section-header">
+                    <h2 class="section-title">学习目标</h2>
+                    <p class="section-subtitle">
+                        掌握YTC价格行为交易的三大核心做多策略
+                    </p>
+                </div>
+                <div class="objectives-grid">
+                    <div class="objective-card">
+                        <div class="objective-icon">🎯</div>
+                        <h3 class="objective-title">PB策略精通</h3>
+                        <p class="objective-description">
+                            掌握Pullback策略，在上升趋势的回调中寻找最佳入场点
+                        </p>
+                    </div>
+                    <div class="objective-card">
+                        <div class="objective-icon">🔄</div>
+                        <h3 class="objective-title">CPB策略精通</h3>
+                        <p class="objective-description">
+                            掌握Complex Pullback策略，识别复杂回调中的交易机会
+                        </p>
+                    </div>
+                    <div class="objective-card">
+                        <div class="objective-icon">🏗️</div>
+                        <h3 class="objective-title">STS策略精通</h3>
+                        <p class="objective-description">
+                            掌握Structural Trading Setup策略，交易结构性突破
+                        </p>
+                    </div>
+                    <div class="objective-card">
+                        <div class="objective-icon">🔀</div>
+                        <h3 class="objective-title">策略组合应用</h3>
+                        <p class="objective-description">
+                            学会如何在不同市场条件下组合使用三大策略
+                        </p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 学习模块 -->
+            <section class="modules-section" id="modules">
+                <div class="section-header">
+                    <h2 class="section-title">学习模块</h2>
+                    <p class="section-subtitle">系统化学习三大核心策略</p>
+                </div>
+                <div class="modules-grid">
+                    <!-- PB策略模块 -->
+                    <div class="module-card">
+                        <div class="module-header">
+                            <span class="module-number">模块 1-3</span>
+                            <span class="module-week">第5-7周</span>
+                        </div>
+                        <h3 class="module-title">PB策略：回调买入</h3>
+                        <p class="module-description">
+                            深入学习Pullback策略，这是最基础也最重要的核心策略。
+                        </p>
+                        <ul class="module-topics">
+                            <li>PB策略的定义和原理</li>
+                            <li>PB策略的入场条件</li>
+                            <li>PB策略的止损设置</li>
+                            <li>PB策略的出场规则</li>
+                            <li>PB策略的实战案例</li>
+                        </ul>
+                        <div class="module-actions">
+                            <a
+                                href="learn/pb-strategy.html"
+                                class="btn btn-primary"
+                                >开始学习 →</a
+                            >
+                            <a href="#" class="btn btn-secondary">查看练习</a>
+                        </div>
+                    </div>
+
+                    <!-- CPB策略模块 -->
+                    <div class="module-card">
+                        <div class="module-header">
+                            <span class="module-number">模块 4-5</span>
+                            <span class="module-week">第8-9周</span>
+                        </div>
+                        <h3 class="module-title">CPB策略：复杂回调</h3>
+                        <p class="module-description">
+                            学习Complex Pullback策略，识别更复杂的回调模式。
+                        </p>
+                        <ul class="module-topics">
+                            <li>CPB与PB的区别</li>
+                            <li>复杂回调的结构特征</li>
+                            <li>CPB的识别技巧</li>
+                            <li>CPB的风险控制</li>
+                            <li>CPB的实战应用</li>
+                        </ul>
+                        <div class="module-actions">
+                            <a
+                                href="learn/cpb-strategy.html"
+                                class="btn btn-primary"
+                                >开始学习 →</a
+                            >
+                            <a href="#" class="btn btn-secondary">查看练习</a>
+                        </div>
+                    </div>
+
+                    <!-- STS策略模块 -->
+                    <div class="module-card">
+                        <div class="module-header">
+                            <span class="module-number">模块 6-7</span>
+                            <span class="module-week">第10-11周</span>
+                        </div>
+                        <h3 class="module-title">STS策略：结构性交易</h3>
+                        <p class="module-description">
+                            学习Structural Trading Setup策略，交易关键结构位置。
+                        </p>
+                        <ul class="module-topics">
+                            <li>STS策略的定义</li>
+                            <li>关键结构位置识别</li>
+                            <li>STS的入场时机</li>
+                            <li>STS的盈亏比管理</li>
+                            <li>STS的实战案例</li>
+                        </ul>
+                        <div class="module-actions">
+                            <a
+                                href="learn/sts-strategy.html"
+                                class="btn btn-primary"
+                                >开始学习 →</a
+                            >
+                            <a href="#" class="btn btn-secondary">查看练习</a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 下一阶段 -->
+            <section class="section" style="text-align: center">
+                <div
+                    style="
+                        background: var(--bg-card);
+                        border: 1px solid var(--border-color);
+                        border-radius: var(--radius-xl);
+                        padding: var(--space-2xl);
+                    "
+                >
+                    <h2
+                        style="
+                            font-size: 1.5rem;
+                            margin-bottom: var(--space-md);
+                            color: var(--text-primary);
+                        "
+                    >
+                        准备好进入下一阶段了吗？
+                    </h2>
+                    <p
+                        style="
+                            color: var(--text-secondary);
+                            margin-bottom: var(--space-xl);
+                            max-width: 600px;
+                            margin-left: auto;
+                            margin-right: auto;
+                        "
+                    >
+                        完成三大策略的学习后，你将具备完整的交易策略体系，可以进入风险管理阶段的学习。
+                    </p>
+                    <div
+                        style="
+                            display: flex;
+                            gap: var(--space-md);
+                            justify-content: center;
+                            flex-wrap: wrap;
+                        "
+                    >
+                        <a href="stage3.html" class="btn btn-primary"
+                            >进入阶段三 →</a
+                        >
+                        <a href="index-new.html" class="btn btn-secondary"
+                            >返回首页</a
+                        >
+                    </div>
+                </div>
+            </section>
+        </div>
+    </body>
+</html>

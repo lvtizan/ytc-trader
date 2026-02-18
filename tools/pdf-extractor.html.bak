@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PDF图片提取工具 - YTC Trader</title>
+    <link rel="stylesheet" href="../css/modern-premium.css">
+    <style>
+        body {
+            padding: 3rem 1.5rem;
+            background: var(--bg-deep);
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        .upload-zone {
+            background: var(--bg-card);
+            border: 2px dashed var(--primary);
+            border-radius: 1.5rem;
+            padding: 3rem;
+            text-align: center;
+            margin-bottom: 2rem;
+            transition: all 0.3s ease;
+        }
+        .upload-zone:hover {
+            border-color: var(--accent);
+            background: rgba(99, 102, 241, 0.05);
+        }
+        .upload-zone.dragover {
+            border-color: var(--success);
+            background: rgba(16, 185, 129, 0.1);
+        }
+        .file-input {
+            display: none;
+        }
+        .upload-btn {
+            background: var(--gradient-1);
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 0.75rem;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            border: none;
+            transition: all 0.3s ease;
+        }
+        .upload-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-glow);
+        }
+        .tools-section {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 1.5rem;
+            padding: 2rem;
+            margin-bottom: 2rem;
+        }
+        .tools-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            color: var(--text-primary);
+        }
+        .tools-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+        }
+        .tool-link {
+            display: block;
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            padding: 1.5rem;
+            border-radius: 1rem;
+            text-decoration: none;
+            color: var(--text-secondary);
+            transition: all 0.3s ease;
+        }
+        .tool-link:hover {
+            border-color: var(--primary);
+            background: rgba(99, 102, 241, 0.1);
+            transform: translateY(-3px);
+        }
+        .progress-section {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 1.5rem;
+            padding: 2rem;
+            display: none;
+        }
+        .progress-bar {
+            width: 100%;
+            height: 8px;
+            background: var(--bg-tertiary);
+            border-radius: 1rem;
+            overflow: hidden;
+            margin: 1.5rem 0;
+        }
+        .progress-fill {
+            height: 100%;
+            background: var(--gradient-1);
+            width: 0%;
+            transition: width 0.3s ease;
+        }
+        .progress-text {
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.875rem;
+        }
+    </style>
+</head>
+<body>
+        <!-- 科技光晕背景层 -->
+        <div class="tech-glow"></div>
+
+    <div class="container">
+        <div class="header">
+            <h1 style="font-size: 2.5rem; background: var(--gradient-1); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
+                PDF图片提取工具
+            </h1>
+            <p style="color: var(--text-muted); font-size: 1.125rem;">从YTC PDF快速提取所有图表</p>
+        </div>
+
+        <div class="upload-zone" id="uploadZone">
+            <div style="font-size: 3rem; margin-bottom: 1rem;">📄</div>
+            <div style="font-size: 1.25rem; margin-bottom: 2rem; font-weight: 600; color: var(--text-primary);">
+                拖放PDF文件到这里
+            </div>
+            <div style="color: var(--text-muted); margin-bottom: 2rem;">或</div>
+            <input type="file" id="fileInput" class="file-input" accept=".pdf">
+            <button class="upload-btn" onclick="document.getElementById('fileInput').click()">
+                选择PDF文件
+            </button>
+        </div>
+
+        <div class="tools-section">
+            <div class="tools-title">🛠️ 推荐在线工具（更强大）</div>
+            <div class="tools-grid">
+                <a href="https://www.ilovepdf.com/extract-pdf-images/" target="_blank" class="tool-link">
+                    <div style="font-size: 2rem; margin-bottom: 0.5rem;">🌐</div>
+                    <div style="font-weight: 600; color: var(--text-primary); margin-bottom: 0.25rem;">iLovePDF</div>
+                    <div style="font-size: 0.875rem; color: var(--text-muted);">免费、快速、批量提取</div>
+                </a>
+                <a href="https://www.pdf24.com/" target="_blank" class="tool-link">
+                    <div style="font-size: 2rem; margin-bottom: 0.5rem;">📊</div>
+                    <div style="font-weight: 600; color: var(--text-primary); margin-bottom: 0.25rem;">PDF24</div>
+                    <div style="font-size: 0.875rem; color: var(--text-muted);">高质量提取</div>
+                </a>
+                <a href="https://smallpdf.com/extract-pdf/" target="_blank" class="tool-link">
+                    <div style="font-size: 2rem; margin-bottom: 0.5rem;">⚡</div>
+                    <div style="font-weight: 600; color: var(--text-primary); margin-bottom: 0.25rem;">SmallPDF</div>
+                    <div style="font-size: 0.875rem; color: var(--text-muted);">界面友好</div>
+                </a>
+                <a href="https://www.pdfcandy.com/extract-images/" target="_blank" class="tool-link">
+                    <div style="font-size: 2rem; margin-bottom: 0.5rem;">🍬</div>
+                    <div style="font-weight: 600; color: var(--text-primary); margin-bottom: 0.25rem;">PDF Candy</div>
+                    <div style="font-size: 0.875rem; color: var(--text-muted);">多种格式支持</div>
+                </a>
+            </div>
+        </div>
+
+        <div class="tools-section">
+            <div class="tools-title">📋 使用指南</div>
+            <div style="color: var(--text-secondary); line-height: 1.8;">
+                <p><strong>方法1：使用在线工具（推荐）</strong></p>
+                <ol style="margin-left: 2rem; margin-bottom: 1.5rem;">
+                    <li>点击上方工具链接（推荐iLovePDF）</li>
+                    <li>上传你的YTC PDF文件</li>
+                    <li>点击 "Extract Images" 按钮</li>
+                    <li>下载所有图片（ZIP格式）</li>
+                    <li>解压并筛选需要的图表</li>
+                </ol>
+                
+                <p><strong>方法2：使用本地上传（开发中）</strong></p>
+                <p style="color: var(--text-muted); padding: 1rem; background: var(--bg-secondary); border-radius: 0.75rem;">
+                    ⏳ 前端提取功能正在开发中，暂时请使用在线工具
+                </p>
+            </div>
+        </div>
+
+        <div class="progress-section" id="progressSection">
+            <div style="font-weight: 600; margin-bottom: 1rem; color: var(--text-primary);">处理进度</div>
+            <div class="progress-bar">
+                <div class="progress-fill" id="progressFill"></div>
+            </div>
+            <div class="progress-text" id="progressText">准备就绪</div>
+        </div>
+    </div>
+
+    <script>
+        const uploadZone = document.getElementById('uploadZone');
+        const fileInput = document.getElementById('fileInput');
+        const progressSection = document.getElementById('progressSection');
+        const progressFill = document.getElementById('progressFill');
+        const progressText = document.getElementById('progressText');
+
+        // 拖放上传
+        uploadZone.addEventListener('dragover', (e) => {
+            e.preventDefault();
+            uploadZone.classList.add('dragover');
+        });
+
+        uploadZone.addEventListener('dragleave', () => {
+            uploadZone.classList.remove('dragover');
+        });
+
+        uploadZone.addEventListener('drop', (e) => {
+            e.preventDefault();
+            uploadZone.classList.remove('dragover');
+            const files = e.dataTransfer.files;
+            handleFiles(files);
+        });
+
+        fileInput.addEventListener('change', (e) => {
+            handleFiles(e.target.files);
+        });
+
+        function handleFiles(files) {
+            if (files.length > 0) {
+                const file = files[0];
+                if (file.type === 'application/pdf') {
+                    progressSection.style.display = 'block';
+                    progressFill.style.width = '50%';
+                    progressText.textContent = `已选择: ${file.name}`;
+                    
+                    // 模拟提示使用在线工具
+                    setTimeout(() => {
+                        alert('PDF文件检测成功！\\n\\n请使用上方的在线工具提取图片，或继续使用Mac预览截图方式。');
+                        progressFill.style.width = '100%';
+                        progressText.textContent = '请使用在线工具提取';
+                    }, 500);
+                } else {
+                    alert('请上传PDF文件');
+                }
+            }
+        }
+    </script>
+</body>
+</html>

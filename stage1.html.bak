@@ -1,0 +1,541 @@
+<!doctype html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>阶段一：市场分析与趋势识别 - YTC Trader</title>
+	<link rel="stylesheet" href="css/glassy-tech.css" />
+    </head>
+    <body>
+	<!-- Ambient Background Glow -->
+	<div class="ambient-glow"></div>
+        <!-- 导航栏 -->
+        <nav class="navbar">
+            <div class="nav-container">
+                <div class="logo">
+                    <span class="logo-text">YTC Trader</span>
+                    <span class="logo-tagline">成为专业的交易者</span>
+                </div>
+                <ul class="nav-menu">
+                    <li><a href="index.html">首页</a></li>
+                    <li><a href="index.html#chapters">学习目录</a></li>
+                    <li><a href="index.html#tools">工具模板</a></li>
+                    <li><a href="index.html#progress">学习进度</a></li>
+                </ul>
+            </div>
+        </nav>
+
+        <!-- 页面头部 -->
+        <header class="page-header">
+            <div class="container">
+                <div class="breadcrumb">
+                    <a href="index.html">首页</a>
+                    <span>›</span>
+                    <span>阶段一</span>
+                </div>
+                <h1 class="page-title">阶段一：市场分析与趋势识别</h1>
+                <p class="page-subtitle">
+                    第1-4周 | 建立趋势跟踪+回调买入的分析能力
+                </p>
+                <div class="page-progress">
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 0%"></div>
+                    </div>
+                    <div class="progress-text">学习进度：0%</div>
+                </div>
+            </div>
+        </header>
+
+        <!-- 主要内容 -->
+        <main class="main-content">
+            <div class="container">
+                <div class="content-grid">
+                    <!-- 左侧内容区 -->
+                    <div class="content-area">
+                        <!-- 学习目标 -->
+                        <section class="content-section">
+                            <h2>📚 学习目标</h2>
+                            <div class="objectives-list">
+                                <div class="objective-item">
+                                    <span class="objective-icon">✅</span>
+                                    <span
+                                        >能清晰解释上升趋势的结构（HH+HL）</span
+                                    >
+                                </div>
+                                <div class="objective-item">
+                                    <span class="objective-icon">✅</span>
+                                    <span>能区分3种不同类型的回调</span>
+                                </div>
+                                <div class="objective-item">
+                                    <span class="objective-icon">✅</span>
+                                    <span>能独立完成多时间周期分析</span>
+                                </div>
+                                <div class="objective-item">
+                                    <span class="objective-icon">✅</span>
+                                    <span>建立个人选股系统</span>
+                                </div>
+                            </div>
+                        </section>
+
+                        <!-- 第1-2周内容 -->
+                        <section class="content-section">
+                            <h2>📖 第1-2周：市场结构与趋势分析</h2>
+
+                            <h3>1.1 上升趋势的完整结构</h3>
+                            <div
+                                class="concept-box clickable"
+                                onclick="
+                                    window.location.href =
+                                        'learn/hh-hl-structure.html'
+                                "
+                            >
+                                <h4>📘 上升趋势的3大要素：</h4>
+                                <ul>
+                                    <li>
+                                        ✅ 更高的高点 (Higher High - HH) -
+                                        <a href="learn/hh-hl-structure.html"
+                                            >查看详解 →</a
+                                        >
+                                    </li>
+                                    <li>
+                                        ✅ 更高的低点 (Higher Low - HL) -
+                                        <a href="learn/hh-hl-structure.html"
+                                            >查看详解 →</a
+                                        >
+                                    </li>
+                                    <li>✅ 回调不破前低</li>
+                                </ul>
+                                <div class="learn-more">
+                                    <p>
+                                        📚
+                                        <strong>完整教程</strong
+                                        >：HH+HL结构详解（包含定义、图解、练习、测验）
+                                    </p>
+                                    <a
+                                        href="learn/hh-hl-structure.html"
+                                        class="btn-link"
+                                        >开始学习 →</a
+                                    >
+                                </div>
+                            </div>
+
+                            <div class="example-box">
+                                <h4>识别方法：</h4>
+                                <ol>
+                                    <li>标记所有主要摆动高点和低点</li>
+                                    <li>判断是否形成HH+HL结构</li>
+                                    <li>确认趋势方向（仅做多）</li>
+                                </ol>
+                            </div>
+
+                            <h3>1.2 市场结构的层次</h3>
+                            <div class="structure-levels">
+                                <div class="level-card">
+                                    <div class="level-title">
+                                        主要结构（周线级别）
+                                    </div>
+                                    <div class="level-desc">决定大趋势方向</div>
+                                </div>
+                                <div class="level-card">
+                                    <div class="level-title">
+                                        中级结构（日线级别）
+                                    </div>
+                                    <div class="level-desc">
+                                        提供主要交易机会
+                                    </div>
+                                </div>
+                                <div class="level-card">
+                                    <div class="level-title">
+                                        小型结构（4H级别）
+                                    </div>
+                                    <div class="level-desc">精确入场时机</div>
+                                </div>
+                            </div>
+
+                            <div class="tip-box">
+                                <h4>💡 多时间周期分析公式：</h4>
+                                <p>周线看趋势 → 日线找位置 → 4H定入场</p>
+                            </div>
+
+                            <h3>1.3 回调的分类与识别</h3>
+                            <div class="callback-types">
+                                <div class="callback-card shallow">
+                                    <div class="callback-type">浅回调</div>
+                                    <div class="callback-range">&lt; 33%</div>
+                                    <div class="callback-desc">
+                                        强趋势，优先入场
+                                    </div>
+                                </div>
+                                <div class="callback-card normal">
+                                    <div class="callback-type">中等回调</div>
+                                    <div class="callback-range">33-50%</div>
+                                    <div class="callback-desc">
+                                        健康回调，标准入场
+                                    </div>
+                                </div>
+                                <div class="callback-card deep">
+                                    <div class="callback-type">深度回调</div>
+                                    <div class="callback-range">50-66%</div>
+                                    <div class="callback-desc">
+                                        趋势可能转弱，谨慎
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="practice-box">
+                                <h4>📝 实践练习1（第1-2周）</h4>
+                                <div class="practice-list">
+                                    <div class="practice-item">
+                                        <input type="checkbox" id="p1" />
+                                        <label for="p1"
+                                            >每天分析5只股票，标记HH/HL结构</label
+                                        >
+                                    </div>
+                                    <div class="practice-item">
+                                        <input type="checkbox" id="p2" />
+                                        <label for="p2"
+                                            >识别至少3个不同类型的回调</label
+                                        >
+                                    </div>
+                                    <div class="practice-item">
+                                        <input type="checkbox" id="p3" />
+                                        <label for="p3"
+                                            >画出上升趋势线和支撑位</label
+                                        >
+                                    </div>
+                                    <div class="practice-item">
+                                        <input type="checkbox" id="p4" />
+                                        <label for="p4"
+                                            >建立"股票池"，跟踪趋势股票</label
+                                        >
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+
+                        <!-- 第3-4周内容 -->
+                        <section class="content-section">
+                            <h2>📖 第3-4周：选股系统建立</h2>
+
+                            <h3>2.1 股票筛选流程（仅做多）</h3>
+                            <div class="workflow-steps">
+                                <div class="step-card">
+                                    <div class="step-number">1</div>
+                                    <h4>趋势过滤</h4>
+                                    <ul>
+                                        <li>周线：是否上升趋势？（HH+HL）</li>
+                                        <li>日线：是否上升趋势？</li>
+                                    </ul>
+                                    <div class="step-result">
+                                        如果都是，加入观察池
+                                    </div>
+                                </div>
+
+                                <div class="step-card">
+                                    <div class="step-number">2</div>
+                                    <h4>位置过滤</h4>
+                                    <ul>
+                                        <li>是否在回调中？</li>
+                                        <li>是否接近支撑位？</li>
+                                        <li>回调幅度是否合理？</li>
+                                    </ul>
+                                    <div class="step-result">
+                                        如果是，标记为"准备"
+                                    </div>
+                                </div>
+
+                                <div class="step-card">
+                                    <div class="step-number">3</div>
+                                    <h4>成交量确认</h4>
+                                    <ul>
+                                        <li>回调时成交量是否萎缩？</li>
+                                        <li>前期放量上涨是否健康？</li>
+                                    </ul>
+                                    <div class="step-result">
+                                        如果是，标记为"高优先级"
+                                    </div>
+                                </div>
+
+                                <div class="step-card">
+                                    <div class="step-number">4</div>
+                                    <h4>波动率检查</h4>
+                                    <ul>
+                                        <li>是否过度震荡？（避免）</li>
+                                        <li>ATR是否适中？</li>
+                                    </ul>
+                                    <div class="step-result">
+                                        如果是，最终确认
+                                    </div>
+                                </div>
+
+                                <div class="step-card final">
+                                    <div class="step-number">5</div>
+                                    <h4>等待入场信号</h4>
+                                    <ul>
+                                        <li>出现价格行为反转信号？</li>
+                                        <li>盈亏比是否≥2:1？</li>
+                                    </ul>
+                                    <div class="step-result">执行交易</div>
+                                </div>
+                            </div>
+
+                            <h3>2.2 选股检查清单</h3>
+                            <div class="checklist-container">
+                                <h4>YTC波段交易选股清单</h4>
+                                <div class="checklist-section">
+                                    <h5>市场环境</h5>
+                                    <div class="checklist-items">
+                                        <label
+                                            ><input type="checkbox" />
+                                            市场整体处于上升趋势</label
+                                        >
+                                        <label
+                                            ><input type="checkbox" />
+                                            板块轮动有利</label
+                                        >
+                                    </div>
+                                </div>
+
+                                <div class="checklist-section">
+                                    <h5>股票结构</h5>
+                                    <div class="checklist-items">
+                                        <label
+                                            ><input type="checkbox" />
+                                            周线：HH+HL结构明确</label
+                                        >
+                                        <label
+                                            ><input type="checkbox" />
+                                            日线：HH+HL结构明确</label
+                                        >
+                                        <label
+                                            ><input type="checkbox" />
+                                            处于上升趋势中</label
+                                        >
+                                    </div>
+                                </div>
+
+                                <div class="checklist-section">
+                                    <h5>回调位置</h5>
+                                    <div class="checklist-items">
+                                        <label
+                                            ><input type="checkbox" />
+                                            回调到关键支撑位</label
+                                        >
+                                        <label
+                                            ><input type="checkbox" />
+                                            回调幅度：33-50%</label
+                                        >
+                                        <label
+                                            ><input type="checkbox" />
+                                            成交量萎缩</label
+                                        >
+                                    </div>
+                                </div>
+
+                                <div class="checklist-section">
+                                    <h5>风险评估</h5>
+                                    <div class="checklist-items">
+                                        <label
+                                            ><input type="checkbox" />
+                                            盈亏比≥2:1</label
+                                        >
+                                        <label
+                                            ><input type="checkbox" />
+                                            止损距离≤5%</label
+                                        >
+                                        <label
+                                            ><input type="checkbox" />
+                                            波动率适中</label
+                                        >
+                                    </div>
+                                </div>
+
+                                <div class="checklist-section">
+                                    <h5>入场信号</h5>
+                                    <div class="checklist-items">
+                                        <label
+                                            ><input type="checkbox" />
+                                            出现价格行为反转信号</label
+                                        >
+                                        <label
+                                            ><input type="checkbox" />
+                                            确认支撑有效</label
+                                        >
+                                    </div>
+                                </div>
+
+                                <div class="checklist-note">
+                                    <strong>全部勾选 → 入场！</strong>
+                                </div>
+                            </div>
+
+                            <div class="practice-box">
+                                <h4>📝 实践练习2（第3-4周）</h4>
+                                <div class="practice-list">
+                                    <div class="practice-item">
+                                        <input type="checkbox" id="p5" />
+                                        <label for="p5"
+                                            >每天筛选10只股票，应用选股清单</label
+                                        >
+                                    </div>
+                                    <div class="practice-item">
+                                        <input type="checkbox" id="p6" />
+                                        <label for="p6"
+                                            >建立"高优先级"股票池（5-10只）</label
+                                        >
+                                    </div>
+                                    <div class="practice-item">
+                                        <input type="checkbox" id="p7" />
+                                        <label for="p7"
+                                            >记录每只股票的筛选理由</label
+                                        >
+                                    </div>
+                                    <div class="practice-item">
+                                        <input type="checkbox" id="p8" />
+                                        <label for="p8">每周复盘筛选质量</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+
+                        <!-- 阶段验收标准 -->
+                        <section class="content-section">
+                            <h2>✅ 阶段一验收标准（4-5周末）</h2>
+
+                            <div class="criteria-grid">
+                                <div class="criteria-card">
+                                    <h3>知识验收</h3>
+                                    <ul>
+                                        <li>能清晰解释上升趋势的结构</li>
+                                        <li>能区分3种回调类型</li>
+                                        <li>能独立完成多时间周期分析</li>
+                                    </ul>
+                                </div>
+
+                                <div class="criteria-card">
+                                    <h3>技能验收</h3>
+                                    <ul>
+                                        <li>每天能筛选出3-5只符合条件的股票</li>
+                                        <li>能准确画出支撑/阻力位</li>
+                                        <li>能识别最佳回调买入位</li>
+                                    </ul>
+                                </div>
+
+                                <div class="criteria-card">
+                                    <h3>成果验收</h3>
+                                    <ul>
+                                        <li>建立个人选股系统（检查清单）</li>
+                                        <li>建立"高概率股票池"</li>
+                                        <li>完成100个股票分析练习</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </section>
+
+                        <!-- 下一步 -->
+                        <div class="next-step">
+                            <a href="stage2.html" class="btn btn-primary">
+                                继续学习：阶段二 →
+                            </a>
+                            <a
+                                href="tools/checklist.html"
+                                class="btn btn-secondary"
+                            >
+                                使用选股工具 →
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- 右侧侧边栏 -->
+                    <aside class="sidebar">
+                        <!-- 学习进度卡片 -->
+                        <div class="sidebar-card">
+                            <h3>📊 学习进度</h3>
+                            <div class="sidebar-progress">
+                                <div class="progress-item">
+                                    <span>本周完成</span>
+                                    <span>0/4</span>
+                                </div>
+                                <div class="progress-item">
+                                    <span>阶段完成</span>
+                                    <span>0/20</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 关键概念 -->
+                        <div class="sidebar-card">
+                            <h3>🔑 关键概念</h3>
+                            <ul class="concept-list">
+                                <li>
+                                    <a href="#hh-hl">HH+HL结构</a>
+                                </li>
+                                <li>
+                                    <a href="#callback">回调分类</a>
+                                </li>
+                                <li>
+                                    <a href="#mtf">多时间周期分析</a>
+                                </li>
+                                <li>
+                                    <a href="#screening">选股系统</a>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <!-- 学习资料 -->
+                        <div class="sidebar-card">
+                            <h3>📚 学习资料</h3>
+                            <ul class="resource-list">
+                                <li>
+                                    <span class="resource-icon">📄</span>
+                                    <a href="#">市场和市场分析.pdf</a>
+                                </li>
+                                <li>
+                                    <span class="resource-icon">📝</span>
+                                    <a href="#">选股检查清单模板</a>
+                                </li>
+                                <li>
+                                    <span class="resource-icon">📊</span>
+                                    <a href="#">股票分析记录表</a>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <!-- 实用工具 -->
+                        <div class="sidebar-card">
+                            <h3>🛠️ 实用工具</h3>
+                            <ul class="tool-list">
+                                <li>
+                                    <a href="tools/checklist.html"
+                                        >选股检查清单</a
+                                    >
+                                </li>
+                                <li>
+                                    <a href="tools/position-calculator.html"
+                                        >仓位计算器</a
+                                    >
+                                </li>
+                            </ul>
+                        </div>
+                    </aside>
+                </div>
+            </div>
+        </main>
+
+        <!-- 页脚 -->
+        <footer class="footer">
+            <div class="container">
+                <div class="footer-content">
+                    <p>&copy; 2025 YTC Trader. 系统化学习，专业成长。</p>
+                    <div class="footer-links">
+                        <a href="index.html">返回首页</a>
+                        <a href="index.html#chapters">学习目录</a>
+                    </div>
+                </div>
+            </div>
+        </footer>
+
+        <script src="js/app.js"></script>
+        <script src="js/stage.js"></script>
+    </body>
+</html>

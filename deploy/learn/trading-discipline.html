@@ -1,0 +1,318 @@
+<!doctype html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>交易纪律检查清单 - YTC Trader</title>
+        <link rel="stylesheet" href="../css/modern-premium.css" />
+        <style>
+            body {
+                background: var(--bg-deep);
+                min-height: 100vh;
+            }
+            .hero-section {
+                background: linear-gradient(
+                    135deg,
+                    rgba(99, 102, 241, 0.1) 0%,
+                    rgba(6, 182, 212, 0.1) 100%
+                );
+                border-bottom: 1px solid var(--border-color);
+                padding: 4rem 1.5rem 3rem;
+                text-align: center;
+            }
+            .hero-badge {
+                display: inline-block;
+                background: var(--gradient-1);
+                color: white;
+                padding: 0.5rem 1.5rem;
+                border-radius: 2rem;
+                font-size: 0.875rem;
+                font-weight: 600;
+                margin-bottom: 1.5rem;
+            }
+            .hero-title {
+                font-size: clamp(2rem, 5vw, 3rem);
+                font-weight: 800;
+                margin-bottom: 1rem;
+                background: var(--gradient-1);
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+            }
+            .hero-subtitle {
+                color: #94a3b8;
+                font-size: 1.125rem;
+                max-width: 600px;
+                margin: 0 auto;
+            }
+            .content-container {
+                max-width: 900px;
+                margin: 0 auto;
+                padding: 3rem 1.5rem;
+            }
+            .checklist-section {
+                background: rgba(15, 23, 42, 0.6);
+                backdrop-filter: blur(10px);
+                border: 1px solid rgba(99, 102, 241, 0.2);
+                border-radius: 1.5rem;
+                padding: 3rem;
+                margin-bottom: 2.5rem;
+            }
+            .section-header {
+                text-align: center;
+                margin-bottom: 2.5rem;
+            }
+            .section-title {
+                font-size: 1.75rem;
+                font-weight: 700;
+                color: #f1f5f9;
+                margin-bottom: 0.5rem;
+            }
+            .section-subtitle {
+                color: #94a3b8;
+                font-size: 1.0625rem;
+            }
+            .checklist-item {
+                display: flex;
+                align-items: flex-start;
+                gap: 1.25rem;
+                padding: 1.25rem 0;
+                border-bottom: 1px solid var(--border-color);
+            }
+            .checklist-item:last-child {
+                border-bottom: none;
+            }
+            .checkbox {
+                width: 28px;
+                height: 28px;
+                border: 2px solid var(--primary);
+                border-radius: 6px;
+                flex-shrink: 0;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                background: rgba(99, 102, 241, 0.1);
+            }
+            .item-content h3 {
+                font-size: 1.125rem;
+                font-weight: 600;
+                margin-bottom: 0.5rem;
+                color: #f1f5f9;
+            }
+            .item-content p {
+                color: #cbd5e1;
+                line-height: 1.6;
+                font-size: 1rem;
+            }
+            .nav-buttons {
+                display: flex;
+                gap: 1rem;
+                justify-content: center;
+                flex-wrap: wrap;
+                margin-top: 3rem;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="app-container">
+            <nav class="navbar">
+                <div class="nav-container">
+                    <a href="../stage4-new.html" class="brand">
+                        <div class="brand-logo">YT</div>
+                        <div class="brand-text">
+                            <span class="brand-title">YTC Trader</span>
+                        </div>
+                    </a>
+                    <ul class="nav-menu">
+                        <li>
+                            <a href="../stage4-new.html" class="nav-link"
+                                >← 返回阶段四</a
+                            >
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+
+            <div class="hero-section">
+                <span class="hero-badge">阶段四 · 模块2 · 第17周</span>
+                <h1 class="hero-title">交易纪律检查清单</h1>
+                <p class="hero-subtitle">
+                    确保每次交易都符合你的交易系统规则，用纪律战胜情绪
+                </p>
+            </div>
+
+            <div class="content-container">
+                <!-- 入场前检查清单 -->
+                <div class="checklist-section">
+                    <div class="section-header">
+                        <h2 class="section-title">✓ 入场前检查清单</h2>
+                        <p class="section-subtitle">
+                            在每次交易前，逐一确认以下事项
+                        </p>
+                    </div>
+
+                    <div class="checklist-item">
+                        <div class="checkbox">✓</div>
+                        <div class="item-content">
+                            <h3>市场趋势确认</h3>
+                            <p>周线和日线都是上升趋势吗？趋势是否健康？</p>
+                        </div>
+                    </div>
+
+                    <div class="checklist-item">
+                        <div class="checkbox">✓</div>
+                        <div class="item-content">
+                            <h3>明确交易信号</h3>
+                            <p>
+                                是否出现了清晰的PB/CPB/STS信号？信号质量如何？
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="checklist-item">
+                        <div class="checkbox">✓</div>
+                        <div class="item-content">
+                            <h3>风险回报比</h3>
+                            <p>
+                                盈亏比是否至少达到2:1？潜在盈利是否值得承担风险？
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="checklist-item">
+                        <div class="checkbox">✓</div>
+                        <div class="item-content">
+                            <h3>止损位置</h3>
+                            <p>止损位是否清晰且合理？是否放在关键位置？</p>
+                        </div>
+                    </div>
+
+                    <div class="checklist-item">
+                        <div class="checkbox">✓</div>
+                        <div class="item-content">
+                            <h3>仓位规模</h3>
+                            <p>根据止损计算仓位，风险不超过账户的1-2%</p>
+                        </div>
+                    </div>
+
+                    <div class="checklist-item">
+                        <div class="checkbox">✓</div>
+                        <div class="item-content">
+                            <h3>情绪状态检查</h3>
+                            <p>我现在的心态是否适合交易？是否清醒、冷静？</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 持仓中检查清单 -->
+                <div class="checklist-section">
+                    <div class="section-header">
+                        <h2 class="section-title">📊 持仓中检查清单</h2>
+                        <p class="section-subtitle">交易进行中的监控要点</p>
+                    </div>
+
+                    <div class="checklist-item">
+                        <div class="checkbox">✓</div>
+                        <div class="item-content">
+                            <h3>价格行为正常</h3>
+                            <p>价格运动是否符合预期？是否出现警告信号？</p>
+                        </div>
+                    </div>
+
+                    <div class="checklist-item">
+                        <div class="checkbox">✓</div>
+                        <div class="item-content">
+                            <h3>止损位置管理</h3>
+                            <p>随着盈利移动止损到保本或更高位置</p>
+                        </div>
+                    </div>
+
+                    <div class="checklist-item">
+                        <div class="checkbox">✓</div>
+                        <div class="item-content">
+                            <h3>不干预交易</h3>
+                            <p>除非达到出场条件，否则不提前平仓或加仓</p>
+                        </div>
+                    </div>
+
+                    <div class="checklist-item">
+                        <div class="checkbox">✓</div>
+                        <div class="item-content">
+                            <h3>情绪控制</h3>
+                            <p>保持冷静，不被短期波动影响，不频繁查看账户</p>
+                        </div>
+                    </div>
+
+                    <div class="checklist-item">
+                        <div class="checkbox">✓</div>
+                        <div class="item-content">
+                            <h3>遵守交易计划</h3>
+                            <p>严格执行入场时制定的计划，不临时改变主意</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 出场后检查清单 -->
+                <div class="checklist-section">
+                    <div class="section-header">
+                        <h2 class="section-title">✅ 出场后检查清单</h2>
+                        <p class="section-subtitle">每笔交易结束后的必做事项</p>
+                    </div>
+
+                    <div class="checklist-item">
+                        <div class="checkbox">✓</div>
+                        <div class="item-content">
+                            <h3>记录交易详情</h3>
+                            <p>详细记录这笔交易的入场、出场、原因和结果</p>
+                        </div>
+                    </div>
+
+                    <div class="checklist-item">
+                        <div class="checkbox">✓</div>
+                        <div class="item-content">
+                            <h3>复盘分析</h3>
+                            <p>
+                                是否遵守了交易计划？哪些做得好？哪些需要改进？
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="checklist-item">
+                        <div class="checkbox">✓</div>
+                        <div class="item-content">
+                            <h3>情绪评估</h3>
+                            <p>交易过程中是否受到贪婪、恐惧等情绪影响？</p>
+                        </div>
+                    </div>
+
+                    <div class="checklist-item">
+                        <div class="checkbox">✓</div>
+                        <div class="item-content">
+                            <h3>经验总结</h3>
+                            <p>从这笔交易中学到了什么？有什么需要改进？</p>
+                        </div>
+                    </div>
+
+                    <div class="checklist-item">
+                        <div class="checkbox">✓</div>
+                        <div class="item-content">
+                            <h3>记录在交易日志</h3>
+                            <p>将所有信息记录在交易日志中，便于后续复盘</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="nav-buttons">
+                    <a href="psychology-enemies.html" class="btn btn-secondary"
+                        >上一个：心理敌人</a
+                    >
+                    <a href="../stage4-new.html" class="btn btn-secondary"
+                        >返回阶段四</a
+                    >
+                    <a href="emotion-management.html" class="btn btn-primary"
+                        >下一个：情绪管理 →</a
+                    >
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

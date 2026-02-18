@@ -1,0 +1,163 @@
+// 批量生成知识点页面的简化脚本
+// 在浏览器控制台运行此脚本可以快速创建知识点页面的基本框架
+
+const knowledgePoints = [
+    {
+        id: 3,
+        title: "多时间周期分析",
+        subtitle: "通过多时间周期分析提升趋势判断准确性",
+        objectives: [
+            "理解主要结构（周线）的作用",
+            "理解中级结构（日线）的作用",
+            "理解小型结构（4H）的作用",
+            "掌握'周线看趋势，日线找位置，4H定入场'的原则",
+            "完成多时间周期分析练习"
+        ],
+        content: `
+            <h3>1. 三重时间周期框架</h3>
+            <div class="definition-box important">
+                <h4>⭐ 核心原则</h4>
+                <p><strong>周线看趋势 → 日线找位置 → 4H定入场</strong></p>
+            </div>
+
+            <h3>2. 各时间周期的作用</h3>
+            <div class="definition-box">
+                <h4>周线（主要结构）</h4>
+                <ul>
+                    <li>✅ 确定大趋势方向</li>
+                    <li>✅ 识别主要支撑阻力</li>
+                    <li>✅ 判断市场环境</li>
+                </ul>
+            </div>
+
+            <h3>3. 多时间周期确认法</h3>
+            <div class="example-box">
+                <h4>三重确认步骤</h4>
+                <ol>
+                    <li>周线：确认趋势向上</li>
+                    <li>日线：在上升趋势中找回调位</li>
+                    <li>4H：等待入场信号</li>
+                </ol>
+            </div>
+        `,
+        pdfChapter: "第4章 - 多时间周期分析"
+    },
+    {
+        id: 4,
+        title: "回调的类型",
+        subtitle: "识别浅回调、中等回调、深度回调",
+        objectives: [
+            "理解回调的定义和作用",
+            "掌握浅回调（<33%）的特征",
+            "掌握中等回调（33-50%）的特征",
+            "掌握深度回调（50-66%）的特征",
+            "能在实际图表中识别回调类型"
+        ],
+        content: `
+            <h3>1. 什么是回调？</h3>
+            <div class="definition-box">
+                <h4>定义</h4>
+                <p>回调是指上升趋势中的暂时性价格下跌，是上升趋势的必要组成部分。</p>
+            </div>
+
+            <h3>2. 三种回调类型</h3>
+            <div class="callback-types-grid">
+                <div class="callback-type shallow">
+                    <h4>浅回调（<33%）</h4>
+                    <ul>
+                        <li>✅ 强势特征</li>
+                        <li>✅ 买方积极</li>
+                        <li>✅ 优先入场</li>
+                    </ul>
+                </div>
+                <div class="callback-type normal">
+                    <h4>中等回调（33-50%）</h4>
+                    <ul>
+                        <li>✅ 健康回调</li>
+                        <li>✅ 标准入场</li>
+                        <li>✅ 风险可控</li>
+                    </ul>
+                </div>
+                <div class="callback-type deep">
+                    <h4>深度回调（50-66%）</h4>
+                    <ul>
+                        <li>⚠️ 趋势可能转弱</li>
+                        <li>⚠️ 需谨慎</li>
+                        <li>⚠️ 降低仓位</li>
+                    </ul>
+                </div>
+            </div>
+        `,
+        pdfChapter: "第5章 - 回调分析"
+    },
+    {
+        id: 5,
+        title: "斐波那契回调位",
+        subtitle: "利用斐波那契比率找到关键支撑位",
+        objectives: [
+            "理解斐波那契数列和比率",
+            "掌握关键斐波那契比率（38.2%, 50%, 61.8%）",
+            "学会在图表上绘制斐波那契回调线",
+            "理解斐波那契回调位的交易意义",
+            "完成斐波那契分析练习"
+        ],
+        content: `
+            <h3>1. 斐波那契数列</h3>
+            <div class="definition-box">
+                <h4>数列：0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55...</h4>
+                <p>每个数字是前两个数字之和</p>
+            </div>
+
+            <h3>2. 关键回调比率</h3>
+            <div class="definition-box important">
+                <h4>⭐ 三大关键位</h4>
+                <ul>
+                    <li><strong>38.2%</strong> - 浅回调支撑位</li>
+                    <li><strong>50%</strong> - 中位回调位</li>
+                    <li><strong>61.8%</strong> - 深度回调支撑位</li>
+                </ul>
+            </div>
+
+            <h3>3. 斐波那契回调的应用</h3>
+            <div class="example-box">
+                <h4>绘制步骤</h4>
+                <ol>
+                    <li>找到明显的上升波段（低点到高点）</li>
+                    <li>从低点画到高点</li>
+                    <li>观察回调在哪个斐波那契位获得支撑</li>
+                </ol>
+            </div>
+        `,
+        pdfChapter: "第5章 - 斐波那契"
+    }
+];
+
+// 添加CSS样式
+const style = document.createElement('style');
+style.textContent = `
+    .callback-types-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 1rem;
+        margin: 2rem 0;
+    }
+    .callback-type {
+        padding: 1.5rem;
+        border-radius: 12px;
+        color: white;
+    }
+    .callback-type.shallow { background: linear-gradient(135deg, #10b981, #059669); }
+    .callback-type.normal { background: linear-gradient(135deg, #3b82f6, #2563eb); }
+    .callback-type.deep { background: linear-gradient(135deg, #f59e0b, #d97706); }
+`;
+document.head.appendChild(style);
+
+// 打印每个知识点的HTML结构
+knowledgePoints.forEach((kp, index) => {
+    console.log(`\n========== 知识点${kp.id}：${kp.title} ==========`);
+    console.log(`标题：${kp.title}`);
+    console.log(`副标题：${kp.subtitle}`);
+    console.log(`学习目标：`);
+    kp.objectives.forEach(obj => console.log(`  - ${obj}`));
+    console.log(`PDF章节：${kp.pdfChapter}`);
+});

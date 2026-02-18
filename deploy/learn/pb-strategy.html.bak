@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PB策略：回调买入 - YTC Trader</title>
+    <link rel="stylesheet" href="../css/modern-premium.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background: linear-gradient(to bottom, #0a0a0f 0%, #0f172a 50%, #0a0a0f 100%);
+            min-height: 100vh;
+        }
+        .hero-section {
+            text-align: center;
+            padding: 60px 20px;
+            background: radial-gradient(ellipse at top, rgba(99, 102, 241, 0.15) 0%, transparent 50%);
+        }
+        .hero-badge {
+            display: inline-block;
+            padding: 8px 16px;
+            background: rgba(99, 102, 241, 0.2);
+            border: 1px solid rgba(99, 102, 241, 0.3);
+            border-radius: 20px;
+            color: #a5b4fc;
+            font-size: 0.875rem;
+            margin-bottom: 24px;
+        }
+        .hero-title {
+            font-size: 3rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #6366f1 0%, #06b6d4 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 16px;
+        }
+        .hero-subtitle {
+            color: var(--text-secondary);
+            font-size: 1.25rem;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        .content-section {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+        .card {
+            background: rgba(30, 41, 59, 0.5);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(99, 102, 241, 0.2);
+            border-radius: 16px;
+            padding: 32px;
+            margin-bottom: 24px;
+            position: relative;
+            overflow: hidden;
+        }
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #6366f1 0%, #06b6d4 100%);
+        }
+        .card-header {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 20px;
+        }
+        .card-icon {
+            font-size: 2.5rem;
+        }
+        .card-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--text-primary);
+        }
+        .card-content {
+            color: var(--text-secondary);
+            line-height: 1.8;
+        }
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 16px;
+            margin-top: 20px;
+        }
+        .info-item {
+            background: rgba(15, 23, 42, 0.5);
+            border: 1px solid rgba(99, 102, 241, 0.1);
+            border-radius: 12px;
+            padding: 20px;
+        }
+        .info-label {
+            color: #a5b4fc;
+            font-size: 0.875rem;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+        .info-value {
+            color: var(--text-primary);
+            font-size: 1rem;
+            font-weight: 600;
+        }
+        .tips-box {
+            background: rgba(245, 158, 11, 0.1);
+            border: 1px solid rgba(245, 158, 11, 0.3);
+            border-radius: 12px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+        .tips-title {
+            color: #fbbf24;
+            font-weight: 600;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .tips-content {
+            color: var(--text-secondary);
+            line-height: 1.7;
+        }
+        .back-link {
+            display: inline-block;
+            margin: 20px;
+            padding: 12px 24px;
+            background: rgba(99, 102, 241, 0.2);
+            border: 1px solid rgba(99, 102, 241, 0.3);
+            border-radius: 12px;
+            color: #a5b4fc;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        .back-link:hover {
+            background: rgba(99, 102, 241, 0.3);
+            transform: translateY(-2px);
+        }
+        .checklist {
+            background: rgba(15, 23, 42, 0.5);
+            border-radius: 12px;
+            padding: 20px;
+            margin-top: 20px;
+        }
+        .checklist-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            padding: 12px 0;
+            border-bottom: 1px solid rgba(99, 102, 241, 0.1);
+        }
+        .checklist-item:last-child {
+            border-bottom: none;
+        }
+        .checklist-checkbox {
+            width: 24px;
+            height: 24px;
+            border: 2px solid rgba(99, 102, 241, 0.3);
+            border-radius: 6px;
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+        .checklist-text {
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+    </style>
+</head>
+<body>
+    <a href="../stage2-new.html" class="back-link">← 返回阶段二</a>
+
+    <div class="hero-section">
+        <span class="hero-badge">阶段二 · PB策略 · 第5-7周</span>
+        <h1 class="hero-title">PB策略：Pullback回调买入</h1>
+        <p class="hero-subtitle">掌握YTC价格行为交易最核心的Pullback策略，在上升趋势的回调中寻找最佳入场点</p>
+    </div>
+
+    <div class="content-section">
+        <!-- PB策略概述 -->
+        <div class="card">
+            <div class="card-header">
+                <div class="card-icon">🎯</div>
+                <h2 class="card-title">什么是PB策略</h2>
+            </div>
+            <div class="card-content">
+                <p>Pullback（回调买入）策略是YTC价格行为交易体系中最基础也最重要的策略。它的核心思想是在上升趋势中，等待价格回调到合理区域后买入，跟随趋势继续上涨。</p>
+
+                <div class="info-grid">
+                    <div class="info-item">
+                        <div class="info-label">适用市场</div>
+                        <div class="info-value">明确的上升趋势</div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-label">交易方向</div>
+                        <div class="info-value">仅做多（不做空）</div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-label">风险收益比</div>
+                        <div class="info-value">通常优于2:1</div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-label">成功率</div>
+                        <div class="info-value">40-50%（高盈亏比）</div>
+                    </div>
+                </div>
+
+                <div class="tips-box">
+                    <div class="tips-title">💡 为什么选择回调而不是突破</div>
+                    <div class="tips-content">
+                        突破买入追高，风险大、止损难设置；回调买入在支撑位入场，风险小、止损明确、盈亏比更优。专业交易者更喜欢回调入场。
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- PB策略入场条件 -->
+        <div class="card">
+            <div class="card-header">
+                <div class="card-icon">✅</div>
+                <h2 class="card-title">PB策略入场条件</h2>
+            </div>
+            <div class="card-content">
+                <p>严格执行入场条件是PB策略成功的关键。只有满足所有条件才考虑入场。</p>
+
+                <div class="checklist">
+                    <div class="checklist-item">
+                        <div class="checklist-checkbox"></div>
+                        <div class="checklist-text">
+                            <strong>上升趋势确认：</strong>价格创出更高高点（HH）和更高低点（HL）
+                        </div>
+                    </div>
+                    <div class="checklist-item">
+                        <div class="checklist-checkbox"></div>
+                        <div class="checklist-text">
+                            <strong>回调发生：</strong>价格从高点开始回落，进入回调区域
+                        </div>
+                    </div>
+                    <div class="checklist-item">
+                        <div class="checklist-checkbox"></div>
+                        <div class="checklist-text">
+                            <strong>回调区域识别：</strong>价格回调到前期高点或支撑区域附近
+                        </div>
+                    </div>
+                    <div class="checklist-item">
+                        <div class="checklist-checkbox"></div>
+                        <div class="checklist-text">
+                            <strong>回调结构完整：</strong>回调形成清晰的回调结构（Layback、CC等）
+                        </div>
+                    </div>
+                    <div class="checklist-item">
+                        <div class="checklist-checkbox"></div>
+                        <div class="checklist-text">
+                            <strong>买入信号出现：</strong>在回调区域出现买入信号（K线形态、成交量等）
+                        </div>
+                    </div>
+                    <div class="checklist-item">
+                        <div class="checklist-checkbox"></div>
+                        <div class="checklist-text">
+                            <strong>止损位置明确：</strong>可以在回调结构下方设置合理的止损
+                        </div>
+                    </div>
+                    <div class="checklist-item">
+                        <div class="checklist-checkbox"></div>
+                        <div class="checklist-text">
+                            <strong>盈亏比合理：</strong>潜在盈利至少是风险的2倍以上
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tips-box">
+                    <div class="tips-title">⚠️ 重要提醒</div>
+                    <div class="tips-content">
+                        <strong>不要急于入场！</strong>即使趋势向上，也要耐心等待价格回调到合理区域。错过一个交易机会总比错过一个糟糕的交易要好。如果价格没有回调到理想位置，就放弃这笔交易。
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- PB策略止损设置 -->
+        <div class="card">
+            <div class="card-header">
+                <div class="card-icon">🛡️</div>
+                <h2 class="card-title">PB策略止损设置</h2>
+            </div>
+            <div class="card-content">
+                <p>止损应该设置在回调结构的下方，一旦价格突破这个位置，说明回调结构失效，交易假设不再成立。</p>
+
+                <div class="info-grid">
+                    <div class="info-item">
+                        <div class="info-label">简单回调</div>
+                        <div class="info-value">止损设在回调低点下方</div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-label">复杂回调</div>
+                        <div class="info-value">止损设在回调结构最低点下方</div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-label">Layback</div>
+                        <div class="info-value">止损设在Layback低点下方</div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-label">安全距离</div>
+                        <div class="info-value">结构下方0.5-1%处</div>
+                    </div>
+                </div>
+
+                <div class="tips-box">
+                    <div class="tips-title">💡 止损设置技巧</div>
+                    <div class="tips-content">
+                        <strong>止损不要太紧也不要太松。</strong>太紧容易被正常波动止损，太松会增加单笔风险。理想的止损位置应该在市场结构的"外侧"——一旦突破就意味着交易假设失效。
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- PB策略出场规则 -->
+        <div class="card">
+            <div class="card-header">
+                <div class="card-icon">🚪</div>
+                <h2 class="card-title">PB策略出场规则</h2>
+            </div>
+            <div class="card-content">
+                <p>好的出场策略和好的入场策略同样重要。PB策略提供多种出场方式。</p>
+
+                <div class="info-grid">
+                    <div class="info-item">
+                        <div class="info-label">目标出场</div>
+                        <div class="info-value">达到预定盈利目标（阻力位）</div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-label">追踪止损</div>
+                        <div class="info-value">跟随趋势结构调整止损位</div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-label">信号出场</div>
+                        <div class="info-value">出现反向K线或趋势信号</div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-label">时间出场</div>
+                        <div class="info-value">持仓时间过长未见启动</div>
+                    </div>
+                </div>
+
+                <div class="tips-box">
+                    <div class="tips-title">⚠️ 出场建议</div>
+                    <div class="tips-content">
+                        <strong>新手建议使用目标出场法。</strong>在入场时就设定好盈利目标，达到目标后至少卖出50%仓位锁定利润，剩余仓位使用追踪止损让利润奔跑。这样既确保了盈利，又不会错过大趋势。
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- PB策略实战案例 -->
+        <div class="card">
+            <div class="card-header">
+                <div class="card-icon">📊</div>
+                <h2 class="card-title">PB策略实战案例</h2>
+            </div>
+            <div class="card-content">
+                <p>通过具体案例理解PB策略的应用。</p>
+
+                <div style="background: rgba(15, 23, 42, 0.5); border-radius: 12px; padding: 24px; margin-top: 20px;">
+                    <div style="color: #a5b4fc; font-weight: 600; margin-bottom: 16px; font-size: 1.1rem;">案例：贵州茅台 PB策略交易</div>
+                    <div style="color: var(--text-secondary); line-height: 1.8;">
+                        <strong>1. 趋势识别：</strong><br>
+                        茅台从1500元涨到1800元，形成明确上升趋势<br><br>
+                        <strong>2. 回调发生：</strong><br>
+                        价格从1800元回落，开始回调<br><br>
+                        <strong>3. 回调区域识别：</strong><br>
+                        前期高点在1650元形成支撑，价格回调到1660元附近<br><br>
+                        <strong>4. 入场信号：</strong><br>
+                        在1660元出现锤子线，成交量放大，显示支撑有效<br><br>
+                        <strong>5. 入场执行：</strong><br>
+                        在1665元买入，止损设在1640元（回调低点下方20元）<br>
+                        每股风险 = 1665 - 1640 = 25元<br><br>
+                        <strong>6. 目标设定：</strong><br>
+                        前期阻力位在1850元，目标设在1840元<br>
+                        潜在盈利 = 1840 - 1665 = 175元<br>
+                        <strong>盈亏比 = 175 ÷ 25 = 7:1</strong> ✓ 优秀<br><br>
+                        <strong>7. 实际结果：</strong><br>
+                        价格反弹至1850元，在1840元卖出，每股盈利175元
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- PB策略常见错误 -->
+        <div class="card">
+            <div class="card-header">
+                <div class="card-icon">⚠️</div>
+                <h2 class="card-title">PB策略常见错误</h2>
+            </div>
+            <div class="card-content">
+                <p>避免这些常见错误可以显著提高PB策略的成功率。</p>
+
+                <div class="info-grid">
+                    <div class="info-item">
+                        <div class="info-label">错误1：追涨杀跌</div>
+                        <div class="info-value">不在回调区域买入而是追高</div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-label">错误2：逆势抄底</div>
+                        <div class="info-value">在下降趋势中买入回调</div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-label">错误3：过早入场</div>
+                        <div class="info-value">回调未完成就急于买入</div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-label">错误4：不止损</div>
+                        <div class="info-value">不设止损或止损太宽</div>
+                    </div>
+                </div>
+
+                <div class="tips-box">
+                    <div class="tips-title">💡 成功要点</div>
+                    <div class="tips-content">
+                        <strong>耐心、纪律、执行。</strong>PB策略不需要高深的技巧，但需要极大的耐心等待合适的回调机会，和严格的纪律执行交易计划。大多数交易者的失败是因为缺乏耐心，在没有满足条件时就入场。
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div style="text-align: center; padding: 40px 20px;">
+        <a href="../stage2-new.html" style="display: inline-block; padding: 16px 32px; background: linear-gradient(135deg, #6366f1 0%, #06b6d4 100%); color: white; text-decoration: none; border-radius: 12px; font-weight: 600; transition: transform 0.3s ease;">继续学习CPB策略 →</a>
+    </div>
+</body>
+</html>

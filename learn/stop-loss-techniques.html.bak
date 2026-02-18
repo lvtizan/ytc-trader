@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>止损设置技巧 - YTC Trader</title>
+    <link rel="stylesheet" href="../css/modern-premium.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background: linear-gradient(to bottom, #0a0a0f 0%, #0f172a 50%, #0a0a0f 100%);
+            min-height: 100vh;
+        }
+        .hero-section {
+            text-align: center;
+            padding: 60px 20px;
+            background: radial-gradient(ellipse at top, rgba(99, 102, 241, 0.15) 0%, transparent 50%);
+        }
+        .hero-badge {
+            display: inline-block;
+            padding: 8px 16px;
+            background: rgba(99, 102, 241, 0.2);
+            border: 1px solid rgba(99, 102, 241, 0.3);
+            border-radius: 20px;
+            color: #a5b4fc;
+            font-size: 0.875rem;
+            margin-bottom: 24px;
+        }
+        .hero-title {
+            font-size: 3rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #6366f1 0%, #06b6d4 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 16px;
+        }
+        .hero-subtitle {
+            color: var(--text-secondary);
+            font-size: 1.25rem;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        .content-section {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+        .card {
+            background: rgba(30, 41, 59, 0.5);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(99, 102, 241, 0.2);
+            border-radius: 16px;
+            padding: 32px;
+            margin-bottom: 24px;
+            position: relative;
+            overflow: hidden;
+        }
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #6366f1 0%, #06b6d4 100%);
+        }
+        .card-header {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 20px;
+        }
+        .card-icon {
+            font-size: 2.5rem;
+        }
+        .card-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--text-primary);
+        }
+        .card-content {
+            color: var(--text-secondary);
+            line-height: 1.8;
+        }
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 16px;
+            margin-top: 20px;
+        }
+        .info-item {
+            background: rgba(15, 23, 42, 0.5);
+            border: 1px solid rgba(99, 102, 241, 0.1);
+            border-radius: 12px;
+            padding: 20px;
+        }
+        .info-label {
+            color: #a5b4fc;
+            font-size: 0.875rem;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+        .info-value {
+            color: var(--text-primary);
+            font-size: 1rem;
+            font-weight: 600;
+        }
+        .tips-box {
+            background: rgba(245, 158, 11, 0.1);
+            border: 1px solid rgba(245, 158, 11, 0.3);
+            border-radius: 12px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+        .tips-title {
+            color: #fbbf24;
+            font-weight: 600;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .tips-content {
+            color: var(--text-secondary);
+            line-height: 1.7;
+        }
+        .example-box {
+            background: rgba(16, 185, 129, 0.1);
+            border: 1px solid rgba(16, 185, 129, 0.3);
+            border-radius: 12px;
+            padding: 24px;
+            margin: 20px 0;
+        }
+        .example-title {
+            color: #34d399;
+            font-weight: 600;
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .warning-box {
+            background: rgba(239, 68, 68, 0.1);
+            border: 1px solid rgba(239, 68, 68, 0.3);
+            border-radius: 12px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+        .warning-title {
+            color: #f87171;
+            font-weight: 600;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .back-link {
+            display: inline-block;
+            margin: 20px;
+            padding: 12px 24px;
+            background: rgba(99, 102, 241, 0.2);
+            border: 1px solid rgba(99, 102, 241, 0.3);
+            border-radius: 12px;
+            color: #a5b4fc;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        .back-link:hover {
+            background: rgba(99, 102, 241, 0.3);
+            transform: translateY(-2px);
+        }
+        .checklist {
+            background: rgba(15, 23, 42, 0.5);
+            border-radius: 12px;
+            padding: 20px;
+            margin-top: 20px;
+        }
+        .checklist-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            padding: 12px 0;
+            border-bottom: 1px solid rgba(99, 102, 241, 0.1);
+        }
+        .checklist-item:last-child {
+            border-bottom: none;
+        }
+        .checklist-checkbox {
+            width: 24px;
+            height: 24px;
+            border: 2px solid rgba(99, 102, 241, 0.3);
+            border-radius: 6px;
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+        .checklist-text {
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+    </style>
+</head>
+<body>
+        <!-- 科技光晕背景层 -->
+        <div class="tech-glow"></div>
+
+    <a href="../stage3-new.html" class="back-link">← 返回阶段三</a>
+
+    <div class="hero-section">
+        <span class="hero-badge">阶段三 · 模块2 · 第13周</span>
+        <h1 class="hero-title">止损设置技巧</h1>
+        <p class="hero-subtitle">掌握科学的止损位置设置方法，保护你的交易资本免受重大损失</p>
+    </div>
+
+    <div class="content-section">
+        <!-- 止损的重要性 -->
+        <div class="card">
+            <div class="card-header">
+                <div class="card-icon">🛡️</div>
+                <h2 class="card-title">止损是交易者的保险</h2>
+            </div>
+            <div class="card-content">
+                <p>止损是你交易计划中最重要的一部分。没有止损的交易就像没有刹车的汽车——迟早会出事故。</p>
+                <div class="info-grid">
+                    <div class="info-item">
+                        <div class="info-label">限制损失</div>
+                        <div class="info-value">将亏损控制在可承受范围内</div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-label">保护心态</div>
+                        <div class="info-value">避免因大幅亏损产生情绪化交易</div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-label">提高胜率</div>
+                        <div class="info-value">及时止损让资金用于更好的机会</div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-label">延长寿命</div>
+                        <div class="info-value">避免单笔交易毁灭账户</div>
+                    </div>
+                </div>
+                <div class="warning-box">
+                    <div class="warning-title">⚠️ 交易第一原则</div>
+                    <div class="tips-content">
+                        <strong>永远不要在没有止损的情况下开仓。</strong>这是区分专业交易者和业余赌徒的最重要标准。
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 基于结构的止损 -->
+        <div class="card">
+            <div class="card-header">
+                <div class="card-icon">🏗️</div>
+                <h2 class="card-title">基于结构的止损（推荐）</h2>
+            </div>
+            <div class="card-content">
+                <p>基于结构的止损是最科学的方法，它将止损放在关键的市场结构位置，这些位置一旦被突破，说明你的交易假设已经失效。</p>
+
+                <div class="info-grid">
+                    <div class="info-item">
+                        <div class="info-label">上升趋势</div>
+                        <div class="info-value">放在前一个更低低点下方</div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-label">回调区域</div>
+                        <div class="info-value">放在回调支撑位下方</div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-label">突破交易</div>
+                        <div class="info-value">放在突破K线最低点下方</div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-label">形态交易</div>
+                        <div class="info-value">放在形态边界外侧</div>
+                    </div>
+                </div>
+
+                <div class="example-box">
+                    <div class="example-title">💡 实战示例：PB策略止损</div>
+                    <div style="color: var(--text-secondary); line-height: 1.8;">
+                        假设你在上升趋势的回调区域买入（PB策略）：<br><br>
+                        1. 识别回调区域的支撑位在 95 元<br>
+                        2. 你的入场价是 98 元<br>
+                        3. 将止损设在 94.5 元（支撑位下方0.5元）<br>
+                        4. 每股风险 = 98 - 94.5 = 3.5 元
+                    </div>
+                </div>
+
+                <div class="tips-box">
+                    <div class="tips-title">💡 结构止损的优势</div>
+                    <div class="tips-content">
+                        结构止损不是随意选择的数字，而是基于市场实际走势。当价格突破这些关键位置时，说明市场结构已经改变，你的交易理由不再成立，此时止损是正确的决策。
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 基于时间的止损 -->
+        <div class="card">
+            <div class="card-header">
+                <div class="card-icon">⏰</div>
+                <h2 class="card-title">基于时间的止损</h2>
+            </div>
+            <div class="card-content">
+                <p>时间止损用于处理那些长时间没有朝着预期方向移动的仓位。即使价格没有触发止损，但如果长时间横盘，也应该考虑退出。</p>
+
+                <div class="info-grid">
+                    <div class="info-item">
+                        <div class="info-label">日内交易</div>
+                        <div class="info-value">持仓不超过2-4小时</div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-label">波段交易</div>
+                        <div class="info-value">持仓5-10天未见启动考虑退出</div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-label">趋势交易</div>
+                        <div class="info-value">持仓2-3周未见启动考虑退出</div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-label">资金效率</div>
+                        <div class="info-value">避免资金被低效仓位占用</div>
+                    </div>
+                </div>
+
+                <div class="tips-box">
+                    <div class="tips-title">⚠️ 时间止损的使用原则</div>
+                    <div class="tips-content">
+                        时间止损不是必须的，但可以帮助提高资金使用效率。关键是要在交易计划中预先设定好时间规则，并严格执行。如果达到时间期限，无论盈亏都应重新评估持仓。
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 基于波动的止损 -->
+        <div class="card">
+            <div class="card-header">
+                <div class="card-icon">📊</div>
+                <h2 class="card-title">基于波动的止损</h2>
+            </div>
+            <div class="card-content">
+                <p>基于波动的止损考虑了股票的正常波动范围，避免被正常的噪音波动止损出局。</p>
+
+                <div class="example-box">
+                    <div class="example-title">💡 ATR止损方法</div>
+                    <div style="color: var(--text-secondary); line-height: 1.8;">
+                        使用平均真实波幅（ATR）来设置止损：<br><br>
+                        1. 计算14日ATR值（假设为3元）<br>
+                        2. 入场价为100元<br>
+                        3. 止损 = 100 - (2 × ATR) = 100 - 6 = 94元<br><br>
+                        <strong>倍数选择：</strong><br>
+                        - 保守：2倍ATR<br>
+                        - 标准：1.5-2倍ATR<br>
+                        - 激进：1倍ATR
+                    </div>
+                </div>
+
+                <div class="info-grid">
+                    <div class="info-item">
+                        <div class="info-label">优点</div>
+                        <div class="info-value">适应股票波动特性，减少假止损</div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-label">缺点</div>
+                        <div class="info-value">可能需要承担较大单笔风险</div>
+                    </div>
+                </div>
+
+                <div class="tips-box">
+                    <div class="tips-title">💡 波动止损的适用场景</div>
+                    <div class="tips-content">
+                        波动止损特别适合高波动的成长股或科技股。这些股票日常波动较大，使用固定百分比止损容易被正常波动触发。使用ATR可以更好地适应股票特性。
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 追踪止损 -->
+        <div class="card">
+            <div class="card-header">
+                <div class="card-icon">🎯</div>
+                <h2 class="card-title">追踪止损</h2>
+            </div>
+            <div class="card-content">
+                <p>追踪止损用于保护已经实现的浮盈，防止利润回吐。当价格朝着有利方向移动时，相应调整止损位置。</p>
+
+                <div class="info-grid">
+                    <div class="info-item">
+                        <div class="info-label">固定点数</div>
+                        <div class="info-value">距离最高价固定点数止损</div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-label">固定百分比</div>
+                        <div class="info-value">距离最高价固定百分比止损</div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-label">结构追踪</div>
+                        <div class="info-value">跟随市场结构调整止损</div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-label">时间追踪</div>
+                        <div class="info-value">随着持仓时间收紧止损</div>
+                    </div>
+                </div>
+
+                <div class="example-box">
+                    <div class="example-title">💡 实战示例：结构追踪止损</div>
+                    <div style="color: var(--text-secondary); line-height: 1.8;">
+                        假设你在90元买入股票，初始止损85元：<br><br>
+                        1. 股价涨到95元，形成新的更高低点92元<br>
+                        2. 将追踪止损移到91.5元（92元下方0.5元）<br>
+                        3. 股价继续涨到100元，形成更高低点96元<br>
+                        4. 将追踪止损移到95.5元（96元下方0.5元）<br>
+                        5. 现在你的止损已经从亏损5元变成盈利5.5元
+                    </div>
+                </div>
+
+                <div class="tips-box">
+                    <div class="tips-title">⚠️ 追踪止损的使用技巧</div>
+                    <div class="tips-content">
+                        <strong>不要追踪得太紧！</strong>给股价留出正常的回调空间。建议只在明显的趋势结构形成后才移动止损，避免被正常回调震出局。
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 止损执行纪律 -->
+        <div class="card">
+            <div class="card-header">
+                <div class="card-icon">📋</div>
+                <h2 class="card-title">止损执行纪律</h2>
+            </div>
+            <div class="card-content">
+                <p>设置好止损只是第一步，更重要的是<strong>坚决执行</strong>。大多数交易者的失败不是因为策略不好，而是因为没有执行止损。</p>
+
+                <div class="warning-box">
+                    <div class="warning-title">⚠️ 常见的止损错误</div>
+                    <div class="tips-content">
+                        <strong>1. 提前移动止损</strong> - 看到盈利后收紧止损，结果被正常波动震出<br>
+                        <strong>2. 取消止损</strong> - 亏损接近时取消止损，幻想会反弹<br>
+                        <strong>3. 扩大止损</strong> - 亏损超过止损后继续加仓摊平成本<br>
+                        <strong>4. 情绪化止损</strong> - 没有到达止损就因恐惧提前出场<br>
+                        <strong>5. 不设止损</strong> - 抱着侥幸心理开仓，结果酿成大错
+                    </div>
+                </div>
+
+                <div class="checklist">
+                    <div class="checklist-item">
+                        <div class="checklist-checkbox"></div>
+                        <div class="checklist-text">开仓前已经确定止损位置</div>
+                    </div>
+                    <div class="checklist-item">
+                        <div class="checklist-checkbox"></div>
+                        <div class="checklist-text">止损位置有明确的市场结构依据</div>
+                    </div>
+                    <div class="checklist-item">
+                        <div class="checklist-checkbox"></div>
+                        <div class="checklist-text">单笔风险不超过账户的1-2%</div>
+                    </div>
+                    <div class="checklist-item">
+                        <div class="checklist-checkbox"></div>
+                        <div class="checklist-text">在交易系统中设置了自动止损单</div>
+                    </div>
+                    <div class="checklist-item">
+                        <div class="checklist-checkbox"></div>
+                        <div class="checklist-text">决不取消或扩大已设定的止损</div>
+                    </div>
+                    <div class="checklist-item">
+                        <div class="checklist-checkbox"></div>
+                        <div class="checklist-text">触发止损后立即执行，不犹豫不拖延</div>
+                    </div>
+                </div>
+
+                <div class="tips-box">
+                    <div class="tips-title">💡 专业建议</div>
+                    <div class="tips-content">
+                        使用<strong>自动止损单</strong>（Stop Loss Order）是最好的执行方式。开仓后立即在系统中设置好止损单，这样即使你不在电脑前，或者情绪失控想要取消，市场也会帮你执行止损。
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 止损后的处理 -->
+        <div class="card">
+            <div class="card-header">
+                <div class="card-icon">🔄</div>
+                <h2 class="card-title">止损后的正确处理</h2>
+            </div>
+            <div class="card-content">
+                <p>触发止损后，如何处理自己的情绪和后续行动，同样重要。</p>
+
+                <div class="info-grid">
+                    <div class="info-item">
+                        <div class="info-label">接受损失</div>
+                        <div class="info-value">止损是交易的一部分，不是失败</div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-label">记录分析</div>
+                        <div class="info-value">记录止损原因，分析是否合理</div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-label">冷静休息</div>
+                        <div class="info-value">不要立即报复性交易</div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-label">继续执行</div>
+                        <div class="info-value">按照计划寻找下一个机会</div>
+                    </div>
+                </div>
+
+                <div class="tips-box">
+                    <div class="tips-title">💡 止损的正确心态</div>
+                    <div class="tips-content">
+                        止损就像保险的保费——你支付保费（接受小亏），是为了保护自己免受灾难性损失（爆仓）。每次触发止损，都要庆幸自己遵守了纪律，保护了账户。
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div style="text-align: center; padding: 40px 20px;">
+        <a href="../stage3-new.html" style="display: inline-block; padding: 16px 32px; background: linear-gradient(135deg, #6366f1 0%, #06b6d4 100%); color: white; text-decoration: none; border-radius: 12px; font-weight: 600; transition: transform 0.3s ease;">继续下一模块 →</a>
+    </div>
+</body>
+</html>

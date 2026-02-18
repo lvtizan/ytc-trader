@@ -1,0 +1,241 @@
+<!doctype html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>阶段三：风险管理流程 - YTC Trader</title>
+        <link rel="stylesheet" href="css/modern-premium.css" />
+        <link rel="stylesheet" href="css/stage-new.css" />
+    </head>
+    <body>
+        <!-- 科技光晕背景层 -->
+        <div class="tech-glow"></div>
+
+        <div class="app-container">
+            <!-- 导航栏 -->
+            <nav class="navbar">
+                <div class="nav-container">
+                    <a href="index-new.html" class="brand">
+                        <div class="brand-logo">YT</div>
+                        <div class="brand-text">
+                            <span class="brand-title">YTC Trader</span>
+                            <span class="brand-tagline">专业交易系统</span>
+                        </div>
+                    </a>
+                    <ul class="nav-menu">
+                        <li>
+                            <a href="index-new.html" class="nav-link"
+                                >返回首页</a
+                            >
+                        </li>
+                        <li>
+                            <a href="#modules" class="nav-link">学习内容</a>
+                        </li>
+                        <li>
+                            <a href="index-new.html#tools" class="nav-link"
+                                >交易工具</a
+                            >
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+
+            <!-- 阶段标题 -->
+            <header class="stage-header">
+                <span class="stage-badge">阶段三</span>
+                <h1 class="stage-title">风险管理流程</h1>
+                <div class="stage-duration">
+                    <span>📅 第12-15周</span>
+                    <span>⏱️ 约4周</span>
+                    <span>📊 4个学习模块</span>
+                </div>
+            </header>
+
+            <!-- 学习目标 -->
+            <section class="objectives-section">
+                <div class="section-header">
+                    <h2 class="section-title">学习目标</h2>
+                    <p class="section-subtitle">
+                        建立标准化的风险管理流程，保护你的交易资本
+                    </p>
+                </div>
+                <div class="objectives-grid">
+                    <div class="objective-card">
+                        <div class="objective-icon">💰</div>
+                        <h3 class="objective-title">仓位规模管理</h3>
+                        <p class="objective-description">
+                            学会根据风险大小计算合适的仓位规模
+                        </p>
+                    </div>
+                    <div class="objective-card">
+                        <div class="objective-icon">🛡️</div>
+                        <h3 class="objective-title">止损设置技巧</h3>
+                        <p class="objective-description">
+                            掌握科学的止损位置设置方法
+                        </p>
+                    </div>
+                    <div class="objective-card">
+                        <div class="objective-icon">📊</div>
+                        <h3 class="objective-title">盈亏比优化</h3>
+                        <p class="objective-description">
+                            理解并优化交易的盈亏比
+                        </p>
+                    </div>
+                    <div class="objective-card">
+                        <div class="objective-icon">🎯</div>
+                        <h3 class="objective-title">组合风险管理</h3>
+                        <p class="objective-description">
+                            管理整个投资组合的风险敞口
+                        </p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 学习模块 -->
+            <section class="modules-section" id="modules">
+                <div class="section-header">
+                    <h2 class="section-title">学习模块</h2>
+                    <p class="section-subtitle">系统化学习风险管理</p>
+                </div>
+                <div class="modules-grid">
+                    <div class="module-card">
+                        <div class="module-header">
+                            <span class="module-number">模块 1</span>
+                            <span class="module-week">第12周</span>
+                        </div>
+                        <h3 class="module-title">仓位规模管理</h3>
+                        <p class="module-description">
+                            学会根据账户规模和风险承受能力计算合适的仓位。
+                        </p>
+                        <ul class="module-topics">
+                            <li>固定金额法</li>
+                            <li>固定百分比法</li>
+                            <li>风险价值法</li>
+                            <li>Kelly公式简介</li>
+                            <li>实战仓位计算</li>
+                        </ul>
+                        <div class="module-actions">
+                            <a
+                                href="learn/position-sizing.html"
+                                class="btn btn-primary"
+                                >开始学习 →</a
+                            >
+                        </div>
+                    </div>
+
+                    <div class="module-card">
+                        <div class="module-header">
+                            <span class="module-number">模块 2</span>
+                            <span class="module-week">第13周</span>
+                        </div>
+                        <h3 class="module-title">止损设置技巧</h3>
+                        <p class="module-description">
+                            掌握科学的止损位置设置方法。
+                        </p>
+                        <ul class="module-topics">
+                            <li>基于结构的止损</li>
+                            <li>基于时间的止损</li>
+                            <li>基于波动的止损</li>
+                            <li>追踪止损设置</li>
+                            <li>止损执行纪律</li>
+                        </ul>
+                        <div class="module-actions">
+                            <a
+                                href="learn/stop-loss-techniques.html"
+                                class="btn btn-primary"
+                                >开始学习 →</a
+                            >
+                        </div>
+                    </div>
+
+                    <div class="module-card">
+                        <div class="module-header">
+                            <span class="module-number">模块 3</span>
+                            <span class="module-week">第14周</span>
+                        </div>
+                        <h3 class="module-title">盈亏比优化</h3>
+                        <p class="module-description">
+                            理解并优化交易的盈亏比。
+                        </p>
+                        <ul class="module-topics">
+                            <li>什么是盈亏比</li>
+                            <li>如何计算盈亏比</li>
+                            <li>目标设置方法</li>
+                            <li>盈亏比与胜率的关系</li>
+                            <li>优化交易期望值</li>
+                        </ul>
+                        <div class="module-actions">
+                            <a
+                                href="learn/risk-reward-ratio.html"
+                                class="btn btn-primary"
+                                >开始学习 →</a
+                            >
+                        </div>
+                    </div>
+
+                    <div class="module-card">
+                        <div class="module-header">
+                            <span class="module-number">模块 4</span>
+                            <span class="module-week">第15周</span>
+                        </div>
+                        <h3 class="module-title">组合风险管理</h3>
+                        <p class="module-description">
+                            管理整个投资组合的风险敞口。
+                        </p>
+                        <ul class="module-topics">
+                            <li>相关性分析</li>
+                            <li>组合风险计算</li>
+                            <li>分散度管理</li>
+                            <li>资金分配策略</li>
+                            <li>风险监控系统</li>
+                        </ul>
+                        <div class="module-actions">
+                            <a
+                                href="learn/portfolio-risk-management.html"
+                                class="btn btn-primary"
+                                >开始学习 →</a
+                            >
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 下一阶段 -->
+            <section class="section" style="text-align: center">
+                <div
+                    style="
+                        background: var(--bg-card);
+                        border: 1px solid var(--border-color);
+                        border-radius: var(--radius-xl);
+                        padding: var(--space-2xl);
+                    "
+                >
+                    <h2
+                        style="
+                            font-size: 1.5rem;
+                            margin-bottom: var(--space-md);
+                            color: var(--text-primary);
+                        "
+                    >
+                        完成风险管理学习
+                    </h2>
+                    <div
+                        style="
+                            display: flex;
+                            gap: var(--space-md);
+                            justify-content: center;
+                            flex-wrap: wrap;
+                        "
+                    >
+                        <a href="stage4.html" class="btn btn-primary"
+                            >进入阶段四 →</a
+                        >
+                        <a href="index-new.html" class="btn btn-secondary"
+                            >返回首页</a
+                        >
+                    </div>
+                </div>
+            </section>
+        </div>
+    </body>
+</html>

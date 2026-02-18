@@ -1,0 +1,407 @@
+<!doctype html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>HH+HL结构详解 - YTC Trader</title>
+        <link rel="stylesheet" href="../css/modern-premium.css" />
+        <style>
+            .knowledge-content {
+                max-width: 900px;
+                margin: 0 auto;
+                padding: var(--space-3xl) var(--space-lg);
+            }
+            .knowledge-header {
+                margin-bottom: var(--space-2xl);
+            }
+            .knowledge-title {
+                font-size: 2rem;
+                font-weight: 700;
+                margin-bottom: var(--space-md);
+                color: var(--text-primary);
+            }
+            .knowledge-meta {
+                display: flex;
+                gap: var(--space-lg);
+                color: var(--text-muted);
+                font-size: 0.9375rem;
+            }
+            .knowledge-section {
+                background: var(--bg-card);
+                border: 1px solid var(--border-color);
+                border-radius: var(--radius-lg);
+                padding: var(--space-2xl);
+                margin-bottom: var(--space-xl);
+            }
+            .section-title {
+                font-size: 1.5rem;
+                font-weight: 600;
+                margin-bottom: var(--space-lg);
+                color: var(--text-primary);
+                padding-bottom: var(--space-md);
+                border-bottom: 2px solid var(--border-highlight);
+            }
+            .content-block {
+                margin-bottom: var(--space-xl);
+            }
+            .content-block h3 {
+                font-size: 1.25rem;
+                font-weight: 600;
+                margin-bottom: var(--space-md);
+                color: var(--text-primary);
+            }
+            .content-block p {
+                color: var(--text-secondary);
+                line-height: 1.8;
+                margin-bottom: var(--space-md);
+            }
+            .content-block ul {
+                margin-left: var(--space-lg);
+                color: var(--text-secondary);
+                line-height: 1.8;
+            }
+            .example-box {
+                background: var(--bg-secondary);
+                border-left: 4px solid var(--primary);
+                padding: var(--space-lg);
+                margin: var(--space-lg) 0;
+                border-radius: var(--radius-md);
+            }
+            .example-title {
+                font-weight: 600;
+                color: var(--text-primary);
+                margin-bottom: var(--space-sm);
+            }
+            .key-point {
+                background: rgba(99, 102, 241, 0.1);
+                border: 1px solid var(--border-highlight);
+                padding: var(--space-md) var(--space-lg);
+                border-radius: var(--radius-md);
+                margin: var(--space-md) 0;
+            }
+            .key-point-title {
+                font-weight: 600;
+                color: var(--primary);
+                margin-bottom: var(--space-xs);
+            }
+            .quiz-section {
+                background: var(--bg-secondary);
+                border: 1px solid var(--border-color);
+                border-radius: var(--radius-lg);
+                padding: var(--space-2xl);
+            }
+            .quiz-item {
+                margin-bottom: var(--space-xl);
+            }
+            .quiz-question {
+                font-weight: 600;
+                margin-bottom: var(--space-md);
+                color: var(--text-primary);
+            }
+            .quiz-option {
+                display: block;
+                padding: var(--space-md);
+                background: var(--bg-card);
+                border: 1px solid var(--border-color);
+                border-radius: var(--radius-md);
+                margin-bottom: var(--space-sm);
+                cursor: pointer;
+                transition: var(--transition);
+            }
+            .quiz-option:hover {
+                border-color: var(--border-highlight);
+                background: var(--bg-tertiary);
+            }
+        </style>
+    </head>
+    <body>
+        <!-- 科技光晕背景层 -->
+        <div class="tech-glow"></div>
+
+        <div class="app-container">
+            <!-- 导航栏 -->
+            <nav class="navbar">
+                <div class="nav-container">
+                    <a href="../index-new.html" class="brand">
+                        <div class="brand-logo">YT</div>
+                        <div class="brand-text">
+                            <span class="brand-title">YTC Trader</span>
+                            <span class="brand-tagline">专业交易系统</span>
+                        </div>
+                    </a>
+                    <ul class="nav-menu">
+                        <li>
+                            <a href="../stage1-new.html" class="nav-link"
+                                >← 返回阶段一</a
+                            >
+                        </li>
+                        <li><a href="#definition" class="nav-link">定义</a></li>
+                        <li>
+                            <a href="#identification" class="nav-link">识别</a>
+                        </li>
+                        <li><a href="#practice" class="nav-link">练习</a></li>
+                        <li><a href="#quiz" class="nav-link">测验</a></li>
+                    </ul>
+                </div>
+            </nav>
+
+            <!-- 内容 -->
+            <div class="knowledge-content">
+                <div class="knowledge-header">
+                    <p
+                        style="
+                            color: var(--primary);
+                            font-weight: 600;
+                            margin-bottom: var(--space-sm);
+                        "
+                    >
+                        阶段一 · 模块1
+                    </p>
+                    <h1 class="knowledge-title">上升趋势的完整结构（HH+HL）</h1>
+                    <div class="knowledge-meta">
+                        <span>⏱️ 预计学习时间：30分钟</span>
+                        <span>📚 难度：基础</span>
+                        <span>📖 相关章节：YTC PDF 第2章</span>
+                    </div>
+                </div>
+
+                <!-- 定义 -->
+                <div class="knowledge-section" id="definition">
+                    <h2 class="section-title">什么是HH+HL结构？</h2>
+
+                    <div class="content-block">
+                        <h3>更高高点（Higher High，简称HH）</h3>
+                        <p>
+                            在上升趋势中，当价格突破前一个高点并创出新的高点时，这个新的高点就被称为"更高高点"（HH）。
+                        </p>
+                        <div class="example-box">
+                            <div class="example-title">📌 识别要点：</div>
+                            <ul>
+                                <li>当前高点必须高于前一个高点</li>
+                                <li>突破必须是有力度的，不能只是触及</li>
+                                <li>突破后应该能够维持在新高之上</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="content-block">
+                        <h3>更高低点（Higher Low，简称HL）</h3>
+                        <p>
+                            在上升趋势中，当价格回调后形成新的低点，且这个低点高于前一个低点时，这个低点就被称为"更高低点"（HL）。
+                        </p>
+                        <div class="example-box">
+                            <div class="example-title">📌 识别要点：</div>
+                            <ul>
+                                <li>当前低点必须高于前一个低点</li>
+                                <li>回调应该是有序的，不是剧烈下跌</li>
+                                <li>在更高低点附近应该有支撑迹象</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="content-block">
+                        <h3>上升趋势的完整结构</h3>
+                        <p>一个完整的上升趋势结构由一系列的HH和HL组成：</p>
+                        <div class="key-point">
+                            <div class="key-point-title">💡 核心概念</div>
+                            HH + HL = 上升趋势<br />
+                            HH + HL + HH + HL = 持续的上升趋势
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 识别方法 -->
+                <div class="knowledge-section" id="identification">
+                    <h2 class="section-title">如何识别HH+HL结构</h2>
+
+                    <div class="content-block">
+                        <h3>步骤1：标记所有明显的高低点</h3>
+                        <p>
+                            首先，在图表上标记出所有明显的高点和低点。这些点应该是相对明显的转折点，而不是微小的波动。
+                        </p>
+                    </div>
+
+                    <div class="content-block">
+                        <h3>步骤2：比较高点</h3>
+                        <p>依次比较连续的高点：</p>
+                        <ul>
+                            <li>如果高点2 > 高点1，则是更高高点（HH）</li>
+                            <li>如果高点2 < 高点1，则趋势可能正在改变</li>
+                            <li>如果高点2 ≈ 高点1，则是双高（Double High）</li>
+                        </ul>
+                    </div>
+
+                    <div class="content-block">
+                        <h3>步骤3：比较低点</h3>
+                        <p>依次比较连续的低点：</p>
+                        <ul>
+                            <li>如果低点2 > 低点1，则是更高低点（HL）</li>
+                            <li>如果低点2 < 低点1，则趋势已经改变</li>
+                        </ul>
+                    </div>
+
+                    <div class="content-block">
+                        <h3>步骤4：确认趋势</h3>
+                        <p>确认上升趋势需要至少：</p>
+                        <ul>
+                            <li>一个HH和一个HL的组合</li>
+                            <li>最好有两个HH和两个HL的组合来确认趋势</li>
+                        </ul>
+                        <div class="key-point">
+                            <div class="key-point-title">⚠️ 重要提醒</div>
+                            趋势确认是一个持续的过程，需要随着价格的演变不断更新你的判断。
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 实战技巧 -->
+                <div class="knowledge-section" id="practice">
+                    <h2 class="section-title">实战技巧与注意事项</h2>
+
+                    <div class="content-block">
+                        <h3>技巧1：使用合适的时间周期</h3>
+                        <p>HH+HL结构在不同时间周期上都有效，但对于波段交易：</p>
+                        <ul>
+                            <li>日线图：用于判断主要趋势</li>
+                            <li>周线图：用于确认大趋势方向</li>
+                            <li>小时图：用于寻找精确入场点</li>
+                        </ul>
+                    </div>
+
+                    <div class="content-block">
+                        <h3>技巧2：关注回调的深度</h3>
+                        <p>不是所有的回调都是机会：</p>
+                        <ul>
+                            <li>浅回调（回调幅度< 38.2%）：强势特征</li>
+                            <li>中等回调（38.2%-50%）：健康回调</li>
+                            <li>深回调（> 61.8%）：警示信号</li>
+                        </ul>
+                    </div>
+
+                    <div class="content-block">
+                        <h3>技巧3：结合成交量</h3>
+                        <p>成交量可以验证趋势的有效性：</p>
+                        <ul>
+                            <li>创出HH时成交量放大：确认突破</li>
+                            <li>回调时成交量缩小：健康回调</li>
+                            <li>回调时成交量放大：可能的反转信号</li>
+                        </ul>
+                    </div>
+
+                    <div class="content-block">
+                        <h3>技巧4：等待确认</h3>
+                        <p>不要急于在价格刚开始反转时就入场：</p>
+                        <ul>
+                            <li>等待明显的低点形成</li>
+                            <li>等待价格开始向上反弹</li>
+                            <li>等待确认上升趋势恢复</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- 测验 -->
+                <div class="quiz-section" id="quiz">
+                    <h2 class="section-title">知识测验</h2>
+
+                    <div class="quiz-item">
+                        <div class="quiz-question">
+                            1. 什么是更高高点（HH）？
+                        </div>
+                        <label class="quiz-option">
+                            <input type="radio" name="q1" /> 价格触及前一个高点
+                        </label>
+                        <label class="quiz-option">
+                            <input type="radio" name="q1" />
+                            价格突破前一个高点并创新高
+                        </label>
+                        <label class="quiz-option">
+                            <input type="radio" name="q1" /> 价格低于前一个高点
+                        </label>
+                    </div>
+
+                    <div class="quiz-item">
+                        <div class="quiz-question">
+                            2. 确认上升趋势需要什么？
+                        </div>
+                        <label class="quiz-option">
+                            <input type="radio" name="q2" /> 只需要一个HH
+                        </label>
+                        <label class="quiz-option">
+                            <input type="radio" name="q2" /> 只需要一个HL
+                        </label>
+                        <label class="quiz-option">
+                            <input type="radio" name="q2" />
+                            至少一个HH和一个HL的组合
+                        </label>
+                    </div>
+
+                    <div class="quiz-item">
+                        <div class="quiz-question">
+                            3. 健康的回调特征是什么？
+                        </div>
+                        <label class="quiz-option">
+                            <input type="radio" name="q3" /> 回调时成交量放大
+                        </label>
+                        <label class="quiz-option">
+                            <input type="radio" name="q3" /> 回调时成交量缩小
+                        </label>
+                        <label class="quiz-option">
+                            <input type="radio" name="q3" /> 回调时成交量不变
+                        </label>
+                    </div>
+
+                    <button
+                        class="btn btn-primary"
+                        style="width: 100%; justify-content: center"
+                    >
+                        提交答案
+                    </button>
+                </div>
+
+                <!-- 下一步 -->
+                <div
+                    style="
+                        background: var(--bg-card);
+                        border: 1px solid var(--border-color);
+                        border-radius: var(--radius-lg);
+                        padding: var(--space-2xl);
+                        text-align: center;
+                    "
+                >
+                    <h3
+                        style="
+                            font-size: 1.25rem;
+                            margin-bottom: var(--space-md);
+                            color: var(--text-primary);
+                        "
+                    >
+                        完成本知识点学习
+                    </h3>
+                    <p
+                        style="
+                            color: var(--text-secondary);
+                            margin-bottom: var(--space-xl);
+                        "
+                    >
+                        掌握HH+HL结构是识别上升趋势的基础，继续学习更多知识点。
+                    </p>
+                    <div
+                        style="
+                            display: flex;
+                            gap: var(--space-md);
+                            justify-content: center;
+                            flex-wrap: wrap;
+                        "
+                    >
+                        <a href="callback-types.html" class="btn btn-primary"
+                            >下一个：回调类型 →</a
+                        >
+                        <a href="../stage1-new.html" class="btn btn-secondary"
+                            >返回阶段一</a
+                        >
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

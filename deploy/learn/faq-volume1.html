@@ -1,0 +1,650 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YTC常见问题一 - YTC价格行为交易学习系统</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <style>
+        .faq-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 40px 20px;
+            text-align: center;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
+        }
+        .faq-header h1 {
+            margin: 0 0 10px 0;
+            font-size: 2.5em;
+        }
+        .faq-header p {
+            margin: 0;
+            font-size: 1.2em;
+            opacity: 0.9;
+        }
+        .faq-container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .faq-category {
+            margin-bottom: 50px;
+        }
+        .faq-category h2 {
+            color: #2c3e50;
+            font-size: 1.8em;
+            border-left: 5px solid #667eea;
+            padding-left: 15px;
+            margin-bottom: 25px;
+            background: linear-gradient(90deg, #f8f9fa 0%, transparent 100%);
+            padding: 15px 15px;
+        }
+        .faq-item {
+            background: white;
+            border: 1px solid #e1e8ed;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            padding: 20px;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+        .faq-item:hover {
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.15);
+            transform: translateY(-3px);
+            border-color: #667eea;
+        }
+        .faq-question {
+            font-weight: 600;
+            color: #2c3e50;
+            font-size: 1.15em;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: flex-start;
+            line-height: 1.6;
+        }
+        .faq-question::before {
+            content: "Q";
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            flex-shrink: 0;
+            font-weight: bold;
+            font-size: 0.95em;
+        }
+        .faq-answer {
+            color: #555;
+            line-height: 1.9;
+            padding-left: 47px;
+            white-space: pre-line;
+        }
+        .faq-answer::before {
+            content: "A";
+            background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
+            color: white;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            margin-left: -47px;
+            font-weight: bold;
+            font-size: 0.95em;
+        }
+        .faq-nav {
+            background: white;
+            border: 1px solid #e1e8ed;
+            padding: 25px;
+            border-radius: 10px;
+            margin-bottom: 40px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+        }
+        .faq-nav h3 {
+            color: #2c3e50;
+            margin-bottom: 20px;
+            font-size: 1.3em;
+            display: flex;
+            align-items: center;
+        }
+        .faq-nav h3::before {
+            content: "📚";
+            margin-right: 10px;
+        }
+        .faq-nav ul {
+            list-style: none;
+            padding: 0;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 12px;
+        }
+        .faq-nav a {
+            color: #555;
+            text-decoration: none;
+            padding: 10px 15px;
+            display: block;
+            border-radius: 6px;
+            transition: all 0.3s;
+            border: 1px solid transparent;
+            font-weight: 500;
+        }
+        .faq-nav a:hover {
+            background: linear-gradient(135deg, #667eea15 0%, #764ba215 100%);
+            color: #667eea;
+            border-color: #667eea;
+            transform: translateX(5px);
+        }
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+        .stat-card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+        }
+        .stat-number {
+            font-size: 2em;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        .stat-label {
+            font-size: 0.9em;
+            opacity: 0.9;
+        }
+        @media (max-width: 768px) {
+            .faq-container {
+                padding: 10px;
+            }
+            .faq-header h1 {
+                font-size: 1.8em;
+            }
+            .faq-item {
+                padding: 15px;
+            }
+            .faq-nav ul {
+                grid-template-columns: 1fr;
+            }
+            .faq-question {
+                font-size: 1.05em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="faq-header">
+            <h1>YTC常见问题一</h1>
+            <p>常见问题解答 · 帮助你少走弯路 · 深入理解YTC价格行为交易</p>
+        </div>
+
+        <div class="stats">
+            <div class="stat-card">
+                <div class="stat-number">16</div>
+                <div class="stat-label">问题总数</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">3</div>
+                <div class="stat-label">知识章节</div>
+            </div>
+        </div>
+
+        <div class="faq-container">
+            <div class="faq-nav">
+                <h3>快速导航 - 按章节浏览</h3>
+                <ul>
+                    <li><a href="#category-1">卷六——总结.......................................................................................................54</a></li>
+                    <li><a href="#category-2">卷一——简介</a></li>
+                    <li><a href="#category-3">卷二——市场和市场分析</a></li>
+                </ul>
+            </div>
+
+            <div class="faq-category" id="category-1">
+                <h2>卷六——总结.......................................................................................................54</h2>
+                <p style="color: #7f8c8d; margin-bottom: 20px;">本章节包含 3 个问题</p>
+                <div class="faq-item">
+                    <div class="faq-question">如果我没弄错，现货外汇（自由市场）中价格的最小变化单位是一个点子，期货市
+场中是一个跳动，是那样吗？</div>
+                    <div class="faq-answer">是的……完全确。
+
+外汇市场中价格的最小增量是一个点子。期货市场中价格的最小增量是一个跳动。
+
+从我们的角度看，它们的意义完全相同。我常常替使用这两个术语，但那样做不
+是很恰当。对应的术语应该用于对应的市场。
+
+在短时间框架上可能盈利吗？</div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">我在其他材料中读到，当你在非常短的时间框架上（比如3分钟或1分钟）时，
+盈利是非常难的。
+它们显然是你的时间框架，那么你的方法适用于长期时间框架吗？（它肯定不
+适合我；我是在周线/日线/4小时图表上外汇）</div>
+                    <div class="faq-answer">下面的链接是我几年前写的一篇文章，分享了我关于这一问题的想法：
+http://www.yourtradingcoach.com/Articles-Business-Management/are-short-timef
+rames-risky.html
+5
+--- 第 6 页 ---
+你可能也对这篇文章感兴趣：
+http://www.yourtradingcoach.com/Articles-Strategy/Are-Short-Timeframes-Just-N
+oise.html
+道理很简单，日线者总是说日内图表只是随机的噪声，是不可能盈利的。
+小时图者对于5分钟图也是如此说。5分钟者对于1分钟图也是同样的说法。1
+分钟者对于10秒钟图也是同样的说法。
+实际上，如上面第一篇文章所讲的，所有时间框架中都存在机会和风险。关键是
+找到最适合你的个性和风险预测（risk profile）的时间框架。
+
+我们可以使用跳动图吗？</div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">期货时，我使用144、610和1597跳动图而非分钟图。我发现跳动图比分钟图
+
+平滑得多，噪声少得多。这样可以吗？
+答： 
+一点问题也没有。我也非常喜欢跳动图。如果你感跳动图更舒服，那么就坚持使
+
+用吧！
+
+我们可以使用棒线，而不使用 K 线吗？
+问：
+与K线相比，我更喜欢使用棒线。但这样很难定义S/R区。请给点建议？</div>
+                    <div class="faq-answer">为此感到高兴吧！棒线和K线只是形式不同，它们所传递的信息是完全相同的。你
+感哪种用着舒服就用哪种。
+6
+--- 第 7 页 ---
+
+在我现在使用的较低刮头皮时间框架上，我使用的是价格棒线。在这些时间框架上，
+重要的是使图表上的信息量最小化，使图表尽可能干净。我发现价格棒线很合适。
+关于难以定义S/R区，我不太确定你是什么意思。从当前价格上移，辩识较高时间
+框架波段高点。从当前价格下移，辩识较高时间框架波段低点。
+
+7
+--- 第 8 页 ---
+</div>
+                </div>
+            </div>
+
+            <div class="faq-category" id="category-2">
+                <h2>卷一——简介</h2>
+                <p style="color: #7f8c8d; margin-bottom: 20px;">本章节包含 1 个问题</p>
+                <div class="faq-item">
+                    <div class="faq-question">请问能否告诉我这四位导师的网站，以便我向他们习——丹尼斯•沙尔（Denise
+
+Shull），达文•克拉克（Davin Clarke），唐•米勒（Don Miller）和山姆•赛登（Sam
+Seiden）？</div>
+                    <div class="faq-answer">DeniseShull: http://traderpsyches.com/ideas/blog
+
+Davin Clarke:http://www.trade4edge.com/default.aspx
+
+DonMiller: http://www.donmillerblog.com/
+Sam Seiden:http://www.samseiden.com/
+
+8
+--- 第 9 页 ---
+</div>
+                </div>
+            </div>
+
+            <div class="faq-category" id="category-3">
+                <h2>卷二——市场和市场分析</h2>
+                <p style="color: #7f8c8d; margin-bottom: 20px;">本章节包含 12 个问题</p>
+                <div class="faq-item">
+                    <div class="faq-question">在图2.14中，你给出了一个糟糕的10/20均线叉示例。而我能展示很多很棒的
+
+叉示例。恕我直言，这个例子并未证明你的观点。
+答： 
+这个例子的重点在于说明所有EMA（指数均线）叉都表明价格已经从其最后的反
+
+转点运动了一段特定的距离（那段距离因EMA参数的不同而有所变化），而且价格已经
+运动一段特定的距离并不保证价格会继续运动。
+所选图表的确说明了这一问题。
+
+我的意图不是显示均线叉不能辩识反转。
+
+实际上（初者常犯的错误）……所有反转都会有一个均线叉，但不是所有均线
+
+叉都会引起反转。
+是的……你能够展示很多优秀的MA叉架构示例，而我也能展示同等数量的失败
+示例。但那毫无意义。那不是本图的重点。
+P16
+第 3 章 市场分析
+我们可以修改波段高点和波段低点的定义吗？
+问：
+9
+--- 第 10 页 ---
+波段高点可以是两侧只有一条而非两条更低高点棒的一个尖峰吗？</div>
+                    <div class="faq-answer">有些人那样用，所以尽请大胆一试。我的选择是两条；要不然观察的价位就太多了。
+然而，价格偶尔会产生一些套住者的行为，只有一条更低高点棒，所以我情愿
+认为它是未来潜在的S/R影响区。
+没有硬性规定，在确定时有一点儿主观性。如果它是一个情绪区……那么它就是一
+个潜在的未来S/R区。
+
+支撑和阻力——图 3.28 和 3.30 中价位的确认</div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">我在观察支撑和阻力，特别是图3.28和3.30。在图3.28中，1.4940位附近有一
+条波段高点/波段低点线，我认为应该标记为支撑。类似地，在图3.30中，在1.4760
+
+有几个明显的波段低点，你没有标记为阻力。
+
+是我错了吗？如果是我错了，请说明原因。
+我认为S/R对于市场结构很重要，我想使用它们……但是看起来……如果你非常努
+力地观察，那么会发现它们无处不在，不是表现为这种形式，就是表现为那种形式！
+
+我在寻找一些使它们变清晰的方法。</div>
+                    <div class="faq-answer">这两张图（图3.28和图3.30）上显示的S/R线，是在图表右侧起作用的线。
+
+特别观察一下图3.28，你已辩识出1.4940价位。它以前曾被辩识，并且用作支撑，
+这一点你说的没错。但是它已经被突破。根据图表右侧的价格行为，我们在更高价位处
+找到当前（起作用的）阻力位，在更低价位处找到当前（起作用的）支撑位。
+图3.30的情况是类似的！你辩识出的价位不再起作用，已经被从4:00开始的下降
+10
+--- 第 11 页 ---
+趋势突破了。从当前价格行为中寻找价格下方的波段低点，寻找价格上方的波段高点。
+先前的S/R区，自从突破后便不再起作用了。
+另外……不要过于担心弄错S/R。首先，随着经验的积累，辩识起来会越来越容。
+其次，如你在本书后面所要看到的，观察价格在这些价位的反应更为重要。我们不会
+盲目地在支撑买进，在阻力卖出。我们观察价格在这些区域的行为，然后根据分析进行
+操作。因此，即便你所辩识出的价位完全错误，也没有关系。你应该仍然是在市场的
+确一方，顺强势，逆弱势。（后面将有更深入的阐述）
+
+你能解释一下阻力变成支撑背后的心理吗？</div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">我认为自己理解支撑的概念。前价格从某一特定区域上涨，如果价格在未来某个
+
+时间重访那一区域，那么很可能再次从那里上涨。这一特定区域内的低胜率1做多入场应
+该是安全的赌注，如果证券价格处于上升趋势中，那么更是如此。
+
+我看起来不能把阻力变为支撑的整个概念转变为同样浅显的语言。阻力变为支撑，
+
+支撑变为阻力所伴随的思想是什么呢？</div>
+                    <div class="faq-answer">在回答你的问题前，先容我更一处你的笔误。在谈及支撑区时，你说“这一特
+定区域内的低胜率做多入场应该是安全的赌注，如果证券价格处于上升趋势中，那么更
+是如此。”
+在确定的S/R价位，我们寻求的是高胜率（不是低胜率）——对S/R的测
+试，当市场接近该价位时表现出弱势；以及突破失败，市场突破该价位后停止或反转。
+卷三对此有更深入的论述。
+
+好吧……让我们讨论一下阻力一旦突破后变为支撑的者心理。
+1译注： 不合逻辑，兰斯在下文也已指出。
+11
+--- 第 12 页 ---
+首先……YTC网站上的一些文章也可能提供有用的信息：
+ http://www.yourtradingcoach.com/Articles-Technical-Analysis/How-Support-a
+nd-Resistance-Areas-are-Created.html
+ http://www.yourtradingcoach.com/Articles-Technical-Analysis/Support-and-Re
+sistance-2-Swing-Highs-and-Lows.html
+所有价格运动都是所有市场参与者的净观点的作用结果。
+
+上图显示了一个由波段高点A和B形成的阻力区。这一阻力区是者决策的结果，
+
+看涨观点引起向阻力区的反弹，然后在阻力区被看跌观点战胜，使得价格下跌。结果使
+得波段高点A和B位于同一区域内，我们称为阻力。
+
+现在我们假设价格位于C附近。当者在这一点观察该图时，他会看到什么呢？
+对于价格行为和未来潜在的机会，他将作何考虑？在C处，者们看到阻力区现
+在已经两次阻挡价格，两次都令价格下跌。该阻力区已经成为一个锚点（anchor），或
+者说一个参考点。在此点处，者们认为价格已经偏高，是一个很棒的做空机会（或
+退出多头的机会）。这些者们希望自己在点B早已采取行动，早已做空。他们承诺，
+如果价格返回那一阻力区，那么他们这次会聪明一点，入场做空。
+
+结果，当价格返回区域D时，这些者们会入场做空，增加了看跌订单流。
+12
+--- 第 13 页 ---
+他们的预期是引起向D区反弹的看涨压力会降低——由于它是一个被感知为高价的
+参考点，所以很少会有者愿意在这一点做多。与此同时，看跌压力会上升，因为在
+向D反弹的过程中做多的者们将会获利了结（卖单），而像他们那样的者们将
+会做空（卖单）。他们预期看跌压力的升高不仅会令上涨停止，而且会胜过看涨压力，
+致使价格像A和B处一样再次下跌。
+然而这次某个地方发生了变化。净观点不再向以前那样看跌了。或许这是另一个时
+间框架的影响？或许是受基本面的影响？谁知道呢？但无论什么原因，我们看到价格没
+有像从A和B开始的那样从D快速下跌。看跌压力这一次没有胜过看涨压力，意味着要
+
+么市场中仍然存在一些买压，要么没有多少者愿意做空，或者两种情况同时存在。
+当价格停止并横向穿过点E时，考虑一下在点D入场做空的者们的心态。价格
+首先向他们的方向运动，然后反转回撤至点E，然后又向对他们有利的方向运动，然后
+
+再次反转，此时他们的情绪很可能接近失控。这些者中有一些会斩仓（买单），以
+便释放自己的紧张情绪，增加了看涨订单流。其他新的多头看到价格未能下跌，会被吸
+
+引至市场中，抱着突破的预期入场。
+
+这种看涨压力的升高驱动价格上涨，穿过阻力区。
+
+线F将会被突破，那里是很多（不是全部）在A、B和D做空的者们设置止损
+单（买单）的位置，也有很多突破型者会把他们的入场单（买单）设在那里。这将
+
+使看涨压力猛增，驱动价格上涨至G。
+
+现在回到心态问题……
+如果你前认为阻力区A和B处的价格是昂贵的，那么当价格现在位于G处时，A-B
+区看起来怎样呢？它将是便宜的。这一价格现在变成了一个参考点或锚点，人们认为它
+是便宜的；是买进机会。
+想想那些在这一区域或阻力前做多并获利了结的那些人。他们会因自己被‘洗盘
+出局’、错失这些额外的利润而咒骂不停。他们决定，如果价格回到突破区，那么他们
+将再次买进。
+想想在阻力前做多，在整波运动中持有的那些人。他们将很高兴看到这个新的‘参
+考点’，如果价格返回突破区，那么他们会考虑加仓。
+13
+--- 第 14 页 ---
+
+想想在F处抓住了突破的那些人。他们当中有些人也会考虑利用突破回撤加仓。
+想想我们前讨论的那些人，他们在D处做空，但是却没有明智到在F处止损。在
+向G的上涨过程中，他们经历了撕心裂肺的痛苦，当价格缓慢返回他们的方向时，他们
+感到一丝轻松。他们希望突破失败，市场返回阻力区下方，于是他们坚持持有到H。当
+价格在H处停止时，有些人会出场，很高兴以较小的亏损出场（更多买单）。另有一些
+人会继续持有，经历H处的停滞区，当价格又一次开始上涨时，他们变得恐慌起来。当
+痛苦变得难以忍受时，这些者最终会使用买单出场，增加了看涨订单流，驱动价格
+
+升高。
+
+我们已经分析了几个者群体。但关键是在情绪上已经忍受巨大痛苦的那些人。
+那些在浮亏时坚持持有的空头，以及那些错过第一波上涨的多头。是他们最有可能追
+
+逐价格从点H上升，帮助驱动价格再次上涨。如我们上面所讨论的，所有这些人的想
+法都是在点H或点H后买进。 
+先前的阻力已经变为支撑，是市场参与者们制定决策的结果，使得最情绪化的
+
+者们都想在点H或其附近买进。
+
+现在……显然有人会想，并不是每个市场参与者都在使用与我们相同的时间框架，
+或使用与我们相同的方法。
+但那没有什么，只要有足够多的者与我们一样就可以了。
+
+净订单流是所有市场参与者的观点和决策的结果，而不管他们的理由是什么。
+通过顺强势、逆弱势（卷三），我们确保自己的与市场观点同步（站在阻力最小的
+路径上），市场观点是所有市场参与者的集合。而通过辩识图表上者们在与市场
+观点相背的方向上（在弱势方向上）、被套入亏损头寸（或套出盈利头寸），从而
+陷入压力中（这也在卷三讨论）的那些点，我们为自己争取到了更高的成功率，
+不过我们还要好好管理才行。
+希望现在已经讲清楚了。不要担心最后一段，那都是卷三的内容。重要的是理解支
+撑何时突破后变为阻力，阻力何时突破后变为支撑。这是人类在不确定的市场环境中对
+由价格行为引起的情绪的常反应。
+14
+--- 第 15 页 ---
+
+当 S/R被突破后，我们什么时候将其放弃，确立新的 S/R？</div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">我想问的是，什么时候支撑或阻力位应该被重新评估？比如，我们需要看到它们被
+突破两次或三次吗？有必要确定一个新的区域吗？对于这一问题，我们从何出着手呢？</div>
+                    <div class="faq-answer">对于S/R区何时失去相关性，我没有任何固定规则。重要的是考虑一下，“其他
+者眼中的相关价位在哪里？”
+
+如果某一S/R已经被突破了好几次，但你的分析表明人们可能仍在关注它，那么当
+价格再次返回那里时，它仍然是你应该密切关注的价位。
+不过一般而言，如果某个价位已经被突破两次，那么我想它很少会再在我的图表上
+
+标出。
+
+对于停止的突破（即价格小幅突破后遭到拒绝，形成突破失败），我会在突破后重
+新定义S/R区，以便包含新的波段高点/低点（假定原来没有包含新的波段高点/低点）。
+我还会考虑把图表上的线移至新的极点。
+
+如果 S/R 线相隔很近，那么该怎么处理呢？</div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">今天在3分钟图上在找到3个价位——我的问题是，3个价位中有两个仅仅相隔15
+个点子——我是不是找的价位太多了？</div>
+                    <div class="faq-answer">一般来讲，价位相隔很近并没有什么问题。
+这里关键是要牢记，S/R是区域，不是精确的价位。它们是先前提供供需失衡的区
+域1。由于与那一事件相关的情绪，加上人类制定决策的方式，所以它们很可能再次对未
+1 译注：S/R区内，供需暂时达到动态平衡状态，多空双方势均力敌。当一方占优时，才出现趋势运动。所以译者认
+15
+--- 第 16 页 ---
+来的价格运动提供一些障碍。
+
+人们并不总是在完全相同的价格点做出反应。因此，这两个相近价位中的第二个，
+可能是测试第一个价位的结果。实际上，它们都可视作一个S/R区，横跨好15个点
+子的区间。
+如果价格在这两个价位上方，那么我们预期它们提供相当强的支撑，因为价格现在
+
+需要充足的看跌压力才能跌穿先前的两个波段H/L区。
+类似地，如果价格在这两个价位下方，那么它们可能构成很强的阻力区。
+如果价格在这两个价位间……那么预期价格不会停留多长时间。观察较低时间框
+
+架，寻找任一方向上动量增强的征兆，寻找突破方向的线索。
+
+如前所述，这些只是一般性的指导原则。根据具体情况分析价格与S/R的每一次相
+互作用。
+
+斐波那契价位或枢轴点（PivotPoint）会构成有效的 S/R 吗？</div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">像0.38、0.62等这样的斐波那契比，或者基于最高价、最低价和收盘价的枢轴点1
+（Pivot Points），经常被场内者用作支撑/阻力位。我注意到你不使用它们，有什
+么特别的原因吗？</div>
+                    <div class="faq-answer">如果在图表上绘制的线足够多，那么价格肯定会在其中一条线附近反转。
+斐波那契点和枢轴点只是一种关于未来S/R位置的猜测。实际上，你无法通过这种
+方法预测什么。我们对市场本质（来自第2章）的理解不接受数预测。
+最好客观地辩识先前的供需失衡区（S/R），因为我们知道，如果价格返回这些区域，
+为S/R是供需平衡区。管窥见，仅供参考。
+1 译注：百度百科对枢轴点有详细的解释，感兴趣的朋友可以去查阅。
+16
+--- 第 17 页 ---
+那么它们有可能再次对价格运动产生影响。
+如果某个斐波那契点或枢轴点碰巧令价格停止，那么我们将在首次发生时看到那一
+价位，并且关注价格未来每一次与它的接触。所以，这些价位可能仍然会在我们的
+中起一定作用。但只是因为它们已经证明自己是S/R，而不是因为我们可以用它们进行
+预测。
+
+
+我们使用时间框架 S/R吗？</div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">时间框架也有自己的S/R线。我们应该忽略它们，只使用较高时间框架的S/R
+线吗？</div>
+                    <div class="faq-answer">不，我们绝对没有忽略它们。
+
+在较高时间框架上，我们将S/R位画出，辩识时间框架趋势的潜在障碍。
+时间框架上的S/R位（假定它们没有显示在较高时间框架上）是波段高点和低
+点，绝对是我们感兴趣的价位。
+
+举例说明，考虑时间框架上的趋势，每个波段高点和低点将作为下一波回撤的
+潜在停止点（见图4.15）。
+请问你说“我能够在较低时间框架数据中看到较高时间框架”是什么
+意思？</div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">在3.2.2小节，你说“因为我能够在较低时间框架内看到较高时间框架”——能否
+举例说明一下？
+17
+--- 第 18 页 ---</div>
+                    <div class="faq-answer">假定我们使用3分钟时间框架和30分钟较高时间框架。那么，10条时间
+框架K线便构成1条较高时间框架K线。
+现在，我们假定时间框架上有一波趋势上涨至一个波段高点，然后反转为下降
+趋势。如果该波段高点的每一侧都有20多条K线，那么我知道这也会在较高时间框架
+上产生一个波段高点。
+实际上，只要从细节退后一步，就能看到更大的结构（宏观价位）。
+
+ 
+什么是区间 S/R？</div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">什么是区间S/R？</div>
+                    <div class="faq-answer">区间阻力就是横向区间（横向趋势）的上缘。区间支撑是横向区间（横向
+趋势）的下缘。 
+
+你会为趋势点的改变而绘制趋势线吗？</div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">当你在时间框架中时，你会为趋势点的改变绘制趋势线，还是只用“裸眼”观
+察？</div>
+                    <div class="faq-answer">我很少会在图表上画线（较高时间框架S/R区除外）。原因有二：
+（1）这些波段高点/低点无需画线便很容看出；
+（2）中保持果断是非常重要的——考虑到这一点，一个重要因素便是尽可能
+18
+--- 第 19 页 ---
+使信息量最少。在图表上画太多线会增加混乱，增加产生怀疑的可能性，致使入场时犹
+豫不决。
+因此，如果没有增加新的信息，那么我就不希望它出现在我的图表上。
+
+你能给出复杂回撤的定义吗？</div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">我认为自己已经理解了你所讲的动量分析与投影/深度间的区别。不过看起来—
+—对我来说——它们都代表着相同的东西。
+在动量分析中，你看到的是角度的变化。那么，投影/深度只是观察相同信息的另
+一种方式吗？
+P26</div>
+                    <div class="faq-answer">动量分析与投影/深度有联系，但并不相同。它们是辩识价格行为中的强势或弱势
+征兆的两种方法。动量变化是通过价格运动的斜率变化表现出来。投影/深度显示的是
+
+价格能够超出前一波段高点/低点的幅度，以及价格回撤的幅度。
+
+通常，趋势的增强或减弱会通过两种方式显现出来，但并不总是那样。
+
+有时，举例说明，上升趋势中的每个上涨波段可能都显示出相同的斜率（动量），
+给出趋势延续的建议。但是，我们可能看到每个连续价格波段的投影都不如前一个远，
+
+每一次都更早地表明供给在进入市场。这表明趋势在变弱，而动量分析是不明显的。
+
+有没有度量强势和弱势的客观方法？</div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">你的强、弱波段思想很不错。但是，看起来我对箭头的绘制把握不好。你能给出另
+外一种评估上涨和下跌波段的强势和弱势的精确方法吗？我感那对我极为重要。</div>
+                    <div class="faq-answer">谢谢。但我不得不承认那不是我的思想。我认为界根本没有多少新东西，而我
+对它的理解无疑受到了很多前辈的影响。
+关于箭头的绘制……那在实时图表上并不是必需的。你应该能够看出价格的斜率，
+而且很容对替的价格波段进行对比。
+20</div>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="back-to-top" style="text-align: center; margin-top: 40px; padding-bottom: 20px;">
+            <a href="#" class="btn" style="display: inline-block;">↑ 返回顶部</a>
+        </div>
+    </div>
+
+    <script>
+        // 平滑滚动
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>

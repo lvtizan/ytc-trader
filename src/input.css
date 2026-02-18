@@ -1,0 +1,159 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* 自定义样式补充 */
+body {
+  @apply bg-gray-950 text-gray-100;
+}
+
+/* 导航栏 */
+.navbar {
+  @apply bg-gray-900 border-b border-gray-800;
+}
+
+/* 卡片 */
+.card {
+  @apply bg-gray-800 rounded-xl p-6 border border-gray-700;
+}
+
+.card:hover {
+  @apply border-primary-500 shadow-lg;
+}
+
+/* 按钮 */
+.btn-primary {
+  @apply bg-primary-500 hover:bg-primary-600 text-white font-semibold px-6 py-3 rounded-lg transition-colors;
+}
+
+.btn-secondary {
+  @apply bg-gray-800 hover:bg-gray-700 text-gray-100 px-6 py-3 rounded-lg border border-gray-700 transition-colors;
+}
+
+/* 输入框 */
+input, textarea {
+  @apply bg-gray-700 border border-gray-600 text-gray-100 rounded-lg px-4 py-3;
+}
+
+input:focus, textarea:focus {
+  @apply outline-none border-primary-500 ring-2 ring-primary-500/20;
+}
+
+/* 链接 */
+a {
+  @apply text-primary-500 hover:text-primary-400 transition-colors;
+}
+
+/* 进度条 */
+.progress-bar {
+  @apply bg-gray-700 rounded-full overflow-hidden;
+}
+
+.progress-fill {
+  @apply bg-primary-500 h-full transition-all duration-300;
+}
+
+/* 标签 */
+.tag {
+  @apply bg-gray-700 text-gray-300 px-3 py-1 rounded-full text-sm font-medium;
+}
+
+.tag.primary {
+  @apply bg-primary-500 text-gray-900;
+}
+
+/* 章节卡片 */
+.chapter-card {
+  @apply bg-gray-800 rounded-xl p-6 border border-gray-700 transition-all duration-300;
+}
+
+.chapter-card:hover {
+  @apply border-primary-500 transform -translate-y-1 shadow-xl;
+}
+
+/* 知识点卡片 */
+.knowledge-item {
+  @apply bg-gray-800 rounded-lg p-5 border border-gray-700 transition-all duration-300;
+}
+
+.knowledge-item:hover {
+  @apply border-primary-500 transform -translate-y-1;
+}
+
+/* 工具卡片 */
+.tool-card {
+  @apply bg-gray-800 rounded-xl p-6 text-center border border-gray-700 transition-all duration-300;
+}
+
+.tool-card:hover {
+  @apply border-primary-500 transform -translate-y-1;
+}
+
+/* 统计卡片 */
+.stat-card {
+  @apply bg-gray-800 rounded-xl p-6 border border-gray-700;
+}
+
+.stat-number {
+  @apply text-4xl font-bold text-primary-500;
+}
+
+/* 目标卡片 */
+.goal-card {
+  @apply bg-gray-800 rounded-lg p-5 border border-gray-700;
+}
+
+/* 练习卡片 */
+.practice-card {
+  @apply bg-gray-800 rounded-lg p-5 border border-gray-700;
+}
+
+/* 复选框样式 */
+input[type="checkbox"] {
+  @apply accent-primary-500 w-5 h-5 cursor-pointer;
+}
+
+/* 表格 */
+table {
+  @apply w-full border-collapse;
+}
+
+th {
+  @apply bg-gray-900 text-primary-500 px-4 py-3 text-left font-semibold border-b-2 border-primary-500;
+}
+
+td {
+  @apply px-4 py-3 border-b border-gray-700;
+}
+
+/* 搜索框 */
+.search-input {
+  @apply bg-gray-800 border border-gray-600 text-gray-100 rounded-lg px-4 py-3;
+}
+
+/* 面包屑 */
+.breadcrumb {
+  @apply flex items-center gap-2 text-sm text-gray-400;
+}
+
+.breadcrumb a {
+  @apply hover:text-primary-500;
+}
+
+/* 徽章 */
+.badge {
+  @apply bg-primary-500 text-gray-900 px-3 py-1 rounded-full text-xs font-bold uppercase;
+}
+
+/* 定义框 */
+.definition-box {
+  @apply bg-gray-700/50 border-l-4 border-primary-500 p-5 rounded-lg;
+}
+
+.example-box {
+  @apply bg-green-900/20 border-l-4 border-green-500 p-5 rounded-lg;
+}
+
+.tip-box {
+  @apply bg-primary-900/20 border-2 border-primary-500 p-5 rounded-lg;
+}

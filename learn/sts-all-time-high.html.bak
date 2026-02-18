@@ -1,0 +1,535 @@
+<!doctype html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>突破历史新高 - STS策略详解</title>
+        <link rel="stylesheet" href="../../css/style.css" />
+    </head>
+    <body>
+        <div class="container">
+            <div
+                style="
+                    background: linear-gradient(
+                        135deg,
+                        #f093fb 0%,
+                        #f5576c 100%
+                    );
+                    color: white;
+                    padding: 50px 40px;
+                    text-align: center;
+                    border-radius: 15px;
+                    margin-bottom: 40px;
+                "
+            >
+                <h1>🚀 突破历史新高</h1>
+                <p>最强势的突破形态 - 开辟新的上涨空间</p>
+            </div>
+
+            <div
+                style="
+                    background: white;
+                    border-radius: 12px;
+                    padding: 40px;
+                    margin-bottom: 35px;
+                "
+            >
+                <h2>什么是突破历史新高</h2>
+                <p>
+                    突破历史新高是指价格突破过去所有的历史高点,进入"无人区"。这种突破通常意味着上方没有套牢盘压力,往往引发最强劲的上涨行情。
+                </p>
+            </div>
+
+            <div
+                style="
+                    background: #fff9e6;
+                    border-left: 4px solid #f39c12;
+                    padding: 25px;
+                    margin: 25px 0;
+                    border-radius: 8px;
+                "
+            >
+                <h3>📊 实战案例: 宁德时代 (300750)</h3>
+                <p>
+                    <strong>时间:</strong> 2024年3月 |
+                    <strong>历史高点:</strong> 265元
+                </p>
+                <p>
+                    宁德时代在260元附近多次受阻,形成明显的历史高点压力。最终以放量大阳线突破265元历史高点,打开新的上涨空间,在一个月内涨至310元,涨幅达17%。
+                </p>
+
+                <!-- 宁德时代K线图 -->
+                <div
+                    style="
+                        background: white;
+                        padding: 30px;
+                        border-radius: 12px;
+                        margin: 25px 0;
+                        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+                    "
+                >
+                    <svg
+                        viewBox="0 0 800 400"
+                        style="width: 100%; height: auto"
+                    >
+                        <!-- 网格线 -->
+                        <defs>
+                            <pattern
+                                id="grid"
+                                width="100"
+                                height="50"
+                                patternUnits="userSpaceOnUse"
+                            >
+                                <path
+                                    d="M 100 0 L 0 0 0 50"
+                                    fill="none"
+                                    stroke="#f0f0f0"
+                                    stroke-width="1"
+                                />
+                            </pattern>
+                        </defs>
+                        <rect width="800" height="400" fill="url(#grid)" />
+
+                        <!-- Y轴标签 -->
+                        <text
+                            x="780"
+                            y="55"
+                            font-size="12"
+                            fill="#999"
+                            text-anchor="end"
+                        >
+                            310
+                        </text>
+                        <text
+                            x="780"
+                            y="105"
+                            font-size="12"
+                            fill="#999"
+                            text-anchor="end"
+                        >
+                            290
+                        </text>
+                        <text
+                            x="780"
+                            y="155"
+                            font-size="12"
+                            fill="#999"
+                            text-anchor="end"
+                        >
+                            270
+                        </text>
+                        <text
+                            x="780"
+                            y="205"
+                            font-size="12"
+                            fill="#999"
+                            text-anchor="end"
+                        >
+                            250
+                        </text>
+                        <text
+                            x="780"
+                            y="255"
+                            font-size="12"
+                            fill="#999"
+                            text-anchor="end"
+                        >
+                            230
+                        </text>
+                        <text
+                            x="780"
+                            y="305"
+                            font-size="12"
+                            fill="#999"
+                            text-anchor="end"
+                        >
+                            210
+                        </text>
+
+                        <!-- 历史高点线 -->
+                        <line
+                            x1="50"
+                            y1="145"
+                            x2="750"
+                            y2="145"
+                            stroke="#e74c3c"
+                            stroke-width="2"
+                            stroke-dasharray="5,5"
+                        />
+                        <text
+                            x="60"
+                            y="138"
+                            font-size="12"
+                            fill="#e74c3c"
+                            font-weight="bold"
+                        >
+                            历史高点 265元
+                        </text>
+
+                        <!-- K线绘制 (前段 - 震荡整理) -->
+                        <!-- 第1-10根K线: 在240-260之间震荡 -->
+                        <g transform="translate(80, 0)">
+                            <!-- K线1 -->
+                            <line
+                                x1="0"
+                                y1="215"
+                                x2="0"
+                                y2="255"
+                                stroke="#333"
+                                stroke-width="1"
+                            />
+                            <rect
+                                x="-8"
+                                y="220"
+                                width="16"
+                                height="30"
+                                fill="#e74c3c"
+                            />
+
+                            <!-- K线2 -->
+                            <line
+                                x1="50"
+                                y1="205"
+                                x2="50"
+                                y2="235"
+                                stroke="#333"
+                                stroke-width="1"
+                            />
+                            <rect
+                                x="42"
+                                y="210"
+                                width="16"
+                                height="20"
+                                fill="#27ae60"
+                            />
+
+                            <!-- K线3 -->
+                            <line
+                                x1="100"
+                                y1="215"
+                                x2="100"
+                                y2="245"
+                                stroke="#333"
+                                stroke-width="1"
+                            />
+                            <rect
+                                x="92"
+                                y="220"
+                                width="16"
+                                height="15"
+                                fill="#e74c3c"
+                            />
+
+                            <!-- K线4 -->
+                            <line
+                                x1="150"
+                                y1="195"
+                                x2="150"
+                                y2="225"
+                                stroke="#333"
+                                stroke-width="1"
+                            />
+                            <rect
+                                x="142"
+                                y="200"
+                                width="16"
+                                height="20"
+                                fill="#27ae60"
+                            />
+
+                            <!-- K线5: 测试前高 -->
+                            <line
+                                x1="200"
+                                y1="140"
+                                x2="200"
+                                y2="175"
+                                stroke="#333"
+                                stroke-width="1"
+                            />
+                            <rect
+                                x="192"
+                                y="145"
+                                width="16"
+                                height="25"
+                                fill="#e74c3c"
+                            />
+
+                            <!-- K线6 -->
+                            <line
+                                x1="250"
+                                y1="180"
+                                x2="250"
+                                y2="210"
+                                stroke="#333"
+                                stroke-width="1"
+                            />
+                            <rect
+                                x="242"
+                                y="185"
+                                width="16"
+                                height="20"
+                                fill="#e74c3c"
+                            />
+
+                            <!-- K线7 -->
+                            <line
+                                x1="300"
+                                y1="195"
+                                x2="300"
+                                y2="225"
+                                stroke="#333"
+                                stroke-width="1"
+                            />
+                            <rect
+                                x="292"
+                                y="200"
+                                width="16"
+                                height="15"
+                                fill="#27ae60"
+                            />
+
+                            <!-- K线8 -->
+                            <line
+                                x1="350"
+                                y1="185"
+                                x2="350"
+                                y2="215"
+                                stroke="#333"
+                                stroke-width="1"
+                            />
+                            <rect
+                                x="342"
+                                y="190"
+                                width="16"
+                                height="18"
+                                fill="#27ae60"
+                            />
+
+                            <!-- K线9 -->
+                            <line
+                                x1="400"
+                                y1="175"
+                                x2="400"
+                                y2="205"
+                                stroke="#333"
+                                stroke-width="1"
+                            />
+                            <rect
+                                x="392"
+                                y="180"
+                                width="16"
+                                height="20"
+                                fill="#e74c3c"
+                            />
+
+                            <!-- K线10 -->
+                            <line
+                                x1="450"
+                                y1="185"
+                                x2="450"
+                                y2="215"
+                                stroke="#333"
+                                stroke-width="1"
+                            />
+                            <rect
+                                x="442"
+                                y="190"
+                                width="16"
+                                height="12"
+                                fill="#27ae60"
+                            />
+                        </g>
+
+                        <!-- 突破K线 (放量大阳线) -->
+                        <g transform="translate(80, 0)">
+                            <!-- K线11: 突破K线 -->
+                            <line
+                                x1="500"
+                                y1="120"
+                                x2="500"
+                                y2="185"
+                                stroke="#333"
+                                stroke-width="1"
+                            />
+                            <rect
+                                x="490"
+                                y="125"
+                                width="20"
+                                height="55"
+                                fill="#27ae60"
+                                stroke="#27ae60"
+                                stroke-width="2"
+                            />
+                            <text
+                                x="500"
+                                y="115"
+                                font-size="11"
+                                fill="#27ae60"
+                                text-anchor="middle"
+                                font-weight="bold"
+                            >
+                                突破!
+                            </text>
+
+                            <!-- K线12: 回踩确认 -->
+                            <line
+                                x1="550"
+                                y1="135"
+                                x2="550"
+                                y2="155"
+                                stroke="#333"
+                                stroke-width="1"
+                            />
+                            <rect
+                                x="542"
+                                y="140"
+                                width="16"
+                                height="10"
+                                fill="#e74c3c"
+                            />
+                            <text
+                                x="550"
+                                y="170"
+                                font-size="10"
+                                fill="#999"
+                                text-anchor="middle"
+                            >
+                                回踩确认
+                            </text>
+
+                            <!-- K线13-15: 继续上涨 -->
+                            <line
+                                x1="600"
+                                y1="105"
+                                x2="600"
+                                y2="140"
+                                stroke="#333"
+                                stroke-width="1"
+                            />
+                            <rect
+                                x="592"
+                                y="110"
+                                width="16"
+                                height="25"
+                                fill="#27ae60"
+                            />
+
+                            <line
+                                x1="650"
+                                y1="85"
+                                x2="650"
+                                y2="115"
+                                stroke="#333"
+                                stroke-width="1"
+                            />
+                            <rect
+                                x="642"
+                                y="90"
+                                width="16"
+                                height="20"
+                                fill="#27ae60"
+                            />
+
+                            <line
+                                x1="700"
+                                y1="50"
+                                x2="700"
+                                y2="95"
+                                stroke="#333"
+                                stroke-width="1"
+                            />
+                            <rect
+                                x="692"
+                                y="55"
+                                width="16"
+                                height="35"
+                                fill="#27ae60"
+                            />
+                            <text
+                                x="700"
+                                y="45"
+                                font-size="11"
+                                fill="#27ae60"
+                                text-anchor="middle"
+                                font-weight="bold"
+                            >
+                                310元 (+17%)
+                            </text>
+                        </g>
+
+                        <!-- 标注 -->
+                        <circle
+                            cx="580"
+                            cy="145"
+                            r="5"
+                            fill="none"
+                            stroke="#e74c3c"
+                            stroke-width="2"
+                        />
+                        <text
+                            x="580"
+                            y="165"
+                            font-size="10"
+                            fill="#e74c3c"
+                            text-anchor="middle"
+                        >
+                            回踩不破
+                        </text>
+
+                        <!-- 成交量标注 -->
+                        <text
+                            x="500"
+                            y="380"
+                            font-size="10"
+                            fill="#27ae60"
+                            text-anchor="middle"
+                        >
+                            放量突破
+                        </text>
+                        <rect
+                            x="485"
+                            y="360"
+                            width="30"
+                            height="15"
+                            fill="#27ae60"
+                            opacity="0.6"
+                        />
+                    </svg>
+                    <p
+                        style="
+                            text-align: center;
+                            color: #666;
+                            font-size: 14px;
+                            margin-top: 15px;
+                        "
+                    >
+                        <strong>图1:</strong> 宁德时代突破历史新高K线图 (300750)
+                    </p>
+                </div>
+
+                <p><strong>关键要点:</strong></p>
+                <ul>
+                    <li>✅ 突破必须放量,显示资金坚决做多</li>
+                    <li>✅ 突破后回踩不破前高点(265元),确认有效</li>
+                    <li>✅ 上方无套牢盘,上涨阻力小</li>
+                    <li>✅ 容易出现加速上涨行情(一个月+17%)</li>
+                </ul>
+            </div>
+
+            <div style="text-align: center">
+                <a
+                    href="sts-strategy.html"
+                    style="
+                        display: inline-block;
+                        padding: 12px 25px;
+                        background: #f5576c;
+                        color: white;
+                        text-decoration: none;
+                        border-radius: 8px;
+                    "
+                    >← 返回STS策略</a
+                >
+            </div>
+        </div>
+    </body>
+</html>

@@ -1,0 +1,242 @@
+<!doctype html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>YTC 策略流程图 - Mermaid演示</title>
+        <link rel="stylesheet" href="../css/modern-premium.css" />
+        <script src="node_modules/mermaid/dist/mermaid.min.js"></script>
+        <style>
+            body {
+                background: linear-gradient(
+                    to bottom,
+                    #0a0a0f 0%,
+                    #0f172a 50%,
+                    #0a0a0f 100%
+                );
+                min-height: 100vh;
+                padding: 40px 20px;
+            }
+            .container {
+                max-width: 1400px;
+                margin: 0 auto;
+            }
+            .header {
+                text-align: center;
+                margin-bottom: 60px;
+            }
+            .header h1 {
+                font-size: 3rem;
+                font-weight: 800;
+                background: linear-gradient(135deg, #6366f1 0%, #06b6d4 100%);
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+                margin-bottom: 16px;
+            }
+            .diagram-section {
+                background: rgba(30, 41, 59, 0.5);
+                backdrop-filter: blur(10px);
+                border: 1px solid rgba(99, 102, 241, 0.2);
+                border-radius: 16px;
+                padding: 40px;
+                margin-bottom: 40px;
+            }
+            .diagram-title {
+                font-size: 1.75rem;
+                font-weight: 700;
+                color: var(--text-primary);
+                margin-bottom: 24px;
+                padding-bottom: 12px;
+                border-bottom: 3px solid;
+                border-image: linear-gradient(90deg, #6366f1 0%, #06b6d4 100%) 1;
+            }
+            .mermaid {
+                background: rgba(15, 23, 42, 0.5);
+                border-radius: 12px;
+                padding: 20px;
+                text-align: center;
+            }
+            .mermaid svg {
+                max-width: 100%;
+                height: auto;
+            }
+            .mermaid text {
+                font-size: 16px !important;
+                fill: #f1f5f9 !important;
+            }
+            .mermaid .nodeLabel {
+                color: #f1f5f9 !important;
+            }
+            .mermaid .edgeLabel {
+                color: #cbd5e1 !important;
+                background-color: rgba(15, 23, 42, 0.9) !important;
+            }
+            .mermaid .flowchartLink {
+                fill: none;
+                stroke: #6366f1;
+                stroke-width: 2px;
+            }
+            .mermaid .node rect,
+            .mermaid .node circle,
+            .mermaid .node ellipse,
+            .mermaid .node polygon,
+            .mermaid .node path {
+                fill: #1e293b;
+                stroke: #6366f1;
+                stroke-width: 2px;
+            }
+            .mermaid .node.clickable {
+                cursor: pointer;
+            }
+            .mermaid .arrowheadPath {
+                fill: #6366f1;
+            }
+            .mermaid .edgePath .path {
+                stroke: #6366f1;
+                stroke-width: 2px;
+            }
+            .mermaid .cluster rect {
+                fill: rgba(30, 41, 59, 0.5);
+                stroke: #6366f1;
+                stroke-width: 1px;
+            }
+        </style>
+    </head>
+    <body>
+        <!-- 科技光晕背景层 -->
+        <div class="tech-glow"></div>
+
+        <div class="container">
+            <div class="header">
+                <h1>YTC 交易策略流程图</h1>
+                <p style="color: #cbd5e1 !important; font-size: 1.25rem">
+                    使用 Mermaid 绘制的策略决策流程
+                </p>
+            </div>
+
+            <!-- PB策略流程图 -->
+            <div class="diagram-section">
+                <h2 class="diagram-title">🎯 PB策略（Pullback回调买入）流程</h2>
+                <div class="mermaid">
+                    graph TD A[开始] --> B{周线上升趋势?} B -->|否| Z[放弃交易]
+                    B -->|是| C{价格回调到<br />前期高点区域?} C -->|否| Z C
+                    -->|是| D{形成明显<br />回调低点?} D -->|否| Z D -->|是|
+                    E{出现买入信号?<br />锤子线/吞没等} E -->|否| Z E -->|是|
+                    F[计算仓位] F --> G{盈亏比≥2:1?} G -->|否| Z G -->|是|
+                    H[设置止损<br />结构下方] H --> I[入场买入] I -->
+                    J{触发止损?} J -->|是| K[止损离场] J -->|否| L{达到目标价?}
+                    L -->|否| M[持仓追踪] M --> J L -->|是| N[分批止盈] style A
+                    fill:#6366f1 style I fill:#10b981 style K fill:#ef4444 style
+                    N fill:#06b6d4 style Z fill:#94a3b8
+                </div>
+            </div>
+
+            <!-- CPB策略流程图 -->
+            <div class="diagram-section">
+                <h2 class="diagram-title">🔄 CPB策略（复杂回调）流程</h2>
+                <div class="mermaid">
+                    graph TD A[开始] --> B{上升趋势完整?} B -->|否| Z[放弃] B
+                    -->|是| C{第一浪回调} C --> D{价格反弹} D --> E{第二浪回调}
+                    E --> F{进入支撑区域?} F -->|否| Z F -->|是| G{第二浪低点<br />高于第一浪?}
+                    G -->|否| Z G -->|是| H{出现买入信号?} H -->|否| Z H -->|是|
+                    I[入场] I --> J[止损:第二浪<br />低点下方] style A
+                    fill:#6366f1 style I fill:#10b981 style Z fill:#94a3b8
+                </div>
+            </div>
+
+            <!-- STS策略流程图 -->
+            <div class="diagram-section">
+                <h2 class="diagram-title">🏗️ STS策略（结构性交易）流程</h2>
+                <div class="mermaid">
+                    graph TD A[开始] --> B{识别关键<br />结构位置} B -->
+                    C{前期高点<br />或阻力位} C --> D{价格接近<br />结构位置} D
+                    --> E{出现突破K线?} E -->|否| F[继续等待] E -->|是|
+                    G{确认突破<br />收盘确认} G -->|假突破| F G -->|有效突破|
+                    H[入场] H --> I[止损:突破K线<br />最低点下方] I -->
+                    J[目标:下一结构位] style A fill:#6366f1 style H fill:#10b981
+                    style F fill:#f59e0b
+                </div>
+            </div>
+
+            <!-- 风险管理流程 -->
+            <div class="diagram-section">
+                <h2 class="diagram-title">🛡️ 风险管理流程</h2>
+                <div class="mermaid">
+                    graph LR A[账户净值] --> B{单笔风险<br />2%} B --> C[入场价]
+                    C --> D[止损价] D --> E[每股风险] E --> F[仓位规模<br />=
+                    风险金额÷每股风险] F --> G{组合总风险<br />≤8%?} G -->|否|
+                    H[降低仓位] G -->|是| I[执行交易] style A fill:#6366f1 style
+                    I fill:#10b981 style H fill:#ef4444
+                </div>
+            </div>
+
+            <!-- 上升趋势识别 -->
+            <div class="diagram-section">
+                <h2 class="diagram-title">📈 上升趋势识别</h2>
+                <div class="mermaid">
+                    graph TD A[价格起点] --> B{创新高?} B -->|是| C[标记HH] B
+                    -->|否| D[等待] C --> E{回调后<br />创新低?} E -->|否|
+                    F[标记HL<br />趋势向上] E -->|是| G[趋势可能结束] F -->
+                    H{继续创新高?} H -->|是| C H -->|否| I{形成更低高点?} I
+                    -->|否| F I -->|是| J[上升趋势<br />可能结束] style A
+                    fill:#6366f1 style F fill:#10b981 style G fill:#f59e0b style
+                    J fill:#ef4444
+                </div>
+            </div>
+
+            <!-- 回调类型识别 -->
+            <div class="diagram-section">
+                <h2 class="diagram-title">🔄 回调类型识别</h2>
+                <div class="mermaid">
+                    graph TD A[价格从高点回调] --> B{形成低点后<br />直接反弹?}
+                    B -->|是| C[简单回调<br />1浪] B -->|否| D{反弹后<br />再次回调?}
+                    D -->|第二次低点| E{再次反弹?} E -->|是| F[复杂回调<br />2浪-CPB]
+                    E -->|继续回调| G{第三次低点?} G -->|是| H[复杂回调<br />3浪+}
+                    C --> I[入场时机:支撑区] F --> I H --> I style C
+                    fill:#10b981 style F fill:#06b6d4 style H fill:#f59e0b style
+                    I fill:#6366f1
+                </div>
+            </div>
+        </div>
+
+        <script>
+            mermaid.initialize({
+                startOnLoad: true,
+                theme: "dark",
+                themeVariables: {
+                    primaryColor: "#6366f1",
+                    primaryTextColor: "#f1f5f9",
+                    primaryBorderColor: "#818cf8",
+                    lineColor: "#6366f1",
+                    secondaryColor: "#06b6d4",
+                    tertiaryColor: "#8b5cf6",
+                    background: "#1e293b",
+                    mainBkg: "#334155",
+                    nodeBorder: "#6366f1",
+                    clusterBkg: "#1e293b",
+                    clusterBorder: "#6366f1",
+                    titleColor: "#f1f5f9",
+                    edgeLabelBackground: "#1e293b",
+                    actorBkg: "#6366f1",
+                    actorBorder: "#818cf8",
+                    actorTextColor: "#f1f5f9",
+                    actorLineColor: "#6366f1",
+                    signalColor: "#10b981",
+                    signalTextColor: "#f1f5f9",
+                    labelBoxBkgColor: "#1e293b",
+                    labelBoxBorderColor: "#6366f1",
+                    labelTextColor: "#f1f5f9",
+                    loopTextColor: "#f1f5f9",
+                    noteBorderColor: "#6366f1",
+                    noteBkgColor: "#1e293b",
+                    noteTextColor: "#f1f5f9",
+                    activationBorderColorBkgColor: "#1e293b",
+                    activationBorderColorBkgColor: "#6366f1",
+                    partitionBkgColor: "#1e293b",
+                    partitionBorderColor: "#6366f1",
+                    fontSize: "16px",
+                },
+            });
+        </script>
+    </body>
+</html>

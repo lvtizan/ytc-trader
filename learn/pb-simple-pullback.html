@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>简单回调买入 - PB策略详解</title>
+    <link rel="stylesheet" href="../../css/style.css">
+    <style>
+        .page-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 50px 40px;
+            text-align: center;
+            border-radius: 15px;
+            margin-bottom: 40px;
+            box-shadow: 0 15px 35px rgba(102, 126, 234, 0.3);
+        }
+        .page-header h1 {
+            margin: 0 0 15px 0;
+            font-size: 2.5em;
+        }
+        .page-header .subtitle {
+            font-size: 1.2em;
+            opacity: 0.95;
+        }
+
+        .content-section {
+            background: rgba(30, 41, 59, 0.8);
+            border-radius: 12px;
+            padding: 40px;
+            margin-bottom: 35px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+        }
+        .content-section h2 {
+            color: #e2e8f0;
+            font-size: 1.8em;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #667eea;
+        }
+
+        .concept-box {
+            background: rgba(51, 65, 85, 0.6);
+            border-left: 4px solid #667eea;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 8px;
+        }
+        .concept-box h3 {
+            color: #667eea;
+            margin: 0 0 15px 0;
+            font-size: 1.3em;
+        }
+        .concept-box p {
+            color: #cbd5e1;
+            line-height: 1.8;
+            margin: 0;
+        }
+
+        .chart-container {
+            background: rgba(30, 41, 59, 0.5);
+            border: 1px solid rgba(148, 163, 184, 0.2);
+            border-radius: 10px;
+            padding: 30px;
+            margin: 30px 0;
+            text-align: center;
+        }
+        .chart-container svg {
+            max-width: 100%;
+            height: auto;
+        }
+
+        .steps-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 25px 0;
+        }
+        .step-card {
+            background: linear-gradient(135deg, rgba(51, 65, 85, 0.8) 0%, rgba(71, 85, 105, 0.8) 100%);
+            border-radius: 10px;
+            padding: 20px;
+            position: relative;
+        }
+        .step-number {
+            background: #667eea;
+            color: white;
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        .step-card h4 {
+            color: #e2e8f0;
+            margin: 0 0 10px 0;
+            font-size: 1.1em;
+        }
+        .step-card p {
+            color: #cbd5e1;
+            margin: 0;
+            line-height: 1.6;
+            font-size: 0.95em;
+        }
+
+        .case-study {
+            background: rgba(234, 179, 8, 0.15);
+            border-left: 4px solid #f39c12;
+            padding: 25px;
+            margin: 25px 0;
+            border-radius: 8px;
+        }
+        .case-study h3 {
+            color: #f39c12;
+            margin: 0 0 15px 0;
+            font-size: 1.4em;
+            display: flex;
+            align-items: center;
+        }
+        .case-study h3::before {
+            content: "📊";
+            margin-right: 10px;
+        }
+
+        .key-points {
+            background: rgba(34, 197, 94, 0.15);
+            border-radius: 10px;
+            padding: 25px;
+            margin: 25px 0;
+        }
+        .key-points h3 {
+            color: #27ae60;
+            margin: 0 0 15px 0;
+            font-size: 1.3em;
+        }
+        .key-points ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .key-points li {
+            color: #cbd5e1;
+            padding: 10px 0;
+            padding-left: 30px;
+            position: relative;
+            line-height: 1.7;
+        }
+        .key-points li::before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #27ae60;
+            font-weight: bold;
+            font-size: 1.2em;
+        }
+
+        .back-nav {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        .back-nav a {
+            display: inline-block;
+            padding: 12px 25px;
+            background: #667eea;
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+        .back-nav a:hover {
+            background: #5568d3;
+            transform: translateY(-2px);
+        }
+
+        @media (max-width: 768px) {
+            .page-header {
+                padding: 30px 20px;
+            }
+            .page-header h1 {
+                font-size: 1.8em;
+            }
+            .content-section {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="page-header">
+            <h1>📈 简单回调买入</h1>
+            <p class="subtitle">Pullback策略的核心 - 在上升趋势中寻找最佳入场点</p>
+        </div>
+
+        <!-- 什么是简单回调 -->
+        <div class="content-section">
+            <h2>📖 什么是简单回调买入</h2>
+
+            <div class="concept-box">
+                <h3>核心概念</h3>
+                <p>
+                    简单回调买入是PB(Pullback)策略的基础形态。在明确的上升趋势中,价格不会永远直线上涨,
+                    而是会以"上涨-回调-再上涨"的节奏推进。简单回调就是指价格小幅回撤后立即恢复上升趋势,
+                    这种回调通常持续时间短、回撤幅度浅,是最佳的入场时机。
+                </p>
+            </div>
+
+            <div class="chart-container">
+                <svg width="700" height="400" xmlns="http://www.w3.org/2000/svg">
+                    <!-- 背景 -->
+                    <rect x="0" y="0" width="700" height="400" fill="rgba(30, 41, 59, 0.3)"/>
+
+                    <!-- 网格线 -->
+                    <line x1="50" y1="350" x2="650" y2="350" stroke="#ddd" stroke-width="1"/>
+                    <line x1="50" y1="50" x2="50" y2="350" stroke="#ddd" stroke-width="1"/>
+
+                    <!-- 趋势线 -->
+                    <line x1="80" y1="300" x2="620" y2="80" stroke="#667eea" stroke-width="2" stroke-dasharray="5,5"/>
+                    <text x="630" y="75" fill="#667eea" font-size="14">上升趋势线</text>
+
+                    <!-- K线 -->
+                    <!-- 第一波上涨 -->
+                    <g transform="translate(0,0)">
+                        <line x1="100" y1="280" x2="100" y2="250" stroke="#27ae60" stroke-width="2"/>
+                        <rect x="95" y="260" width="10" height="15" fill="#27ae60"/>
+
+                        <line x1="130" y1="265" x2="130" y2="230" stroke="#27ae60" stroke-width="2"/>
+                        <rect x="125" y="240" width="10" height="20" fill="#27ae60"/>
+
+                        <line x1="160" y1="245" x2="160" y2="210" stroke="#27ae60" stroke-width="2"/>
+                        <rect x="155" y="220" width="10" height="18" fill="#27ae60"/>
+                    </g>
+
+                    <!-- 回调 -->
+                    <g transform="translate(0,0)">
+                        <line x1="190" y1="225" x2="190" y2="240" stroke="#e74c3c" stroke-width="2"/>
+                        <rect x="185" y="225" width="10" height="10" fill="#e74c3c"/>
+
+                        <line x1="220" y1="235" x2="220" y2="245" stroke="#e74c3c" stroke-width="2"/>
+                        <rect x="215" y="235" width="10" height="8" fill="#e74c3c"/>
+                    </g>
+
+                    <!-- 第二波上涨 -->
+                    <g transform="translate(0,0)">
+                        <line x1="250" y1="240" x2="250" y2="200" stroke="#27ae60" stroke-width="2"/>
+                        <rect x="245" y="210" width="10" height="25" fill="#27ae60"/>
+
+                        <line x1="280" y1="215" x2="280" y2="170" stroke="#27ae60" stroke-width="2"/>
+                        <rect x="275" y="180" width="10" height="30" fill="#27ae60"/>
+
+                        <line x1="310" y1="185" x2="310" y2="150" stroke="#27ae60" stroke-width="2"/>
+                        <rect x="305" y="160" width="10" height="20" fill="#27ae60"/>
+                    </g>
+
+                    <!-- 浅回调 -->
+                    <g transform="translate(0,0)">
+                        <line x1="340" y1="165" x2="340" y2="175" stroke="#e74c3c" stroke-width="2"/>
+                        <rect x="335" y="165" width="10" height="8" fill="#e74c3c"/>
+
+                        <line x1="370" y1="170" x2="370" y2="180" stroke="#e74c3c" stroke-width="2"/>
+                        <rect x="365" y="170" width="10" height="7" fill="#e74c3c"/>
+                    </g>
+
+                    <!-- 第三波上涨 -->
+                    <g transform="translate(0,0)">
+                        <line x1="400" y1="175" x2="400" y2="130" stroke="#27ae60" stroke-width="2"/>
+                        <rect x="395" y="140" width="10" height="30" fill="#27ae60"/>
+
+                        <line x1="430" y1="145" x2="430" y2="100" stroke="#27ae60" stroke-width="2"/>
+                        <rect x="425" y="110" width="10" height="30" fill="#27ae60"/>
+
+                        <line x1="460" y1="115" x2="460" y2="80" stroke="#27ae60" stroke-width="2"/>
+                        <rect x="455" y="90" width="10" height="20" fill="#27ae60"/>
+                    </g>
+
+                    <!-- 标注 -->
+                    <!-- 买入点1 -->
+                    <circle cx="220" cy="245" r="8" fill="#3498db" opacity="0.8"/>
+                    <text x="235" y="260" fill="#3498db" font-size="14" font-weight="bold">买入点1</text>
+
+                    <!-- 买入点2 -->
+                    <circle cx="370" cy="180" r="8" fill="#3498db" opacity="0.8"/>
+                    <text x="385" y="195" fill="#3498db" font-size="14" font-weight="bold">买入点2</text>
+
+                    <!-- 支撑位 -->
+                    <line x1="180" y1="250" x2="400" y2="250" stroke="#f39c12" stroke-width="2" stroke-dasharray="3,3"/>
+                    <text x="180" y="270" fill="#f39c12" font-size="12">动态支撑位</text>
+
+                    <!-- 标题 -->
+                    <text x="350" y="30" fill="#2c3e50" font-size="18" font-weight="bold" text-anchor="middle">简单回调买入形态</text>
+                </svg>
+                <p style="color: #666; margin-top: 15px; font-size: 0.9em;">图1: 简单回调买入的理想形态图</p>
+            </div>
+        </div>
+
+        <!-- 识别特征 -->
+        <div class="content-section">
+            <h2>🔍 识别简单回调的5个关键特征</h2>
+
+            <div class="steps-grid">
+                <div class="step-card">
+                    <div class="step-number">1</div>
+                    <h4>明确上升趋势</h4>
+                    <p>价格连续创出更高的高点和更高的低点,HH-HL结构清晰可见</p>
+                </div>
+
+                <div class="step-card">
+                    <div class="step-number">2</div>
+                    <h4>回调幅度小</h4>
+                    <p>回调通常不超过前一波上涨的38.2%-50%,属于浅幅回调</p>
+                </div>
+
+                <div class="step-card">
+                    <div class="step-number">3</div>
+                    <h4>回调时间短</h4>
+                    <p>回调通常在1-3根K线内完成,价格很快恢复上涨趋势</p>
+                </div>
+
+                <div class="step-card">
+                    <div class="step-number">4</div>
+                    <h4>在支撑位止跌</h4>
+                    <p>回调在前高点、趋势线或关键移动平均线附近获得支撑</p>
+                </div>
+
+                <div class="step-card">
+                    <div class="step-number">5</div>
+                    <h4>恢复动能强劲</h4>
+                    <p>回调结束后,价格快速创新高,显示买盘力量充足</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- 实战案例 -->
+        <div class="content-section">
+            <h2>💼 A股实战案例</h2>
+
+            <div class="case-study">
+                <h3>案例1: 贵州茅台(600519) - 浅回调买入</h3>
+                <p style="color: #cbd5e1; line-height: 1.8; margin-bottom: 15px;">
+                    <strong>时间:</strong> 2024年1月-2月 | <strong>涨幅:</strong> 入场后15个交易日上涨22%
+                </p>
+
+                <div class="concept-box" style="background: rgba(30, 41, 59, 0.8); border-left-color: #3498db;">
+                    <h4 style="color: #3498db; margin: 0 0 10px 0;">形态特征</h4>
+                    <p style="margin: 0;">
+                        股价从1650元上涨至1780元后出现小幅回调,最低回撤至1720元附近(约38.2%回调位),
+                        在此位置获得强支撑。随后3个交易日内快速突破前高1780元,展开新一轮上涨攻势。
+                    </p>
+                </div>
+
+                <div class="key-points" style="background: rgba(30, 41, 59, 0.8); margin-top: 15px;">
+                    <h4 style="color: #27ae60; margin: 0 0 10px 0;">操作要点</h4>
+                    <ul>
+                        <li>入场点: 1725元,在回调低点形成小阳线后入场</li>
+                        <li>止损位: 1700元,跌破前一回调低点</li>
+                        <li>目标位: 1880元,前一轮涨幅的1.618倍扩展位</li>
+                        <li>风险回报比: 1:4.5</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="case-study" style="background: rgba(59, 130, 246, 0.15); border-left-color: #3498db;">
+                <h3 style="color: #3498db;">案例2: 宁德时代(300750) - 连续浅回调</h3>
+                <p style="color: #cbd5e1; line-height: 1.8; margin-bottom: 15px;">
+                    <strong>时间:</strong> 2024年2月-3月 | <strong>特点:</strong> 出现连续3次浅回调买入机会
+                </p>
+
+                <div class="concept-box" style="background: rgba(30, 41, 59, 0.8); border-left-color: #27ae60;">
+                    <h4 style="color: #27ae60; margin: 0 0 10px 0;">形态特征</h4>
+                    <p style="margin: 0;">
+                        股价从185元启动,第一波涨至205元后回撤至198元(约40%回调),首次买入机会。
+                        第二波涨至215元后回撤至210元,第二次买入机会。第三波涨至228元后回撤至222元,
+                        第三次买入机会。每次回调都在3天内完成,展现了极强的上升趋势。
+                    </p>
+                </div>
+            </div>
+
+            <div class="case-study" style="background: rgba(168, 85, 247, 0.15); border-left-color: #9b59b6;">
+                <h3 style="color: #9b59b6;">案例3: 比亚迪(002594) - 假突破后真回调</h3>
+                <p style="color: #cbd5e1; line-height: 1.8; margin-bottom: 15px;">
+                    <strong>时间:</strong> 2024年3月 | <strong>教训:</strong> 等待确认信号再入场
+                </p>
+
+                <div class="concept-box" style="background: rgba(30, 41, 59, 0.8); border-left-color: #e74c3c;">
+                    <h4 style="color: #e74c3c; margin: 0 0 10px 0;">形态特征</h4>
+                    <p style="margin: 0;">
+                        股价从235元涨至255元后出现快速回调,最低跌至245元,看似回调至50%位置。
+                        但次日继续下探至242元,跌破预期支撑位。直到第3天在240元附近形成明显看涨吞没形态,
+                        确认回调结束才是最佳入场时机。
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- 交易要点 -->
+        <div class="content-section">
+            <h2>⚡ 交易执行要点</h2>
+
+            <div class="key-points">
+                <h3>入场时机选择</h3>
+                <ul>
+                    <li><strong>激进型:</strong> 在回调至38.2%位置且出现止跌信号时入场</li>
+                    <li><strong>稳健型:</strong> 等待价格突破回调波段的高点确认再入场</li>
+                    <li><strong>最佳时机:</strong> 回调后期形成小阳线或锤子线等看涨形态</li>
+                </ul>
+            </div>
+
+            <div class="key-points" style="background: rgba(249, 115, 22, 0.15);">
+                <h3 style="color: #f39c12;">止损设置</h3>
+                <ul>
+                    <li><strong>方法1:</strong> 设置在回调低点下方2-3%</li>
+                    <li><strong>方法2:</strong> 设置在前一波段低点下方</li>
+                    <li><strong>方法3:</strong> 使用ATR止损,例如1.5倍ATR</li>
+                    <li><strong>关键:</strong> 止损幅度控制在单笔风险的1-2%</li>
+                </ul>
+            </div>
+
+            <div class="key-points" style="background: rgba(34, 197, 94, 0.15);">
+                <h3 style="color: #27ae60;">出场策略</h3>
+                <ul>
+                    <li><strong>目标位1:</strong> 前一轮上涨幅度的100%扩展位(保守)</li>
+                    <li><strong>目标位2:</strong> 前一轮上涨幅度的161.8%扩展位(积极)</li>
+                    <li><strong>移动止损:</strong> 盈利后使用移动止损跟踪趋势</li>
+                    <li><strong>信号出场:</strong> 出现明显的反转信号时平仓</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- 常见错误 -->
+        <div class="content-section">
+            <h2>⚠️ 常见错误与避免方法</h2>
+
+            <div class="case-study" style="background: rgba(239, 68, 68, 0.15); border-left-color: #e74c3c;">
+                <h3 style="color: #e74c3c;">错误1: 回调未结束就急于入场</h3>
+                <p style="color: #cbd5e1; margin: 0;">
+                    <strong>表现:</strong> 价格刚回调一两天就匆忙买入,结果买在半山腰<br>
+                    <strong>避免:</strong> 等待价格止跌信号,如出现小阳线、锤子线或成交量萎缩
+                </p>
+            </div>
+
+            <div class="case-study" style="background: rgba(239, 68, 68, 0.15); border-left-color: #e74c3c;">
+                <h3 style="color: #e74c3c;">错误2: 深度回调误当简单回调</h3>
+                <p style="color: #cbd5e1; margin: 0;">
+                    <strong>表现:</strong> 回调幅度超过61.8%,已经演变为深度回调或趋势反转<br>
+                    <strong>避免:</strong> 严格判断回调幅度,超过50%要谨慎对待
+                </p>
+            </div>
+
+            <div class="case-study" style="background: rgba(239, 68, 68, 0.15); border-left-color: #e74c3c;">
+                <h3 style="color: #e74c3c;">错误3: 止损设置过紧被正常波动扫出</h3>
+                <p style="color: #cbd5e1; margin: 0;">
+                    <strong>表现:</strong> 止损设在回调低点,被日常波动触发<br>
+                    <strong>避免:</strong> 止损要留出余地,考虑市场的正常波动范围
+                </p>
+            </div>
+        </div>
+
+        <!-- 练习建议 -->
+        <div class="content-section">
+            <h2>📝 学习与练习建议</h2>
+
+            <div class="steps-grid">
+                <div class="step-card" style="background: linear-gradient(135deg, rgba(34, 211, 238, 0.2) 0%, rgba(251, 146, 60, 0.2) 100%);">
+                    <h4>复盘历史案例</h4>
+                    <p>回顾过去3个月的大牛股,找出至少10个简单回调买入案例,总结共同特征</p>
+                </div>
+
+                <div class="step-card" style="background: linear-gradient(135deg, rgba(251, 146, 60, 0.2) 0%, rgba(249, 115, 22, 0.2) 100%);">
+                    <h4>模拟交易练习</h4>
+                    <p>在模拟盘中专门练习简单回调策略,记录每笔交易的入场、出场、心理状态</p>
+                </div>
+
+                <div class="step-card" style="background: linear-gradient(135deg, rgba(192, 132, 252, 0.2) 0%, rgba(254, 249, 195, 0.2) 100%);">
+                    <h4>建立检查清单</h4>
+                    <p>创建简单回调买入的检查清单,交易前逐项确认,培养系统化交易习惯</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="back-nav">
+            <a href="pb-strategy.html">← 返回PB策略主页</a>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,1188 @@
+<!doctype html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>YTC Trader 学习系统 - 专业价格行为交易</title>
+        <link rel="stylesheet" href="css/modern-premium.css" />
+        <style>
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+            }
+
+            body {
+                font-family:
+                    "Inter",
+                    -apple-system,
+                    BlinkMacSystemFont,
+                    "Segoe UI",
+                    sans-serif;
+                background: linear-gradient(
+                    to bottom,
+                    #0a0a0f 0%,
+                    #0f172a 50%,
+                    #0a0a0f 100%
+                );
+                min-height: 100vh;
+                color: #cbd5e1;
+                overflow-x: hidden;
+            }
+
+            /* 顶部导航 */
+            .navbar {
+                position: fixed;
+                top: 0;
+                left: 0;
+                right: 0;
+                background: rgba(15, 23, 42, 0.8);
+                backdrop-filter: blur(20px);
+                border-bottom: 1px solid rgba(99, 102, 241, 0.2);
+                padding: 16px 0;
+                z-index: 1000;
+            }
+
+            .nav-container {
+                max-width: 1200px;
+                margin: 0 auto;
+                padding: 0 24px;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+            }
+
+            .brand {
+                display: flex;
+                align-items: center;
+                gap: 12px;
+                text-decoration: none;
+                color: white;
+            }
+
+            .brand-logo {
+                width: 48px;
+                height: 48px;
+                background: linear-gradient(135deg, #6366f1 0%, #06b6d4 100%);
+                border-radius: 12px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-weight: 800;
+                font-size: 20px;
+                color: white;
+            }
+
+            .brand-text {
+                display: flex;
+                flex-direction: column;
+            }
+
+            .brand-title {
+                font-size: 18px;
+                font-weight: 700;
+                color: #f1f5f9;
+            }
+
+            .brand-tagline {
+                font-size: 12px;
+                color: #94a3b8;
+            }
+
+            .nav-links {
+                display: flex;
+                gap: 32px;
+            }
+
+            .nav-links a {
+                color: #cbd5e1;
+                text-decoration: none;
+                font-weight: 500;
+                transition: color 0.3s;
+            }
+
+            .nav-links a:hover {
+                color: #6366f1;
+            }
+
+            /* Hero 区域 */
+            .hero {
+                padding: 160px 24px 80px;
+                text-align: center;
+                position: relative;
+                overflow: hidden;
+            }
+
+            .hero::before {
+                content: "";
+                position: absolute;
+                top: -50%;
+                left: 50%;
+                transform: translateX(-50%);
+                width: 1000px;
+                height: 1000px;
+                background: radial-gradient(
+                    ellipse at center,
+                    rgba(99, 102, 241, 0.15) 0%,
+                    transparent 70%
+                );
+                pointer-events: none;
+            }
+
+            .hero-badge {
+                display: inline-block;
+                padding: 8px 20px;
+                background: rgba(99, 102, 241, 0.2);
+                border: 1px solid rgba(99, 102, 241, 0.3);
+                border-radius: 24px;
+                color: #a5b4fc;
+                font-size: 14px;
+                font-weight: 500;
+                margin-bottom: 24px;
+            }
+
+            .hero-title {
+                font-size: 56px;
+                font-weight: 800;
+                line-height: 1.2;
+                background: linear-gradient(135deg, #6366f1 0%, #06b6d4 100%);
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+                margin-bottom: 24px;
+            }
+
+            .hero-subtitle {
+                font-size: 20px;
+                color: #94a3b8;
+                max-width: 700px;
+                margin: 0 auto 40px;
+                line-height: 1.6;
+            }
+
+            .hero-stats {
+                display: grid;
+                grid-template-columns: repeat(4, 1fr);
+                gap: 24px;
+                max-width: 800px;
+                margin: 0 auto;
+            }
+
+            .stat-card {
+                background: rgba(30, 41, 59, 0.5);
+                backdrop-filter: blur(10px);
+                border: 1px solid rgba(99, 102, 241, 0.2);
+                border-radius: 16px;
+                padding: 24px;
+            }
+
+            .stat-number {
+                font-size: 36px;
+                font-weight: 800;
+                background: linear-gradient(135deg, #6366f1 0%, #06b6d4 100%);
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+                margin-bottom: 8px;
+            }
+
+            .stat-label {
+                font-size: 14px;
+                color: #94a3b8;
+            }
+
+            .hero-actions {
+                display: flex;
+                gap: 16px;
+                justify-content: center;
+                margin-top: 60px;
+            }
+
+            .btn {
+                padding: 16px 32px;
+                border-radius: 12px;
+                font-weight: 600;
+                font-size: 16px;
+                text-decoration: none;
+                transition: all 0.3s;
+                display: inline-block;
+            }
+
+            .btn-primary {
+                background: linear-gradient(135deg, #6366f1 0%, #06b6d4 100%);
+                color: white;
+                border: none;
+                box-shadow: 0 4px 20px rgba(99, 102, 241, 0.4);
+            }
+
+            .btn-primary:hover {
+                transform: translateY(-2px);
+                box-shadow: 0 6px 30px rgba(99, 102, 241, 0.5);
+            }
+
+            .btn-secondary {
+                background: rgba(99, 102, 241, 0.1);
+                color: #a5b4fc;
+                border: 1px solid rgba(99, 102, 241, 0.3);
+            }
+
+            .btn-secondary:hover {
+                background: rgba(99, 102, 241, 0.2);
+                transform: translateY(-2px);
+            }
+
+            /* 学习阶段 */
+            .stages-section {
+                padding: 40px 24px;
+                max-width: 1200px;
+                margin: 0 auto;
+            }
+
+            .section-header {
+                text-align: center;
+                margin-bottom: 60px;
+            }
+
+            .section-title {
+                font-size: 40px;
+                font-weight: 800;
+                color: #f1f5f9;
+                margin-bottom: 16px;
+            }
+
+            .section-subtitle {
+                font-size: 18px;
+                color: #94a3b8;
+            }
+
+            .stages-grid {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+                gap: 32px;
+            }
+
+            .stage-card {
+                background: rgba(30, 41, 59, 0.5);
+                backdrop-filter: blur(10px);
+                border: 1px solid rgba(99, 102, 241, 0.2);
+                border-radius: 20px;
+                padding: 32px;
+                transition: all 0.3s;
+                cursor: pointer;
+                position: relative;
+                overflow: hidden;
+                text-decoration: none;
+                color: inherit;
+                display: block;
+            }
+
+            .stage-card::before {
+                content: "";
+                position: absolute;
+                top: 0;
+                left: 0;
+                right: 0;
+                height: 4px;
+                background: linear-gradient(90deg, #6366f1 0%, #06b6d4 100%);
+            }
+
+            .stage-card:hover {
+                transform: translateY(-8px);
+                border-color: rgba(99, 102, 241, 0.4);
+                box-shadow: 0 20px 60px rgba(99, 102, 241, 0.2);
+            }
+
+            .stage-card:hover::after {
+                content: "→";
+                position: absolute;
+                right: 24px;
+                top: 50%;
+                transform: translateY(-50%);
+                font-size: 32px;
+                color: #6366f1;
+                opacity: 0.3;
+            }
+
+            .stage-number {
+                display: inline-block;
+                padding: 6px 16px;
+                background: rgba(99, 102, 241, 0.2);
+                border-radius: 20px;
+                color: #a5b4fc;
+                font-size: 12px;
+                font-weight: 600;
+                margin-bottom: 16px;
+            }
+
+            .stage-title {
+                font-size: 24px;
+                font-weight: 700;
+                color: #f1f5f9;
+                margin-bottom: 12px;
+            }
+
+            .stage-description {
+                color: #94a3b8;
+                font-size: 15px;
+                line-height: 1.6;
+                margin-bottom: 20px;
+            }
+
+            .stage-meta {
+                display: flex;
+                gap: 16px;
+                font-size: 13px;
+                color: #64748b;
+            }
+
+            .stage-meta-item {
+                display: flex;
+                align-items: center;
+                gap: 6px;
+            }
+
+            /* 特色功能 */
+            .features-section {
+                padding: 40px 24px;
+                background: rgba(15, 23, 42, 0.5);
+            }
+
+            .features-grid {
+                display: grid;
+                grid-template-columns: repeat(3, 1fr);
+                gap: 32px;
+                max-width: 1200px;
+                margin: 0 auto;
+            }
+
+            .feature-card {
+                text-align: center;
+                padding: 32px;
+            }
+
+            .feature-icon {
+                font-size: 48px;
+                margin-bottom: 20px;
+            }
+
+            .feature-title {
+                font-size: 20px;
+                font-weight: 700;
+                color: #f1f5f9;
+                margin-bottom: 12px;
+            }
+
+            .feature-description {
+                color: #94a3b8;
+                line-height: 1.6;
+            }
+
+            /* 策略展示 */
+            .strategies-section {
+                padding: 40px 24px;
+                max-width: 1200px;
+                margin: 0 auto;
+            }
+
+            .strategy-preview {
+                background: rgba(30, 41, 59, 0.5);
+                backdrop-filter: blur(10px);
+                border: 1px solid rgba(99, 102, 241, 0.2);
+                border-radius: 20px;
+                padding: 40px;
+                margin-top: 40px;
+            }
+
+            .strategy-preview h3 {
+                font-size: 24px;
+                font-weight: 700;
+                color: #f1f5f9;
+                margin-bottom: 24px;
+            }
+
+            .strategy-list {
+                display: grid;
+                grid-template-columns: repeat(3, 1fr);
+                gap: 24px;
+            }
+
+            .strategy-item {
+                background: rgba(15, 23, 42, 0.8);
+                border: 1px solid rgba(99, 102, 241, 0.1);
+                border-radius: 12px;
+                padding: 24px;
+                transition: all 0.3s;
+                display: flex;
+                gap: 20px;
+            }
+
+            .strategy-item:hover {
+                border-color: rgba(99, 102, 241, 0.3);
+                transform: translateY(-4px);
+                box-shadow: 0 12px 24px rgba(99, 102, 241, 0.15);
+            }
+
+            .strategy-icon {
+                font-size: 48px;
+                flex-shrink: 0;
+                width: 60px;
+                height: 60px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                background: linear-gradient(
+                    135deg,
+                    rgba(99, 102, 241, 0.2) 0%,
+                    rgba(6, 182, 212, 0.2) 100%
+                );
+                border-radius: 12px;
+            }
+
+            .strategy-content {
+                flex: 1;
+            }
+
+            .strategy-content h4 {
+                font-size: 20px;
+                font-weight: 700;
+                color: #a5b4fc;
+                margin-bottom: 12px;
+            }
+
+            .strategy-desc {
+                font-size: 14px;
+                color: #94a3b8;
+                line-height: 1.6;
+                margin-bottom: 16px;
+            }
+
+            .strategy-features {
+                list-style: none;
+                padding: 0;
+                margin: 0 0 16px 0;
+                display: flex;
+                flex-wrap: wrap;
+                gap: 8px;
+            }
+
+            .strategy-features li {
+                font-size: 13px;
+                color: #94a3b8;
+                background: rgba(99, 102, 241, 0.1);
+                padding: 6px 12px;
+                border-radius: 6px;
+            }
+
+            .strategy-link {
+                color: #6366f1;
+                font-size: 14px;
+                font-weight: 600;
+                text-decoration: none;
+            }
+
+            .strategy-link:hover {
+                text-decoration: underline;
+            }
+
+            /* 页脚 */
+            .footer {
+                padding: 60px 24px;
+                border-top: 1px solid rgba(99, 102, 241, 0.2);
+                text-align: center;
+            }
+
+            .footer-content {
+                max-width: 1200px;
+                margin: 0 auto;
+                display: flex;
+                justify-content: space-between;
+                align-items: flex-start;
+                text-align: left;
+            }
+
+            .footer-left {
+                flex: 1;
+            }
+
+            .footer-right {
+                text-align: right;
+            }
+
+            .footer-title {
+                font-size: 20px;
+                font-weight: 700;
+                color: #f1f5f9;
+                margin-bottom: 16px;
+            }
+
+            .footer-text {
+                color: #94a3b8;
+                margin-bottom: 24px;
+            }
+
+            .footer-links {
+                display: flex;
+                gap: 24px;
+                justify-content: flex-end;
+                margin-bottom: 16px;
+            }
+
+            .footer-links a {
+                color: #6366f1;
+                text-decoration: none;
+                font-weight: 500;
+                font-size: 16px;
+            }
+
+            .footer-links a:hover {
+                text-decoration: underline;
+            }
+
+            .footer-copyright {
+                color: #64748b;
+                font-size: 14px;
+            }
+
+            @media (max-width: 768px) {
+                .hero-title {
+                    font-size: 36px;
+                }
+
+                .hero-subtitle {
+                    font-size: 16px;
+                }
+
+                .hero-actions {
+                    flex-direction: column;
+                    align-items: center;
+                }
+
+                .hero-actions .btn {
+                    width: 100%;
+                    max-width: 300px;
+                    text-align: center;
+                }
+
+                .hero-stats {
+                    grid-template-columns: repeat(2, 1fr);
+                    gap: 16px;
+                }
+
+                .stat-card {
+                    padding: 16px;
+                }
+
+                .stat-number {
+                    font-size: 28px;
+                }
+
+                .stages-section,
+                .strategies-section,
+                .features-section {
+                    padding: 30px 16px;
+                }
+
+                .section-title {
+                    font-size: 28px;
+                }
+
+                .section-subtitle {
+                    font-size: 16px;
+                }
+
+                .stages-grid,
+                .features-grid,
+                .strategy-list {
+                    grid-template-columns: 1fr;
+                }
+
+                .stage-card,
+                .strategy-item {
+                    padding: 24px;
+                    flex-direction: column;
+                    gap: 15px;
+                }
+
+                .strategy-icon {
+                    width: 50px;
+                    height: 50px;
+                    font-size: 36px;
+                }
+
+                .strategy-features {
+                    flex-direction: column;
+                    gap: 6px;
+                }
+
+                .stage-title {
+                    font-size: 20px;
+                }
+
+                .stage-description,
+                .feature-description {
+                    font-size: 14px;
+                }
+
+                .feature-icon {
+                    font-size: 36px;
+                }
+
+                .footer-content {
+                    flex-direction: column;
+                    text-align: center;
+                }
+
+                .footer-left,
+                .footer-right {
+                    text-align: center;
+                    width: 100%;
+                }
+
+                .footer-links {
+                    justify-content: center;
+                    flex-wrap: wrap;
+                }
+
+                .nav-links {
+                    display: none;
+                }
+
+                .brand-text {
+                    display: none;
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <!-- 导航栏 -->
+        <nav class="navbar">
+            <div class="nav-container">
+                <a href="index.html" class="brand">
+                    <div class="brand-logo">YT</div>
+                    <div class="brand-text">
+                        <span class="brand-title">YTC Trader</span>
+                        <span class="brand-tagline">专业交易系统</span>
+                    </div>
+                </a>
+                <div class="nav-links">
+                    <a href="#home">首页</a>
+                    <a href="#stages">学习路径</a>
+                    <a href="#strategies">核心策略</a>
+                    <a href="#features">特色功能</a>
+                    <a href="#resources">学习资源</a>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Hero 区域 -->
+        <section class="hero" id="home">
+            <div class="hero-badge">🚀 系统化学习 · 专业成长</div>
+            <h1 class="hero-title">YTC 价格行为交易系统</h1>
+            <p class="hero-subtitle">
+                从趋势识别到完整交易策略，系统化学习YTC价格行为交易方法。
+                专为股票波段交易设计，帮助你建立属于自己的专业交易系统。
+            </p>
+            <div class="hero-stats">
+                <div class="stat-card">
+                    <div class="stat-number">4</div>
+                    <div class="stat-label">学习阶段</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">20</div>
+                    <div class="stat-label">学习周数</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">3</div>
+                    <div class="stat-label">核心策略</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">50+</div>
+                    <div class="stat-label">实战案例</div>
+                </div>
+            </div>
+            <div class="hero-actions">
+                <a href="#features" class="btn btn-primary">📖 了解更多</a>
+                <a href="7-day-learning-plan.html" class="btn btn-secondary"
+                    >⚡ 7天速成计划</a
+                >
+            </div>
+        </section>
+
+        <!-- 学习阶段 -->
+        <section class="stages-section" id="stages">
+            <div class="section-header">
+                <h2 class="section-title">学习路径</h2>
+                <p class="section-subtitle">循序渐进，系统化掌握价格行为交易</p>
+            </div>
+            <div class="stages-grid">
+                <!-- 阶段一 -->
+                <a href="stage1-new.html" class="stage-card">
+                    <div class="stage-number">阶段一 · 第1-4周</div>
+                    <h3 class="stage-title">市场分析与趋势识别</h3>
+                    <p class="stage-description">
+                        掌握上升趋势的HH+HL结构，识别不同类型的回调模式，建立标准化的选股流程。
+                    </p>
+                    <div class="stage-meta">
+                        <div class="stage-meta-item">
+                            <span>📅</span>
+                            <span>4周</span>
+                        </div>
+                        <div class="stage-meta-item">
+                            <span>📊</span>
+                            <span>4个模块</span>
+                        </div>
+                        <div class="stage-meta-item">
+                            <span>🎯</span>
+                            <span>趋势识别</span>
+                        </div>
+                    </div>
+                </a>
+
+                <!-- 阶段二 -->
+                <a href="stage2-new.html" class="stage-card">
+                    <div class="stage-number">阶段二 · 第5-11周</div>
+                    <h3 class="stage-title">三大核心交易策略</h3>
+                    <p class="stage-description">
+                        精通PB、CPB、STS三大核心做多策略，掌握专业交易员的入场技巧和风险控制。
+                    </p>
+                    <div class="stage-meta">
+                        <div class="stage-meta-item">
+                            <span>📅</span>
+                            <span>7周</span>
+                        </div>
+                        <div class="stage-meta-item">
+                            <span>📊</span>
+                            <span>3个策略</span>
+                        </div>
+                        <div class="stage-meta-item">
+                            <span>🎯</span>
+                            <span>核心策略</span>
+                        </div>
+                    </div>
+                </a>
+
+                <!-- 阶段三 -->
+                <a href="stage3-new.html" class="stage-card">
+                    <div class="stage-number">阶段三 · 第12-15周</div>
+                    <h3 class="stage-title">风险管理流程</h3>
+                    <p class="stage-description">
+                        建立标准化的风险管理流程，掌握仓位管理、止损设置、盈亏比优化等核心技能。
+                    </p>
+                    <div class="stage-meta">
+                        <div class="stage-meta-item">
+                            <span>📅</span>
+                            <span>4周</span>
+                        </div>
+                        <div class="stage-meta-item">
+                            <span>📊</span>
+                            <span>4个模块</span>
+                        </div>
+                        <div class="stage-meta-item">
+                            <span>🎯</span>
+                            <span>风险控制</span>
+                        </div>
+                    </div>
+                </a>
+
+                <!-- 阶段四 -->
+                <a href="stage4-new.html" class="stage-card">
+                    <div class="stage-number">阶段四 · 第16-19周</div>
+                    <h3 class="stage-title">交易心理与持续改进</h3>
+                    <p class="stage-description">
+                        克服交易心理障碍，建立交易纪律，通过持续复盘不断改进交易系统。
+                    </p>
+                    <div class="stage-meta">
+                        <div class="stage-meta-item">
+                            <span>📅</span>
+                            <span>4周</span>
+                        </div>
+                        <div class="stage-meta-item">
+                            <span>📊</span>
+                            <span>4个模块</span>
+                        </div>
+                        <div class="stage-meta-item">
+                            <span>🎯</span>
+                            <span>心理建设</span>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </section>
+
+        <!-- 核心策略 -->
+        <section class="strategies-section" id="strategies">
+            <div class="section-header">
+                <h2 class="section-title">三大核心策略</h2>
+                <p class="section-subtitle">
+                    每个策略都包含详细的K线图例和实战案例
+                </p>
+            </div>
+            <div class="strategy-preview">
+                <h3>📊 专业交易策略体系</h3>
+                <div class="strategy-list">
+                    <div class="strategy-item">
+                        <div class="strategy-icon">🎯</div>
+                        <div class="strategy-content">
+                            <h4>PB策略</h4>
+                            <p class="strategy-desc">
+                                Pullback回调买入策略，在上升趋势的回调中寻找最佳入场点。适合大多数行情，盈亏比优秀。
+                            </p>
+                            <ul class="strategy-features">
+                                <li>✅ 简单回调买入</li>
+                                <li>✅ 深回调买入（双底）</li>
+                                <li>✅ 包含2个实战案例</li>
+                            </ul>
+                            <a
+                                href="learn/pb-strategy.html"
+                                class="strategy-link"
+                                >查看详细图例 →</a
+                            >
+                        </div>
+                    </div>
+                    <div class="strategy-item">
+                        <div class="strategy-icon">🔄</div>
+                        <div class="strategy-content">
+                            <h4>CPB策略</h4>
+                            <p class="strategy-desc">
+                                Complex
+                                Pullback复杂回调策略，识别多浪回调中的交易机会。需要更多耐心，但往往动能更强。
+                            </p>
+                            <ul class="strategy-features">
+                                <li>✅ 双浪回调（ABC结构）</li>
+                                <li>✅ 三浪回调（ABCDE结构）</li>
+                                <li>✅ 包含2个实战案例</li>
+                            </ul>
+                            <a
+                                href="learn/cpb-strategy.html"
+                                class="strategy-link"
+                                >查看详细图例 →</a
+                            >
+                        </div>
+                    </div>
+                    <div class="strategy-item">
+                        <div class="strategy-icon">🏗️</div>
+                        <div class="strategy-content">
+                            <h4>STS策略</h4>
+                            <p class="strategy-desc">
+                                Structural Trading
+                                Setup结构性交易，在关键结构位置突破时入场。捕捉突破机会，高概率交易。
+                            </p>
+                            <ul class="strategy-features">
+                                <li>✅ 突破箱体</li>
+                                <li>✅ 突破历史新高</li>
+                                <li>✅ 包含2个实战案例</li>
+                            </ul>
+                            <a
+                                href="learn/sts-strategy.html"
+                                class="strategy-link"
+                                >查看详细图例 →</a
+                            >
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 特色功能 -->
+        <section class="features-section" id="features">
+            <div class="section-header">
+                <h2 class="section-title">为什么选择本系统</h2>
+                <p class="section-subtitle">系统化、实战化、专业化的学习体验</p>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">📊</div>
+                    <h3 class="feature-title">真实K线图例</h3>
+                    <p class="feature-description">
+                        每个策略都配有详细的SVG
+                        K线图表，清晰标注买入点、卖出点、止损位，让学习更直观。
+                    </p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🎯</div>
+                    <h3 class="feature-title">循序渐进</h3>
+                    <p class="feature-description">
+                        从基础到高级，4个阶段20周系统化学习，每个知识点都有详细讲解和实战案例。
+                    </p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">💡</div>
+                    <h3 class="feature-title">实战导向</h3>
+                    <p class="feature-description">
+                        所有策略都基于真实市场案例，包含完整的交易流程、盈亏比计算和风险控制方法。
+                    </p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🛠️</div>
+                    <h3 class="feature-title">实用工具</h3>
+                    <p class="feature-description">
+                        提供选股检查清单、交易计划表、复盘模板等实用工具，帮助建立标准化交易流程。
+                    </p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📈</div>
+                    <h3 class="feature-title">持续改进</h3>
+                    <p class="feature-description">
+                        学习如何复盘交易、记录交易日志、优化交易系统，建立持续改进机制。
+                    </p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🧠</div>
+                    <h3 class="feature-title">心理建设</h3>
+                    <p class="feature-description">
+                        重视交易心理，学习如何管理情绪、建立纪律、克服心理障碍，成为成熟交易者。
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 学习资源 -->
+        <section id="resources" class="section">
+            <div class="section-header">
+                <h2 class="section-title">📚 学习资源中心</h2>
+                <p class="section-subtitle">
+                    深入学习资料,帮助你少走弯路,快速掌握YTC价格行为交易
+                </p>
+            </div>
+
+            <div class="features-grid">
+                <a
+                    href="learn/learning-guide.html"
+                    class="feature-card"
+                    style="
+                        text-decoration: none;
+                        color: inherit;
+                        transition:
+                            transform 0.3s,
+                            box-shadow 0.3s;
+                    "
+                >
+                    <div class="feature-icon">📘</div>
+                    <h3 class="feature-title">学习指南与常见陷阱</h3>
+                    <p class="feature-description">
+                        新手必读!包含推荐学习路线、常见交易陷阱、解决方案、交易前检查清单和心理应对策略。帮助你避免90%的新手错误。
+                    </p>
+                    <div
+                        style="
+                            margin-top: 15px;
+                            padding: 10px;
+                            background: rgba(245, 87, 108, 0.1);
+                            border-radius: 6px;
+                            color: #f5576c;
+                            font-size: 0.9em;
+                            font-weight: 500;
+                        "
+                    >
+                        ⭐ 必读 · 少走弯路
+                    </div>
+                </a>
+
+                <a
+                    href="learn/faq-volume1.html"
+                    class="feature-card"
+                    style="
+                        text-decoration: none;
+                        color: inherit;
+                        transition:
+                            transform 0.3s,
+                            box-shadow 0.3s;
+                    "
+                >
+                    <div class="feature-icon">❓</div>
+                    <h3 class="feature-title">YTC常见问题一</h3>
+                    <p class="feature-description">
+                        16个常见问题解答,涵盖市场分析、支撑阻力、时间框架选择、K线与棒线对比等基础知识点。
+                    </p>
+                    <div
+                        style="
+                            margin-top: 15px;
+                            padding: 10px;
+                            background: rgba(99, 102, 241, 0.1);
+                            border-radius: 6px;
+                            color: #6366f1;
+                            font-size: 0.9em;
+                            font-weight: 500;
+                        "
+                    >
+                        📖 16个问题 · 基础篇
+                    </div>
+                </a>
+
+                <a
+                    href="learn/faq-volume2.html"
+                    class="feature-card"
+                    style="
+                        text-decoration: none;
+                        color: inherit;
+                        transition:
+                            transform 0.3s,
+                            box-shadow 0.3s;
+                    "
+                >
+                    <div class="feature-icon">💡</div>
+                    <h3 class="feature-title">YTC常见问题二</h3>
+                    <p class="feature-description">
+                        10个进阶问题解答,深入探讨市场分析方法、交易策略应用、不同市场的交易技巧等高级话题。
+                    </p>
+                    <div
+                        style="
+                            margin-top: 15px;
+                            padding: 10px;
+                            background: rgba(6, 182, 212, 0.1);
+                            border-radius: 6px;
+                            color: #06b6d4;
+                            font-size: 0.9em;
+                            font-weight: 500;
+                        "
+                    >
+                        📖 10个问题 · 进阶篇
+                    </div>
+                </a>
+
+                <a
+                    href="learn/stop-loss-techniques.html"
+                    class="feature-card"
+                    style="
+                        text-decoration: none;
+                        color: inherit;
+                        transition:
+                            transform 0.3s,
+                            box-shadow 0.3s;
+                    "
+                >
+                    <div class="feature-icon">🛡️</div>
+                    <h3 class="feature-title">止损技巧</h3>
+                    <p class="feature-description">
+                        黄金止损法则、策略止损方法、移动止损技巧、执行纪律和常见错误。风险管理的核心技能。
+                    </p>
+                    <div
+                        style="
+                            margin-top: 15px;
+                            padding: 10px;
+                            background: rgba(16, 185, 129, 0.1);
+                            border-radius: 6px;
+                            color: #10b981;
+                            font-size: 0.9em;
+                            font-weight: 500;
+                        "
+                    >
+                        🎯 风险管理 · 必学
+                    </div>
+                </a>
+
+                <a
+                    href="learn/pb-strategy.html"
+                    class="feature-card"
+                    style="
+                        text-decoration: none;
+                        color: inherit;
+                        transition:
+                            transform 0.3s,
+                            box-shadow 0.3s;
+                    "
+                >
+                    <div class="feature-icon">📈</div>
+                    <h3 class="feature-title">PB策略实战案例</h3>
+                    <p class="feature-description">
+                        简单回调策略完整指南,包含多个A股实战案例、K线图例详解和入场出场时机分析。
+                    </p>
+                    <div
+                        style="
+                            margin-top: 15px;
+                            padding: 10px;
+                            background: rgba(99, 102, 241, 0.1);
+                            border-radius: 6px;
+                            color: #6366f1;
+                            font-size: 0.9em;
+                            font-weight: 500;
+                        "
+                    >
+                        📊 2+ 实战案例
+                    </div>
+                </a>
+
+                <a
+                    href="learn/cpb-strategy.html"
+                    class="feature-card"
+                    style="
+                        text-decoration: none;
+                        color: inherit;
+                        transition:
+                            transform 0.3s,
+                            box-shadow 0.3s;
+                    "
+                >
+                    <div class="feature-icon">📊</div>
+                    <h3 class="feature-title">CPB策略实战案例</h3>
+                    <p class="feature-description">
+                        复杂回调策略详解,ABC和ABCDE结构识别、入场时机、风险控制方法和实战案例分析。
+                    </p>
+                    <div
+                        style="
+                            margin-top: 15px;
+                            padding: 10px;
+                            background: rgba(6, 182, 212, 0.1);
+                            border-radius: 6px;
+                            color: #06b6d4;
+                            font-size: 0.9em;
+                            font-weight: 500;
+                        "
+                    >
+                        📊 2+ 实战案例
+                    </div>
+                </a>
+
+                <a
+                    href="learn/sts-strategy.html"
+                    class="feature-card"
+                    style="
+                        text-decoration: none;
+                        color: inherit;
+                        transition:
+                            transform 0.3s,
+                            box-shadow 0.3s;
+                    "
+                >
+                    <div class="feature-icon">🎯</div>
+                    <h3 class="feature-title">STS策略实战案例</h3>
+                    <p class="feature-description">
+                        结构交易设置完整指南,突破识别、结构确认、假突破防范和历史高点突破实战案例。
+                    </p>
+                    <div
+                        style="
+                            margin-top: 15px;
+                            padding: 10px;
+                            background: rgba(245, 87, 108, 0.1);
+                            border-radius: 6px;
+                            color: #f5576c;
+                            font-size: 0.9em;
+                            font-weight: 500;
+                        "
+                    >
+                        📊 2+ 实战案例
+                    </div>
+                </a>
+            </div>
+        </section>
+
+        <!-- 页脚 -->
+        <footer class="footer">
+            <div class="footer-content">
+                <div class="footer-left">
+                    <h3 class="footer-title">YTC Trader 学习系统</h3>
+                    <p class="footer-text">
+                        系统化学习价格行为交易，建立专业交易系统
+                    </p>
+                    <p class="footer-copyright">
+                        © 2025 YTC Trader. 系统化学习，专业成长。
+                    </p>
+                </div>
+                <div class="footer-right">
+                    <div class="footer-links">
+                        <a href="7-day-learning-plan.html">7天速成计划</a>
+                        <a href="index-new.html#tools">交易工具</a>
+                        <a href="stage1-new.html">开始学习</a>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </body>
+</html>

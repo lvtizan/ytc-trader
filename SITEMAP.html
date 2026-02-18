@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YTC Trader - 完整导航</title>
+    <link rel="stylesheet" href="css/modern-premium.css">
+    <style>
+        body {
+            background: linear-gradient(to bottom, #0a0a0f 0%, #0f172a 50%, #0a0a0f 100%);
+            min-height: 100vh;
+            padding: 40px 20px;
+        }
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        .header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+        .header h1 {
+            font-size: 3rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #6366f1 0%, #06b6d4 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 16px;
+        }
+        .header p {
+            color: #cbd5e1;
+            font-size: 1.25rem;
+        }
+        .section {
+            margin-bottom: 60px;
+        }
+        .section-title {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #f1f5f9;
+            margin-bottom: 24px;
+            padding-bottom: 12px;
+            border-bottom: 3px solid;
+            border-image: linear-gradient(90deg, #6366f1 0%, #06b6d4 100%) 1;
+        }
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+        }
+        .card {
+            background: rgba(30, 41, 59, 0.5);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(99, 102, 241, 0.2);
+            border-radius: 16px;
+            padding: 24px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #6366f1 0%, #06b6d4 100%);
+        }
+        .card:hover {
+            transform: translateY(-4px);
+            border-color: rgba(99, 102, 241, 0.4);
+            box-shadow: 0 20px 40px rgba(99, 102, 241, 0.2);
+        }
+        .card a {
+            text-decoration: none;
+            color: inherit;
+            display: block;
+        }
+        .card-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: #f1f5f9;
+            margin-bottom: 12px;
+        }
+        .card-desc {
+            color: #cbd5e1;
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+        .badge {
+            display: inline-block;
+            padding: 4px 12px;
+            background: rgba(99, 102, 241, 0.2);
+            border: 1px solid rgba(99, 102, 241, 0.3);
+            border-radius: 12px;
+            color: #a5b4fc;
+            font-size: 0.8rem;
+            margin-bottom: 12px;
+        }
+    </style>
+</head>
+<body>
+    <!-- 科技光晕背景层 -->
+    <div class="tech-glow"></div>
+
+    <div class="container">
+        <div class="header">
+            <h1>YTC Trader 完整导航</h1>
+            <p>所有页面的一站式导航链接</p>
+        </div>
+
+        <!-- 主要页面 -->
+        <div class="section">
+            <h2 class="section-title">📍 主要页面</h2>
+            <div class="grid">
+                <div class="card">
+                    <a href="index-new.html" target="_blank">
+                        <span class="badge">主页</span>
+                        <div class="card-title">首页</div>
+                        <div class="card-desc">YTC Trader 学习系统主页</div>
+                    </a>
+                </div>
+                <div class="card">
+                    <a href="stage1-new.html" target="_blank">
+                        <span class="badge">阶段一</span>
+                        <div class="card-title">市场分析与趋势识别</div>
+                        <div class="card-desc">第1-4周 · 4个学习模块</div>
+                    </a>
+                </div>
+                <div class="card">
+                    <a href="stage2-new.html" target="_blank">
+                        <span class="badge">阶段二</span>
+                        <div class="card-title">三大核心交易策略</div>
+                        <div class="card-desc">第5-11周 · PB/CPB/STS策略</div>
+                    </a>
+                </div>
+                <div class="card">
+                    <a href="stage3-new.html" target="_blank">
+                        <span class="badge">阶段三</span>
+                        <div class="card-title">风险管理流程</div>
+                        <div class="card-desc">第12-15周 · 4个风险管理模块</div>
+                    </a>
+                </div>
+                <div class="card">
+                    <a href="stage4-new.html" target="_blank">
+                        <span class="badge">阶段四</span>
+                        <div class="card-title">交易心理与持续改进</div>
+                        <div class="card-desc">第16-19周 · 心理管理与复盘</div>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- 阶段一知识点 -->
+        <div class="section">
+            <h2 class="section-title">📚 阶段一：市场分析知识点</h2>
+            <div class="grid">
+                <div class="card">
+                    <a href="learn/hh-hl-structure.html" target="_blank">
+                        <div class="card-title">HH+HL结构详解</div>
+                        <div class="card-desc">上升趋势的完整结构</div>
+                    </a>
+                </div>
+                <div class="card">
+                    <a href="learn/high-low-identification.html" target="_blank">
+                        <div class="card-title">高点低点识别</div>
+                        <div class="card-desc">识别关键的高点和低点</div>
+                    </a>
+                </div>
+                <div class="card">
+                    <a href="learn/trendline-drawing.html" target="_blank">
+                        <div class="card-title">趋势线绘制</div>
+                        <div class="card-desc">如何正确绘制趋势线</div>
+                    </a>
+                </div>
+                <div class="card">
+                    <a href="learn/callback-types.html" target="_blank">
+                        <div class="card-title">回调类型详解</div>
+                        <div class="card-desc">简单回调vs复杂回调</div>
+                    </a>
+                </div>
+                <div class="card">
+                    <a href="learn/callback-area-identification.html" target="_blank">
+                        <div class="card-title">回调区域识别</div>
+                        <div class="card-desc">识别回调支撑区域</div>
+                    </a>
+                </div>
+                <div class="card">
+                    <a href="learn/callback-depth-measurement.html" target="_blank">
+                        <div class="card-title">回调深度测量</div>
+                        <div class="card-desc">斐波那契回调位</div>
+                    </a>
+                </div>
+                <div class="card">
+                    <a href="learn/trend-identification.html" target="_blank">
+                        <div class="card-title">趋势识别方法</div>
+                        <div class="card-desc">识别上升趋势</div>
+                    </a>
+                </div>
+                <div class="card">
+                    <a href="learn/timeframe-selection.html" target="_blank">
+                        <div class="card-title">时间周期选择</div>
+                        <div class="card-desc">多时间周期分析</div>
+                    </a>
+                </div>
+                <div class="card">
+                    <a href="learn/stock-selection-criteria.html" target="_blank">
+                        <div class="card-title">选股标准制定</div>
+                        <div class="card-desc">制定选股标准</div>
+                    </a>
+                </div>
+                <div class="card">
+                    <a href="learn/screening-conditions.html" target="_blank">
+                        <div class="card-title">筛选条件设置</div>
+                        <div class="card-desc">设置筛选条件</div>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- 阶段二策略 -->
+        <div class="section">
+            <h2 class="section-title">🎯 阶段二：核心交易策略</h2>
+            <div class="grid">
+                <div class="card">
+                    <a href="learn/pb-strategy.html" target="_blank">
+                        <span class="badge">策略</span>
+                        <div class="card-title">PB策略：回调买入</div>
+                        <div class="card-desc">Pullback策略完整讲解</div>
+                    </a>
+                </div>
+                <div class="card">
+                    <a href="learn/cpb-strategy.html" target="_blank">
+                        <span class="badge">策略</span>
+                        <div class="card-title">CPB策略：复杂回调</div>
+                        <div class="card-desc">Complex Pullback策略</div>
+                    </a>
+                </div>
+                <div class="card">
+                    <a href="learn/sts-strategy.html" target="_blank">
+                        <span class="badge">策略</span>
+                        <div class="card-title">STS策略：结构性交易</div>
+                        <div class="card-desc">Structural Trading Setup</div>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- 阶段三风险管理 -->
+        <div class="section">
+            <h2 class="section-title">🛡️ 阶段三：风险管理</h2>
+            <div class="grid">
+                <div class="card">
+                    <a href="learn/position-sizing.html" target="_blank">
+                        <div class="card-title">仓位规模管理</div>
+                        <div class="card-desc">固定百分比法等仓位管理</div>
+                    </a>
+                </div>
+                <div class="card">
+                    <a href="learn/stop-loss-techniques.html" target="_blank">
+                        <div class="card-title">止损设置技巧</div>
+                        <div class="card-desc">科学设置止损位置</div>
+                    </a>
+                </div>
+                <div class="card">
+                    <a href="learn/risk-reward-ratio.html" target="_blank">
+                        <div class="card-title">盈亏比优化</div>
+                        <div class="card-desc">优化交易盈亏比</div>
+                    </a>
+                </div>
+                <div class="card">
+                    <a href="learn/portfolio-risk-management.html" target="_blank">
+                        <div class="card-title">组合风险管理</div>
+                        <div class="card-desc">投资组合风险控制</div>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- 阶段四心理管理 -->
+        <div class="section">
+            <h2 class="section-title">🧠 阶段四：交易心理</h2>
+            <div class="grid">
+                <div class="card">
+                    <a href="learn/psychology-enemies.html" target="_blank">
+                        <div class="card-title">交易心理的5大敌人</div>
+                        <div class="card-desc">恐惧、贪婪等心理障碍</div>
+                    </a>
+                </div>
+                <div class="card">
+                    <a href="learn/trading-discipline.html" target="_blank">
+                        <div class="card-title">交易纪律检查清单</div>
+                        <div class="card-desc">建立交易纪律</div>
+                    </a>
+                </div>
+                <div class="card">
+                    <a href="learn/emotion-management.html" target="_blank">
+                        <div class="card-title">情绪管理技巧</div>
+                        <div class="card-desc">控制交易情绪</div>
+                    </a>
+                </div>
+                <div class="card">
+                    <a href="learn/review-mechanism.html" target="_blank">
+                        <div class="card-title">复盘机制与改进</div>
+                        <div class="card-desc">每日、每周、每月复盘</div>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- 交易工具 -->
+        <div class="section">
+            <h2 class="section-title">🔧 交易工具</h2>
+            <div class="grid">
+                <div class="card">
+                    <a href="tools/checklist.html" target="_blank">
+                        <span class="badge">工具</span>
+                        <div class="card-title">选股检查清单</div>
+                        <div class="card-desc">每日选股标准化清单</div>
+                    </a>
+                </div>
+                <div class="card">
+                    <a href="tools/stock-selection-criteria.html" target="_blank">
+                        <span class="badge">工具</span>
+                        <div class="card-title">选股标准</div>
+                        <div class="card-desc">选股标准参考</div>
+                    </a>
+                </div>
+                <div class="card">
+                    <a href="tools/trading-plan-template.html" target="_blank">
+                        <span class="badge">模板</span>
+                        <div class="card-title">交易计划模板</div>
+                        <div class="card-desc">每笔交易计划模板</div>
+                    </a>
+                </div>
+                <div class="card">
+                    <a href="tools/position-calculator.html" target="_blank">
+                        <span class="badge">工具</span>
+                        <div class="card-title">仓位计算器</div>
+                        <div class="card-desc">风险控制和仓位计算</div>
+                    </a>
+                </div>
+                <div class="card">
+                    <a href="tools/daily-review.html" target="_blank">
+                        <span class="badge">模板</span>
+                        <div class="card-title">每日复盘模板</div>
+                        <div class="card-desc">每日交易复盘记录</div>
+                    </a>
+                </div>
+                <div class="card">
+                    <a href="tools/weekly-review.html" target="_blank">
+                        <span class="badge">模板</span>
+                        <div class="card-title">每周复盘模板</div>
+                        <div class="card-desc">每周绩效评估</div>
+                    </a>
+                </div>
+                <div class="card">
+                    <a href="tools/risk-management.html" target="_blank">
+                        <span class="badge">手册</span>
+                        <div class="card-title">风险管理手册</div>
+                        <div class="card-desc">完整风险管理规则</div>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- 文档 -->
+        <div class="section">
+            <h2 class="section-title">📖 项目文档</h2>
+            <div class="grid">
+                <div class="card">
+                    <a href="TESTING_CHECKLIST.md" target="_blank">
+                        <div class="card-title">测试流程文档</div>
+                        <div class="card-desc">完整的测试和验证流程</div>
+                    </a>
+                </div>
+                <div class="card">
+                    <a href="FINAL_TEST_REPORT.md" target="_blank">
+                        <div class="card-title">最终测试报告</div>
+                        <div class="card-desc">项目测试结果报告</div>
+                    </a>
+                </div>
+                <div class="card">
+                    <a href="UPDATE_SUMMARY_2025-02-15.md" target="_blank">
+                        <div class="card-title">视觉升级总结</div>
+                        <div class="card-desc">科技光晕背景更新</div>
+                    </a>
+                </div>
+                <div class="card">
+                    <a href="STAGE1_STYLE_UPDATE_REPORT.md" target="_blank">
+                        <div class="card-title">阶段一样式更新报告</div>
+                        <div class="card-desc">阶段一页面样式统一</div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

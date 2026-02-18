@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>盈亏比优化 - YTC Trader</title>
+    <link rel="stylesheet" href="../css/modern-premium.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background: linear-gradient(to bottom, #0a0a0f 0%, #0f172a 50%, #0a0a0f 100%);
+            min-height: 100vh;
+        }
+        .hero-section {
+            text-align: center;
+            padding: 60px 20px;
+            background: radial-gradient(ellipse at top, rgba(99, 102, 241, 0.15) 0%, transparent 50%);
+        }
+        .hero-badge {
+            display: inline-block;
+            padding: 8px 16px;
+            background: rgba(99, 102, 241, 0.2);
+            border: 1px solid rgba(99, 102, 241, 0.3);
+            border-radius: 20px;
+            color: #a5b4fc;
+            font-size: 0.875rem;
+            margin-bottom: 24px;
+        }
+        .hero-title {
+            font-size: 3rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #6366f1 0%, #06b6d4 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 16px;
+        }
+        .hero-subtitle {
+            color: #cbd5e1;
+            font-size: 1.25rem;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        .content-section {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+        .card {
+            background: rgba(30, 41, 59, 0.5);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(99, 102, 241, 0.2);
+            border-radius: 16px;
+            padding: 32px;
+            margin-bottom: 24px;
+            position: relative;
+            overflow: hidden;
+        }
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #6366f1 0%, #06b6d4 100%);
+        }
+        .card-header {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 20px;
+        }
+        .card-icon {
+            font-size: 2.5rem;
+        }
+        .card-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #f1f5f9;
+        }
+        .card-content {
+            color: #cbd5e1;
+            line-height: 1.8;
+        }
+        .formula-box {
+            background: rgba(99, 102, 241, 0.1);
+            border: 1px solid rgba(99, 102, 241, 0.3);
+            border-radius: 12px;
+            padding: 24px;
+            margin: 20px 0;
+            text-align: center;
+        }
+        .formula {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #a5b4fc;
+            margin-bottom: 12px;
+        }
+        .formula-description {
+            color: #cbd5e1;
+            font-size: 0.95rem;
+        }
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 16px;
+            margin-top: 20px;
+        }
+        .info-item {
+            background: rgba(15, 23, 42, 0.5);
+            border: 1px solid rgba(99, 102, 241, 0.1);
+            border-radius: 12px;
+            padding: 20px;
+        }
+        .info-label {
+            color: #a5b4fc;
+            font-size: 0.875rem;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+        .info-value {
+            color: #f1f5f9;
+            font-size: 1rem;
+            font-weight: 600;
+        }
+        .tips-box {
+            background: rgba(245, 158, 11, 0.1);
+            border: 1px solid rgba(245, 158, 11, 0.3);
+            border-radius: 12px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+        .tips-title {
+            color: #fbbf24;
+            font-weight: 600;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .tips-content {
+            color: #cbd5e1;
+            line-height: 1.7;
+        }
+        .example-box {
+            background: rgba(16, 185, 129, 0.1);
+            border: 1px solid rgba(16, 185, 129, 0.3);
+            border-radius: 12px;
+            padding: 24px;
+            margin: 20px 0;
+        }
+        .example-title {
+            color: #34d399;
+            font-weight: 600;
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .back-link {
+            display: inline-block;
+            margin: 20px;
+            padding: 12px 24px;
+            background: rgba(99, 102, 241, 0.2);
+            border: 1px solid rgba(99, 102, 241, 0.3);
+            border-radius: 12px;
+            color: #a5b4fc;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        .back-link:hover {
+            background: rgba(99, 102, 241, 0.3);
+            transform: translateY(-2px);
+        }
+        .calculation-table {
+            width: 100%;
+            background: rgba(15, 23, 42, 0.5);
+            border-radius: 12px;
+            overflow: hidden;
+            margin: 20px 0;
+        }
+        .calculation-table th {
+            background: rgba(99, 102, 241, 0.2);
+            padding: 16px;
+            text-align: left;
+            color: #a5b4fc;
+            font-weight: 600;
+        }
+        .calculation-table td {
+            padding: 16px;
+            border-top: 1px solid rgba(99, 102, 241, 0.1);
+            color: #cbd5e1;
+        }
+        .positive { color: #34d399; font-weight: 600; }
+        .negative { color: #f87171; font-weight: 600; }
+    </style>
+</head>
+<body>
+        <!-- 科技光晕背景层 -->
+        <div class="tech-glow"></div>
+
+    <a href="../stage3-new.html" class="back-link">← 返回阶段三</a>
+
+    <div class="hero-section">
+        <span class="hero-badge">阶段三 · 模块3 · 第14周</span>
+        <h1 class="hero-title">盈亏比优化</h1>
+        <p class="hero-subtitle">理解并优化交易的盈亏比，建立正期望值的交易系统</p>
+    </div>
+
+    <div class="content-section">
+        <!-- 什么是盈亏比 -->
+        <div class="card">
+            <div class="card-header">
+                <div class="card-icon">📊</div>
+                <h2 class="card-title">什么是盈亏比</h2>
+            </div>
+            <div class="card-content">
+                <p>盈亏比（Risk-Reward Ratio）是指每笔交易的潜在盈利与潜在风险的比值。它是评估交易质量的重要指标。</p>
+
+                <div class="formula-box">
+                    <div class="formula">盈亏比 = 潜在盈利 ÷ 潜在亏损</div>
+                    <div class="formula-description">
+                        潜在盈利 = 目标价 - 入场价<br>
+                        潜在亏损 = 入场价 - 止损价
+                    </div>
+                </div>
+
+                <div class="example-box">
+                    <div class="example-title">💡 计算示例</div>
+                    <div style="color: #cbd5e1; line-height: 1.8;">
+                        假设你计划在100元买入股票：<br><br>
+                        <strong>入场价：</strong>100元<br>
+                        <strong>目标价：</strong>120元（潜在盈利20元）<br>
+                        <strong>止损价：</strong>95元（潜在亏损5元）<br><br>
+                        <strong>盈亏比 = 20 ÷ 5 = 4:1</strong><br>
+                        这意味着你承担1元风险，有机会获得4元收益
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 如何计算盈亏比 -->
+        <div class="card">
+            <div class="card-header">
+                <div class="card-icon">🧮</div>
+                <h2 class="card-title">盈亏比计算步骤</h2>
+            </div>
+            <div class="card-content">
+                <p>每次交易前，都应该先计算盈亏比，判断这笔交易是否值得执行。</p>
+
+                <div style="margin-top: 20px;">
+                    <div style="background: rgba(15, 23, 42, 0.5); border-radius: 12px; padding: 20px; margin-bottom: 16px;">
+                        <div style="color: #a5b4fc; font-weight: 600; margin-bottom: 8px;">步骤 1：确定入场价</div>
+                        <div style="color: #cbd5e1;">根据你的交易策略确定最佳入场价格</div>
+                    </div>
+                    <div style="background: rgba(15, 23, 42, 0.5); border-radius: 12px; padding: 20px; margin-bottom: 16px;">
+                        <div style="color: #a5b4fc; font-weight: 600; margin-bottom: 8px;">步骤 2：设置止损价</div>
+                        <div style="color: #cbd5e1;">基于市场结构设置合理的止损位置</div>
+                    </div>
+                    <div style="background: rgba(15, 23, 42, 0.5); border-radius: 12px; padding: 20px; margin-bottom: 16px;">
+                        <div style="color: #a5b4fc; font-weight: 600; margin-bottom: 8px;">步骤 3：设定目标价</div>
+                        <div style="color: #cbd5e1;">根据阻力位、趋势等确定合理的盈利目标</div>
+                    </div>
+                    <div style="background: rgba(15, 23, 42, 0.5); border-radius: 12px; padding: 20px; margin-bottom: 16px;">
+                        <div style="color: #a5b4fc; font-weight: 600; margin-bottom: 8px;">步骤 4：计算盈亏比</div>
+                        <div style="color: #cbd5e1;">用盈利空间除以风险空间，得到盈亏比</div>
+                    </div>
+                    <div style="background: rgba(15, 23, 42, 0.5); border-radius: 12px; padding: 20px;">
+                        <div style="color: #a5b4fc; font-weight: 600; margin-bottom: 8px;">步骤 5：评估交易</div>
+                        <div style="color: #cbd5e1;">只有盈亏比达到你的标准（如2:1或更高）才执行交易</div>
+                    </div>
+                </div>
+
+                <div class="tips-box">
+                    <div class="tips-title">⚠️ 重要原则</div>
+                    <div class="tips-content">
+                        <strong>只在盈亏比有利时才交易。</strong>如果你的策略要求最低2:1的盈亏比，那么任何低于这个标准的交易机会都应该放弃，无论它看起来多么诱人。
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 盈亏比与胜率的关系 -->
+        <div class="card">
+            <div class="card-header">
+                <div class="card-icon">📈</div>
+                <h2 class="card-title">盈亏比与胜率的关系</h2>
+            </div>
+            <div class="card-content">
+                <p>盈亏比和胜率是相互影响的。高胜率通常对应低盈亏比，低胜率可能对应高盈亏比。关键是要找到平衡点，使系统具有正期望值。</p>
+
+                <table class="calculation-table">
+                    <thead>
+                        <tr>
+                            <th>胜率</th>
+                            <th>盈亏比</th>
+                            <th>100笔交易结果</th>
+                            <th>期望值</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>50%</td>
+                            <td>2:1</td>
+                            <td>50盈×2 + 50亏×1 = +50</td>
+                            <td class="positive">+0.5R</td>
+                        </tr>
+                        <tr>
+                            <td>40%</td>
+                            <td>3:1</td>
+                            <td>40盈×3 + 60亏×1 = +60</td>
+                            <td class="positive">+0.6R</td>
+                        </tr>
+                        <tr>
+                            <td>35%</td>
+                            <td>3:1</td>
+                            <td>35盈×3 + 65亏×1 = +40</td>
+                            <td class="positive">+0.4R</td>
+                        </tr>
+                        <tr>
+                            <td>30%</td>
+                            <td>3:1</td>
+                            <td>30盈×3 + 70亏×1 = +20</td>
+                            <td class="positive">+0.2R</td>
+                        </tr>
+                        <tr>
+                            <td>50%</td>
+                            <td>1:1</td>
+                            <td>50盈×1 + 50亏×1 = 0</td>
+                            <td style="color: #fbbf24;">0R</td>
+                        </tr>
+                        <tr>
+                            <td>40%</td>
+                            <td>1.5:1</td>
+                            <td>40盈×1.5 + 60亏×1 = 0</td>
+                            <td style="color: #fbbf24;">0R</td>
+                        </tr>
+                        <tr>
+                            <td>30%</td>
+                            <td>2:1</td>
+                            <td>30盈×2 + 70亏×1 = -10</td>
+                            <td class="negative">-0.1R</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <div class="tips-box">
+                    <div class="tips-title">💡 关键发现</div>
+                    <div class="tips-content">
+                        <strong>胜率40% + 盈亏比3:1</strong> 的组合优于<strong>胜率50% + 盈亏比2:1</strong>。这就是为什么专业交易者不需要很高的胜率也能盈利——他们专注于高盈亏比的交易机会。
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 目标设置方法 -->
+        <div class="card">
+            <div class="card-header">
+                <div class="card-icon">🎯</div>
+                <h2 class="card-title">目标设置方法</h2>
+            </div>
+            <div class="card-content">
+                <p>设置合理的盈利目标是优化盈亏比的关键。目标太近会降低盈亏比，目标太远可能永远达不到。</p>
+
+                <div class="info-grid">
+                    <div class="info-item">
+                        <div class="info-label">阻力位</div>
+                        <div class="info-value">将目标设在前期阻力位下方</div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-label">结构位</div>
+                        <div class="info-value">根据趋势结构设置目标</div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-label">倍数法</div>
+                        <div class="info-value">风险的2-3倍作为目标</div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-label">ATR法</div>
+                        <div class="info-value">使用2-3倍ATR作为目标</div>
+                    </div>
+                </div>
+
+                <div class="example-box">
+                    <div class="example-title">💡 实战示例：阻力位目标</div>
+                    <div style="color: #cbd5e1; line-height: 1.8;">
+                        假设你在上升趋势回调买入：<br><br>
+                        1. 入场价：100元<br>
+                        2. 止损价：95元（风险5元）<br>
+                        3. 前期高点（阻力位）：115元<br>
+                        4. 目标设在114元（阻力位下方1元）<br><br>
+                        <strong>盈亏比 = (114-100) ÷ (100-95) = 14 ÷ 5 = 2.8:1 ✓</strong>
+                    </div>
+                </div>
+
+                <div class="tips-box">
+                    <div class="tips-title">⚠️ 目标设置原则</div>
+                    <div class="tips-content">
+                        <strong>不要贪婪，也不要保守。</strong>目标应该设置在价格有较高概率达到的位置。如果盈亏比不够理想（低于2:1），考虑放弃这笔交易，或者调整入场时机以获得更好的入场价。
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 优化交易期望值 -->
+        <div class="card">
+            <div class="card-header">
+                <div class="card-icon">🚀</div>
+                <h2 class="card-title">优化交易期望值</h2>
+            </div>
+            <div class="card-content">
+                <p>期望值是每笔交易的平均盈利（或亏损）。优化期望值是提高交易系统盈利能力的关键。</p>
+
+                <div class="formula-box">
+                    <div class="formula">期望值 = (胜率 × 平均盈利) - (败率 × 平均亏损)</div>
+                    <div class="formula-description">
+                        期望值为正说明系统长期盈利<br>
+                        期望值越高，系统盈利能力越强
+                    </div>
+                </div>
+
+                <div class="example-box">
+                    <div class="example-title">💡 期望值计算示例</div>
+                    <div style="color: #cbd5e1; line-height: 1.8;">
+                        你的交易系统历史数据：<br><br>
+                        <strong>胜率：</strong>45%<br>
+                        <strong>平均盈利：</strong>3R（即3倍风险）<br>
+                        <strong>平均亏损：</strong>1R（即1倍风险）<br><br>
+                        <strong>期望值 = (0.45 × 3) - (0.55 × 1) = 1.35 - 0.55 = 0.8R</strong><br><br>
+                        这意味着平均每笔交易盈利0.8倍风险。如果你每笔风险1000元，平均每笔交易盈利800元。
+                    </div>
+                </div>
+
+                <div class="info-grid">
+                    <div class="info-item">
+                        <div class="info-label">提高胜率</div>
+                        <div class="info-value">优化入场条件，过滤低质量信号</div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-label">提高盈亏比</div>
+                        <div class="info-value">耐心等待更好的入场点</div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-label">降低亏损</div>
+                        <div class="info-value">严格执行止损，避免扩大损失</div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-label">让利润奔跑</div>
+                        <div class="info-value">使用追踪止损，避免过早离场</div>
+                    </div>
+                </div>
+
+                <div class="tips-box">
+                    <div class="tips-title">💡 优化策略</div>
+                    <div class="tips-content">
+                        <strong>优先优化盈亏比，而不是胜率。</strong>提高胜率往往需要放弃很多交易机会，而提高盈亏比只需要更有耐心等待更好的入场位置。后者通常更容易实现且更有效。
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 盈亏比的常见陷阱 -->
+        <div class="card">
+            <div class="card-header">
+                <div class="card-icon">⚠️</div>
+                <h2 class="card-title">盈亏比的常见陷阱</h2>
+            </div>
+            <div class="card-content">
+                <p>理解盈亏比的同时，也要避免一些常见的错误认知。</p>
+
+                <div class="info-grid">
+                    <div class="info-item">
+                        <div class="info-label">陷阱1：盲目追求高盈亏比</div>
+                        <div class="info-value">5:1的盈亏比如果胜率只有10%也会亏损</div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-label">陷阱2：目标设得太远</div>
+                        <div class="info-value">导致很少达到目标，实际胜率下降</div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-label">陷阱3：忽略交易成本</div>
+                        <div class="info-value">手续费和滑点会降低实际盈亏比</div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-label">陷阱4：固定盈亏比</div>
+                        <div class="info-value">不同市场条件应该灵活调整</div>
+                    </div>
+                </div>
+
+                <div class="tips-box">
+                    <div class="tips-title">💡 最佳实践</div>
+                    <div class="tips-content">
+                        <strong>追求2:1到3:1的盈亏比</strong>是比较合理的平衡点。这个范围既保证了良好的期望值，又让目标足够现实，可以达到。记录你的实际交易数据，找出最适合你的盈亏比范围。
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div style="text-align: center; padding: 40px 20px;">
+        <a href="../stage3-new.html" style="display: inline-block; padding: 16px 32px; background: linear-gradient(135deg, #6366f1 0%, #06b6d4 100%); color: white; text-decoration: none; border-radius: 12px; font-weight: 600; transition: transform 0.3s ease;">继续下一模块 →</a>
+    </div>
+</body>
+</html>

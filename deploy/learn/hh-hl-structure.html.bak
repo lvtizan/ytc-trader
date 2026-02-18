@@ -1,0 +1,693 @@
+<!doctype html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>HH+HL结构详解 - YTC Trader</title>
+        <link rel="stylesheet" href="../css/modern-premium.css" />
+        <style>
+            body {
+                background: linear-gradient(to bottom, #0a0a0f 0%, #0f172a 50%, #0a0a0f 100%);
+            }
+            .knowledge-container {
+                max-width: 1200px;
+                margin: 0 auto;
+                padding: 3rem 1.5rem;
+            }
+            .knowledge-header {
+                text-align: center;
+                margin-bottom: 3rem;
+            }
+            .knowledge-title {
+                font-size: 2.5rem;
+                font-weight: 800;
+                margin-bottom: 1rem;
+                background: var(--gradient-1);
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+            }
+            .knowledge-meta {
+                display: flex;
+                gap: 2rem;
+                color: var(--text-muted);
+                font-size: 0.9375rem;
+                justify-content: center;
+            }
+            .section {
+                background: var(--bg-card);
+                border: 1px solid var(--border-color);
+                border-radius: 1.5rem;
+                padding: 2.5rem;
+                margin-bottom: 3rem;
+            }
+            .section-title {
+                font-size: 1.75rem;
+                font-weight: 700;
+                margin-bottom: 2rem;
+                padding-bottom: 1rem;
+                border-bottom: 3px solid var(--primary);
+            }
+            .content-block {
+                margin-bottom: 2rem;
+            }
+            .content-block h3 {
+                font-size: 1.25rem;
+                font-weight: 600;
+                margin-bottom: 1rem;
+                color: var(--text-primary);
+            }
+            .content-block p {
+                color: var(--text-secondary);
+                line-height: 1.8;
+                margin-bottom: 1rem;
+            }
+            .key-point {
+                background: rgba(99, 102, 241, 0.1);
+                border-left: 4px solid var(--primary);
+                padding: 1.5rem;
+                margin: 1.5rem 0;
+                border-radius: 0.75rem;
+            }
+            .key-point-title {
+                font-weight: 700;
+                color: var(--primary);
+                margin-bottom: 0.5rem;
+            }
+
+            .diagram-showcase {
+                background: var(--bg-secondary);
+                border: 1px solid var(--border-color);
+                border-radius: 1.5rem;
+                padding: 2rem;
+                margin: 2rem 0;
+            }
+            .diagram-grid {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+                gap: 2rem;
+            }
+            .diagram-card {
+                background: var(--bg-card);
+                border: 1px solid var(--border-color);
+                border-radius: 1rem;
+                overflow: hidden;
+                transition: all 0.3s ease;
+            }
+            .diagram-card:hover {
+                transform: translateY(-4px);
+                box-shadow: 0 12px 40px rgba(0, 212, 255, 0.2);
+            }
+            .diagram-image-container {
+                width: 100%;
+                height: 350px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                background: #0f172a;
+                border-radius: 0.5rem;
+                overflow: hidden;
+            }
+            .diagram-image-container img {
+                max-width: 100%;
+                max-height: 100%;
+                object-fit: contain;
+            }
+            .diagram-caption {
+                padding: 1.5rem;
+            }
+            .diagram-title {
+                font-size: 1.125rem;
+                font-weight: 600;
+                margin-bottom: 0.75rem;
+                color: var(--text-primary);
+            }
+            .diagram-description {
+                font-size: 0.9375rem;
+                color: var(--text-muted);
+                line-height: 1.6;
+                margin-bottom: 0.75rem;
+            }
+            .pdf-extract {
+                background: rgba(245, 158, 11, 0.1);
+                border-left: 3px solid var(--warning);
+                padding: 1rem 1.5rem;
+                margin-top: 1rem;
+                font-size: 0.9375rem;
+                color: var(--text-secondary);
+                border-radius: 0.5rem;
+            }
+            .extract-title {
+                font-weight: 600;
+                color: var(--warning);
+                margin-bottom: 0.5rem;
+            }
+
+            .practice-section {
+                background: var(--bg-card);
+                border: 2px solid var(--primary);
+                border-radius: 1.5rem;
+                padding: 2.5rem;
+                margin-bottom: 3rem;
+            }
+            .practice-header {
+                font-size: 1.5rem;
+                font-weight: 700;
+                margin-bottom: 2rem;
+                color: var(--text-primary);
+                display: flex;
+                align-items: center;
+                gap: 1rem;
+            }
+            .practice-item {
+                background: var(--bg-secondary);
+                border: 1px solid var(--border-color);
+                border-radius: 1rem;
+                padding: 2rem;
+                margin-bottom: 2rem;
+            }
+            .practice-question {
+                font-size: 1.125rem;
+                font-weight: 600;
+                margin-bottom: 1rem;
+                color: var(--text-primary);
+            }
+            .practice-image {
+                width: 100%;
+                max-height: 300px;
+                background: #0f172a;
+                border-radius: 0.75rem;
+                margin-bottom: 1.1rem;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+            .practice-image img {
+                max-width: 100%;
+                max-height: 300px;
+                object-fit: contain;
+            }
+            .practice-description {
+                color: var(--text-muted);
+                font-size: 0.9375rem;
+                line-height: 1.6;
+                margin-bottom: 1.5rem;
+            }
+            .practice-options {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+                gap: 1rem;
+            }
+            .practice-option {
+                padding: 1rem 1.25rem;
+                background: var(--bg-card);
+                border: 2px solid var(--border-color);
+                border-radius: 0.75rem;
+                cursor: pointer;
+                transition: all 0.3s ease;
+                color: var(--text-secondary);
+            }
+            .practice-option:hover {
+                border-color: var(--primary);
+                background: rgba(99, 102, 241, 0.1);
+                transform: scale(1.02);
+            }
+            .practice-option.correct {
+                background: rgba(16, 185, 129, 0.2);
+                border-color: var(--success);
+                color: var(--success);
+            }
+            .practice-option.wrong {
+                background: rgba(239, 68, 68, 0.1);
+                border-color: var(--danger);
+                color: var(--danger);
+                opacity: 0.6;
+            }
+            .explanation {
+                margin-top: 1rem;
+                padding: 1rem;
+                background: rgba(99, 102, 241, 0.05);
+                border-radius: 0.5rem;
+                display: none;
+                font-size: 0.9375rem;
+                line-height: 1.6;
+            }
+            .explanation.show {
+                display: block;
+            }
+            .explanation strong {
+                color: var(--primary);
+            }
+            .score-display {
+                text-align: center;
+                padding: 2rem;
+                background: var(--bg-secondary);
+                border-radius: 1rem;
+                margin-top: 2rem;
+            }
+            .score-number {
+                font-size: 3rem;
+                font-weight: 800;
+                background: var(--gradient-1);
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+            }
+            @media (max-width: 768px) {
+                .diagram-grid {
+                    grid-template-columns: 1fr;
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <!-- 科技光晕背景层 -->
+        <div class="tech-glow"></div>
+
+        <div class="app-container">
+            <nav class="navbar">
+                <div class="nav-container">
+                    <a href="../stage1-new.html" class="brand">
+                        <div class="brand-logo">YT</div>
+                        <div class="brand-text">
+                            <span class="brand-title">YTC Trader</span>
+                        </div>
+                    </a>
+                    <ul class="nav-menu">
+                        <li>
+                            <a href="../stage1-new.html" class="nav-link"
+                                >← 返回阶段一</a
+                            >
+                        </li>
+                        <li><a href="#diagrams" class="nav-link">图例</a></li>
+                        <li><a href="#practice" class="nav-link">练习</a></li>
+                    </ul>
+                </div>
+            </nav>
+
+            <div class="knowledge-container">
+                <div class="knowledge-header">
+                    <p
+                        style="
+                            color: var(--primary);
+                            font-weight: 600;
+                            margin-bottom: 0.5rem;
+                        "
+                    >
+                        阶段一 · 模块1
+                    </p>
+                    <h1 class="knowledge-title">上升趋势的完整结构（HH+HL）</h1>
+                    <div class="knowledge-meta">
+                        <span>⏱️ 学习时间：30分钟</span>
+                        <span>📚 难度：基础</span>
+                        <span>📖 来源：YTC PDF 第2-3章</span>
+                    </div>
+                </div>
+
+                <!-- 核心定义 -->
+                <div class="section">
+                    <h2 class="section-title">核心概念定义</h2>
+
+                    <div class="content-block">
+                        <h3>🔺 更高高点（Higher High，HH）</h3>
+                        <p>
+                            在上升趋势中，当价格突破前一个高点并创出新的高点时，这个新的高点被称为"更高高点"（HH）。
+                        </p>
+                        <div class="key-point">
+                            <div class="key-point-title">✓ 识别标准：</div>
+                            <div class="key-point-content">
+                                当前高点 > 前一个高点<br />
+                                突破必须有力，不仅是触及<br />
+                                维持在新高之上
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="content-block">
+                        <h3>🔻 更高低点（Higher Low，HL）</h3>
+                        <p>
+                            在上升趋势中，当价格回调后形成新的低点，且这个低点高于前一个低点时，被称为"更高低点"（HL）。
+                        </p>
+                        <div class="key-point">
+                            <div class="key-point-title">✓ 识别标准：</div>
+                            <div class="key-point-content">
+                                当前低点 > 前一个低点<br />
+                                回调应该有序，不是剧烈下跌<br />
+                                在低点附近有支撑迹象
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="content-block">
+                        <h3>📈 上升趋势公式</h3>
+                        <p>一个完整的上升趋势由一系列的HH和HL组成：</p>
+                        <div class="key-point">
+                            <div class="key-point-title">💡 核心公式：</div>
+                            <div class="key-point-content">
+                                HH + HL = 上升趋势信号<br />
+                                HH + HL + HH + HL = 持续的上升趋势<br />
+                                越多连续的HH和HL = 越强的上升趋势
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 图示展示 -->
+                <div class="diagram-showcase" id="diagrams">
+                    <h2 class="section-title">📊 教学图例（来自PDF）</h2>
+
+                    <div class="diagram-grid">
+                        <!-- 图例1 -->
+                        <div class="diagram-card">
+                            <div class="diagram-image-container">
+                                <img
+                                    src="../images/diagrams/uptrend-basic.png"
+                                    alt="上升趋势基础结构"
+                                />
+                            </div>
+                            <div class="diagram-caption">
+                                <div class="diagram-title">
+                                    上升趋势基础结构
+                                </div>
+                                <div class="diagram-description">
+                                    展示上升趋势的完整结构，可以清晰看到价格的逐步上升过程。
+                                </div>
+                                <div class="pdf-extract">
+                                    <div class="extract-title">
+                                        📖 PDF内容要点：
+                                    </div>
+                                    观察图表中的价格运动，注意每次上升都创出新高，每次回调都形成更高的低点。
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 图例2 -->
+                        <div class="diagram-card">
+                            <div class="diagram-image-container">
+                                <img
+                                    src="../images/diagrams/high-low-mark.png"
+                                    alt="高低点标注"
+                                />
+                            </div>
+                            <div class="diagram-caption">
+                                <div class="diagram-title">高点与低点标注</div>
+                                <div class="diagram-description">
+                                    详细标注了上升趋势中的关键转折点。高点(H)和低点(L)的位置。
+                                </div>
+                                <div class="pdf-extract">
+                                    <div class="extract-title">
+                                        📖 PDF内容要点：
+                                    </div>
+                                    注意左侧低点和右侧高点的关系，这就是典型的HH+HL结构。
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 图例3 -->
+                        <div class="diagram-card">
+                            <div class="diagram-image-container">
+                                <img
+                                    src="../images/diagrams/trend-structure.png"
+                                    alt="完整趋势结构"
+                                />
+                            </div>
+                            <div class="diagram-caption">
+                                <div class="diagram-title">完整趋势结构图</div>
+                                <div class="diagram-description">
+                                    展示多个HH和HL组合形成的完整上升趋势结构。
+                                </div>
+                                <div class="pdf-extract">
+                                    <div class="extract-title">
+                                        📖 PDF内容要点：
+                                    </div>
+                                    价格不断创出更高的高点和更高的低点，形成持续上升的通道。
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 图例4 -->
+                        <div class="diagram-card">
+                            <div class="diagram-image-container">
+                                <img
+                                    src="../images/diagrams/pullback-example.png"
+                                    alt="回调示例"
+                                />
+                            </div>
+                            <div class="diagram-caption">
+                                <div class="diagram-title">趋势中的回调</div>
+                                <div class="diagram-description">
+                                    展示上升趋势中的回调过程，回调提供了再次入场的机会。
+                                </div>
+                                <div class="pdf-extract">
+                                    <div class="extract-title">
+                                        📖 PDF内容要点：
+                                    </div>
+                                    注意回调不会破坏整体结构，回调低点高于前一低点时可以继续做多。
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 互动练习 -->
+                <div class="practice-section" id="practice">
+                    <div class="practice-header">
+                        <span>✏️ 基于图片的互动练习</span>
+                        <span
+                            style="
+                                font-size: 0.875rem;
+                                color: var(--text-muted);
+                            "
+                            >观察上图，回答问题</span
+                        >
+                    </div>
+
+                    <!-- 练习1 -->
+                    <div class="practice-item" data-practice="1">
+                        <div class="practice-question">
+                            练习1：观察上面的"完整趋势结构图"
+                        </div>
+                        <div class="practice-image">
+                            <img
+                                src="../images/diagrams/trend-structure.png"
+                                alt="趋势结构练习"
+                            />
+                        </div>
+                        <div class="practice-description">
+                            根据图片，判断以下说法中哪些是正确的：
+                        </div>
+                        <div class="practice-options">
+                            <div
+                                class="practice-option"
+                                onclick="checkAnswer(1, this, false)"
+                            >
+                                A. 价格先创新高再创新低
+                            </div>
+                            <div
+                                class="practice-option"
+                                onclick="checkAnswer(1, this, true)"
+                            >
+                                B. 价格依次创新高
+                            </div>
+                            <div
+                                class="practice-option"
+                                onclick="checkAnswer(1, this, false)"
+                            >
+                                C. 高点和低点位置随意
+                            </div>
+                        </div>
+                        <div class="explanation" id="explanation-1"></div>
+                    </div>
+
+                    <!-- 练习2 -->
+                    <div class="practice-item" data-practice="2">
+                        <div class="practice-question">
+                            练习2：观察上面的"高低点标注图"
+                        </div>
+                        <div class="practice-image">
+                            <img
+                                src="../images/diagrams/high-low-mark.png"
+                                alt="高低点标注练习"
+                            />
+                        </div>
+                        <div class="practice-description">
+                            根据图片标注，判断图中展示了什么结构：
+                        </div>
+                        <div class="practice-options">
+                            <div
+                                class="practice-option"
+                                onclick="checkAnswer(2, this, false)"
+                            >
+                                A. 下降趋势结构
+                            </div>
+                            <div
+                                class="practice-option"
+                                onclick="checkAnswer(2, this, true)"
+                            >
+                                B. 上升趋势结构（HH+HL）
+                            </div>
+                            <div
+                                class="practice-option"
+                                onclick="checkAnswer(2, this, false)"
+                            >
+                                C. 横盘整理结构
+                            </div>
+                        </div>
+                        <div class="explanation" id="explanation-2"></div>
+                    </div>
+
+                    <!-- 练习3 -->
+                    <div class="practice-item" data-practice="3">
+                        <div class="practice-question">
+                            练习3：基于所有图例的综合理解
+                        </div>
+                        <div class="practice-description">
+                            观察所有4张图例，选择最准确的说法：
+                        </div>
+                        <div class="practice-options">
+                            <div
+                                class="practice-option"
+                                onclick="checkAnswer(3, this, false)"
+                            >
+                                A. 上升趋势中回调会破坏趋势
+                            </div>
+                            <div
+                                class="practice-option"
+                                onclick="checkAnswer(3, this, true)"
+                            >
+                                B. 上升趋势由连续的HH+HL组成
+                            </div>
+                            <div
+                                class="practice-option"
+                                onclick="checkAnswer(3, this, false)"
+                            >
+                                C. 回调越深越好
+                            </div>
+                        </div>
+                        <div class="explanation" id="explanation-3"></div>
+                    </div>
+
+                    <!-- 得分显示 -->
+                    <div
+                        class="score-display"
+                        id="score-display"
+                        style="display: none"
+                    >
+                        <div>练习得分</div>
+                        <div class="score-number" id="score-number">0/3</div>
+                    </div>
+                </div>
+
+                <!-- 学习提示 -->
+                <div
+                    style="
+                        background: var(--bg-card);
+                        border: 1px solid var(--border-color);
+                        border-radius: 1rem;
+                        padding: 2rem;
+                        margin-top: 2rem;
+                        text-align: center;
+                    "
+                >
+                    <h3
+                        style="
+                            font-size: 1.25rem;
+                            margin-bottom: 1rem;
+                            color: var(--text-primary);
+                        "
+                    >
+                        📚 学习提示
+                    </h3>
+                    <p
+                        style="
+                            color: var(--text-muted);
+                            line-height: 1.8;
+                            margin-bottom: 1.5rem;
+                        "
+                    >
+                        所有图例都来自YTC
+                        PDF原始文件，配图说明提取自PDF中的相关内容。通过观察实际图表，你可以更好地理解HH+HL结构的识别方法。
+                    </p>
+                    <div
+                        style="
+                            display: flex;
+                            gap: 1rem;
+                            justify-content: center;
+                            flex-wrap: wrap;
+                        "
+                    >
+                        <a href="callback-types.html" class="btn btn-primary"
+                            >下一个：回调类型 →</a
+                        >
+                        <a href="../stage1-new.html" class="btn btn-secondary"
+                            >返回阶段一</a
+                        >
+                    </div>
+                </div>
+            </div>
+
+            <script>
+                let score = 0;
+                const totalQuestions = 3;
+
+                function checkAnswer(questionNum, element, isCorrect) {
+                    const parent = element.parentElement;
+                    const options = parent.querySelectorAll(".practice-option");
+                    const explanation = document.getElementById(
+                        "explanation-" + questionNum,
+                    );
+
+                    // 重置所有选项
+                    options.forEach((opt) => {
+                        opt.classList.remove("correct", "wrong");
+                        opt.style.background = "";
+                        opt.style.color = "";
+                    });
+
+                    // 标记选择的答案
+                    element.classList.add(isCorrect ? "correct" : "wrong");
+
+                    // 显示解释
+                    explanation.classList.add("show");
+
+                    if (isCorrect) {
+                        score++;
+                        element.innerHTML +=
+                            ' <span style="margin-left: 10px;">✓</span>';
+                        explanation.innerHTML =
+                            "<strong>✅ 正确！</strong><br>" +
+                            getExplanation(questionNum, true);
+                    } else {
+                        element.innerHTML +=
+                            ' <span style="margin-left: 10px;">✗</span>';
+                        explanation.innerHTML =
+                            "<strong>❌ 不正确</strong><br>" +
+                            getExplanation(questionNum, false);
+                    }
+
+                    // 显示得分
+                    document.getElementById("score-number").textContent =
+                        score + "/" + totalQuestions;
+                    document.getElementById("score-display").style.display =
+                        "block";
+                }
+
+                function getExplanation(questionNum, correct) {
+                    const explanations = {
+                        1: {
+                            true: "正确！在上升趋势中，价格必须依次创新高，不能先创新低。这是上升趋势的基本特征。",
+                            false: "不正确。上升趋势要求价格必须先创新高，不能打乱顺序。",
+                        },
+                        2: {
+                            true: "正确！图中明确展示了高点(H)和低点(L)依次抬升，这是典型的HH+HL上升趋势结构。",
+                            false: "不正确。图中显示的是上升趋势，不是下降趋势或横盘。",
+                        },
+                        3: {
+                            true: "正确！上升趋势的核心就是连续的HH+HL组合，回调不破坏趋势。",
+                            false: "不正确。上升趋势要求连续的HH+HL，回调应该是有序且健康的。",
+                        },
+                    };
+                    return explanations[questionNum][correct];
+                }
+            </script>
+        </div>
+    </body>
+</html>

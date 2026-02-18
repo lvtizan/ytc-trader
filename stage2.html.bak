@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>阶段二：三大核心交易策略 - YTC Trader</title>
+	<link rel="stylesheet" href="css/glassy-tech.css" />
+</head>
+<body>
+	<!-- Ambient Background Glow -->
+	<div class="ambient-glow"></div>
+    <!-- 导航栏 -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <span class="logo-text">YTC Trader</span>
+                <span class="logo-tagline">成为专业的交易者</span>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="index.html">首页</a></li>
+                <li><a href="index.html#chapters">学习目录</a></li>
+                <li><a href="index.html#tools">工具模板</a></li>
+                <li><a href="index.html#progress">学习进度</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- 页面头部 -->
+    <header class="page-header">
+        <div class="container">
+            <div class="breadcrumb">
+                <a href="index.html">首页</a>
+                <span>›</span>
+                <span>阶段二</span>
+            </div>
+            <h1 class="page-title">阶段二：三大核心交易策略</h1>
+            <p class="page-subtitle">第5-11周 | 掌握PB/CPB/STS三个核心做多策略</p>
+        </div>
+    </header>
+
+    <!-- 主要内容 -->
+    <main class="main-content">
+        <div class="container">
+            <div class="content-placeholder">
+                <div class="placeholder-icon">🚧</div>
+                <h2>内容开发中</h2>
+                <p>阶段二的学习内容正在完善中，敬请期待...</p>
+
+                <div class="placeholder-preview">
+                    <h3>本阶段将包含以下内容：</h3>
+                    <div class="preview-list">
+                        <div class="preview-item">
+                            <span class="preview-number">5-7周</span>
+                            <div class="preview-content">
+                                <h4>PB策略（Pullback - 回调买入）</h4>
+                                <p>基础回调买入策略完整流程</p>
+                            </div>
+                        </div>
+                        <div class="preview-item">
+                            <span class="preview-number">8-9周</span>
+                            <div class="preview-content">
+                                <h4>CPB策略（Complex Pullback - 复杂回调）</h4>
+                                <p>复杂回调应对策略</p>
+                            </div>
+                        </div>
+                        <div class="preview-item">
+                            <span class="preview-number">10-11周</span>
+                            <div class="preview-content">
+                                <h4>STS策略（Structural Trading Setup）</h4>
+                                <p>结构性交易设置</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="placeholder-actions">
+                    <a href="stage1.html" class="btn btn-primary">← 返回阶段一</a>
+                    <a href="index.html#chapters" class="btn btn-secondary">查看学习目录</a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="js/app.js"></script>
+</body>
+</html>
