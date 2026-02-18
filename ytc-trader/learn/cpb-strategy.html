@@ -101,7 +101,35 @@
                 text-decoration: none;
                 font-weight: 600;
             }
-        </style>
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 28px;
+            }
+            .hero-subtitle {
+                font-size: 16px;
+            }
+            .content-section {
+                padding: 20px 16px;
+            }
+            .card {
+                padding: 20px;
+                margin-bottom: 16px;
+            }
+            .card-title {
+                font-size: 1.2rem;
+            }
+            .card-icon {
+                font-size: 2rem;
+            }
+            .info-grid {
+                grid-template-columns: 1fr;
+                gap: 12px;
+            }
+            svg[width="100%"] {
+                min-width: 600px;
+            }
+        }
+        </style>        </style>
     </head>
     <body>
         <!-- 科技光晕背景层 -->
