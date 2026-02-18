@@ -1,0 +1,40 @@
+# 备份文件
+*.bak
+*.bak2
+*~
+
+# 临时文件
+*.tmp
+*.temp
+.DS_Store
+Thumbs.db
+
+# 编辑器文件
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# 日志和报告
+*.log
+*.txt
+link-check-report.txt
+TESTING_CHECKLIST.md
+UPDATE_SUMMARY_*.md
+FIX_COMPLETE.md
+NEW_DESIGN.md
+UPDATE_COMPLETE.md
+
+# 技能文件
+.skills/
+
+# 脚本
+*.sh
+
+# Markdown文档（除了README）
+状态说明.md
+LINKS.md
+所有页面列表.txt
+
+# 旧版本文件
+*-old.html
