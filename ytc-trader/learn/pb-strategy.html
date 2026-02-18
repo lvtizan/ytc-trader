@@ -1,0 +1,1100 @@
+<!doctype html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>PB策略：回调买入 - YTC Trader</title>
+        <link rel="stylesheet" href="../css/modern-premium.css" />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+            rel="stylesheet"
+        />
+        <style>
+            body {
+                background: linear-gradient(
+                    to bottom,
+                    #0a0a0f 0%,
+                    #0f172a 50%,
+                    #0a0a0f 100%
+                );
+                min-height: 100vh;
+            }
+            .hero-section {
+                text-align: center;
+                padding: 60px 20px;
+                background: radial-gradient(
+                    ellipse at top,
+                    rgba(99, 102, 241, 0.15) 0%,
+                    transparent 50%
+                );
+            }
+            .hero-badge {
+                display: inline-block;
+                padding: 8px 16px;
+                background: rgba(99, 102, 241, 0.2);
+                border: 1px solid rgba(99, 102, 241, 0.3);
+                border-radius: 20px;
+                color: #a5b4fc;
+                font-size: 0.875rem;
+                margin-bottom: 24px;
+            }
+            .hero-title {
+                font-size: 3rem;
+                font-weight: 800;
+                background: linear-gradient(135deg, #6366f1 0%, #06b6d4 100%);
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+                margin-bottom: 16px;
+            }
+            .hero-subtitle {
+                color: #cbd5e1;
+                font-size: 1.25rem;
+                max-width: 700px;
+                margin: 0 auto;
+            }
+            .content-section {
+                max-width: 900px;
+                margin: 0 auto;
+                padding: 40px 20px;
+            }
+            .card {
+                background: rgba(30, 41, 59, 0.5);
+                backdrop-filter: blur(10px);
+                border: 1px solid rgba(99, 102, 241, 0.2);
+                border-radius: 16px;
+                padding: 32px;
+                margin-bottom: 24px;
+                position: relative;
+                overflow: hidden;
+            }
+            .card::before {
+                content: "";
+                position: absolute;
+                top: 0;
+                left: 0;
+                right: 0;
+                height: 4px;
+                background: linear-gradient(90deg, #6366f1 0%, #06b6d4 100%);
+            }
+            .card-header {
+                display: flex;
+                align-items: center;
+                gap: 16px;
+                margin-bottom: 20px;
+            }
+            .card-icon {
+                font-size: 2.5rem;
+            }
+            .card-title {
+                font-size: 1.5rem;
+                font-weight: 700;
+                color: #f1f5f9;
+            }
+            .card-content {
+                color: #cbd5e1;
+                line-height: 1.8;
+            }
+            .info-grid {
+                display: grid;
+                grid-template-columns: repeat(2, 1fr);
+                gap: 16px;
+                margin-top: 20px;
+            }
+            .info-item {
+                background: rgba(15, 23, 42, 0.5);
+                border: 1px solid rgba(99, 102, 241, 0.1);
+                border-radius: 12px;
+                padding: 20px;
+            }
+            .info-label {
+                color: #a5b4fc;
+                font-size: 0.875rem;
+                font-weight: 600;
+                margin-bottom: 8px;
+            }
+            .info-value {
+                color: #f1f5f9;
+                font-size: 1rem;
+                font-weight: 600;
+            }
+            .tips-box {
+                background: rgba(245, 158, 11, 0.1);
+                border: 1px solid rgba(245, 158, 11, 0.3);
+                border-radius: 12px;
+                padding: 20px;
+                margin: 20px 0;
+            }
+            .tips-title {
+                color: #fbbf24;
+                font-weight: 600;
+                margin-bottom: 12px;
+                display: flex;
+                align-items: center;
+                gap: 8px;
+            }
+            .tips-content {
+                color: #cbd5e1;
+                line-height: 1.7;
+            }
+            .back-link {
+                display: inline-block;
+                margin: 20px;
+                padding: 12px 24px;
+                background: rgba(99, 102, 241, 0.2);
+                border: 1px solid rgba(99, 102, 241, 0.3);
+                border-radius: 12px;
+                color: #a5b4fc;
+                text-decoration: none;
+                font-weight: 600;
+                transition: all 0.3s ease;
+            }
+            .back-link:hover {
+                background: rgba(99, 102, 241, 0.3);
+                transform: translateY(-2px);
+            }
+            .checklist {
+                background: rgba(15, 23, 42, 0.5);
+                border-radius: 12px;
+                padding: 20px;
+                margin-top: 20px;
+            }
+            .checklist-item {
+                display: flex;
+                align-items: flex-start;
+                gap: 12px;
+                padding: 12px 0;
+                border-bottom: 1px solid rgba(99, 102, 241, 0.1);
+            }
+            .checklist-item:last-child {
+                border-bottom: none;
+            }
+            .checklist-checkbox {
+                width: 24px;
+                height: 24px;
+                border: 2px solid rgba(99, 102, 241, 0.3);
+                border-radius: 6px;
+                flex-shrink: 0;
+                margin-top: 2px;
+            }
+            .checklist-text {
+                color: #cbd5e1;
+                line-height: 1.6;
+            }
+        </style>
+    </head>
+    <body>
+        <a href="../stage2-new.html" class="back-link">← 返回阶段二</a>
+
+        <div class="hero-section">
+            <span class="hero-badge">阶段二 · PB策略 · 第5-7周</span>
+            <h1 class="hero-title">PB策略：Pullback回调买入</h1>
+            <p class="hero-subtitle">
+                掌握YTC价格行为交易最核心的Pullback策略，在上升趋势的回调中寻找最佳入场点
+            </p>
+        </div>
+
+        <div class="content-section">
+            <!-- PB策略概述 -->
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-icon">🎯</div>
+                    <h2 class="card-title">什么是PB策略</h2>
+                </div>
+                <div class="card-content">
+                    <p>
+                        Pullback（回调买入）策略是YTC价格行为交易体系中最基础也最重要的策略。它的核心思想是在上升趋势中，等待价格回调到合理区域后买入，跟随趋势继续上涨。
+                    </p>
+
+                    <div class="info-grid">
+                        <div class="info-item">
+                            <div class="info-label">适用市场</div>
+                            <div class="info-value">明确的上升趋势</div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-label">交易方向</div>
+                            <div class="info-value">仅做多（不做空）</div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-label">风险收益比</div>
+                            <div class="info-value">通常优于2:1</div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-label">成功率</div>
+                            <div class="info-value">40-50%（高盈亏比）</div>
+                        </div>
+                    </div>
+
+                    <div class="tips-box">
+                        <div class="tips-title">
+                            💡 为什么选择回调而不是突破
+                        </div>
+                        <div class="tips-content">
+                            突破买入追高，风险大、止损难设置；回调买入在支撑位入场，风险小、止损明确、盈亏比更优。专业交易者更喜欢回调入场。
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- PB策略入场条件 -->
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-icon">✅</div>
+                    <h2 class="card-title">PB策略入场条件</h2>
+                </div>
+                <div class="card-content">
+                    <p>
+                        严格执行入场条件是PB策略成功的关键。只有满足所有条件才考虑入场。
+                    </p>
+
+                    <div class="checklist">
+                        <div class="checklist-item">
+                            <div class="checklist-checkbox"></div>
+                            <div class="checklist-text">
+                                <strong>上升趋势确认：</strong
+                                >价格创出更高高点（HH）和更高低点（HL）
+                            </div>
+                        </div>
+                        <div class="checklist-item">
+                            <div class="checklist-checkbox"></div>
+                            <div class="checklist-text">
+                                <strong>回调发生：</strong
+                                >价格从高点开始回落，进入回调区域
+                            </div>
+                        </div>
+                        <div class="checklist-item">
+                            <div class="checklist-checkbox"></div>
+                            <div class="checklist-text">
+                                <strong>回调区域识别：</strong
+                                >价格回调到前期高点或支撑区域附近
+                            </div>
+                        </div>
+                        <div class="checklist-item">
+                            <div class="checklist-checkbox"></div>
+                            <div class="checklist-text">
+                                <strong>回调结构完整：</strong
+                                >回调形成清晰的回调结构（Layback、CC等）
+                            </div>
+                        </div>
+                        <div class="checklist-item">
+                            <div class="checklist-checkbox"></div>
+                            <div class="checklist-text">
+                                <strong>买入信号出现：</strong
+                                >在回调区域出现买入信号（K线形态、成交量等）
+                            </div>
+                        </div>
+                        <div class="checklist-item">
+                            <div class="checklist-checkbox"></div>
+                            <div class="checklist-text">
+                                <strong>止损位置明确：</strong
+                                >可以在回调结构下方设置合理的止损
+                            </div>
+                        </div>
+                        <div class="checklist-item">
+                            <div class="checklist-checkbox"></div>
+                            <div class="checklist-text">
+                                <strong>盈亏比合理：</strong
+                                >潜在盈利至少是风险的2倍以上
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="tips-box">
+                        <div class="tips-title">⚠️ 重要提醒</div>
+                        <div class="tips-content">
+                            <strong>不要急于入场！</strong
+                            >即使趋势向上，也要耐心等待价格回调到合理区域。错过一个交易机会总比错过一个糟糕的交易要好。如果价格没有回调到理想位置，就放弃这笔交易。
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- PB策略止损设置 -->
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-icon">🛡️</div>
+                    <h2 class="card-title">PB策略止损设置</h2>
+                </div>
+                <div class="card-content">
+                    <p>
+                        止损应该设置在回调结构的下方，一旦价格突破这个位置，说明回调结构失效，交易假设不再成立。
+                    </p>
+
+                    <div class="info-grid">
+                        <div class="info-item">
+                            <div class="info-label">简单回调</div>
+                            <div class="info-value">止损设在回调低点下方</div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-label">复杂回调</div>
+                            <div class="info-value">
+                                止损设在回调结构最低点下方
+                            </div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-label">Layback</div>
+                            <div class="info-value">
+                                止损设在Layback低点下方
+                            </div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-label">安全距离</div>
+                            <div class="info-value">结构下方0.5-1%处</div>
+                        </div>
+                    </div>
+
+                    <div class="tips-box">
+                        <div class="tips-title">💡 止损设置技巧</div>
+                        <div class="tips-content">
+                            <strong>止损不要太紧也不要太松。</strong
+                            >太紧容易被正常波动止损，太松会增加单笔风险。理想的止损位置应该在市场结构的"外侧"——一旦突破就意味着交易假设失效。
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- PB策略出场规则 -->
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-icon">🚪</div>
+                    <h2 class="card-title">PB策略出场规则</h2>
+                </div>
+                <div class="card-content">
+                    <p>
+                        好的出场策略和好的入场策略同样重要。PB策略提供多种出场方式。
+                    </p>
+
+                    <div class="info-grid">
+                        <div class="info-item">
+                            <div class="info-label">目标出场</div>
+                            <div class="info-value">
+                                达到预定盈利目标（阻力位）
+                            </div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-label">追踪止损</div>
+                            <div class="info-value">跟随趋势结构调整止损位</div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-label">信号出场</div>
+                            <div class="info-value">出现反向K线或趋势信号</div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-label">时间出场</div>
+                            <div class="info-value">持仓时间过长未见启动</div>
+                        </div>
+                    </div>
+
+                    <div class="tips-box">
+                        <div class="tips-title">⚠️ 出场建议</div>
+                        <div class="tips-content">
+                            <strong>新手建议使用目标出场法。</strong
+                            >在入场时就设定好盈利目标，达到目标后至少卖出50%仓位锁定利润，剩余仓位使用追踪止损让利润奔跑。这样既确保了盈利，又不会错过大趋势。
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- PB策略K线图例 -->
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-icon">📊</div>
+                    <h2 class="card-title">PB策略K线图例</h2>
+                </div>
+                <div class="card-content">
+                    <p>通过实际K线图理解PB策略的完整交易过程。</p>
+
+                    <!-- K线图例1：简单回调PB -->
+                    <div
+                        style="
+                            background: rgba(15, 23, 42, 0.5);
+                            border-radius: 12px;
+                            padding: 24px;
+                            margin-top: 20px;
+                        "
+                    >
+                        <div
+                            style="
+                                color: #a5b4fc;
+                                font-weight: 600;
+                                margin-bottom: 16px;
+                                font-size: 1.1rem;
+                            "
+                        >
+                            案例1：贵州茅台 - 简单回调PB策略
+                        </div>
+
+                        <!-- K线图表 -->
+                        <div
+                            style="
+                                background: rgba(30, 41, 59, 0.8);
+                                border-radius: 12px;
+                                padding: 30px;
+                                margin: 20px 0;
+                                overflow-x: auto;
+                            "
+                        >
+                            <svg
+                                width="100%"
+                                height="400"
+                                viewBox="0 0 800 400"
+                            >
+                                <!-- 背景网格 -->
+                                <defs>
+                                    <pattern
+                                        id="grid1"
+                                        width="40"
+                                        height="40"
+                                        patternUnits="userSpaceOnUse"
+                                    >
+                                        <path
+                                            d="M 40 0 L 0 0 0 40"
+                                            fill="none"
+                                            stroke="rgba(99, 102, 241, 0.1)"
+                                            stroke-width="1"
+                                        />
+                                    </pattern>
+                                </defs>
+                                <rect
+                                    width="100%"
+                                    height="100%"
+                                    fill="url(#grid1)"
+                                />
+
+                                <!-- 坐标轴 -->
+                                <line
+                                    x1="50"
+                                    y1="350"
+                                    x2="750"
+                                    y2="350"
+                                    stroke="#6366f1"
+                                    stroke-width="2"
+                                />
+                                <line
+                                    x1="50"
+                                    y1="50"
+                                    x2="50"
+                                    y2="350"
+                                    stroke="#6366f1"
+                                    stroke-width="2"
+                                />
+
+                                <!-- 价格标签 -->
+                                <text
+                                    x="10"
+                                    y="100"
+                                    fill="#94a3b8"
+                                    font-size="12"
+                                >
+                                    1850
+                                </text>
+                                <text
+                                    x="10"
+                                    y="180"
+                                    fill="#94a3b8"
+                                    font-size="12"
+                                >
+                                    1800
+                                </text>
+                                <text
+                                    x="10"
+                                    y="260"
+                                    fill="#94a3b8"
+                                    font-size="12"
+                                >
+                                    1650
+                                </text>
+                                <text
+                                    x="10"
+                                    y="340"
+                                    fill="#94a3b8"
+                                    font-size="12"
+                                >
+                                    1600
+                                </text>
+
+                                <!-- 支撑区域 -->
+                                <rect
+                                    x="240"
+                                    y="240"
+                                    width="320"
+                                    height="80"
+                                    fill="rgba(99, 102, 241, 0.1)"
+                                    stroke="#6366f1"
+                                    stroke-width="1"
+                                    stroke-dasharray="5,5"
+                                />
+                                <text
+                                    x="560"
+                                    y="255"
+                                    fill="#6366f1"
+                                    font-size="11"
+                                >
+                                    支撑区域
+                                </text>
+
+                                <!-- 趋势线 -->
+                                <line
+                                    x1="100"
+                                    y1="300"
+                                    x2="700"
+                                    y2="150"
+                                    stroke="#10b981"
+                                    stroke-width="2"
+                                    stroke-dasharray="10,5"
+                                />
+
+                                <!-- K线序列 -->
+                                <!-- 上升趋势 -->
+                                <line
+                                    x1="100"
+                                    y1="280"
+                                    x2="100"
+                                    y2="320"
+                                    stroke="#10b981"
+                                    stroke-width="2"
+                                />
+                                <rect
+                                    x="90"
+                                    y="290"
+                                    width="20"
+                                    height="20"
+                                    fill="#10b981"
+                                />
+
+                                <line
+                                    x1="150"
+                                    y1="250"
+                                    x2="150"
+                                    y2="290"
+                                    stroke="#10b981"
+                                    stroke-width="2"
+                                />
+                                <rect
+                                    x="140"
+                                    y="260"
+                                    width="20"
+                                    height="20"
+                                    fill="#10b981"
+                                />
+
+                                <line
+                                    x1="200"
+                                    y1="200"
+                                    x2="200"
+                                    y2="260"
+                                    stroke="#10b981"
+                                    stroke-width="2"
+                                />
+                                <rect
+                                    x="190"
+                                    y="210"
+                                    width="20"
+                                    height="40"
+                                    fill="#10b981"
+                                />
+
+                                <line
+                                    x1="250"
+                                    y1="180"
+                                    x2="250"
+                                    y2="230"
+                                    stroke="#10b981"
+                                    stroke-width="2"
+                                />
+                                <rect
+                                    x="240"
+                                    y="190"
+                                    width="20"
+                                    height="30"
+                                    fill="#10b981"
+                                />
+
+                                <line
+                                    x1="300"
+                                    y1="140"
+                                    x2="300"
+                                    y2="190"
+                                    stroke="#10b981"
+                                    stroke-width="2"
+                                />
+                                <rect
+                                    x="290"
+                                    y="150"
+                                    width="20"
+                                    height="30"
+                                    fill="#10b981"
+                                />
+
+                                <!-- 回调开始 -->
+                                <line
+                                    x1="350"
+                                    y1="150"
+                                    x2="350"
+                                    y2="220"
+                                    stroke="#ef4444"
+                                    stroke-width="2"
+                                />
+                                <rect
+                                    x="340"
+                                    y="160"
+                                    width="20"
+                                    height="50"
+                                    fill="#ef4444"
+                                />
+
+                                <line
+                                    x1="400"
+                                    y1="200"
+                                    x2="400"
+                                    y2="280"
+                                    stroke="#ef4444"
+                                    stroke-width="2"
+                                />
+                                <rect
+                                    x="390"
+                                    y="210"
+                                    width="20"
+                                    height="60"
+                                    fill="#ef4444"
+                                />
+
+                                <!-- 回调到支撑位 -->
+                                <line
+                                    x1="450"
+                                    y1="260"
+                                    x2="450"
+                                    y2="310"
+                                    stroke="#f59e0b"
+                                    stroke-width="2"
+                                />
+                                <rect
+                                    x="440"
+                                    y="270"
+                                    width="20"
+                                    height="30"
+                                    fill="#f59e0b"
+                                />
+
+                                <!-- 入场信号 - 锤子线 -->
+                                <line
+                                    x1="500"
+                                    y1="280"
+                                    x2="500"
+                                    y2="320"
+                                    stroke="#10b981"
+                                    stroke-width="2"
+                                />
+                                <rect
+                                    x="490"
+                                    y="290"
+                                    width="20"
+                                    height="15"
+                                    fill="#10b981"
+                                />
+                                <circle
+                                    cx="500"
+                                    cy="330"
+                                    r="25"
+                                    fill="none"
+                                    stroke="#10b981"
+                                    stroke-width="2"
+                                />
+                                <text
+                                    x="530"
+                                    y="335"
+                                    fill="#10b981"
+                                    font-size="14"
+                                    font-weight="bold"
+                                >
+                                    买入
+                                </text>
+
+                                <!-- 反弹上涨 -->
+                                <line
+                                    x1="550"
+                                    y1="250"
+                                    x2="550"
+                                    y2="290"
+                                    stroke="#10b981"
+                                    stroke-width="2"
+                                />
+                                <rect
+                                    x="540"
+                                    y="260"
+                                    width="20"
+                                    height="20"
+                                    fill="#10b981"
+                                />
+
+                                <line
+                                    x1="600"
+                                    y1="200"
+                                    x2="600"
+                                    y2="260"
+                                    stroke="#10b981"
+                                    stroke-width="2"
+                                />
+                                <rect
+                                    x="590"
+                                    y="210"
+                                    width="20"
+                                    height="40"
+                                    fill="#10b981"
+                                />
+
+                                <line
+                                    x1="650"
+                                    y1="150"
+                                    x2="650"
+                                    y2="210"
+                                    stroke="#10b981"
+                                    stroke-width="2"
+                                />
+                                <rect
+                                    x="640"
+                                    y="160"
+                                    width="20"
+                                    height="40"
+                                    fill="#10b981"
+                                />
+
+                                <!-- 卖出点 -->
+                                <line
+                                    x1="700"
+                                    y1="120"
+                                    x2="700"
+                                    y2="170"
+                                    stroke="#10b981"
+                                    stroke-width="2"
+                                />
+                                <rect
+                                    x="690"
+                                    y="130"
+                                    width="20"
+                                    height="30"
+                                    fill="#10b981"
+                                />
+                                <circle
+                                    cx="700"
+                                    cy="145"
+                                    r="25"
+                                    fill="none"
+                                    stroke="#ef4444"
+                                    stroke-width="2"
+                                />
+                                <text
+                                    x="630"
+                                    y="120"
+                                    fill="#ef4444"
+                                    font-size="14"
+                                    font-weight="bold"
+                                >
+                                    卖出
+                                </text>
+
+                                <!-- 止损位 -->
+                                <line
+                                    x1="450"
+                                    y1="320"
+                                    x2="550"
+                                    y2="320"
+                                    stroke="#ef4444"
+                                    stroke-width="2"
+                                    stroke-dasharray="5,5"
+                                />
+                                <text
+                                    x="560"
+                                    y="325"
+                                    fill="#ef4444"
+                                    font-size="11"
+                                >
+                                    止损位
+                                </text>
+                            </svg>
+                        </div>
+
+                        <!-- 交易说明 -->
+                        <div
+                            style="
+                                color: #cbd5e1;
+                                line-height: 1.8;
+                                margin-top: 20px;
+                            "
+                        >
+                            <div
+                                style="
+                                    background: rgba(99, 102, 241, 0.1);
+                                    border-left: 3px solid #6366f1;
+                                    padding: 12px 16px;
+                                    margin: 12px 0;
+                                "
+                            >
+                                <strong style="color: #a5b4fc"
+                                    >✓ 入场条件：</strong
+                                >上升趋势明确，价格回调到前期高点区域（1650元），出现锤子线反转信号
+                            </div>
+                            <div
+                                style="
+                                    background: rgba(16, 185, 129, 0.1);
+                                    border-left: 3px solid #10b981;
+                                    padding: 12px 16px;
+                                    margin: 12px 0;
+                                "
+                            >
+                                <strong style="color: #34d399"
+                                    >✓ 买入位置：</strong
+                                >1660元（支撑区域附近）
+                            </div>
+                            <div
+                                style="
+                                    background: rgba(239, 68, 68, 0.1);
+                                    border-left: 3px solid #ef4444;
+                                    padding: 12px 16px;
+                                    margin: 12px 0;
+                                "
+                            >
+                                <strong style="color: #f87171"
+                                    >✓ 止损位置：</strong
+                                >1630元（回调低点下方30元）<br />
+                                <strong style="color: #f87171">✓ 风险：</strong
+                                >1660 - 1630 = 30元/股
+                            </div>
+                            <div
+                                style="
+                                    background: rgba(245, 158, 11, 0.1);
+                                    border-left: 3px solid #f59e0b;
+                                    padding: 12px 16px;
+                                    margin: 12px 0;
+                                "
+                            >
+                                <strong style="color: #fbbf24"
+                                    >✓ 目标位置：</strong
+                                >1820元（前期阻力位下方）<br />
+                                <strong style="color: #fbbf24">✓ 盈利：</strong
+                                >1820 - 1660 = 160元/股
+                            </div>
+                            <div
+                                style="
+                                    background: rgba(139, 92, 246, 0.1);
+                                    border-left: 3px solid #8b5cf6;
+                                    padding: 12px 16px;
+                                    margin: 12px 0;
+                                "
+                            >
+                                <strong style="color: #a78bfa"
+                                    >✓ 盈亏比：</strong
+                                >160 ÷ 30 =
+                                <strong
+                                    style="color: #c084fc; font-size: 1.2rem"
+                                    >5.3:1</strong
+                                >
+                                ✓ 优秀
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- PB策略实战案例详解 -->
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-icon">📝</div>
+                    <h2 class="card-title">PB策略交易流程详解</h2>
+                </div>
+                <div class="card-content">
+                    <p>按照以下步骤执行PB策略交易。</p>
+
+                    <div
+                        style="
+                            background: rgba(15, 23, 42, 0.5);
+                            border-radius: 12px;
+                            padding: 24px;
+                            margin-top: 20px;
+                        "
+                    >
+                        <div style="color: #cbd5e1; line-height: 1.8">
+                            <div style="margin-bottom: 24px">
+                                <strong
+                                    style="color: #a5b4fc; font-size: 1.1rem"
+                                    >第一步：趋势识别（必需条件）</strong
+                                >
+                                <ul
+                                    style="
+                                        margin: 12px 0;
+                                        padding-left: 20px;
+                                        color: #cbd5e1;
+                                    "
+                                >
+                                    <li>
+                                        确认价格创出更高高点（HH）和更高低点（HL）
+                                    </li>
+                                    <li>绘制趋势线，确认上升趋势完整</li>
+                                    <li>如果趋势不明确，放弃交易</li>
+                                </ul>
+                            </div>
+
+                            <div style="margin-bottom: 24px">
+                                <strong
+                                    style="color: #a5b4fc; font-size: 1.1rem"
+                                    >第二步：等待回调（耐心等待）</strong
+                                >
+                                <ul
+                                    style="
+                                        margin: 12px 0;
+                                        padding-left: 20px;
+                                        color: #cbd5e1;
+                                    "
+                                >
+                                    <li>价格从高点回落，开始回调</li>
+                                    <li>不要急于入场，给回调充分时间</li>
+                                    <li>观察回调结构和深度</li>
+                                </ul>
+                            </div>
+
+                            <div style="margin-bottom: 24px">
+                                <strong
+                                    style="color: #a5b4fc; font-size: 1.1rem"
+                                    >第三步：识别回调区域（关键步骤）</strong
+                                >
+                                <ul
+                                    style="
+                                        margin: 12px 0;
+                                        padding-left: 20px;
+                                        color: #cbd5e1;
+                                    "
+                                >
+                                    <li>前期高点被突破后变成支撑位</li>
+                                    <li>回调到这些支撑区域附近时准备入场</li>
+                                    <li>
+                                        回调深度应该是前期上涨幅度的38.2%-61.8%
+                                    </li>
+                                </ul>
+                            </div>
+
+                            <div style="margin-bottom: 24px">
+                                <strong
+                                    style="color: #a5b4fc; font-size: 1.1rem"
+                                    >第四步：确认入场信号（精确入场）</strong
+                                >
+                                <ul
+                                    style="
+                                        margin: 12px 0;
+                                        padding-left: 20px;
+                                        color: #cbd5e1;
+                                    "
+                                >
+                                    <li>
+                                        在回调区域出现K线反转形态（锤子线、看涨吞没等）
+                                    </li>
+                                    <li>成交量放大（可选但有利）</li>
+                                    <li>价格在支撑位止跌企稳</li>
+                                </ul>
+                            </div>
+
+                            <div style="margin-bottom: 24px">
+                                <strong
+                                    style="color: #a5b4fc; font-size: 1.1rem"
+                                    >第五步：设置止损（风险控制）</strong
+                                >
+                                <ul
+                                    style="
+                                        margin: 12px 0;
+                                        padding-left: 20px;
+                                        color: #cbd5e1;
+                                    "
+                                >
+                                    <li>止损设在回调结构最低点下方</li>
+                                    <li>距离入场点不超过账户资金的2%</li>
+                                    <li>止损设置后坚决执行</li>
+                                </ul>
+                            </div>
+
+                            <div style="margin-bottom: 24px">
+                                <strong
+                                    style="color: #a5b4fc; font-size: 1.1rem"
+                                    >第六步：设定目标（盈利计划）</strong
+                                >
+                                <ul
+                                    style="
+                                        margin: 12px 0;
+                                        padding-left: 20px;
+                                        color: #cbd5e1;
+                                    "
+                                >
+                                    <li>
+                                        第一目标位：前期阻力位，盈亏比至少2:1
+                                    </li>
+                                    <li>到达第一目标后卖出50%仓位</li>
+                                    <li>剩余仓位使用追踪止损让利润奔跑</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- PB策略常见错误 -->
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-icon">⚠️</div>
+                    <h2 class="card-title">PB策略常见错误</h2>
+                </div>
+                <div class="card-content">
+                    <p>避免这些常见错误可以显著提高PB策略的成功率。</p>
+
+                    <div class="info-grid">
+                        <div class="info-item">
+                            <div class="info-label">错误1：追涨杀跌</div>
+                            <div class="info-value">
+                                不在回调区域买入而是追高
+                            </div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-label">错误2：逆势抄底</div>
+                            <div class="info-value">在下降趋势中买入回调</div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-label">错误3：过早入场</div>
+                            <div class="info-value">回调未完成就急于买入</div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-label">错误4：不止损</div>
+                            <div class="info-value">不设止损或止损太宽</div>
+                        </div>
+                    </div>
+
+                    <div class="tips-box">
+                        <div class="tips-title">💡 成功要点</div>
+                        <div class="tips-content">
+                            <strong>耐心、纪律、执行。</strong
+                            >PB策略不需要高深的技巧，但需要极大的耐心等待合适的回调机会，和严格的纪律执行交易计划。大多数交易者的失败是因为缺乏耐心，在没有满足条件时就入场。
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div style="text-align: center; padding: 40px 20px">
+            <a
+                href="../stage2-new.html"
+                style="
+                    display: inline-block;
+                    padding: 16px 32px;
+                    background: linear-gradient(
+                        135deg,
+                        #6366f1 0%,
+                        #06b6d4 100%
+                    );
+                    color: white;
+                    text-decoration: none;
+                    border-radius: 12px;
+                    font-weight: 600;
+                    transition: transform 0.3s ease;
+                "
+                >继续学习CPB策略 →</a
+            >
+        </div>
+    </body>
+</html>

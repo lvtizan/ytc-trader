@@ -1,0 +1,367 @@
+<!doctype html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>复盘机制与改进 - YTC Trader</title>
+        <link rel="stylesheet" href="../css/modern-premium.css" />
+        <style>
+            body {
+                background: var(--bg-deep);
+                min-height: 100vh;
+            }
+            .hero-section {
+                background: linear-gradient(
+                    135deg,
+                    rgba(99, 102, 241, 0.1) 0%,
+                    rgba(6, 182, 212, 0.1) 100%
+                );
+                border-bottom: 1px solid var(--border-color);
+                padding: 4rem 1.5rem 3rem;
+                text-align: center;
+            }
+            .hero-badge {
+                display: inline-block;
+                background: var(--gradient-1);
+                color: white;
+                padding: 0.5rem 1.5rem;
+                border-radius: 2rem;
+                font-size: 0.875rem;
+                font-weight: 600;
+                margin-bottom: 1.5rem;
+            }
+            .hero-title {
+                font-size: clamp(2rem, 5vw, 3rem);
+                font-weight: 800;
+                margin-bottom: 1rem;
+                background: var(--gradient-1);
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+            }
+            .hero-subtitle {
+                color: #94a3b8;
+                font-size: 1.125rem;
+                max-width: 600px;
+                margin: 0 auto;
+            }
+            .content-container {
+                max-width: 900px;
+                margin: 0 auto;
+                padding: 3rem 1.5rem;
+            }
+            .review-section {
+                background: rgba(15, 23, 42, 0.6);
+                backdrop-filter: blur(10px);
+                border: 1px solid rgba(99, 102, 241, 0.2);
+                border-radius: 1.5rem;
+                padding: 3rem;
+                margin-bottom: 2.5rem;
+            }
+            .review-section:last-child {
+                margin-bottom: 0;
+            }
+            .section-header {
+                text-align: center;
+                margin-bottom: 2.5rem;
+            }
+            .section-title {
+                font-size: 1.75rem;
+                font-weight: 700;
+                color: #f1f5f9;
+                margin-bottom: 0.5rem;
+            }
+            .section-subtitle {
+                color: #94a3b8;
+                font-size: 1.0625rem;
+            }
+            .review-step {
+                background: rgba(99, 102, 241, 0.08);
+                border: 1px solid rgba(99, 102, 241, 0.2);
+                padding: 1.5rem;
+                margin-bottom: 1rem;
+                border-radius: 1rem;
+                border-left: 4px solid var(--primary);
+            }
+            .review-step:last-child {
+                margin-bottom: 0;
+            }
+            .review-step h3 {
+                color: #f1f5f9;
+                margin-bottom: 0.5rem;
+                font-size: 1.125rem;
+                font-weight: 600;
+            }
+            .review-step p {
+                color: #cbd5e1;
+                line-height: 1.6;
+                margin: 0;
+                font-size: 1rem;
+            }
+            .metrics-grid {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+                gap: 1rem;
+                margin-top: 2rem;
+            }
+            .metric-card {
+                background: rgba(99, 102, 241, 0.08);
+                border: 1px solid rgba(99, 102, 241, 0.2);
+                padding: 1.5rem;
+                border-radius: 1rem;
+            }
+            .metric-card strong {
+                color: #f1f5f9;
+                display: block;
+                margin-bottom: 0.5rem;
+                font-size: 1.0625rem;
+            }
+            .metric-card p {
+                color: #94a3b8;
+                font-size: 0.9375rem;
+                line-height: 1.5;
+                margin: 0;
+            }
+            .improvement-list {
+                list-style: none;
+                padding: 0;
+            }
+            .improvement-list li {
+                color: #cbd5e1;
+                line-height: 1.8;
+                padding: 0.5rem 0;
+                font-size: 1.0625rem;
+            }
+            .improvement-list li::before {
+                content: "✓ ";
+                color: var(--success);
+                font-weight: 700;
+            }
+            .nav-buttons {
+                display: flex;
+                gap: 1rem;
+                justify-content: center;
+                flex-wrap: wrap;
+                margin-top: 3rem;
+            }
+        </style>
+    </head>
+    <body>
+        <!-- 科技光晕背景层 -->
+        <div class="tech-glow"></div>
+
+        <div class="app-container">
+            <nav class="navbar">
+                <div class="nav-container">
+                    <a href="../stage4-new.html" class="brand">
+                        <div class="brand-logo">YT</div>
+                        <div class="brand-text">
+                            <span class="brand-title">YTC Trader</span>
+                        </div>
+                    </a>
+                    <ul class="nav-menu">
+                        <li>
+                            <a href="../stage4-new.html" class="nav-link"
+                                >← 返回阶段四</a
+                            >
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+
+            <div class="hero-section">
+                <span class="hero-badge">阶段四 · 模块4 · 第19周</span>
+                <h1 class="hero-title">复盘机制与改进</h1>
+                <p class="hero-subtitle">
+                    建立系统的复盘和持续改进机制，不断优化交易系统
+                </p>
+            </div>
+
+            <div class="content-container">
+                <div class="review-section">
+                    <div class="section-header">
+                        <h2 class="section-title">📅 每日复盘方法</h2>
+                        <p class="section-subtitle">
+                            每天交易结束后，花15-20分钟进行复盘
+                        </p>
+                    </div>
+                    <div class="review-step">
+                        <h3>1. 记录所有交易</h3>
+                        <p>
+                            入场时间、出场时间、交易品种、入场价格、出场价格、盈亏金额、交易原因
+                        </p>
+                    </div>
+                    <div class="review-step">
+                        <h3>2. 评估纪律执行</h3>
+                        <p>
+                            是否100%遵守了交易计划？哪些地方做到了？哪些地方没做到？违反纪律的原因是什么？
+                        </p>
+                    </div>
+                    <div class="review-step">
+                        <h3>3. 情绪状态分析</h3>
+                        <p>
+                            交易时的心态如何？是否受到恐惧、贪婪、焦虑等情绪影响？情绪如何影响了决策？
+                        </p>
+                    </div>
+                    <div class="review-step">
+                        <h3>4. 总结经验教训</h3>
+                        <p>
+                            今天学到了什么？哪里做得好需要保持？哪里做得不好需要改进？明天如何改进？
+                        </p>
+                    </div>
+                </div>
+
+                <div class="review-section">
+                    <div class="section-header">
+                        <h2 class="section-title">📊 每周复盘流程</h2>
+                        <p class="section-subtitle">
+                            每周末花1-2小时进行深度复盘
+                        </p>
+                    </div>
+                    <div class="review-step">
+                        <h3>1. 统计本周绩效</h3>
+                        <p>
+                            总交易次数、胜率、平均盈亏比、最大回撤、总盈亏、盈利因子
+                        </p>
+                    </div>
+                    <div class="review-step">
+                        <h3>2. 分析最佳交易</h3>
+                        <p>
+                            本周最好的3笔交易为什么成功？有什么共同特征？如何复制到未来交易？
+                        </p>
+                    </div>
+                    <div class="review-step">
+                        <h3>3. 分析最差交易</h3>
+                        <p>
+                            本周最差的3笔交易为什么失败？犯了什么错误？如何避免重复错误？
+                        </p>
+                    </div>
+                    <div class="review-step">
+                        <h3>4. 评估系统表现</h3>
+                        <p>
+                            交易系统是否有效？哪些策略表现好？哪些策略需要淘汰或改进？
+                        </p>
+                    </div>
+                </div>
+
+                <div class="review-section">
+                    <div class="section-header">
+                        <h2 class="section-title">📈 每月深度复盘</h2>
+                        <p class="section-subtitle">
+                            每个月进行一次全面深度复盘
+                        </p>
+                    </div>
+                    <div class="review-step">
+                        <h3>1. 月度绩效报告</h3>
+                        <p>
+                            总收益率、最大回撤、夏普比率、交易次数、胜率、平均盈亏比、盈利因子
+                        </p>
+                    </div>
+                    <div class="review-step">
+                        <h3>2. 心理成长评估</h3>
+                        <p>
+                            心理控制是否进步？纪律性是否提高？情绪管理是否改善？
+                        </p>
+                    </div>
+                    <div class="review-step">
+                        <h3>3. 系统优化计划</h3>
+                        <p>
+                            哪些策略最有效？哪些需要淘汰？哪些参数需要调整？是否需要添加新策略？
+                        </p>
+                    </div>
+                    <div class="review-step">
+                        <h3>4. 下月目标设定</h3>
+                        <p>
+                            基于本月表现，设定下月的改进目标。目标要具体、可衡量、可实现
+                        </p>
+                    </div>
+                </div>
+
+                <div class="review-section">
+                    <div class="section-header">
+                        <h2 class="section-title">📊 绩效评估指标</h2>
+                        <p class="section-subtitle">
+                            跟踪以下关键指标来评估交易表现
+                        </p>
+                    </div>
+                    <div class="metrics-grid">
+                        <div class="metric-card">
+                            <strong>胜率</strong>
+                            <p>盈利交易占总交易的比例，理想值50%以上</p>
+                        </div>
+                        <div class="metric-card">
+                            <strong>盈亏比</strong>
+                            <p>平均盈利与平均亏损的比值，理想值2:1以上</p>
+                        </div>
+                        <div class="metric-card">
+                            <strong>最大回撤</strong>
+                            <p>从峰值到谷值的最大跌幅，应控制在20%以内</p>
+                        </div>
+                        <div class="metric-card">
+                            <strong>期望值</strong>
+                            <p>每笔交易的数学期望，必须为正数</p>
+                        </div>
+                        <div class="metric-card">
+                            <strong>盈利因子</strong>
+                            <p>总盈利/总亏损，应大于1.5</p>
+                        </div>
+                        <div class="metric-card">
+                            <strong>夏普比率</strong>
+                            <p>收益率/波动率，越高越好</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="review-section">
+                    <div class="section-header">
+                        <h2 class="section-title">🔄 系统改进方法</h2>
+                        <p class="section-subtitle">
+                            持续改进交易系统的方法和原则
+                        </p>
+                    </div>
+                    <ul class="improvement-list">
+                        <li>
+                            <strong>基于数据，而非感觉：</strong
+                            >用复盘数据识别真正的问题，不凭感觉判断
+                        </li>
+                        <li>
+                            <strong>优先改进最大的问题：</strong
+                            >找出影响最大的问题，优先解决
+                        </li>
+                        <li>
+                            <strong>小步迭代：</strong
+                            >不要一次改太多，每次只改一个变量
+                        </li>
+                        <li>
+                            <strong>记录改进效果：</strong
+                            >记录每次改进的效果，评估是否有效
+                        </li>
+                        <li>
+                            <strong>持续学习：</strong
+                            >阅读交易书籍、参加课程、向优秀交易者学习
+                        </li>
+                        <li>
+                            <strong>保持开放心态：</strong
+                            >接受错误，愿意尝试新方法
+                        </li>
+                        <li>
+                            <strong>定期回顾系统：</strong
+                            >每月评估交易系统是否适应市场环境
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="nav-buttons">
+                    <a href="emotion-management.html" class="btn btn-secondary"
+                        >上一个：情绪管理</a
+                    >
+                    <a href="../stage4-new.html" class="btn btn-secondary"
+                        >返回阶段四</a
+                    >
+                    <a href="../final-new.html" class="btn btn-primary"
+                        >完成所有学习 →</a
+                    >
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

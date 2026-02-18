@@ -1,0 +1,803 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>7天速成YTC价格行为交易</title>
+    <link rel="stylesheet" href="css/modern-premium.css">
+    <style>
+        body {
+            background: linear-gradient(to bottom, #0a0a0f 0%, #0f172a 50%, #0a0a0f 100%);
+            min-height: 100vh;
+            padding: 40px 20px;
+        }
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        .header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+        .header h1 {
+            font-size: 3rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #6366f1 0%, #06b6d4 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 16px;
+        }
+        .header p {
+            color: var(--text-secondary);
+            font-size: 1.25rem;
+        }
+        .progress-overview {
+            background: rgba(30, 41, 59, 0.5);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(99, 102, 241, 0.2);
+            border-radius: 16px;
+            padding: 32px;
+            margin-bottom: 40px;
+            text-align: center;
+        }
+        .progress-bar {
+            width: 100%;
+            height: 40px;
+            background: rgba(15, 23, 42, 0.5);
+            border-radius: 20px;
+            overflow: hidden;
+            margin: 20px 0;
+            position: relative;
+        }
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #6366f1 0%, #06b6d4 100%);
+            border-radius: 20px;
+            transition: width 0.5s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            color: white;
+            font-size: 1.1rem;
+        }
+        .days-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 24px;
+            margin-bottom: 40px;
+        }
+        .day-card {
+            background: rgba(30, 41, 59, 0.5);
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(99, 102, 241, 0.2);
+            border-radius: 16px;
+            padding: 28px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        .day-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #6366f1 0%, #06b6d4 100%);
+        }
+        .day-card:hover {
+            transform: translateY(-4px);
+            border-color: rgba(99, 102, 241, 0.4);
+            box-shadow: 0 20px 40px rgba(99, 102, 241, 0.2);
+        }
+        .day-card.completed {
+            border-color: rgba(16, 185, 129, 0.4);
+        }
+        .day-card.completed::before {
+            background: linear-gradient(90deg, #10b981 0%, #06b6d4 100%);
+        }
+        .day-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        .day-number {
+            font-size: 2rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #6366f1 0%, #06b6d4 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .day-status {
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 0.875rem;
+            font-weight: 600;
+        }
+        .status-pending {
+            background: rgba(148, 163, 184, 0.2);
+            color: #94a3b8;
+        }
+        .status-in-progress {
+            background: rgba(245, 158, 11, 0.2);
+            color: #fbbf24;
+        }
+        .status-completed {
+            background: rgba(16, 185, 129, 0.2);
+            color: #34d399;
+        }
+        .day-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 12px;
+        }
+        .day-duration {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            margin-bottom: 16px;
+        }
+        .day-tasks {
+            list-style: none;
+            margin: 16px 0;
+        }
+        .day-tasks li {
+            padding: 10px 0;
+            color: var(--text-secondary);
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+        }
+        .day-tasks li input[type="checkbox"] {
+            margin-top: 4px;
+            width: 18px;
+            height: 18px;
+            cursor: pointer;
+        }
+        .task-label {
+            flex: 1;
+            cursor: pointer;
+        }
+        .task-label.completed {
+            text-decoration: line-through;
+            opacity: 0.6;
+        }
+        .resources {
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(99, 102, 241, 0.2);
+        }
+        .resources-title {
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: #a5b4fc;
+            margin-bottom: 12px;
+        }
+        .resource-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+        .resource-link {
+            padding: 6px 12px;
+            background: rgba(99, 102, 241, 0.2);
+            border: 1px solid rgba(99, 102, 241, 0.3);
+            border-radius: 8px;
+            color: #a5b4fc;
+            text-decoration: none;
+            font-size: 0.85rem;
+            transition: all 0.3s ease;
+        }
+        .resource-link:hover {
+            background: rgba(99, 102, 241, 0.3);
+            transform: translateY(-2px);
+        }
+        .action-buttons {
+            display: flex;
+            gap: 12px;
+            margin-top: 20px;
+        }
+        .btn {
+            padding: 12px 24px;
+            border-radius: 12px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+        .btn-primary {
+            background: linear-gradient(135deg, #6366f1 0%, #06b6d4 100%);
+            color: white;
+        }
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(99, 102, 241, 0.3);
+        }
+        .btn-secondary {
+            background: rgba(99, 102, 241, 0.2);
+            border: 1px solid rgba(99, 102, 241, 0.3);
+            color: #a5b4fc;
+        }
+        .btn-secondary:hover {
+            background: rgba(99, 102, 241, 0.3);
+        }
+        .tips-section {
+            background: rgba(245, 158, 11, 0.1);
+            border: 1px solid rgba(245, 158, 11, 0.3);
+            border-radius: 16px;
+            padding: 28px;
+            margin-bottom: 40px;
+        }
+        .tips-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #fbbf24;
+            margin-bottom: 20px;
+        }
+        .tips-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+        }
+        .tip-card {
+            background: rgba(15, 23, 42, 0.5);
+            border-radius: 12px;
+            padding: 20px;
+        }
+        .tip-icon {
+            font-size: 2rem;
+            margin-bottom: 12px;
+        }
+        .tip-title {
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 8px;
+        }
+        .tip-desc {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+        .quick-reference {
+            background: rgba(30, 41, 59, 0.5);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(99, 102, 241, 0.2);
+            border-radius: 16px;
+            padding: 32px;
+            margin-bottom: 40px;
+        }
+        .quick-ref-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 24px;
+        }
+        .quick-ref-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 16px;
+        }
+        .quick-ref-item {
+            padding: 16px;
+            background: rgba(15, 23, 42, 0.5);
+            border-radius: 12px;
+            border: 1px solid rgba(99, 102, 241, 0.2);
+        }
+        .quick-ref-item strong {
+            color: #a5b4fc;
+            display: block;
+            margin-bottom: 8px;
+        }
+        .quick-ref-item span {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+    <!-- 科技光晕背景层 -->
+    <div class="tech-glow"></div>
+
+    <div class="container">
+        <div class="header">
+            <h1>🚀 7天速成YTC价格行为交易</h1>
+            <p>有经验交易者的高效学习路径</p>
+        </div>
+
+        <!-- 总体进度 -->
+        <div class="progress-overview">
+            <h2 style="font-size: 1.75rem; margin-bottom: 16px; color: var(--text-primary);">学习进度</h2>
+            <div class="progress-bar">
+                <div class="progress-fill" id="totalProgress" style="width: 0%;">0%</div>
+            </div>
+            <p style="color: var(--text-secondary); margin-top: 16px;">
+                已完成 <strong id="completedDays">0</strong> / 7 天，
+                <strong id="completedTasks">0</strong> / 31 个任务
+            </p>
+        </div>
+
+        <!-- 7天学习计划 -->
+        <div class="days-grid">
+            <!-- Day 1 -->
+            <div class="day-card" id="day1">
+                <div class="day-header">
+                    <span class="day-number">Day 1</span>
+                    <span class="day-status status-pending" id="status1">待开始</span>
+                </div>
+                <h3 class="day-title">市场结构基础</h3>
+                <p class="day-duration">⏱️ 预计2-3小时</p>
+                <ul class="day-tasks">
+                    <li>
+                        <input type="checkbox" id="task1_1" onchange="updateProgress()">
+                        <label class="task-label" for="task1_1">理解HH+HL结构（更高高点+更高低点）</label>
+                    </li>
+                    <li>
+                        <input type="checkbox" id="task1_2" onchange="updateProgress()">
+                        <label class="task-label" for="task1_2">学习识别回调类型（简单vs复杂）</label>
+                    </li>
+                    <li>
+                        <input type="checkbox" id="task1_3" onchange="updateProgress()">
+                        <label class="task-label" for="task1_3">掌握回调区域识别方法</label>
+                    </li>
+                    <li>
+                        <input type="checkbox" id="task1_4" onchange="updateProgress()">
+                        <label class="task-label" for="task1_4">在历史图表中标记10个HH+HL结构</label>
+                    </li>
+                </ul>
+                <div class="resources">
+                    <div class="resources-title">📚 学习资源</div>
+                    <div class="resource-links">
+                        <a href="learn/hh-hl-structure.html" class="resource-link" target="_blank">HH+HL详解</a>
+                        <a href="learn/callback-types.html" class="resource-link" target="_blank">回调类型</a>
+                        <a href="learn/callback-area-identification.html" class="resource-link" target="_blank">回调区域</a>
+                        <a href="ytc-chart-examples.html" class="resource-link" target="_blank">K线案例</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Day 2 -->
+            <div class="day-card" id="day2">
+                <div class="day-header">
+                    <span class="day-number">Day 2</span>
+                    <span class="day-status status-pending" id="status2">待开始</span>
+                </div>
+                <h3 class="day-title">PB策略核心</h3>
+                <p class="day-duration">⏱️ 预计3-4小时</p>
+                <ul class="day-tasks">
+                    <li>
+                        <input type="checkbox" id="task2_1" onchange="updateProgress()">
+                        <label class="task-label" for="task2_1">深入理解PB策略逻辑</label>
+                    </li>
+                    <li>
+                        <input type="checkbox" id="task2_2" onchange="updateProgress()">
+                        <label class="task-label" for="task2_2">学习PB策略入场条件（6个条件）</label>
+                    </li>
+                    <li>
+                        <input type="checkbox" id="task2_3" onchange="updateProgress()">
+                        <label class="task-label" for="task2_3">掌握止损和目标设置</label>
+                    </li>
+                    <li>
+                        <input type="checkbox" id="task2_4" onchange="updateProgress()">
+                        <label class="task-label" for="task2_4">在历史图表中找出5个PB案例</label>
+                    </li>
+                </ul>
+                <div class="resources">
+                    <div class="resources-title">📚 学习资源</div>
+                    <div class="resource-links">
+                        <a href="learn/pb-strategy.html" class="resource-link" target="_blank">PB策略详解</a>
+                        <a href="mermaid-diagrams.html" class="resource-link" target="_blank">PB流程图</a>
+                        <a href="ytc-chart-examples.html" class="resource-link" target="_blank">PB K线案例</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Day 3 -->
+            <div class="day-card" id="day3">
+                <div class="day-header">
+                    <span class="day-number">Day 3</span>
+                    <span class="day-status status-pending" id="status3">待开始</span>
+                </div>
+                <h3 class="day-title">CPB策略学习</h3>
+                <p class="day-duration">⏱️ 预计2-3小时</p>
+                <ul class="day-tasks">
+                    <li>
+                        <input type="checkbox" id="task3_1" onchange="updateProgress()">
+                        <label class="task-label" for="task3_1">理解复杂回调（双浪）结构</label>
+                    </li>
+                    <li>
+                        <input type="checkbox" id="task3_2" onchange="updateProgress()">
+                        <label class="task-label" for="task3_3">掌握CPB与PB的区别</label>
+                    </li>
+                    <li>
+                        <input type="checkbox" id="task3_3" onchange="updateProgress()">
+                        <label class="task-label" for="task3_3">识别第二浪回调入场点</label>
+                    </li>
+                    <li>
+                        <input type="checkbox" id="task3_4" onchange="updateProgress()">
+                        <label class="task-label" for="task3_4">在实盘或模拟盘中练习识别CPB</label>
+                    </li>
+                </ul>
+                <div class="resources">
+                    <div class="resources-title">📚 学习资源</div>
+                    <div class="resource-links">
+                        <a href="learn/cpb-strategy.html" class="resource-link" target="_blank">CPB策略</a>
+                        <a href="ytc-chart-examples.html" class="resource-link" target="_blank">CPB案例图</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Day 4 -->
+            <div class="day-card" id="day4">
+                <div class="day-header">
+                    <span class="day-number">Day 4</span>
+                    <span class="day-status status-pending" id="status4">待开始</span>
+                </div>
+                <h3 class="day-title">STS策略 + 复习</h3>
+                <p class="day-duration">⏱️ 预计2-3小时</p>
+                <ul class="day-tasks">
+                    <li>
+                        <input type="checkbox" id="task4_1" onchange="updateProgress()">
+                        <label class="task-label" for="task4_1">学习STS结构性突破策略</label>
+                    </li>
+                    <li>
+                        <input type="checkbox" id="task4_2" onchange="updateProgress()">
+                        <label class="task-label" for="task4_2">理解STS的风险和注意事项</label>
+                    </li>
+                    <li>
+                        <input type="checkbox" id="task4_3" onchange="updateProgress()">
+                        <label class="task-label" for="task4_3">复习前三天的所有策略要点</label>
+                    </li>
+                    <li>
+                        <input type="checkbox" id="task4_4" onchange="updateProgress()">
+                        <label class="task-label" for="task4_4">制作个人策略速查表</label>
+                    </li>
+                </ul>
+                <div class="resources">
+                    <div class="resources-title">📚 学习资源</div>
+                    <div class="resource-links">
+                        <a href="learn/sts-strategy.html" class="resource-link" target="_blank">STS策略</a>
+                        <a href="ytc-chart-examples.html" class="resource-link" target="_blank">STS案例图</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Day 5 -->
+            <div class="day-card" id="day5">
+                <div class="day-header">
+                    <span class="day-number">Day 5</span>
+                    <span class="day-status status-pending" id="status5">待开始</span>
+                </div>
+                <h3 class="day-title">风险管理</h3>
+                <p class="day-duration">⏱️ 预计2小时（可选）</p>
+                <ul class="day-tasks">
+                    <li>
+                        <input type="checkbox" id="task5_1" onchange="updateProgress()">
+                        <label class="task-label" for="task5_1">复习仓位管理（固定百分比法）</label>
+                    </li>
+                    <li>
+                        <input type="checkbox" id="task5_2" onchange="updateProgress()">
+                        <label class="task-label" for="task5_2">确认止损设置方法</label>
+                    </li>
+                    <li>
+                        <input type="checkbox" id="task5_3" onchange="updateProgress()">
+                        <label class="task-label" for="task5_3">理解盈亏比优化（≥2:1）</label>
+                    </li>
+                    <li>
+                        <input type="checkbox" id="task5_4" onchange="updateProgress()">
+                        <label class="task-label" for="task5_4">如果已有成熟风控体系，此天可跳过</label>
+                    </li>
+                </ul>
+                <div class="resources">
+                    <div class="resources-title">📚 学习资源</div>
+                    <div class="resource-links">
+                        <a href="learn/position-sizing.html" class="resource-link" target="_blank">仓位管理</a>
+                        <a href="learn/stop-loss-techniques.html" class="resource-link" target="_blank">止损设置</a>
+                        <a href="learn/risk-reward-ratio.html" class="resource-link" target="_blank">盈亏比</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Day 6 -->
+            <div class="day-card" id="day6">
+                <div class="day-header">
+                    <span class="day-number">Day 6</span>
+                    <span class="day-status status-pending" id="status6">待开始</span>
+                </div>
+                <h3 class="day-title">模拟/实盘验证</h3>
+                <p class="day-duration">⏱️ 全天</p>
+                <ul class="day-tasks">
+                    <li>
+                        <input type="checkbox" id="task6_1" onchange="updateProgress()">
+                        <label class="task-label" for="task6_1">在市场开盘时寻找PB/CPB设置</label>
+                    </li>
+                    <li>
+                        <input type="checkbox" id="task6_2" onchange="updateProgress()">
+                        <label class="task-label" for="task6_2">记录至少3个潜在机会（不一定要交易）</label>
+                    </li>
+                    <li>
+                        <input type="checkbox" id="task6_3" onchange="updateProgress()">
+                        <label class="task-label" for="task6_3">小仓位试水1-2个机会（如果符合条件）</label>
+                    </li>
+                    <li>
+                        <input type="checkbox" id="task6_4" onchange="updateProgress()">
+                        <label class="task-label" for="task6_4">记录交易日记：为什么做/不做</label>
+                    </li>
+                </ul>
+                <div class="resources">
+                    <div class="resources-title">📚 参考工具</div>
+                    <div class="resource-links">
+                        <a href="tools/checklist.html" class="resource-link" target="_blank">选股检查清单</a>
+                        <a href="tools/trading-plan-template.html" class="resource-link" target="_blank">交易计划模板</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Day 7 -->
+            <div class="day-card" id="day7">
+                <div class="day-header">
+                    <span class="day-number">Day 7</span>
+                    <span class="day-status status-pending" id="status7">待开始</span>
+                </div>
+                <h3 class="day-title">复盘与持续改进</h3>
+                <p class="day-duration">⏱️ 预计2-3小时</p>
+                <ul class="day-tasks">
+                    <li>
+                        <input type="checkbox" id="task7_1" onchange="updateProgress()">
+                        <label class="task-label" for="task7_1">回顾本周学习内容，总结核心要点</label>
+                    </li>
+                    <li>
+                        <input type="checkbox" id="task7_2" onchange="updateProgress()">
+                        <label class="task-label" for="task7_2">分析找到的交易机会，哪些符合YTC</label>
+                    </li>
+                    <li>
+                        <input type="checkbox" id="task7_3" onchange="updateProgress()">
+                        <label class="task-label" for="task7_3">识别自己的弱点（耐心？纪律？）</label>
+                    </li>
+                    <li>
+                        <input type="checkbox" id="task7_4" onchange="updateProgress()">
+                        <label class="task-label" for="task7_4">制定下周的改进计划</label>
+                    </li>
+                </ul>
+                <div class="resources">
+                    <div class="resources-title">📚 学习资源</div>
+                    <div class="resource-links">
+                        <a href="learn/psychology-enemies.html" class="resource-link" target="_blank">心理障碍</a>
+                        <a href="learn/review-mechanism.html" class="resource-link" target="_blank">复盘机制</a>
+                        <a href="tools/daily-review.html" class="resource-link" target="_blank">每日复盘</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 学习技巧 -->
+        <div class="tips-section">
+            <h2 class="tips-title">💡 高效学习技巧</h2>
+            <div class="tips-grid">
+                <div class="tip-card">
+                    <div class="tip-icon">📖</div>
+                    <div class="tip-title">二八定律</div>
+                    <div class="tip-desc">YTC书中80%是解释，20%是核心。直接看网页版策略总结，跳过啰嗦部分。</div>
+                </div>
+                <div class="tip-card">
+                    <div class="tip-icon">🎯</div>
+                    <div class="tip-title">聚焦差异</div>
+                    <div class="tip-desc">您已有经验，只需学习YTC的独特方法（如何定义回调区域），不必从零学起。</div>
+                </div>
+                <div class="tip-card">
+                    <div class="tip-icon">📊</div>
+                    <div class="tip-title">图表验证</div>
+                    <div class="tip-desc">学完理论后，立即在历史图表中找案例验证，加深理解。</div>
+                </div>
+                <div class="tip-card">
+                    <div class="tip-icon">⚡</div>
+                    <div class="tip-title">快速迭代</div>
+                    <div class="tip-desc">不要追求完美理解。先掌握核心逻辑，在实践中持续完善。</div>
+                </div>
+                <div class="tip-card">
+                    <div class="tip-icon">📝</div>
+                    <div class="tip-title">记录笔记</div>
+                    <div class="tip-desc">做一份个人速查表，列出PB/CPB的入场条件，交易前对照检查。</div>
+                </div>
+                <div class="tip-card">
+                    <div class="tip-icon">🔄</div>
+                    <div class="tip-title">立即实践</div>
+                    <div class="tip-desc">学完Day 2的PB策略后，立即开始寻找实盘机会，边学边用。</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 快速参考 -->
+        <div class="quick-reference">
+            <h2 class="quick-ref-title">📋 YTC策略快速参考</h2>
+            <div class="quick-ref-grid">
+                <div class="quick-ref-item">
+                    <strong>PB策略核心</strong>
+                    <span>上升趋势 + 等回调到支撑区 + 入场</span>
+                </div>
+                <div class="quick-ref-item">
+                    <strong>上升趋势 = HH + HL</strong>
+                    <span>连续创出更高高点和更高低点</span>
+                </div>
+                <div class="quick-ref-item">
+                    <strong>回调区域 = 前期高点</strong>
+                    <span>前期高点变成支撑区域</span>
+                </div>
+                <div class="quick-ref-item">
+                    <strong>止损位置</strong>
+                    <span>在回调结构最低点下方</span>
+                </div>
+                <div class="quick-ref-item">
+                    <strong>盈亏比要求</strong>
+                    <span>至少2:1才值得交易</span>
+                </div>
+                <div class="quick-ref-item">
+                    <strong>单笔风险</strong>
+                    <span>不超过账户净值的2%</span>
+                </div>
+                <div class="quick-ref-item">
+                    <strong>最大错误</strong>
+                    <span>在价格高涨时追买</span>
+                </div>
+                <div class="quick-ref-item">
+                    <strong>关键成功因素</strong>
+                    <span>耐心等待回调到支撑区域</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- 操作按钮 -->
+        <div style="text-align: center; margin-top: 40px; padding: 40px 0;">
+            <button class="btn btn-primary" onclick="resetProgress()">🔄 重置进度</button>
+            <button class="btn btn-secondary" onclick="window.print()">🖨️ 打印计划</button>
+            <button class="btn btn-secondary" onclick="exportProgress()">💾 导出进度</button>
+        </div>
+    </div>
+
+    <script>
+        // 页面加载时恢复进度
+        window.onload = function() {
+            loadProgress();
+            updateProgress();
+        };
+
+        // 更新进度
+        function updateProgress() {
+            const totalTasks = 31;
+            let completedTasks = 0;
+            let completedDays = 0;
+
+            // 检查每个任务
+            for (let i = 1; i <= 7; i++) {
+                const dayCard = document.getElementById('day' + i);
+                let dayCompleted = true;
+                let taskCount = 0;
+                let dayTaskCount = 0;
+
+                for (let j = 1; j <= 4; j++) {
+                    const checkbox = document.getElementById('task' + i + '_' + j);
+                    if (checkbox) {
+                        dayTaskCount++;
+                        const label = checkbox.nextElementSibling;
+                        if (checkbox.checked) {
+                            completedTasks++;
+                            label.classList.add('completed');
+                        } else {
+                            dayCompleted = false;
+                            label.classList.remove('completed');
+                        }
+                    }
+                }
+
+                // 更新天数状态
+                const status = document.getElementById('status' + i);
+                if (dayCompleted) {
+                    completedDays++;
+                    dayCard.classList.add('completed');
+                    status.textContent = '已完成';
+                    status.className = 'day-status status-completed';
+                } else {
+                    const dayTasks = dayCard.querySelectorAll('input[type="checkbox"]:checked');
+                    if (dayTasks.length > 0) {
+                        dayCard.classList.remove('completed');
+                        status.textContent = '进行中';
+                        status.className = 'day-status status-in-progress';
+                    } else {
+                        dayCard.classList.remove('completed');
+                        status.textContent = '待开始';
+                        status.className = 'day-status status-pending';
+                    }
+                }
+            }
+
+            // 更新总体进度
+            const progressPercent = Math.round((completedTasks / totalTasks) * 100);
+            document.getElementById('totalProgress').style.width = progressPercent + '%';
+            document.getElementById('totalProgress').textContent = progressPercent + '%';
+            document.getElementById('completedDays').textContent = completedDays;
+            document.getElementById('completedTasks').textContent = completedTasks;
+
+            // 保存进度到localStorage
+            saveProgress();
+        }
+
+        // 保存进度
+        function saveProgress() {
+            const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+            const progress = {};
+            checkboxes.forEach(cb => {
+                progress[cb.id] = cb.checked;
+            });
+            localStorage.setItem('ytcLearningProgress', JSON.stringify(progress));
+        }
+
+        // 加载进度
+        function loadProgress() {
+            const saved = localStorage.getItem('ytcLearningProgress');
+            if (saved) {
+                const progress = JSON.parse(saved);
+                Object.keys(progress).forEach(id => {
+                    const checkbox = document.getElementById(id);
+                    if (checkbox) {
+                        checkbox.checked = progress[id];
+                    }
+                });
+            }
+        }
+
+        // 重置进度
+        function resetProgress() {
+            if (confirm('确定要重置所有学习进度吗？')) {
+                localStorage.removeItem('ytcLearningProgress');
+                const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+                checkboxes.forEach(cb => cb.checked = false);
+                updateProgress();
+                alert('进度已重置！');
+            }
+        }
+
+        // 导出进度
+        function exportProgress() {
+            let text = 'YTC 7天学习计划进度\n';
+            text += '导出时间：' + new Date().toLocaleString() + '\n\n';
+
+            for (let i = 1; i <= 7; i++) {
+                text += `Day ${i}:\n`;
+                for (let j = 1; j <= 4; j++) {
+                    const checkbox = document.getElementById('task' + i + '_' + j);
+                    if (checkbox) {
+                        const label = checkbox.nextElementSibling.textContent;
+                        const status = checkbox.checked ? '✅' : '⬜';
+                        text += `  ${status} ${label}\n`;
+                    }
+                }
+                text += '\n';
+            }
+
+            // 创建下载
+            const blob = new Blob([text], { type: 'text/plain' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'YTC学习进度_' + new Date().toLocaleDateString() + '.txt';
+            a.click();
+            URL.revokeObjectURL(url);
+        }
+
+        // 任务标签点击切换
+        document.addEventListener('DOMContentLoaded', function() {
+            const labels = document.querySelectorAll('.task-label');
+            labels.forEach(label => {
+                label.addEventListener('click', function() {
+                    const checkbox = this.previousElementSibling;
+                    checkbox.checked = !checkbox.checked;
+                    updateProgress();
+                });
+            });
+        });
+    </script>
+</body>
+</html>

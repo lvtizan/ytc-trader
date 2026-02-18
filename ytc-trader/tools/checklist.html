@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>选股检查清单 - YTC Trader</title>
+        <link rel="stylesheet" href="../css/modern-premium.css" />
+        <style>
+            body {
+                background: linear-gradient(
+                    to bottom,
+                    #0a0a0f 0%,
+                    #0f172a 50%,
+                    #0a0a0f 100%
+                );
+                min-height: 100vh;
+            }
+            .hero-section {
+                text-align: center;
+                padding: 60px 20px;
+                background: radial-gradient(
+                    ellipse at top,
+                    rgba(99, 102, 241, 0.15) 0%,
+                    transparent 50%
+                );
+            }
+            .hero-title {
+                font-size: 3rem;
+                font-weight: 800;
+                background: linear-gradient(135deg, #6366f1 0%, #06b6d4 100%);
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+            }
+            .content-section {
+                max-width: 900px;
+                margin: 0 auto;
+                padding: 40px 20px;
+            }
+            .card {
+                background: rgba(30, 41, 59, 0.5);
+                backdrop-filter: blur(10px);
+                border: 1px solid rgba(99, 102, 241, 0.2);
+                border-radius: 16px;
+                padding: 32px;
+                margin-bottom: 24px;
+            }
+            .card::before {
+                content: "";
+                position: absolute;
+                top: 0;
+                left: 0;
+                right: 0;
+                height: 4px;
+                background: linear-gradient(90deg, #6366f1 0%, #06b6d4 100%);
+            }
+            .checklist-item {
+                display: flex;
+                align-items: center;
+                gap: 12px;
+                padding: 16px 0;
+                border-bottom: 1px solid rgba(99, 102, 241, 0.1);
+            }
+            .checkbox {
+                width: 24px;
+                height: 24px;
+                border: 2px solid rgba(99, 102, 241, 0.3);
+                border-radius: 6px;
+            }
+        </style>
+    </head>
+    <body>
+        <!-- 科技光晕背景层 -->
+        <div class="tech-glow"></div>
+
+        <div class="hero-section">
+            <h1 class="hero-title">选股检查清单</h1>
+        </div>
+        <div class="content-section">
+            <div class="card">
+                <h2 style="margin-bottom: 20px">趋势检查</h2>
+                <div class="checklist-item">
+                    <div class="checkbox"></div>
+                    <span>周线处于上升趋势</span>
+                </div>
+                <div class="checklist-item">
+                    <div class="checkbox"></div>
+                    <span>价格在50日均线上方</span>
+                </div>
+                <div class="checklist-item">
+                    <div class="checkbox"></div>
+                    <span>价格在200日均线上方</span>
+                </div>
+                <div class="checklist-item">
+                    <div class="checkbox"></div>
+                    <span>成交量配合价格上涨</span>
+                </div>
+            </div>
+            <div class="card">
+                <h2 style="margin-bottom: 20px">流动性检查</h2>
+                <div class="checklist-item">
+                    <div class="checkbox"></div>
+                    <span>日均成交额 > 5亿</span>
+                </div>
+                <div class="checklist-item">
+                    <div class="checkbox"></div>
+                    <span>市值 > 100亿</span>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

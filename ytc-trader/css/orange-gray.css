@@ -1,0 +1,335 @@
+/* YTC Trader - 深灰+橙黄配色方案 */
+
+:root {
+    /* 主色调 - 橙黄色系 */
+    --primary-color: #f59e0b;
+    --primary-hover: #d97706;
+
+    /* 文字颜色 */
+    --text-primary: #f9fafb;
+    --text-secondary: #9ca3af;
+
+    /* 背景色 - 深灰色系 */
+    --dark-bg: #111827;
+    --card-bg: #1f2937;
+    --border-color: #374151;
+
+    /* 功能色 */
+    --success-color: #10b981;
+    --warning-color: #f59e0b;
+    --danger-color: #ef4444;
+}
+
+/* 移除所有渐变，使用纯色 */
+.hero-title,
+.stat-number,
+.logo-text,
+.goal-number,
+.chapter-number,
+.progress-percentage,
+.section-icon,
+.objective-icon,
+.feature-icon,
+.tool-icon,
+.step-number,
+.concept-number,
+.knowledge-icon,
+.preview-number,
+.tip-icon,
+.placeholder-icon {
+    background: none !important;
+    -webkit-background-clip: border-box !important;
+    -webkit-text-fill-color: initial !important;
+    background-clip: border-box !important;
+}
+
+/* 主标题 - 橙黄色 */
+.hero-title {
+    color: var(--primary-color) !important;
+    font-size: 3.5rem;
+    font-weight: 700;
+}
+
+/* Logo */
+.logo-text {
+    color: var(--text-primary) !important;
+    font-weight: 700;
+}
+
+/* 导航高亮 - 橙黄色 */
+.nav-menu a:hover,
+.nav-menu a.active {
+    background: rgba(245, 158, 11, 0.1);
+    color: var(--primary-color);
+}
+
+/* 按钮 - 橙黄色 */
+.btn-primary {
+    background: var(--primary-color) !important;
+    color: #111827 !important;
+    font-weight: 600;
+}
+
+.btn-primary:hover {
+    background: var(--primary-hover) !important;
+}
+
+/* 卡片样式 - 深灰背景 */
+.chapter-card,
+.goal-card,
+.tool-card,
+.knowledge-item {
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+}
+
+/* 卡片hover效果 - 橙色边框 */
+.chapter-card:hover,
+.goal-card:hover,
+.tool-card:hover,
+.knowledge-item:hover {
+    border-color: var(--primary-color);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(245, 158, 11, 0.15);
+}
+
+/* 章节标签 - 橙黄色背景 */
+.chapter-number {
+    background: var(--primary-color) !important;
+    color: #111827 !important;
+    font-weight: 600;
+}
+
+/* 目标数字 - 橙黄色 */
+.goal-number {
+    color: rgba(245, 158, 11, 0.15) !important;
+}
+
+/* 统计数字 - 橙黄色 */
+.stat-number {
+    color: var(--primary-color) !important;
+    font-size: 2.5rem;
+    font-weight: 700;
+}
+
+/* 进度圆环 - 橙色 */
+.progress-circle {
+    background: conic-gradient(var(--primary-color) 0%, var(--border-color) 0%);
+}
+
+.progress-percentage {
+    color: var(--text-primary) !important;
+}
+
+/* 链接颜色 */
+a {
+    color: var(--primary-color);
+}
+
+a:hover {
+    color: var(--primary-hover);
+}
+
+/* 按钮 */
+.btn-secondary {
+    background: var(--card-bg);
+    color: var(--text-primary);
+    border: 1px solid var(--border-color);
+}
+
+.btn-secondary:hover {
+    background: var(--border-color);
+}
+
+/* 特殊卡片样式 */
+.callback-card {
+    background: var(--card-bg) !important;
+    border: 2px solid var(--border-color) !important;
+}
+
+.callback-card.shallow {
+    border-left: 4px solid var(--success-color) !important;
+}
+
+.callback-card.normal {
+    border-left: 4px solid var(--primary-color) !important;
+}
+
+.callback-card.deep {
+    border-left: 4px solid var(--warning-color) !important;
+}
+
+/* 知识点标签 */
+.concept-number,
+.step-number {
+    background: var(--dark-bg) !important;
+    color: var(--primary-color) !important;
+    border: 2px solid var(--border-color);
+}
+
+/* 特征图标 - 橙黄色 */
+.feature-icon,
+.objective-icon {
+    color: var(--primary-color) !important;
+}
+
+/* 工具图标 */
+.tool-icon {
+    color: var(--primary-color) !important;
+}
+
+/* 定义框 */
+.definition-box {
+    background: rgba(245, 158, 11, 0.05);
+    border-left: 4px solid var(--primary-color);
+}
+
+.definition-box.important {
+    background: rgba(245, 158, 11, 0.1);
+    border-left: 4px solid var(--primary-color);
+    border: 2px solid var(--primary-color);
+}
+
+/* 示例框 */
+.example-box {
+    background: rgba(16, 185, 129, 0.05);
+    border-left: 4px solid var(--success-color);
+}
+
+/* 提示框 */
+.tip-box {
+    background: rgba(245, 158, 11, 0.08);
+    border: 2px solid var(--primary-color);
+}
+
+/* 练习卡片 */
+.practice-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+}
+
+.practice-card.important {
+    border-color: var(--primary-color);
+    border-width: 2px;
+}
+
+/* 下一步卡片 */
+.step-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+}
+
+.step-card:hover {
+    border-color: var(--primary-color);
+}
+
+/* 测验项 */
+.quiz-item {
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+}
+
+.quiz-answer.show {
+    background: rgba(16, 185, 129, 0.1);
+    border: 1px solid var(--success-color);
+}
+
+/* 表格样式 */
+table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+th {
+    background: var(--dark-bg);
+    color: var(--primary-color);
+    padding: 0.75rem;
+    text-align: left;
+    border-bottom: 2px solid var(--primary-color);
+}
+
+td {
+    padding: 0.75rem;
+    border-bottom: 1px solid var(--border-color);
+}
+
+/* 输入框样式 */
+input[type="text"],
+input[type="date"],
+textarea,
+select {
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    color: var(--text-primary);
+    padding: 0.75rem;
+    border-radius: 6px;
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+    outline: none;
+    border-color: var(--primary-color);
+}
+
+/* 复选框 */
+input[type="checkbox"] {
+    accent-color: var(--primary-color);
+}
+
+/* 搜索框 */
+.search-input {
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    color: var(--text-primary);
+}
+
+.search-button {
+    background: var(--primary-color);
+    color: #111827;
+}
+
+/* 进度条 */
+.progress-bar {
+    background: var(--border-color);
+}
+
+.progress-fill {
+    background: var(--primary-color);
+}
+
+/* 简化emoji使用 */
+.section-icon::before,
+.objective-icon::before {
+    content: none;
+}
+
+/* 导航栏 */
+.navbar {
+    background: var(--dark-bg);
+    border-bottom: 1px solid var(--border-color);
+}
+
+/* Hero区域 */
+.hero {
+    background: linear-gradient(180deg, var(--dark-bg) 0%, var(--card-bg) 100%);
+}
+
+/* 页脚 */
+.footer {
+    background: var(--dark-bg);
+    border-top: 1px solid var(--border-color);
+}
+
+/* 面包屑 */
+.breadcrumb-container {
+    background: var(--card-bg);
+    border-bottom: 1px solid var(--border-color);
+}
+
+/* 侧边栏卡片 */
+.sidebar-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+}

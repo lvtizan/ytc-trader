@@ -1,0 +1,317 @@
+/* YTC Trader - 知识点图谱样式 */
+
+/* 使用说明 */
+.usage-guide {
+    background: linear-gradient(135deg, var(--card-bg), rgba(37, 99, 235, 0.1));
+    border: 2px solid var(--border-color);
+    border-radius: 16px;
+    padding: 2rem;
+    margin-bottom: 3rem;
+}
+
+.usage-guide h2 {
+    margin-bottom: 2rem;
+    text-align: center;
+}
+
+.guide-steps {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+}
+
+.step {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+}
+
+.step-number {
+    flex-shrink: 0;
+    width: 40px;
+    height: 40px;
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+    font-size: 1.25rem;
+}
+
+.step-content h3 {
+    font-size: 1.125rem;
+    margin-bottom: 0.5rem;
+}
+
+.step-content p {
+    color: var(--text-secondary);
+    line-height: 1.6;
+}
+
+/* 知识点部分 */
+.knowledge-section {
+    margin-bottom: 4rem;
+}
+
+.section-header {
+    margin-bottom: 2rem;
+    padding-bottom: 1rem;
+    border-bottom: 2px solid var(--border-color);
+}
+
+.section-header h2 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+}
+
+.meta-info {
+    display: flex;
+    gap: 2rem;
+    flex-wrap: wrap;
+}
+
+.meta-info span {
+    padding: 0.5rem 1rem;
+    background: var(--dark-bg);
+    border-radius: 8px;
+    font-size: 0.875rem;
+}
+
+.meta-info .weeks {
+    color: var(--primary-color);
+    font-weight: 600;
+}
+
+.meta-info .pdf {
+    color: var(--text-secondary);
+}
+
+/* 知识点网格 */
+.knowledge-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+}
+
+/* 知识点组 */
+.knowledge-group {
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 16px;
+    padding: 2rem;
+}
+
+.knowledge-group h3 {
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+    padding-bottom: 1rem;
+    border-bottom: 2px solid var(--border-color);
+}
+
+.knowledge-items {
+    display: grid;
+    gap: 1.5rem;
+}
+
+/* 知识点项 */
+.knowledge-item {
+    background: var(--dark-bg);
+    border: 2px solid var(--border-color);
+    border-radius: 12px;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.knowledge-item:hover {
+    border-color: var(--primary-color);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-lg);
+}
+
+.item-header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1.5rem;
+    background: linear-gradient(135deg, rgba(37, 99, 235, 0.1), rgba(124, 58, 237, 0.1));
+    border-bottom: 2px solid var(--border-color);
+    cursor: pointer;
+}
+
+.item-number {
+    flex-shrink: 0;
+    padding: 0.5rem 1rem;
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    color: white;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 0.875rem;
+}
+
+.item-title {
+    font-size: 1.125rem;
+    font-weight: 600;
+}
+
+.item-details {
+    padding: 1.5rem;
+}
+
+.pdf-ref {
+    background: rgba(37, 99, 235, 0.1);
+    border-left: 4px solid var(--primary-color);
+    padding: 1rem;
+    margin-bottom: 1rem;
+    border-radius: 4px;
+}
+
+.pdf-ref strong {
+    color: var(--primary-color);
+}
+
+.key-concepts {
+    margin-bottom: 1rem;
+}
+
+.key-concepts strong {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: var(--text-primary);
+}
+
+.key-concepts ul,
+.key-concepts ol {
+    margin-left: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+.key-concepts li {
+    color: var(--text-secondary);
+    margin-bottom: 0.25rem;
+}
+
+.action-links {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+.action-link {
+    padding: 0.75rem 1.5rem;
+    background: var(--primary-color);
+    color: white;
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.action-link:hover {
+    background: var(--secondary-color);
+    transform: translateY(-2px);
+}
+
+.action-link.pdf-link {
+    background: var(--warning-color);
+}
+
+/* 统计摘要 */
+.stats-summary {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 2rem;
+    margin: 4rem 0;
+}
+
+.stat-card {
+    background: linear-gradient(135deg, var(--card-bg), rgba(16, 185, 129, 0.1));
+    border: 2px solid var(--success-color);
+    border-radius: 16px;
+    padding: 2rem;
+    text-align: center;
+}
+
+.stat-value {
+    font-size: 3rem;
+    font-weight: 700;
+    background: linear-gradient(135deg, var(--success-color), var(--primary-color));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 0.5rem;
+}
+
+.stat-label {
+    color: var(--text-secondary);
+    font-size: 1rem;
+}
+
+/* 快速链接 */
+.quick-links {
+    margin-top: 4rem;
+}
+
+.quick-links h3 {
+    margin-bottom: 2rem;
+    font-size: 1.5rem;
+}
+
+.links-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+}
+
+.link-card {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 2rem;
+    background: var(--card-bg);
+    border: 2px solid var(--border-color);
+    border-radius: 12px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.link-card:hover {
+    border-color: var(--primary-color);
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-lg);
+}
+
+.link-icon {
+    font-size: 2.5rem;
+}
+
+.link-title {
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+    .guide-steps {
+        grid-template-columns: 1fr;
+    }
+
+    .stats-summary {
+        grid-template-columns: 1fr;
+    }
+
+    .item-header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .action-links {
+        flex-direction: column;
+    }
+
+    .action-link {
+        text-align: center;
+    }
+}

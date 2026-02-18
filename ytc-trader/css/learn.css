@@ -1,0 +1,540 @@
+/* YTC Trader - 知识点详情页样式 */
+
+/* 面包屑 */
+.breadcrumb-container {
+    background: var(--dark-bg);
+    border-bottom: 1px solid var(--border-color);
+    padding: 1rem 0;
+}
+
+.breadcrumb {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.875rem;
+}
+
+.breadcrumb a {
+    color: var(--text-secondary);
+    text-decoration: none;
+}
+
+.breadcrumb a:hover {
+    color: var(--primary-color);
+}
+
+.breadcrumb span {
+    color: var(--text-secondary);
+}
+
+.breadcrumb .current {
+    color: var(--primary-color);
+    font-weight: 600;
+}
+
+/* 知识点头部 */
+.concept-header {
+    background: linear-gradient(135deg, rgba(37, 99, 235, 0.1), rgba(124, 58, 237, 0.1));
+    border: 2px solid var(--border-color);
+    border-radius: 16px;
+    padding: 3rem 2rem;
+    margin-bottom: 3rem;
+    text-align: center;
+}
+
+.concept-meta {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+    flex-wrap: wrap;
+}
+
+.concept-number {
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    color: white;
+    padding: 0.5rem 1.5rem;
+    border-radius: 20px;
+    font-weight: 600;
+}
+
+.concept-category {
+    background: var(--card-bg);
+    color: var(--text-secondary);
+    padding: 0.5rem 1.5rem;
+    border-radius: 20px;
+    border: 1px solid var(--border-color);
+}
+
+.concept-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+}
+
+.concept-subtitle {
+    font-size: 1.125rem;
+    color: var(--text-secondary);
+    margin-bottom: 2rem;
+}
+
+.concept-progress {
+    max-width: 600px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.progress-label {
+    white-space: nowrap;
+    color: var(--text-secondary);
+}
+
+.progress-bar {
+    flex: 1;
+    height: 12px;
+    background: var(--border-color);
+    border-radius: 6px;
+    overflow: hidden;
+}
+
+.progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--primary-color), var(--success-color));
+    border-radius: 6px;
+    transition: width 0.3s ease;
+}
+
+/* 学习目标 */
+.learning-objectives {
+    background: var(--card-bg);
+    border: 2px solid var(--border-color);
+    border-radius: 16px;
+    padding: 2rem;
+    margin-bottom: 3rem;
+}
+
+.learning-objectives h2 {
+    margin-bottom: 2rem;
+}
+
+.objectives-grid {
+    display: grid;
+    gap: 1rem;
+}
+
+.objective-card {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem;
+    background: var(--dark-bg);
+    border-radius: 8px;
+    border-left: 4px solid var(--border-color);
+    transition: all 0.3s ease;
+}
+
+.objective-card:hover {
+    border-left-color: var(--primary-color);
+}
+
+.objective-card input[type="checkbox"] {
+    width: 24px;
+    height: 24px;
+    cursor: pointer;
+}
+
+.objective-card label {
+    flex: 1;
+    cursor: pointer;
+}
+
+/* 内容区块 */
+.content-section {
+    margin-bottom: 4rem;
+}
+
+.content-section h2 {
+    font-size: 2rem;
+    margin-bottom: 2rem;
+    padding-bottom: 1rem;
+    border-bottom: 2px solid var(--border-color);
+}
+
+.concept-block {
+    background: var(--card-bg);
+    border: 2px solid var(--border-color);
+    border-radius: 16px;
+    padding: 2rem;
+    margin-bottom: 2rem;
+}
+
+.concept-block.highlight {
+    border-color: var(--success-color);
+    box-shadow: 0 0 20px rgba(16, 185, 129, 0.1);
+}
+
+.concept-block h3 {
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+/* 定义框 */
+.definition-box {
+    background: var(--dark-bg);
+    border-left: 4px solid var(--primary-color);
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.definition-box.important {
+    background: linear-gradient(135deg, rgba(16, 185, 129, 0.1), rgba(5, 150, 105, 0.1));
+    border-left-color: var(--success-color);
+    border: 2px solid var(--success-color);
+}
+
+.definition-box h4 {
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+}
+
+.definition-box.important h4 {
+    color: var(--success-color);
+}
+
+.formula {
+    background: rgba(37, 99, 235, 0.1);
+    padding: 1rem;
+    border-radius: 8px;
+    margin: 1rem 0;
+    font-family: 'Courier New', monospace;
+}
+
+/* 示例框 */
+.example-box {
+    background: var(--dark-bg);
+    border-left: 4px solid var(--warning-color);
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.example-box h4 {
+    color: var(--warning-color);
+    margin-bottom: 1rem;
+}
+
+.example-content {
+    background: var(--card-bg);
+    padding: 1rem;
+    border-radius: 8px;
+    margin-top: 1rem;
+}
+
+.example-content p {
+    margin-bottom: 0.5rem;
+}
+
+/* 图表占位符 */
+.visual-example {
+    margin: 2rem 0;
+}
+
+.visual-example h4 {
+    margin-bottom: 1rem;
+}
+
+.chart-placeholder {
+    background: var(--dark-bg);
+    border: 2px solid var(--border-color);
+    border-radius: 12px;
+    padding: 2rem;
+    overflow-x: auto;
+}
+
+.chart-placeholder pre {
+    color: var(--success-color);
+    font-size: 0.875rem;
+    line-height: 1.6;
+}
+
+.caption {
+    text-align: center;
+    color: var(--text-secondary);
+    margin-top: 1rem;
+    font-style: italic;
+}
+
+/* 重要提示 */
+.why-important {
+    background: linear-gradient(135deg, rgba(37, 99, 235, 0.1), rgba(124, 58, 237, 0.1));
+    border: 2px solid var(--primary-color);
+    border-radius: 12px;
+    padding: 1.5rem;
+}
+
+.why-important h4 {
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+}
+
+.why-important ul {
+    list-style: none;
+    padding: 0;
+}
+
+.why-important li {
+    padding: 0.75rem 0;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.why-important li:last-child {
+    border-bottom: none;
+}
+
+/* 提示框 */
+.tip-box {
+    background: rgba(245, 158, 11, 0.1);
+    border: 2px solid var(--warning-color);
+    border-radius: 12px;
+    padding: 1.5rem;
+    margin: 2rem 0;
+}
+
+.tip-box h4 {
+    color: var(--warning-color);
+    margin-bottom: 1rem;
+}
+
+/* 实践练习 */
+.practice-section {
+    background: var(--card-bg);
+    border: 2px solid var(--border-color);
+    border-radius: 16px;
+    padding: 2rem;
+    margin-bottom: 3rem;
+}
+
+.practice-card {
+    background: var(--dark-bg);
+    border: 2px solid var(--border-color);
+    border-radius: 12px;
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.practice-card.important {
+    border-color: var(--success-color);
+}
+
+.practice-card h3 {
+    margin-bottom: 1rem;
+}
+
+.practice-instruction {
+    color: var(--text-secondary);
+    margin-bottom: 1rem;
+    line-height: 1.8;
+}
+
+.practice-checklist {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.practice-checklist label {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.75rem;
+    background: var(--card-bg);
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.practice-checklist input[type="checkbox"] {
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+}
+
+.practice-result {
+    background: linear-gradient(135deg, rgba(16, 185, 129, 0.2), rgba(5, 150, 105, 0.2));
+    border: 2px solid var(--success-color);
+    border-radius: 8px;
+    padding: 1rem;
+    margin-top: 1rem;
+    text-align: center;
+    font-weight: 600;
+}
+
+/* 常见错误 */
+.mistakes-section {
+    margin-bottom: 3rem;
+}
+
+.mistake-card {
+    background: rgba(239, 68, 68, 0.1);
+    border: 2px solid var(--danger-color);
+    border-radius: 12px;
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.mistake-card h3 {
+    color: var(--danger-color);
+    margin-bottom: 1rem;
+}
+
+.mistake-content {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.mistake-content p {
+    margin: 0;
+}
+
+/* 知识检测 */
+.quiz-section {
+    background: var(--card-bg);
+    border: 2px solid var(--border-color);
+    border-radius: 16px;
+    padding: 2rem;
+    margin-bottom: 3rem;
+}
+
+.quiz-item {
+    background: var(--dark-bg);
+    border: 2px solid var(--border-color);
+    border-radius: 12px;
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.quiz-item h3 {
+    margin-bottom: 1rem;
+}
+
+.quiz-options {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    margin-bottom: 1rem;
+}
+
+.quiz-options label {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.75rem;
+    background: var(--card-bg);
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.quiz-answer {
+    display: none;
+    margin-top: 1rem;
+    padding: 1rem;
+    background: linear-gradient(135deg, rgba(16, 185, 129, 0.2), rgba(5, 150, 105, 0.2));
+    border: 2px solid var(--success-color);
+    border-radius: 8px;
+}
+
+.quiz-answer.show {
+    display: block;
+}
+
+/* 下一步 */
+.next-steps h2 {
+    margin-bottom: 2rem;
+}
+
+.steps-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+}
+
+.step-card {
+    background: var(--card-bg);
+    border: 2px solid var(--border-color);
+    border-radius: 16px;
+    padding: 2rem;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.step-card:hover {
+    border-color: var(--primary-color);
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-lg);
+}
+
+.step-number,
+.step-icon {
+    display: inline-block;
+    margin-bottom: 1rem;
+    padding: 0.5rem 1rem;
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    color: white;
+    border-radius: 8px;
+    font-weight: 600;
+}
+
+.step-icon {
+    font-size: 1.5rem;
+}
+
+.step-card h3 {
+    margin-bottom: 0.5rem;
+}
+
+.step-card p {
+    color: var(--text-secondary);
+    margin: 0;
+}
+
+/* PDF参考 */
+.pdf-reference {
+    background: linear-gradient(135deg, var(--card-bg), rgba(37, 99, 235, 0.1));
+    border: 2px solid var(--border-color);
+    border-radius: 16px;
+    padding: 2rem;
+}
+
+.pdf-info p {
+    margin-bottom: 0.5rem;
+}
+
+.pdf-info strong {
+    color: var(--primary-color);
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+    .concept-title {
+        font-size: 2rem;
+    }
+
+    .concept-meta {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .concept-progress {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .steps-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .breadcrumb {
+        flex-wrap: wrap;
+    }
+}

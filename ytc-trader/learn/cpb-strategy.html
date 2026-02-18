@@ -1,0 +1,861 @@
+<!doctype html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>CPB策略：复杂回调 - YTC Trader</title>
+        <link rel="stylesheet" href="../css/modern-premium.css" />
+        <style>
+            body {
+                background: linear-gradient(
+                    to bottom,
+                    #0a0a0f 0%,
+                    #0f172a 50%,
+                    #0a0a0f 100%
+                );
+                min-height: 100vh;
+            }
+            .hero-section {
+                text-align: center;
+                padding: 60px 20px;
+                background: radial-gradient(
+                    ellipse at top,
+                    rgba(99, 102, 241, 0.15) 0%,
+                    transparent 50%
+                );
+            }
+            .hero-badge {
+                display: inline-block;
+                padding: 8px 16px;
+                background: rgba(99, 102, 241, 0.2);
+                border: 1px solid rgba(99, 102, 241, 0.3);
+                border-radius: 20px;
+                color: #a5b4fc;
+                font-size: 0.875rem;
+                margin-bottom: 24px;
+            }
+            .hero-title {
+                font-size: 3rem;
+                font-weight: 800;
+                background: linear-gradient(135deg, #6366f1 0%, #06b6d4 100%);
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+                margin-bottom: 16px;
+            }
+            .hero-subtitle {
+                color: #cbd5e1;
+                font-size: 1.25rem;
+                max-width: 700px;
+                margin: 0 auto;
+            }
+            .content-section {
+                max-width: 900px;
+                margin: 0 auto;
+                padding: 40px 20px;
+            }
+            .card {
+                background: rgba(30, 41, 59, 0.5);
+                backdrop-filter: blur(10px);
+                border: 1px solid rgba(99, 102, 241, 0.2);
+                border-radius: 16px;
+                padding: 32px;
+                margin-bottom: 24px;
+                position: relative;
+                overflow: hidden;
+            }
+            .card::before {
+                content: "";
+                position: absolute;
+                top: 0;
+                left: 0;
+                right: 0;
+                height: 4px;
+                background: linear-gradient(90deg, #6366f1 0%, #06b6d4 100%);
+            }
+            .card-header {
+                display: flex;
+                align-items: center;
+                gap: 16px;
+                margin-bottom: 20px;
+            }
+            .card-icon {
+                font-size: 2.5rem;
+            }
+            .card-title {
+                font-size: 1.5rem;
+                font-weight: 700;
+                color: #f1f5f9;
+            }
+            .card-content {
+                color: #cbd5e1;
+                line-height: 1.8;
+            }
+            .back-link {
+                display: inline-block;
+                margin: 20px;
+                padding: 12px 24px;
+                background: rgba(99, 102, 241, 0.2);
+                border: 1px solid rgba(99, 102, 241, 0.3);
+                border-radius: 12px;
+                color: #a5b4fc;
+                text-decoration: none;
+                font-weight: 600;
+            }
+        </style>
+    </head>
+    <body>
+        <!-- 科技光晕背景层 -->
+        <div class="tech-glow"></div>
+
+        <a href="../stage2-new.html" class="back-link">← 返回阶段二</a>
+        <div class="hero-section">
+            <span class="hero-badge">阶段二 · CPB策略 · 第8-9周</span>
+            <h1 class="hero-title">CPB策略：复杂回调买入</h1>
+            <p class="hero-subtitle">
+                掌握复杂回调模式，识别多浪回调中的交易机会
+            </p>
+        </div>
+        <div class="content-section">
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-icon">🔄</div>
+                    <h2 class="card-title">CPB与PB的区别</h2>
+                </div>
+                <div class="card-content">
+                    <p>
+                        Complex
+                        Pullback（复杂回调）是指回调形成两个或更多波浪的情况。相比简单回调，CPB需要更多耐心，但往往提供更好的入场位置。
+                    </p>
+                    <ul style="margin-top: 20px; line-height: 2">
+                        <li>
+                            <strong>PB（简单回调）：</strong
+                            >价格直接回调到支撑区域，形成单浪结构
+                        </li>
+                        <li>
+                            <strong>CPB（复杂回调）：</strong
+                            >价格回调形成双浪或三浪结构，更充分
+                        </li>
+                    </ul>
+                    <div
+                        style="
+                            background: rgba(245, 158, 11, 0.1);
+                            border: 1px solid rgba(245, 158, 11, 0.3);
+                            border-radius: 12px;
+                            padding: 20px;
+                            margin: 20px 0;
+                        "
+                    >
+                        <div
+                            style="
+                                color: #fbbf24;
+                                font-weight: 600;
+                                margin-bottom: 8px;
+                            "
+                        >
+                            💡 为什么CPB往往更好
+                        </div>
+                        <div style="color: #cbd5e1">
+                            复杂回调让更多急于出场的交易者离场，也清理了更多的浮动筹码，一旦突破往往动能更强。
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-icon">🏗️</div>
+                    <h2 class="card-title">CPB的结构特征</h2>
+                </div>
+                <div class="card-content">
+                    <p>识别CPB需要理解其独特的结构特征。</p>
+                    <ul style="margin-top: 20px; line-height: 2">
+                        <li>
+                            <strong>双浪回调：</strong
+                            >价格形成ABC三个点的回调结构
+                        </li>
+                        <li>
+                            <strong>三浪回调：</strong
+                            >价格形成ABCDE五个点的回调结构
+                        </li>
+                        <li>
+                            <strong>横向整理：</strong>价格在一定区间内震荡整理
+                        </li>
+                        <li>
+                            <strong>时间更长：</strong
+                            >相比简单回调需要更多时间完成
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-icon">✅</div>
+                    <h2 class="card-title">CPB入场条件</h2>
+                </div>
+                <div class="card-content">
+                    <p>CPB的入场条件和PB类似，但需要更严格的确认：</p>
+                    <ol style="margin-top: 20px; line-height: 2">
+                        <li>确认上升趋势完整</li>
+                        <li>识别复杂回调结构（至少2浪）</li>
+                        <li>第二浪回调进入支撑区域</li>
+                        <li>第二浪形成明确的低点结构</li>
+                        <li>在第二浪低点附近出现买入信号</li>
+                        <li>止损设在第二浪最低点下方</li>
+                    </ol>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-icon">🎯</div>
+                    <h2 class="card-title">CPB风险控制</h2>
+                </div>
+                <div class="card-content">
+                    <p>CPB的风险控制和PB类似，但有一些特殊考虑：</p>
+                    <ul style="margin-top: 20px; line-height: 2">
+                        <li>
+                            <strong>止损位置：</strong>设在回调结构的最低点下方
+                        </li>
+                        <li>
+                            <strong>风险更大：</strong
+                            >CPB回调更深，止损距离可能更大
+                        </li>
+                        <li>
+                            <strong>仓位调整：</strong>考虑降低仓位以控制总风险
+                        </li>
+                        <li>
+                            <strong>耐心等待：</strong
+                            >CPB需要更长时间完成，不要过早入场
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- CPB策略K线图例 -->
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-icon">📊</div>
+                    <h2 class="card-title">CPB策略K线图例</h2>
+                </div>
+                <div class="card-content">
+                    <p>通过实际K线图理解CPB（复杂回调）策略的完整交易过程。</p>
+
+                    <!-- K线图例1：双浪回调CPB -->
+                    <div
+                        style="
+                            background: rgba(15, 23, 42, 0.5);
+                            border-radius: 12px;
+                            padding: 24px;
+                            margin-top: 20px;
+                        "
+                    >
+                        <div
+                            style="
+                                color: #a5b4fc;
+                                font-weight: 600;
+                                margin-bottom: 16px;
+                                font-size: 1.1rem;
+                            "
+                        >
+                            案例1：宁德时代 - 双浪回调CPB策略
+                        </div>
+
+                        <!-- K线图表 -->
+                        <div
+                            style="
+                                background: rgba(30, 41, 59, 0.8);
+                                border-radius: 12px;
+                                padding: 30px;
+                                margin: 20px 0;
+                                overflow-x: auto;
+                            "
+                        >
+                            <svg
+                                width="100%"
+                                height="400"
+                                viewBox="0 0 800 400"
+                            >
+                                <!-- 背景网格 -->
+                                <defs>
+                                    <pattern
+                                        id="grid2"
+                                        width="40"
+                                        height="40"
+                                        patternUnits="userSpaceOnUse"
+                                    >
+                                        <path
+                                            d="M 40 0 L 0 0 0 40"
+                                            fill="none"
+                                            stroke="rgba(99, 102, 241, 0.1)"
+                                            stroke-width="1"
+                                        />
+                                    </pattern>
+                                </defs>
+                                <rect
+                                    width="100%"
+                                    height="100%"
+                                    fill="url(#grid2)"
+                                />
+
+                                <!-- 坐标轴 -->
+                                <line
+                                    x1="50"
+                                    y1="350"
+                                    x2="750"
+                                    y2="350"
+                                    stroke="#6366f1"
+                                    stroke-width="2"
+                                />
+                                <line
+                                    x1="50"
+                                    y1="50"
+                                    x2="50"
+                                    y2="350"
+                                    stroke="#6366f1"
+                                    stroke-width="2"
+                                />
+
+                                <!-- 价格标签 -->
+                                <text
+                                    x="10"
+                                    y="100"
+                                    fill="#94a3b8"
+                                    font-size="12"
+                                >
+                                    280
+                                </text>
+                                <text
+                                    x="10"
+                                    y="180"
+                                    fill="#94a3b8"
+                                    font-size="12"
+                                >
+                                    260
+                                </text>
+                                <text
+                                    x="10"
+                                    y="260"
+                                    fill="#94a3b8"
+                                    font-size="12"
+                                >
+                                    240
+                                </text>
+                                <text
+                                    x="10"
+                                    y="340"
+                                    fill="#94a3b8"
+                                    font-size="12"
+                                >
+                                    220
+                                </text>
+
+                                <!-- 支撑区域 -->
+                                <rect
+                                    x="240"
+                                    y="240"
+                                    width="320"
+                                    height="80"
+                                    fill="rgba(99, 102, 241, 0.1)"
+                                    stroke="#6366f1"
+                                    stroke-width="1"
+                                    stroke-dasharray="5,5"
+                                />
+                                <text
+                                    x="560"
+                                    y="255"
+                                    fill="#6366f1"
+                                    font-size="11"
+                                >
+                                    支撑区域
+                                </text>
+
+                                <!-- 上升趋势 -->
+                                <line
+                                    x1="100"
+                                    y1="280"
+                                    x2="100"
+                                    y2="320"
+                                    stroke="#10b981"
+                                    stroke-width="2"
+                                />
+                                <rect
+                                    x="90"
+                                    y="290"
+                                    width="20"
+                                    height="20"
+                                    fill="#10b981"
+                                />
+
+                                <line
+                                    x1="150"
+                                    y1="240"
+                                    x2="150"
+                                    y2="290"
+                                    stroke="#10b981"
+                                    stroke-width="2"
+                                />
+                                <rect
+                                    x="140"
+                                    y="250"
+                                    width="20"
+                                    height="30"
+                                    fill="#10b981"
+                                />
+
+                                <line
+                                    x1="200"
+                                    y1="200"
+                                    x2="200"
+                                    y2="260"
+                                    stroke="#10b981"
+                                    stroke-width="2"
+                                />
+                                <rect
+                                    x="190"
+                                    y="210"
+                                    width="20"
+                                    height="40"
+                                    fill="#10b981"
+                                />
+
+                                <line
+                                    x1="250"
+                                    y1="160"
+                                    x2="250"
+                                    y2="220"
+                                    stroke="#10b981"
+                                    stroke-width="2"
+                                />
+                                <rect
+                                    x="240"
+                                    y="170"
+                                    width="20"
+                                    height="40"
+                                    fill="#10b981"
+                                />
+
+                                <line
+                                    x1="300"
+                                    y1="120"
+                                    x2="300"
+                                    y2="180"
+                                    stroke="#10b981"
+                                    stroke-width="2"
+                                />
+                                <rect
+                                    x="290"
+                                    y="130"
+                                    width="20"
+                                    height="40"
+                                    fill="#10b981"
+                                />
+
+                                <!-- 第一浪回调 (Wave A) -->
+                                <line
+                                    x1="350"
+                                    y1="140"
+                                    x2="350"
+                                    y2="200"
+                                    stroke="#ef4444"
+                                    stroke-width="2"
+                                />
+                                <rect
+                                    x="340"
+                                    y="150"
+                                    width="20"
+                                    height="40"
+                                    fill="#ef4444"
+                                />
+
+                                <line
+                                    x1="380"
+                                    y1="190"
+                                    x2="380"
+                                    y2="240"
+                                    stroke="#ef4444"
+                                    stroke-width="2"
+                                />
+                                <rect
+                                    x="370"
+                                    y="200"
+                                    width="20"
+                                    height="30"
+                                    fill="#ef4444"
+                                />
+
+                                <!-- B浪反弹 -->
+                                <line
+                                    x1="410"
+                                    y1="200"
+                                    x2="410"
+                                    y2="240"
+                                    stroke="#10b981"
+                                    stroke-width="2"
+                                />
+                                <rect
+                                    x="400"
+                                    y="210"
+                                    width="20"
+                                    height="20"
+                                    fill="#10b981"
+                                />
+
+                                <line
+                                    x1="440"
+                                    y1="190"
+                                    x2="440"
+                                    y2="230"
+                                    stroke="#10b981"
+                                    stroke-width="2"
+                                />
+                                <rect
+                                    x="430"
+                                    y="200"
+                                    width="20"
+                                    height="20"
+                                    fill="#10b981"
+                                />
+
+                                <!-- 第二浪回调 (Wave C) - 更深 -->
+                                <line
+                                    x1="470"
+                                    y1="210"
+                                    x2="470"
+                                    y2="280"
+                                    stroke="#ef4444"
+                                    stroke-width="2"
+                                />
+                                <rect
+                                    x="460"
+                                    y="220"
+                                    width="20"
+                                    height="50"
+                                    fill="#ef4444"
+                                />
+
+                                <line
+                                    x1="500"
+                                    y1="250"
+                                    x2="500"
+                                    y2="310"
+                                    stroke="#ef4444"
+                                    stroke-width="2"
+                                />
+                                <rect
+                                    x="490"
+                                    y="260"
+                                    width="20"
+                                    height="40"
+                                    fill="#ef4444"
+                                />
+
+                                <!-- 第二浪低点 - 入场信号 -->
+                                <line
+                                    x1="530"
+                                    y1="290"
+                                    x2="530"
+                                    y2="330"
+                                    stroke="#f59e0b"
+                                    stroke-width="2"
+                                />
+                                <rect
+                                    x="520"
+                                    y="300"
+                                    width="20"
+                                    height="20"
+                                    fill="#f59e0b"
+                                />
+                                <text
+                                    x="490"
+                                    y="345"
+                                    fill="#f59e0b"
+                                    font-size="11"
+                                    font-weight="bold"
+                                >
+                                    C浪低点
+                                </text>
+
+                                <!-- 入场 - 看涨吞没 -->
+                                <line
+                                    x1="560"
+                                    y1="290"
+                                    x2="560"
+                                    y2="330"
+                                    stroke="#10b981"
+                                    stroke-width="2"
+                                />
+                                <rect
+                                    x="550"
+                                    y="300"
+                                    width="20"
+                                    height="25"
+                                    fill="#10b981"
+                                />
+                                <circle
+                                    cx="560"
+                                    cy="340"
+                                    r="25"
+                                    fill="none"
+                                    stroke="#10b981"
+                                    stroke-width="2"
+                                />
+                                <text
+                                    x="590"
+                                    y="345"
+                                    fill="#10b981"
+                                    font-size="14"
+                                    font-weight="bold"
+                                >
+                                    买入
+                                </text>
+
+                                <!-- 反弹上涨 -->
+                                <line
+                                    x1="600"
+                                    y1="260"
+                                    x2="600"
+                                    y2="300"
+                                    stroke="#10b981"
+                                    stroke-width="2"
+                                />
+                                <rect
+                                    x="590"
+                                    y="270"
+                                    width="20"
+                                    height="20"
+                                    fill="#10b981"
+                                />
+
+                                <line
+                                    x1="640"
+                                    y1="220"
+                                    x2="640"
+                                    y2="270"
+                                    stroke="#10b981"
+                                    stroke-width="2"
+                                />
+                                <rect
+                                    x="630"
+                                    y="230"
+                                    width="20"
+                                    height="30"
+                                    fill="#10b981"
+                                />
+
+                                <line
+                                    x1="680"
+                                    y1="180"
+                                    x2="680"
+                                    y2="240"
+                                    stroke="#10b981"
+                                    stroke-width="2"
+                                />
+                                <rect
+                                    x="670"
+                                    y="190"
+                                    width="20"
+                                    height="40"
+                                    fill="#10b981"
+                                />
+
+                                <!-- 卖出点 -->
+                                <line
+                                    x1="720"
+                                    y1="140"
+                                    x2="720"
+                                    y2="190"
+                                    stroke="#10b981"
+                                    stroke-width="2"
+                                />
+                                <rect
+                                    x="710"
+                                    y="150"
+                                    width="20"
+                                    height="30"
+                                    fill="#10b981"
+                                />
+                                <circle
+                                    cx="720"
+                                    cy="165"
+                                    r="25"
+                                    fill="none"
+                                    stroke="#ef4444"
+                                    stroke-width="2"
+                                />
+                                <text
+                                    x="750"
+                                    y="140"
+                                    fill="#ef4444"
+                                    font-size="14"
+                                    font-weight="bold"
+                                >
+                                    卖出
+                                </text>
+
+                                <!-- 止损位 -->
+                                <line
+                                    x1="490"
+                                    y1="335"
+                                    x2="600"
+                                    y2="335"
+                                    stroke="#ef4444"
+                                    stroke-width="2"
+                                    stroke-dasharray="5,5"
+                                />
+                                <text
+                                    x="605"
+                                    y="340"
+                                    fill="#ef4444"
+                                    font-size="11"
+                                >
+                                    止损位
+                                </text>
+
+                                <!-- 标注A、B、C点 -->
+                                <text
+                                    x="330"
+                                    y="180"
+                                    fill="#ef4444"
+                                    font-size="14"
+                                    font-weight="bold"
+                                >
+                                    A
+                                </text>
+                                <text
+                                    x="430"
+                                    y="190"
+                                    fill="#10b981"
+                                    font-size="14"
+                                    font-weight="bold"
+                                >
+                                    B
+                                </text>
+                                <text
+                                    x="510"
+                                    y="280"
+                                    fill="#ef4444"
+                                    font-size="14"
+                                    font-weight="bold"
+                                >
+                                    C
+                                </text>
+                            </svg>
+                        </div>
+
+                        <!-- 交易说明 -->
+                        <div
+                            style="
+                                color: #cbd5e1;
+                                line-height: 1.8;
+                                margin-top: 20px;
+                            "
+                        >
+                            <div
+                                style="
+                                    background: rgba(99, 102, 241, 0.1);
+                                    border-left: 3px solid #6366f1;
+                                    padding: 12px 16px;
+                                    margin: 12px 0;
+                                "
+                            >
+                                <strong style="color: #a5b4fc"
+                                    >✓ 双浪回调结构：</strong
+                                >价格形成ABC三点结构，A浪回调后B浪反弹，C浪再次下跌创新低
+                            </div>
+                            <div
+                                style="
+                                    background: rgba(245, 158, 11, 0.1);
+                                    border-left: 3px solid #f59e0b;
+                                    padding: 12px 16px;
+                                    margin: 12px 0;
+                                "
+                            >
+                                <strong style="color: #fbbf24"
+                                    >✓ 关键特征：</strong
+                                >C浪低点比A浪低，进入支撑区域（240元附近）
+                            </div>
+                            <div
+                                style="
+                                    background: rgba(16, 185, 129, 0.1);
+                                    border-left: 3px solid #10b981;
+                                    padding: 12px 16px;
+                                    margin: 12px 0;
+                                "
+                            >
+                                <strong style="color: #34d399"
+                                    >✓ 入场信号：</strong
+                                >C浪低点出现看涨吞没形态，在245元买入
+                            </div>
+                            <div
+                                style="
+                                    background: rgba(239, 68, 68, 0.1);
+                                    border-left: 3px solid #ef4444;
+                                    padding: 12px 16px;
+                                    margin: 12px 0;
+                                "
+                            >
+                                <strong style="color: #f87171"
+                                    >✓ 止损位置：</strong
+                                >235元（C浪最低点下方10元）<br />
+                                <strong style="color: #f87171">✓ 风险：</strong
+                                >245 - 235 = 10元/股
+                            </div>
+                            <div
+                                style="
+                                    background: rgba(139, 92, 246, 0.1);
+                                    border-left: 3px solid #8b5cf6;
+                                    padding: 12px 16px;
+                                    margin: 12px 0;
+                                "
+                            >
+                                <strong style="color: #a78bfa"
+                                    >✓ 盈亏比：</strong
+                                >目标270元，盈利25元，盈亏比 =
+                                <strong
+                                    style="color: #c084fc; font-size: 1.2rem"
+                                    >2.5:1</strong
+                                >
+                                ✓ 良好
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-icon">⚠️</div>
+                    <h2 class="card-title">CPB常见错误</h2>
+                </div>
+                <div class="card-content">
+                    <ul style="line-height: 2">
+                        <li>在第一浪回调就急于入场（等待第二浪）</li>
+                        <li>误将反转当作复杂回调</li>
+                        <li>在回调未完成时就入场</li>
+                        <li>止损设置过紧被正常波动止损</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div style="text-align: center; padding: 40px 20px">
+            <a
+                href="../stage2-new.html"
+                style="
+                    display: inline-block;
+                    padding: 16px 32px;
+                    background: linear-gradient(
+                        135deg,
+                        #6366f1 0%,
+                        #06b6d4 100%
+                    );
+                    color: white;
+                    text-decoration: none;
+                    border-radius: 12px;
+                    font-weight: 600;
+                "
+                >继续学习STS策略 →</a
+            >
+        </div>
+    </body>
+</html>

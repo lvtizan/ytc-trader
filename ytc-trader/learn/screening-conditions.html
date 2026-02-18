@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>筛选条件设置 - YTC Trader</title>
+    <link rel="stylesheet" href="../css/modern-premium.css">
+    <style>
+        body { background: linear-gradient(to bottom, #0a0a0f 0%, #0f172a 50%, #0a0a0f 100%); min-height: 100vh; }
+        .hero-section { text-align: center; padding: 60px 20px; background: radial-gradient(ellipse at top, rgba(99, 102, 241, 0.15) 0%, transparent 50%); }
+        .hero-badge { display: inline-block; padding: 8px 16px; background: rgba(99, 102, 241, 0.2); border: 1px solid rgba(99, 102, 241, 0.3); border-radius: 20px; color: #a5b4fc; font-size: 0.875rem; margin-bottom: 24px; }
+        .hero-title { font-size: 3rem; font-weight: 800; background: linear-gradient(135deg, #6366f1 0%, #06b6d4 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 16px; }
+        .content-section { max-width: 900px; margin: 0 auto; padding: 40px 20px; }
+        .card { background: rgba(30, 41, 59, 0.5); backdrop-filter: blur(10px); border: 1px solid rgba(99, 102, 241, 0.2); border-radius: 16px; padding: 32px; margin-bottom: 24px; }
+        .card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px; background: linear-gradient(90deg, #6366f1 0%, #06b6d4 100%); }
+        .card-header { display: flex; align-items: center; gap: 16px; margin-bottom: 20px; }
+        .card-icon { font-size: 2.5rem; }
+        .card-title { font-size: 1.5rem; font-weight: 700; color: #f1f5f9; }
+        .card-content { color: #cbd5e1; line-height: 1.8; }
+        .back-link { display: inline-block; margin: 20px; padding: 12px 24px; background: rgba(99, 102, 241, 0.2); border: 1px solid rgba(99, 102, 241, 0.3); border-radius: 12px; color: #a5b4fc; text-decoration: none; font-weight: 600; }
+    </style>
+</head>
+<body>
+        <!-- 科技光晕背景层 -->
+        <div class="tech-glow"></div>
+
+    <a href="../stage1-new.html" class="back-link">← 返回阶段一</a>
+    <div class="hero-section">
+        <span class="hero-badge">阶段一 · 模块4 · 选股系统</span>
+        <h1 class="hero-title">筛选条件设置</h1>
+    </div>
+    <div class="content-section">
+        <div class="card">
+            <div class="card-header">
+                <div class="card-icon">🔍</div>
+                <h2 class="card-title">趋势筛选条件</h2>
+            </div>
+            <div class="card-content">
+                <p>选股的核心是筛选上升趋势的股票：</p>
+                <ul style="margin-top: 20px; line-height: 2;">
+                    <li>周线处于明确上升趋势</li>
+                    <li>价格在50日均线以上</li>
+                    <li>价格在200日均线以上</li>
+                    <li>近期创出52周新高</li>
+                    <li>成交量放大配合价格上涨</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header">
+                <div class="card-icon">💰</div>
+                <h2 class="card-title">流动性筛选</h2>
+            </div>
+            <div class="card-content">
+                <ul style="line-height: 2;">
+                    <li>日均成交额 > 5亿（确保流动性充裕）</li>
+                    <li>市值 > 100亿（避免小盘股风险）</li>
+                    <li>换手率适中（2-8%为佳）</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header">
+                <div class="card-icon">📊</div>
+                <h2 class="card-title">波动率筛选</h2>
+            </div>
+            <div class="card-content">
+                <ul style="line-height: 2;">
+                    <li>避免波动率过低的股票（缺乏波动空间）</li>
+                    <li>避免波动率过高的股票（风险太大）</li>
+                    <li>选择适度波动的股票（适合波段交易）</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
