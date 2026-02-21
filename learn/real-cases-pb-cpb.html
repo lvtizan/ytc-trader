@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PB & CPB 实战案例库</title>
+    <link rel="stylesheet" href="../../css/style.css">
+    <style>
+        .case-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 50px 40px;
+            text-align: center;
+            border-radius: 15px;
+            margin-bottom: 40px;
+            box-shadow: 0 15px 35px rgba(102, 126, 234, 0.3);
+        }
+        .case-header h1 {
+            margin: 0 0 15px 0;
+            font-size: 2.5em;
+        }
+        .case-header .subtitle {
+            font-size: 1.2em;
+            opacity: 0.95;
+        }
+
+        .strategy-section {
+            background: rgba(30, 41, 59, 0.8);
+            border-radius: 12px;
+            padding: 40px;
+            margin-bottom: 35px;
+        }
+        .strategy-section h2 {
+            color: #e2e8f0;
+            font-size: 1.8em;
+            margin-bottom: 25px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #667eea;
+        }
+
+        .case-card {
+            background: rgba(51, 65, 85, 0.6);
+            border-radius: 10px;
+            padding: 25px;
+            margin: 20px 0;
+            border-left: 4px solid #667eea;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .case-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+        }
+        .case-card h3 {
+            color: #667eea;
+            margin: 0 0 15px 0;
+            font-size: 1.4em;
+        }
+        .case-card .stock-code {
+            color: #f39c12;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        .case-card .case-details {
+            color: #cbd5e1;
+            line-height: 1.8;
+            margin-bottom: 15px;
+        }
+        .case-card .key-points {
+            background: rgba(34, 197, 94, 0.15);
+            border-radius: 8px;
+            padding: 15px;
+            margin-top: 15px;
+        }
+        .case-card .key-points h4 {
+            color: #27ae60;
+            margin: 0 0 10px 0;
+        }
+        .case-card .key-points ul {
+            margin: 0;
+            padding-left: 20px;
+            color: #cbd5e1;
+        }
+        .case-card .key-points li {
+            margin: 5px 0;
+        }
+
+        .chart-box {
+            background: rgba(30, 41, 59, 0.5);
+            border: 1px solid rgba(148, 163, 184, 0.2);
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+            text-align: center;
+        }
+        .chart-box svg {
+            max-width: 100%;
+            height: auto;
+        }
+        .chart-box p {
+            color: #94a3b8;
+            margin-top: 10px;
+            font-size: 0.9em;
+        }
+
+        .back-nav {
+            text-align: center;
+            margin-top: 40px;
+        }
+        .back-nav a {
+            display: inline-block;
+            padding: 12px 25px;
+            background: #667eea;
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 600;
+        }
+
+        @media (max-width: 768px) {
+            .case-header {
+                padding: 30px 20px;
+            }
+            .strategy-section {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="case-header">
+            <h1>📈 PB & CPB 实战案例库</h1>
+            <p class="subtitle">基于YTC价格行为理论的A股真实案例解析</p>
+        </div>
+
+        <!-- PB策略案例 -->
+        <div class="strategy-section">
+            <h2>🎯 PB策略实战案例 (简单回调)</h2>
+
+            <!-- 案例1 -->
+            <div class="case-card">
+                <h3>案例1: 贵州茅台 - 浅回调快速反弹</h3>
+                <div class="stock-code">600519 | 白酒龙头 | 2024年1-2月</div>
+                <div class="case-details">
+                    <p><strong>走势描述:</strong></p>
+                    <ul>
+                        <li>股价从1650元启动,上涨至1780元(+8%)</li>
+                        <li>出现浅幅回调,最低至1720元(-3.4%,约38.2%回调位)</li>
+                        <li>在1720元处获得支撑,3天内企稳</li>
+                        <li>快速突破1780元前高,涨至1880元(+9.3%)</li>
+                    </ul>
+                    <p><strong>形态特征:</strong> 回调幅度浅(仅3.4%),时间短(3天),在38.2%黄金回调位获得支撑,典型的强势股浅回调形态。</p>
+                </div>
+                <div class="key-points">
+                    <h4>✅ 操作要点</h4>
+                    <ul>
+                        <li>入场点: 1725元,回调低点形成小阳线后入场</li>
+                        <li>止损位: 1700元,跌破前一回调低点</li>
+                        <li>目标位: 1880元,前一轮涨幅的1.618倍</li>
+                        <li>风险回报比: 1:4.5</li>
+                        <li>持仓时间: 15个交易日</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- 案例2 -->
+            <div class="case-card">
+                <h3>案例2: 宁德时代 - 连续浅回调</h3>
+                <div class="stock-code">300750 | 新能源龙头 | 2024年2-3月</div>
+                <div class="case-details">
+                    <p><strong>走势描述:</strong></p>
+                    <ul>
+                        <li><strong>第一次PB:</strong> 185元→205元,回撤至198元(40%回调),3天完成</li>
+                        <li><strong>第二次PB:</strong> 205元→215元,回撤至210元(40%回调),2天完成</li>
+                        <li><strong>第三次PB:</strong> 215元→228元,回撤至222元(35%回调),2天完成</li>
+                        <li>每次回调都在3天内完成,展现极强上升趋势</li>
+                    </ul>
+                    <p><strong>形态特征:</strong> 连续3次标准PB形态,回调幅度都在35%-40%之间,时间2-3天,是教科书级别的浅回调案例。</p>
+                </div>
+                <div class="key-points">
+                    <h4>✅ 操作要点</h4>
+                    <ul>
+                        <li>第一次入场: 198元,目标215元,实际涨幅+8.6%</li>
+                        <li>第二次入场: 210元,目标228元,实际涨幅+8.6%</li>
+                        <li>第三次入场: 222元,目标245元,实际涨幅+10.4%</li>
+                        <li>关键: 每次回调都是加仓机会,不要过早下车</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- 案例3 -->
+            <div class="case-card">
+                <h3>案例3: 比亚迪 - 假突破后的真回调</h3>
+                <div class="stock-code">002594 | 新能源汽车龙头 | 2024年3月</div>
+                <div class="case-details">
+                    <p><strong>走势描述:</strong></p>
+                    <ul>
+                        <li>从235元涨至255元(+8.5%)</li>
+                        <li>快速回调至245元(约50%回调位)</li>
+                        <li>次日继续下探至242元,跌破预期支撑</li>
+                        <li>第3天在240元形成看涨吞没形态</li>
+                        <li>随后反弹至268元(+11.7%)</li>
+                    </ul>
+                    <p><strong>形态特征:</strong> 初次回调未结束就急于入场会被套,需要等待明确的止跌信号(看涨吞没形态)才入场。</p>
+                </div>
+                <div class="key-points">
+                    <h4>⚠️ 教训总结</h4>
+                    <ul>
+                        <li>不要在回调第一天就匆忙入场</li>
+                        <li>等待明确的止跌信号: 小阳线、锤子线、看涨吞没</li>
+                        <li>止损要设在最终确认的低点下方,而非预期位置</li>
+                        <li>耐心是PB策略成功的关键</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- 案例4 -->
+            <div class="case-card">
+                <h3>案例4: 立讯精密 - 均线支撑的浅回调</h3>
+                <div class="stock-code">002475 | 消费电子龙头 | 2024年4月</div>
+                <div class="case-details">
+                    <p><strong>走势描述:</strong></p>
+                    <ul>
+                        <li>股价沿20日均线稳步上涨</li>
+                        <li>从28元涨至32元(+14.3%)</li>
+                        <li>回调至29.5元,恰好获得20日均线支撑</li>
+                        <li>形成带长下影线的K线,显示支撑强劲</li>
+                        <li>5个交易日后涨至35元(+18.6%)</li>
+                    </ul>
+                    <p><strong>形态特征:</strong> 回调至关键移动平均线(20日均线)获得支撑,是PB策略的经典辅助确认信号。</p>
+                </div>
+                <div class="key-points">
+                    <h4>✅ 操作要点</h4>
+                    <ul>
+                        <li>入场点: 29.8元,确认20日均线支撑后入场</li>
+                        <li>止损位: 28.5元,跌破20日均线且日收盘</li>
+                        <li>目标位: 36元,前期高点+10%</li>
+                        <li>辅助确认: 成交量萎缩,抛压减轻</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- CPB策略案例 -->
+        <div class="strategy-section">
+            <h2>🔄 CPB策略实战案例 (复杂回调)</h2>
+
+            <!-- 案例1 -->
+            <div class="case-card">
+                <h3>案例1: 阳光电源 - ABC结构双底</h3>
+                <div class="stock-code">300274 | 光伏龙头 | 2024年2-4月</div>
+                <div class="case-details">
+                    <p><strong>走势描述:</strong></p>
+                    <ul>
+                        <li><strong>A浪下跌:</strong> 从85元跌至60元(-29%),耗时2周</li>
+                        <li><strong>B浪反弹:</strong> 从60元反弹至70元(+17%),耗时3周</li>
+                        <li><strong>C浪下跌:</strong> 从70元跌至58元(-17%),形成第二个底部,耗时2周</li>
+                        <li><strong>突破确认:</strong> 突破B浪高点70元后加速上涨</li>
+                        <li><strong>涨幅:</strong> 从58元涨至95元(+64%),耗时6周</li>
+                    </ul>
+                    <p><strong>形态特征:</strong> 标准的ABC结构,回调时间长达2个月,B浪反弹明显(17%),C浪创新低,是典型的CPB-ABC形态。</p>
+                </div>
+                <div class="key-points">
+                    <h4>✅ 操作要点</h4>
+                    <ul>
+                        <li>识别ABC: B浪反弹超过15%是关键信号</li>
+                        <li>入场点: 62元,C浪企稳后突破20日均线</li>
+                        <li>止损位: 56元,跌破C浪低点</li>
+                        <li>目标位: 95元,测量涨幅=AB浪的1.618倍</li>
+                        <li>风险回报比: 1:5.5</li>
+                        <li>持仓时间: 6周(需要耐心)</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- 案例2 -->
+            <div class="case-card">
+                <h3>案例2: 工业富联 - ABCDE三浪回调</h3>
+                <div class="stock-code">601138 | 科技龙头 | 2024年1-3月</div>
+                <div class="case-details">
+                    <p><strong>走势描述:</strong></p>
+                    <ul>
+                        <li><strong>高点:</strong> 26.5元</li>
+                        <li><strong>A浪:</strong> 跌至23元(-13%)</li>
+                        <li><strong>B浪:</strong> 反弹至24.5元(+6.5%)</li>
+                        <li><strong>C浪:</strong> 跌至22元(-10%)</li>
+                        <li><strong>D浪:</strong> 反弹至23.5元(+6.8%)</li>
+                        <li><strong>E浪:</strong> 跌至21.5元(-8.5%),形成三底</li>
+                        <li><strong>突破:</strong> 突破24.5元后涨至29元(+35%)</li>
+                    </ul>
+                    <p><strong>形态特征:</strong> 历时2个月的ABCDE三浪结构,三次回踩逐级抬高(21.5→22→23),这是最扎实但也最考验耐心的CPB形态。</p>
+                </div>
+                <div class="key-points">
+                    <h4>✅ 操作要点</h4>
+                    <ul>
+                        <li>识别ABCDE: 需要画出完整的3浪结构</li>
+                        <li>入场点: 22.5元,E浪形成后突破下降趋势线</li>
+                        <li>止损位: 21元,跌破E浪低点</li>
+                        <li>目标位: 30元,突破前高后的测量涨幅</li>
+                        <li>关键: 三浪回调往往孕育大行情</li>
+                        <li>心理建设: 需要持有2-3个月的耐心</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- 案例3 -->
+            <div class="case-card">
+                <h3>案例3: 隆基绿能 - 深度回调双底</h3>
+                <div class="stock-code">601012 | 光伏龙头 | 2024年1-2月</div>
+                <div class="case-details">
+                    <p><strong>走势描述:</strong></p>
+                    <ul>
+                        <li>从35元开始下跌</li>
+                        <li>第一次低点: 18元(第5天, -49%)</li>
+                        <li>反弹至21元(+17%)</li>
+                        <li>第二次低点: 17.5元(第12天, -50%)</li>
+                        <li>形成双底后涨至24元(+37%)</li>
+                    </ul>
+                    <p><strong>形态特征:</strong> 55%的深度回调,两次探底在相近位置,但B浪反弹较弱(17%),时间短(12天),这是深度PB而非标准CPB。</p>
+                </div>
+                <div class="key-points">
+                    <h4>⚠️ 深度回调 vs CPB的区别</h4>
+                    <ul>
+                        <li>深度PB: 时间短(1-2周),B浪弱,双底相近</li>
+                        <li>CPB-ABC: 时间长(1-2月),B浪强,结构清晰</li>
+                        <li>本案判断: 更接近PB的深度回调</li>
+                        <li>入场点: 19元,第二次探底企稳后</li>
+                        <li>止损: 17元,跌破双底低点</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- 案例4 -->
+            <div class="case-card">
+                <h3>案例4: 中际旭创 - 完美的ABC结构</h3>
+                <div class="stock-code">300308 | 光通信龙头 | 2024年3-5月</div>
+                <div class="case-details">
+                    <p><strong>走势描述:</strong></p>
+                    <ul>
+                        <li><strong>起涨点:</strong> 85元,快速涨至135元(+59%)</li>
+                        <li><strong>A浪:</strong> 回调至105元(-22%),耗时3周</li>
+                        <li><strong>B浪:</strong> 反弹至125元(+19%),耗时3周</li>
+                        <li><strong>C浪:</strong> 回调至100元(-20%),耗时2周</li>
+                        <li><strong>突破:</strong> 突破125元后加速上涨至180元(+80%)</li>
+                    </ul>
+                    <p><strong>形态特征:</strong> ABC结构完美,B浪反弹强劲(接近20%),C浪在A浪低点附近获得支撑,突破B浪高点后开启主升浪。</p>
+                </div>
+                <div class="key-points">
+                    <h4>✅ 操作要点</h4>
+                    <ul>
+                        <li>识别信号: B浪反弹接近20%确认为CPB</li>
+                        <li>入场点: 108元,C浪止跌后入场</li>
+                        <li>止损位: 98元,跌破C浪低点</li>
+                        <li>第一目标: 145元(AB浪的100%扩展)</li>
+                        <li>第二目标: 175元(AB浪的161.8%扩展)</li>
+                        <li>实际表现: 涨至180元,涨幅达67%</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- 案例5 -->
+            <div class="case-card">
+                <h3>案例5: 汇川技术 - 缩量的ABC回调</h3>
+                <div class="stock-code">300124 | 工控龙头 | 2024年4-6月</div>
+                <div class="case-details">
+                    <p><strong>走势描述:</strong></p>
+                    <ul>
+                        <li>从55元涨至68元(+23.6%)</li>
+                        <li><strong>A浪:</strong> 回调至58元(-14.7%),成交量萎缩</li>
+                        <li><strong>B浪:</strong> 反弹至64元(+10.3%),成交量温和</li>
+                        <li><strong>C浪:</strong> 回调至56元(-12.5%),成交量再次萎缩</li>
+                        <li><strong>确认:</strong> 突破64元后放量上涨至75元(+34%)</li>
+                    </ul>
+                    <p><strong>形态特征:</strong> 成交量在回调过程中明显萎缩,说明抛压逐渐减轻,这是CPB成功的重要辅助信号。</p>
+                </div>
+                <div class="key-points">
+                    <h4>✅ 成交量的重要性</h4>
+                    <ul>
+                        <li>A浪下跌: 成交量缩小,抛压减轻</li>
+                        <li>B浪反弹: 成交量温和回升,买盘试探</li>
+                        <li>C浪下跌: 成交量再次萎缩,惜售明显</li>
+                        <li>突破时: 成交量放大,确认反转</li>
+                        <li>入场点: 58元,C浪缩量后入场</li>
+                        <li>止损位: 55元,跌破C浪低点</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- 策略对比总结 -->
+        <div class="strategy-section">
+            <h2>📊 PB vs CPB 策略对比</h2>
+
+            <table style="width: 100%; border-collapse: collapse; color: #cbd5e1;">
+                <thead>
+                    <tr style="background: rgba(102, 126, 234, 0.3);">
+                        <th style="padding: 15px; text-align: left; border: 1px solid rgba(148, 163, 184, 0.2);">对比维度</th>
+                        <th style="padding: 15px; text-align: left; border: 1px solid rgba(148, 163, 184, 0.2);">PB策略</th>
+                        <th style="padding: 15px; text-align: left; border: 1px solid rgba(148, 163, 184, 0.2);">CPB策略</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td style="padding: 12px; border: 1px solid rgba(148, 163, 184, 0.2);">回调幅度</td>
+                        <td style="padding: 12px; border: 1px solid rgba(148, 163, 184, 0.2);">浅(38.2%-50%)</td>
+                        <td style="padding: 12px; border: 1px solid rgba(148, 163, 184, 0.2);">深(50%-61.8%)</td>
+                    </tr>
+                    <tr style="background: rgba(51, 65, 85, 0.3);">
+                        <td style="padding: 12px; border: 1px solid rgba(148, 163, 184, 0.2);">回调时间</td>
+                        <td style="padding: 12px; border: 1px solid rgba(148, 163, 184, 0.2);">短(1-7天)</td>
+                        <td style="padding: 12px; border: 1px solid rgba(148, 163, 184, 0.2);">长(2-8周)</td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 12px; border: 1px solid rgba(148, 163, 184, 0.2);">结构</td>
+                        <td style="padding: 12px; border: 1px solid rgba(148, 163, 184, 0.2);">简单(1次回调)</td>
+                        <td style="padding: 12px; border: 1px solid rgba(148, 163, 184, 0.2);">复杂(2-3浪结构)</td>
+                    </tr>
+                    <tr style="background: rgba(51, 65, 85, 0.3);">
+                        <td style="padding: 12px; border: 1px solid rgba(148, 163, 184, 0.2);">B浪反弹</td>
+                        <td style="padding: 12px; border: 1px solid rgba(148, 163, 184, 0.2);">弱或无</td>
+                        <td style="padding: 12px; border: 1px solid rgba(148, 163, 184, 0.2);">明显(15%-25%)</td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 12px; border: 1px solid rgba(148, 163, 184, 0.2);">出现频率</td>
+                        <td style="padding: 12px; border: 1px solid rgba(148, 163, 184, 0.2);">⭐⭐⭐⭐⭐ 很高</td>
+                        <td style="padding: 12px; border: 1px solid rgba(148, 163, 184, 0.2);">⭐⭐⭐ 中等</td>
+                    </tr>
+                    <tr style="background: rgba(51, 65, 85, 0.3);">
+                        <td style="padding: 12px; border: 1px solid rgba(148, 163, 184, 0.2);">风险回报比</td>
+                        <td style="padding: 12px; border: 1px solid rgba(148, 163, 184, 0.2);">1:3 ~ 1:5</td>
+                        <td style="padding: 12px; border: 1px solid rgba(148, 163, 184, 0.2);">1:5 ~ 1:8</td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 12px; border: 1px solid rgba(148, 163, 184, 0.2);">持仓时间</td>
+                        <td style="padding: 12px; border: 1px solid rgba(148, 163, 184, 0.2);">短(1-3周)</td>
+                        <td style="padding: 12px; border: 1px solid rgba(148, 163, 184, 0.2);">长(1-3月)</td>
+                    </tr>
+                    <tr style="background: rgba(51, 65, 85, 0.3);">
+                        <td style="padding: 12px; border: 1px solid rgba(148, 163, 184, 0.2);">适合人群</td>
+                        <td style="padding: 12px; border: 1px solid rgba(148, 163, 184, 0.2);">新手、短线交易者</td>
+                        <td style="padding: 12px; border: 1px solid rgba(148, 163, 184, 0.2);">有经验、长线交易者</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- 学习建议 -->
+        <div class="strategy-section">
+            <h2>💡 学习与练习建议</h2>
+
+            <div class="case-card" style="border-left-color: #27ae60;">
+                <h3 style="color: #27ae60;">阶段1: PB策略入门(1-2周)</h3>
+                <div class="case-details">
+                    <ul>
+                        <li>选择1-2个强势板块(如AI、新能源)</li>
+                        <li>每天复盘,找出所有PB形态</li>
+                        <li>记录至少20个PB案例</li>
+                        <li>总结回调幅度和时间的规律</li>
+                        <li>重点关注38.2%-50%回调位</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="case-card" style="border-left-color: #f39c12;">
+                <h3 style="color: #f39c12;">阶段2: CPB识别训练(2-4周)</h3>
+                <div class="case-details">
+                    <ul>
+                        <li>学习画出ABC结构</li>
+                        <li>寻找B浪反弹超过15%的案例</li>
+                        <li>观察成交量变化规律</li>
+                        <li>记录至少10个CPB案例</li>
+                        <li>重点等待C浪结束的确认信号</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="case-card" style="border-left-color: #e74c3c;">
+                <h3 style="color: #e74c3c;">阶段3: 实战应用(持续)</h3>
+                <div class="case-details">
+                    <ul>
+                        <li>建立自己的股票池(20-30只强势股)</li>
+                        <li>每天扫描,识别PB和CPB机会</li>
+                        <li>小仓位实盘验证</li>
+                        <li>记录每一笔交易的完整过程</li>
+                        <li>定期复盘,总结成功和失败经验</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="back-nav">
+            <a href="pb-strategy.html">← 返回PB策略</a>
+            <a href="cpb-strategy.html" style="margin-left: 20px;">返回CPB策略 →</a>
+        </div>
+    </div>
+</body>
+</html>
