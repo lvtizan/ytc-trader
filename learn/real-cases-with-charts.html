@@ -1,0 +1,708 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PB & CPB 实战案例库(含K线图)</title>
+    <link rel="stylesheet" href="../../css/style.css">
+    <style>
+        .case-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 50px 40px;
+            text-align: center;
+            border-radius: 15px;
+            margin-bottom: 40px;
+            box-shadow: 0 15px 35px rgba(102, 126, 234, 0.3);
+        }
+        .case-header h1 {
+            margin: 0 0 15px 0;
+            font-size: 2.5em;
+        }
+
+        .strategy-section {
+            background: rgba(30, 41, 59, 0.8);
+            border-radius: 12px;
+            padding: 40px;
+            margin-bottom: 35px;
+        }
+        .strategy-section h2 {
+            color: #e2e8f0;
+            font-size: 1.8em;
+            margin-bottom: 25px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #667eea;
+        }
+
+        .case-card {
+            background: rgba(51, 65, 85, 0.6);
+            border-radius: 10px;
+            padding: 30px;
+            margin: 25px 0;
+            border-left: 4px solid #667eea;
+        }
+        .case-card h3 {
+            color: #667eea;
+            margin: 0 0 10px 0;
+            font-size: 1.5em;
+        }
+        .stock-code {
+            color: #f39c12;
+            font-weight: bold;
+            margin-bottom: 20px;
+            font-size: 1.1em;
+        }
+
+        .chart-container {
+            background: rgba(30, 41, 59, 0.5);
+            border: 1px solid rgba(148, 163, 184, 0.2);
+            border-radius: 10px;
+            padding: 25px;
+            margin: 20px 0;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+        }
+        .chart-container svg {
+            width: 100%;
+            height: auto;
+            max-width: 800px;
+        }
+        .chart-caption {
+            color: #94a3b8;
+            text-align: center;
+            margin-top: 15px;
+            font-size: 0.95em;
+        }
+
+        .analysis-box {
+            background: rgba(34, 197, 94, 0.15);
+            border-radius: 8px;
+            padding: 20px;
+            margin-top: 20px;
+        }
+        .analysis-box h4 {
+            color: #27ae60;
+            margin: 0 0 12px 0;
+            font-size: 1.2em;
+        }
+        .analysis-box ul {
+            margin: 0;
+            padding-left: 20px;
+            color: #cbd5e1;
+        }
+        .analysis-box li {
+            margin: 8px 0;
+            line-height: 1.7;
+        }
+
+        .back-nav {
+            text-align: center;
+            margin-top: 40px;
+        }
+        .back-nav a {
+            display: inline-block;
+            padding: 12px 25px;
+            background: #667eea;
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 600;
+        }
+
+        @media (max-width: 768px) {
+            .case-header {
+                padding: 30px 20px;
+            }
+            .strategy-section {
+                padding: 20px;
+            }
+            .case-card {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="case-header">
+            <h1>📈 PB & CPB 实战案例库</h1>
+            <p class="subtitle">包含真实K线图的YTC价格行为交易案例</p>
+        </div>
+
+        <!-- PB策略案例 -->
+        <div class="strategy-section">
+            <h2>🎯 PB策略实战案例 (简单回调)</h2>
+
+            <!-- 案例1: 贵州茅台 -->
+            <div class="case-card">
+                <h3>案例1: 贵州茅台 - 浅回调快速反弹</h3>
+                <div class="stock-code">600519 | 白酒龙头 | 2024年1-2月 | PB策略</div>
+
+                <!-- K线图 -->
+                <div class="chart-container">
+                    <svg viewBox="0 0 800 450" xmlns="http://www.w3.org/2000/svg">
+                        <!-- 背景 -->
+                        <defs>
+                            <pattern id="grid1" width="100" height="50" patternUnits="userSpaceOnUse">
+                                <path d="M 100 0 L 0 0 0 50" fill="none" stroke="rgba(148,163,184,0.1)" stroke-width="1"/>
+                            </pattern>
+                        </defs>
+                        <rect width="800" height="400" fill="url(#grid1)"/>
+
+                        <!-- Y轴价格标签 -->
+                        <text x="780" y="55" font-size="11" fill="#94a3b8" text-anchor="end">1880</text>
+                        <text x="780" y="105" font-size="11" fill="#94a3b8" text-anchor="end">1830</text>
+                        <text x="780" y="155" font-size="11" fill="#94a3b8" text-anchor="end">1780</text>
+                        <text x="780" y="205" font-size="11" fill="#94a3b8" text-anchor="end">1730</text>
+                        <text x="780" y="255" font-size="11" fill="#94a3b8" text-anchor="end">1680</text>
+                        <text x="780" y="305" font-size="11" fill="#94a3b8" text-anchor="end">1650</text>
+
+                        <!-- 关键价位线 -->
+                        <!-- 前高1780 -->
+                        <line x1="50" y1="155" x2="750" y2="155" stroke="#f39c12" stroke-width="1.5" stroke-dasharray="5,5" opacity="0.7"/>
+                        <text x="60" y="148" font-size="11" fill="#f39c12">前高 1780</text>
+
+                        <!-- 回调低点1720 -->
+                        <line x1="50" y1="205" x2="750" y2="205" stroke="#3498db" stroke-width="1.5" stroke-dasharray="5,5" opacity="0.7"/>
+                        <text x="60" y="198" font-size="11" fill="#3498db">回调低点 1720 (-3.4%)</text>
+
+                        <!-- 目标位1880 -->
+                        <line x1="50" y1="55" x2="750" y2="55" stroke="#27ae60" stroke-width="1.5" stroke-dasharray="5,5" opacity="0.7"/>
+                        <text x="60" y="48" font-size="11" fill="#27ae60">目标 1880 (+9.3%)</text>
+
+                        <!-- K线绘制 -->
+                        <g transform="translate(80, 0)">
+                            <!-- 第一段上涨: 1650 → 1780 -->
+                            <line x1="0" y1="305" x2="0" y2="275" stroke="#27ae60" stroke-width="1.5"/>
+                            <rect x="-6" y="280" width="12" height="20" fill="#27ae60"/>
+
+                            <line x1="40" y1="285" x2="40" y2="255" stroke="#27ae60" stroke-width="1.5"/>
+                            <rect x="34" y="260" width="12" height="20" fill="#27ae60"/>
+
+                            <line x1="80" y1="265" x2="80" y2="235" stroke="#27ae60" stroke-width="1.5"/>
+                            <rect x="74" y="240" width="12" height="20" fill="#27ae60"/>
+
+                            <line x1="120" y1="245" x2="120" y2="205" stroke="#27ae60" stroke-width="1.5"/>
+                            <rect x="114" y="210" width="12" height="30" fill="#27ae60"/>
+
+                            <line x1="160" y1="215" x2="160" y2="175" stroke="#27ae60" stroke-width="1.5"/>
+                            <rect x="154" y="180" width="12" height="30" fill="#27ae60"/>
+
+                            <line x1="200" y1="185" x2="200" y2="155" stroke="#27ae60" stroke-width="1.5"/>
+                            <rect x="194" y="160" width="12" height="20" fill="#27ae60"/>
+
+                            <!-- 回调: 1780 → 1720 -->
+                            <line x1="240" y1="160" x2="240" y2="185" stroke="#e74c3c" stroke-width="1.5"/>
+                            <rect x="234" y="160" width="12" height="20" fill="#e74c3c"/>
+
+                            <line x1="280" y1="175" x2="280" y2="200" stroke="#e74c3c" stroke-width="1.5"/>
+                            <rect x="274" y="175" width="12" height="20" fill="#e74c3c"/>
+
+                            <line x1="320" y1="195" x2="320" y2="215" stroke="#e74c3c" stroke-width="1.5"/>
+                            <rect x="314" y="195" width="12" height="15" fill="#e74c3c"/>
+
+                            <!-- 企稳K线 -->
+                            <line x1="360" y1="210" x2="360" y2="220" stroke="#27ae60" stroke-width="1.5"/>
+                            <rect x="354" y="210" width="12" height="8" fill="#27ae60"/>
+
+                            <!-- 第二段上涨: 1720 → 1880 -->
+                            <line x1="400" y1="205" x2="400" y2="175" stroke="#27ae60" stroke-width="1.5"/>
+                            <rect x="394" y="180" width="12" height="22" fill="#27ae60"/>
+
+                            <line x1="440" y1="185" x2="440" y2="145" stroke="#27ae60" stroke-width="1.5"/>
+                            <rect x="434" y="150" width="12" height="32" fill="#27ae60"/>
+
+                            <line x1="480" y1="155" x2="480" y2="115" stroke="#27ae60" stroke-width="1.5"/>
+                            <rect x="474" y="120" width="12" height="32" fill="#27ae60"/>
+
+                            <line x1="520" y1="125" x2="520" y2="85" stroke="#27ae60" stroke-width="1.5"/>
+                            <rect x="514" y="90" width="12" height="30" fill="#27ae60"/>
+
+                            <line x1="560" y1="95" x2="560" y2="65" stroke="#27ae60" stroke-width="1.5"/>
+                            <rect x="554" y="70" width="12" height="22" fill="#27ae60"/>
+
+                            <line x1="600" y1="75" x2="600" y2="55" stroke="#27ae60" stroke-width="1.5"/>
+                            <rect x="594" y="60" width="12" height="12" fill="#27ae60"/>
+                        </g>
+
+                        <!-- 入场点标记 -->
+                        <circle cx="440" cy="205" r="6" fill="#3498db" opacity="0.9"/>
+                        <text x="440" y="225" font-size="11" fill="#3498db" text-anchor="middle" font-weight="bold">🔵 入场 1725</text>
+
+                        <!-- 止损点标记 -->
+                        <rect x="270" y="215" width="100" height="20" fill="none" stroke="#e74c3c" stroke-width="2" stroke-dasharray="3,3"/>
+                        <text x="320" y="235" font-size="10" fill="#e74c3c" text-anchor="middle">止损 1700</text>
+
+                        <!-- 目标点标记 -->
+                        <circle cx="680" cy="55" r="6" fill="#27ae60" opacity="0.9"/>
+                        <text x="680" y="75" font-size="11" fill="#27ae60" text-anchor="middle" font-weight="bold">🎯 目标 1880</text>
+
+                        <!-- 回调幅度标注 -->
+                        <g>
+                            <line x1="420" y1="155" x2="420" y2="205" stroke="#f39c12" stroke-width="1.5"/>
+                            <polygon points="417,155 423,155 420,150" fill="#f39c12"/>
+                            <polygon points="417,205 423,205 420,210" fill="#f39c12"/>
+                            <text x="435" y="185" font-size="10" fill="#f39c12">-3.4%</text>
+                            <text x="435" y="197" font-size="10" fill="#f39c12">38.2%</text>
+                        </g>
+
+                        <!-- 持仓时间 -->
+                        <rect x="400" y="420" width="200" height="25" fill="rgba(102,126,234,0.2)" rx="5"/>
+                        <text x="500" y="437" font-size="11" fill="#94a3b8" text-anchor="middle">持仓时间: 15个交易日 | 风险回报比: 1:4.5</text>
+                    </svg>
+                    <p class="chart-caption">图1: 贵州茅台PB策略浅回调买入K线图</p>
+                </div>
+
+                <div class="analysis-box">
+                    <h4>✅ 操作要点</h4>
+                    <ul>
+                        <li><strong>形态特征:</strong> 回调幅度浅(-3.4%),时间短(3天),在38.2%黄金回调位获得支撑</li>
+                        <li><strong>入场点:</strong> 1725元,回调低点形成小阳线后入场</li>
+                        <li><strong>止损位:</strong> 1700元,跌破前一回调低点</li>
+                        <li><strong>目标位:</strong> 1880元,前一轮涨幅的1.618倍扩展</li>
+                        <li><strong>实际涨幅:</strong> +9.3% (1725→1880)</li>
+                        <li><strong>风险回报比:</strong> 1:4.5 (风险25元 / 盈利112.5元)</li>
+                        <li><strong>持仓时间:</strong> 15个交易日</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- 案例2: 宁德时代 - 连续浅回调 -->
+            <div class="case-card">
+                <h3>案例2: 宁德时代 - 连续三次浅回调</h3>
+                <div class="stock-code">300750 | 新能源龙头 | 2024年2-3月 | PB策略(连续)</div>
+
+                <div class="chart-container">
+                    <svg viewBox="0 0 800 450" xmlns="http://www.w3.org/2000/svg">
+                        <!-- 背景 -->
+                        <defs>
+                            <pattern id="grid2" width="100" height="50" patternUnits="userSpaceOnUse">
+                                <path d="M 100 0 L 0 0 0 50" fill="none" stroke="rgba(148,163,184,0.1)" stroke-width="1"/>
+                            </pattern>
+                        </defs>
+                        <rect width="800" height="400" fill="url(#grid2)"/>
+
+                        <!-- Y轴标签 -->
+                        <text x="780" y="55" font-size="11" fill="#94a3b8" text-anchor="end">245</text>
+                        <text x="780" y="105" font-size="11" fill="#94a3b8" text-anchor="end">235</text>
+                        <text x="780" y="155" font-size="11" fill="#94a3b8" text-anchor="end">228</text>
+                        <text x="780" y="205" font-size="11" fill="#94a3b8" text-anchor="end">222</text>
+                        <text x="780" y="255" font-size="11" fill="#94a3b8" text-anchor="end">215</text>
+                        <text x="780" y="305" font-size="11" fill="#94a3b8" text-anchor="end">210</text>
+                        <text x="780" y="355" font-size="11" fill="#94a3b8" text-anchor="end">185</text>
+
+                        <!-- 趋势线 -->
+                        <line x1="50" y1="340" x2="750" y2="60" stroke="#667eea" stroke-width="2" stroke-dasharray="8,4" opacity="0.4"/>
+                        <text x="680" y="80" font-size="11" fill="#667eea">上升趋势线</text>
+
+                        <!-- K线绘制 -->
+                        <g transform="translate(70, 0)">
+                            <!-- 第一轮: 185 → 205 → 198 -->
+                            <line x1="0" y1="340" x2="0" y2="310" stroke="#27ae60" stroke-width="1.5"/>
+                            <rect x="-6" y="315" width="12" height="20" fill="#27ae60"/>
+
+                            <line x1="40" y1="320" x2="40" y2="280" stroke="#27ae60" stroke-width="1.5"/>
+                            <rect x="34" y="285" width="12" height="30" fill="#27ae60"/>
+
+                            <line x1="80" y1="290" x2="80" y2="255" stroke="#27ae60" stroke-width="1.5"/>
+                            <rect x="74" y="260" width="12" height="25" fill="#27ae60"/>
+
+                            <line x1="120" y1="265" x2="120" y2="235" stroke="#27ae60" stroke-width="1.5"/>
+                            <rect x="114" y="240" width="12" height="20" fill="#27ae60"/>
+
+                            <!-- 第一次回调1 -->
+                            <line x1="160" y1="245" x2="160" y2="265" stroke="#e74c3c" stroke-width="1.5"/>
+                            <rect x="154" y="245" width="12" height="15" fill="#e74c3c"/>
+
+                            <line x1="200" y1="260" x2="200" y2="275" stroke="#e74c3c" stroke-width="1.5"/>
+                            <rect x="194" y="260" width="12" height="12" fill="#e74c3c"/>
+
+                            <line x1="240" y1="270" x2="240" y2="280" stroke="#e74c3c" stroke-width="1.5"/>
+                            <rect x="234" y="270" width="12" height="8" fill="#e74c3c"/>
+
+                            <!-- 入场1 -->
+                            <line x1="280" y1="275" x2="280" y2="265" stroke="#27ae60" stroke-width="1.5"/>
+                            <rect x="274" y="268" width="12" height="8" fill="#27ae60"/>
+
+                            <!-- 第一轮上涨至215 -->
+                            <line x1="320" y1="270" x2="320" y2="235" stroke="#27ae60" stroke-width="1.5"/>
+                            <rect x="314" y="240" width="12" height="27" fill="#27ae60"/>
+
+                            <line x1="360" y1="245" x2="360" y2="205" stroke="#27ae60" stroke-width="1.5"/>
+                            <rect x="354" y="210" width="12" height="32" fill="#27ae60"/>
+
+                            <!-- 第二次回调: 215 → 210 -->
+                            <line x1="400" y1="215" x2="400" y2="230" stroke="#e74c3c" stroke-width="1.5"/>
+                            <rect x="394" y="215" width="12" height="12" fill="#e74c3c"/>
+
+                            <line x1="440" y1="225" x2="440" y2="235" stroke="#e74c3c" stroke-width="1.5"/>
+                            <rect x="434" y="225" width="12" height="8" fill="#e74c3c"/>
+
+                            <!-- 入场2 -->
+                            <line x1="480" y1="235" x2="480" y2="220" stroke="#27ae60" stroke-width="1.5"/>
+                            <rect x="474" y="223" width="12" height="10" fill="#27ae60"/>
+
+                            <!-- 第二轮上涨至228 -->
+                            <line x1="520" y1="230" x2="520" y2="190" stroke="#27ae60" stroke-width="1.5"/>
+                            <rect x="514" y="195" width="12" height="32" fill="#27ae60"/>
+
+                            <line x1="560" y1="200" x2="560" y2="165" stroke="#27ae60" stroke-width="1.5"/>
+                            <rect x="554" y="170" width="12" height="27" fill="#27ae60"/>
+
+                            <!-- 第三次回调: 228 → 222 -->
+                            <line x1="600" y1="175" x2="600" y2="195" stroke="#e74c3c" stroke-width="1.5"/>
+                            <rect x="594" y="175" width="12" height="15" fill="#e74c3c"/>
+
+                            <line x1="640" y1="190" x2="640" y2="200" stroke="#e74c3c" stroke-width="1.5"/>
+                            <rect x="634" y="190" width="12" height="8" fill="#e74c3c"/>
+
+                            <!-- 入场3 -->
+                            <line x1="680" y1="200" x2="680" y2="185" stroke="#27ae60" stroke-width="1.5"/>
+                            <rect x="674" y="188" width="12" height="10" fill="#27ae60"/>
+
+                            <!-- 第三轮上涨至245 -->
+                            <line x1="720" y1="195" x2="720" y2="150" stroke="#27ae60" stroke-width="1.5"/>
+                            <rect x="714" y="155" width="12" height="37" fill="#27ae60"/>
+                        </g>
+
+                        <!-- 入场点标记 -->
+                        <circle cx="350" cy="275" r="5" fill="#3498db" opacity="0.9"/>
+                        <text x="350" y="290" font-size="10" fill="#3498db" text-anchor="middle" font-weight="bold">① 198</text>
+
+                        <circle cx="550" cy="235" r="5" fill="#3498db" opacity="0.9"/>
+                        <text x="550" y="250" font-size="10" fill="#3498db" text-anchor="middle" font-weight="bold">② 210</text>
+
+                        <circle cx="750" cy="200" r="5" fill="#3498db" opacity="0.9"/>
+                        <text x="750" y="215" font-size="10" fill="#3498db" text-anchor="middle" font-weight="bold">③ 222</text>
+
+                        <!-- 回调幅度标注 -->
+                        <g>
+                            <text x="200" y="320" font-size="10" fill="#f39c12">第1次: -3.4%</text>
+                            <text x="450" y="280" font-size="10" fill="#f39c12">第2次: -2.3%</text>
+                            <text x="650" y="240" font-size="10" fill="#f39c12">第3次: -2.6%</text>
+                        </g>
+
+                        <!-- 底部说明 -->
+                        <rect x="250" y="420" width="300" height="25" fill="rgba(102,126,234,0.2)" rx="5"/>
+                        <text x="400" y="437" font-size="11" fill="#94a3b8" text-anchor="middle">连续3次PB机会 | 总涨幅 +32.4%</text>
+                    </svg>
+                    <p class="chart-caption">图2: 宁德时代连续三次浅回调买入K线图</p>
+                </div>
+
+                <div class="analysis-box">
+                    <h4>✅ 操作要点</h4>
+                    <ul>
+                        <li><strong>第1次PB:</strong> 198元入场,目标215元,实际涨幅+8.6%,持仓7天</li>
+                        <li><strong>第2次PB:</strong> 210元入场,目标228元,实际涨幅+8.6%,持仓5天</li>
+                        <li><strong>第3次PB:</strong> 222元入场,目标245元,实际涨幅+10.4%,持仓6天</li>
+                        <li><strong>关键特点:</strong> 每次回调都在35%-40%之间,时间2-3天</li>
+                        <li><strong>操作策略:</strong> 连续加仓,不要过早下车,让利润奔跑</li>
+                        <li><strong>累计收益:</strong> 三次机会总收益率+32.4%</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- CPB策略案例 -->
+        <div class="strategy-section">
+            <h2>🔄 CPB策略实战案例 (复杂回调)</h2>
+
+            <!-- 案例1: 阳光电源ABC结构 -->
+            <div class="case-card">
+                <h3>案例3: 阳光电源 - 标准ABC结构双底</h3>
+                <div class="stock-code">300274 | 光伏龙头 | 2024年2-4月(2个月) | CPB-ABC策略</div>
+
+                <div class="chart-container">
+                    <svg viewBox="0 0 800 480" xmlns="http://www.w3.org/2000/svg">
+                        <!-- 背景 -->
+                        <defs>
+                            <pattern id="grid3" width="100" height="50" patternUnits="userSpaceOnUse">
+                                <path d="M 100 0 L 0 0 0 50" fill="none" stroke="rgba(148,163,184,0.1)" stroke-width="1"/>
+                            </pattern>
+                        </defs>
+                        <rect width="800" height="430" fill="url(#grid3)"/>
+
+                        <!-- Y轴标签 -->
+                        <text x="780" y="35" font-size="11" fill="#94a3b8" text-anchor="end">95</text>
+                        <text x="780" y="85" font-size="11" fill="#94a3b8" text-anchor="end">85</text>
+                        <text x="780" y="135" font-size="11" fill="#94a3b8" text-anchor="end">70</text>
+                        <text x="780" y="185" font-size="11" fill="#94a3b8" text-anchor="end">60</text>
+                        <text x="780" y="235" font-size="11" fill="#94a3b8" text-anchor="end">58</text>
+                        <text x="780" y="285" font-size="11" fill="#94a3b8" text-anchor="end">50</text>
+
+                        <!-- 关键价位线 -->
+                        <line x1="50" y1="135" x2="750" y2="135" stroke="#f39c12" stroke-width="2" stroke-dasharray="5,5"/>
+                        <text x="60" y="128" font-size="11" fill="#f39c12">B浪高点 70</text>
+
+                        <line x1="50" y1="235" x2="750" y2="235" stroke="#e74c3c" stroke-width="2" stroke-dasharray="5,5"/>
+                        <text x="60" y="228" font-size="11" fill="#e74c3c">C浪低点 58</text>
+
+                        <line x1="50" y1="35" x2="750" y2="35" stroke="#27ae60" stroke-width="2" stroke-dasharray="5,5"/>
+                        <text x="60" y="28" font-size="11" fill="#27ae60">目标 95</text>
+
+                        <!-- K线绘制 - 压缩版展示2个月走势 -->
+                        <g transform="translate(60, 0)">
+                            <!-- 起始高点85 -->
+                            <rect x="0" y="145" width="8" height="20" fill="#27ae60"/>
+
+                            <!-- A浪下跌: 85 → 60 -->
+                            <rect x="15" y="160" width="8" height="25" fill="#e74c3c"/>
+                            <rect x="30" y="170" width="8" height="30" fill="#e74c3c"/>
+                            <rect x="45" y="180" width="8" height="25" fill="#e74c3c"/>
+                            <rect x="60" y="185" width="8" height="20" fill="#e74c3c"/>
+
+                            <text x="45" y="215" font-size="11" fill="#e74c3c" text-anchor="middle">A浪</text>
+
+                            <!-- B浪反弹: 60 → 70 -->
+                            <rect x="75" y="175" width="8" height="15" fill="#27ae60"/>
+                            <rect x="90" y="165" width="8" height="18" fill="#27ae60"/>
+                            <rect x="105" y="150" width="8" height="22" fill="#27ae60"/>
+                            <rect x="120" y="140" width="8" height="15" fill="#27ae60"/>
+                            <rect x="135" y="138" width="8" height="10" fill="#27ae60"/>
+
+                            <text x="105" y="125" font-size="11" fill="#27ae60" text-anchor="middle">B浪</text>
+                            <text x="105" y="115" font-size="10" fill="#27ae60" text-anchor="middle">+17%</text>
+
+                            <!-- C浪下跌: 70 → 58 -->
+                            <rect x="150" y="145" width="8" height="18" fill="#e74c3c"/>
+                            <rect x="165" y="160" width="8" height="25" fill="#e74c3c"/>
+                            <rect x="180" y="180" width="8" height="30" fill="#e74c3c"/>
+                            <rect x="195" y="200" width="8" height="25" fill="#e74c3c"/>
+                            <rect x="210" y="220" width="8" height="20" fill="#e74c3c"/>
+                            <rect x="225" y="230" width="8" height="10" fill="#e74c3c"/>
+
+                            <text x="190" y="250" font-size="11" fill="#e74c3c" text-anchor="middle">C浪</text>
+                            <text x="190" y="262" font-size="10" fill="#e74c3c" text-anchor="middle">-17%</text>
+
+                            <!-- 双底确认 -->
+                            <rect x="240" y="225" width="8" height="12" fill="#27ae60"/>
+                            <rect x="255" y="220" width="8" height="15" fill="#27ae60"/>
+
+                            <!-- 突破B浪高点 -->
+                            <rect x="270" y="200" width="8" height="25" fill="#27ae60"/>
+                            <rect x="285" y="180" width="8" height="28" fill="#27ae60"/>
+                            <rect x="300" y="150" width="8" height="35" fill="#27ae60"/>
+
+                            <text x="285" y="145" font-size="10" fill="#667eea" text-anchor="middle">突破确认</text>
+
+                            <!-- 主升浪: 70 → 95 -->
+                            <rect x="315" y="120" width="8" height="35" fill="#27ae60"/>
+                            <rect x="330" y="90" width="8" height="38" fill="#27ae60"/>
+                            <rect x="345" y="70" width="8" height="28" fill="#27ae60"/>
+                            <rect x="360" y="50" width="8" height="28" fill="#27ae60"/>
+                            <rect x="375" y="40" width="8" height="18" fill="#27ae60"/>
+                            <rect x="390" y="38" width="8" height="10" fill="#27ae60"/>
+
+                            <text x="355" y="30" font-size="11" fill="#27ae60" text-anchor="middle">主升浪 +64%</text>
+                        </g>
+
+                        <!-- 入场点 -->
+                        <circle cx="300" cy="235" r="6" fill="#3498db" opacity="0.9"/>
+                        <text x="300" y="255" font-size="11" fill="#3498db" text-anchor="middle" font-weight="bold">🔵 入场 62</text>
+
+                        <!-- 止损点 -->
+                        <rect x="220" y="242" width="80" height="18" fill="none" stroke="#e74c3c" stroke-width="2" stroke-dasharray="3,3"/>
+                        <text x="260" y="268" font-size="10" fill="#e74c3c" text-anchor="middle">止损 56</text>
+
+                        <!-- 目标点 -->
+                        <circle cx="450" cy="35" r="6" fill="#27ae60" opacity="0.9"/>
+                        <text x="450" y="55" font-size="11" fill="#27ae60" text-anchor="middle" font-weight="bold">🎯 目标 95</text>
+
+                        <!-- ABC标注 -->
+                        <g>
+                            <text x="180" y="175" font-size="14" fill="#e74c3c" font-weight="bold">A</text>
+                            <text x="180" y="130" font-size="14" fill="#27ae60" font-weight="bold">B</text>
+                            <text x="280" y="215" font-size="14" fill="#e74c3c" font-weight="bold">C</text>
+                        </g>
+
+                        <!-- 成交量柱(简化) -->
+                        <g transform="translate(0, 400)">
+                            <rect x="200" y="0" width="8" height="15" fill="rgba(231,76,60,0.4)"/>
+                            <rect x="240" y="5" width="8" height="10" fill="rgba(231,76,60,0.4)"/>
+                            <text x="220" y="27" font-size="9" fill="#94a3b8">缩量</text>
+
+                            <rect x="300" y="0" width="8" height="20" fill="rgba(39,174,96,0.4)"/>
+                            <rect x="330" y="-5" width="8" height="25" fill="rgba(39,174,96,0.4)"/>
+                            <text x="320" y="30" font-size="9" fill="#94a3b8">放量突破</text>
+                        </g>
+
+                        <!-- 底部说明 -->
+                        <rect x="250" y="450" width="300" height="25" fill="rgba(102,126,234,0.2)" rx="5"/>
+                        <text x="400" y="467" font-size="11" fill="#94a3b8" text-anchor="middle">持仓6周 | 风险回报比 1:5.5 | 涨幅+64%</text>
+                    </svg>
+                    <p class="chart-caption">图3: 阳光电源CPB-ABC结构双底K线图</p>
+                </div>
+
+                <div class="analysis-box">
+                    <h4>✅ 操作要点</h4>
+                    <ul>
+                        <li><strong>A浪(2周):</strong> 从85元跌至60元(-29%),第一波下跌</li>
+                        <li><strong>B浪(3周):</strong> 从60元反弹至70元(+17%),确认CPB结构</li>
+                        <li><strong>C浪(2周):</strong> 从70元跌至58元(-17%),形成第二个底部</li>
+                        <li><strong>识别要点:</strong> B浪反弹超过15%是CPB的关键信号</li>
+                        <li><strong>入场点:</strong> 62元,C浪企稳后突破下降趋势线</li>
+                        <li><strong>止损位:</strong> 56元,跌破C浪低点</li>
+                        <li><strong>目标位:</strong> 95元,测量涨幅=AB浪的1.618倍</li>
+                        <li><strong>实际表现:</strong> 从58元涨至95元(+64%),耗时6周</li>
+                        <li><strong>风险回报比:</strong> 1:5.5 (风险6元 / 盈利33元)</li>
+                        <li><strong>成交量:</strong> C浪缩量惜售,突破时放量确认</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- 案例2: 工业富联ABCDE -->
+            <div class="case-card">
+                <h3>案例4: 工业富联 - ABCDE三浪复杂回调</h3>
+                <div class="stock-code">601138 | 科技龙头 | 2024年1-3月(2个月) | CPB-ABCDE策略</div>
+
+                <div class="chart-container">
+                    <svg viewBox="0 0 800 480" xmlns="http://www.w3.org/2000/svg">
+                        <defs>
+                            <pattern id="grid4" width="100" height="50" patternUnits="userSpaceOnUse">
+                                <path d="M 100 0 L 0 0 0 50" fill="none" stroke="rgba(148,163,184,0.1)" stroke-width="1"/>
+                            </pattern>
+                        </defs>
+                        <rect width="800" height="430" fill="url(#grid4)"/>
+
+                        <!-- Y轴标签 -->
+                        <text x="780" y="55" font-size="11" fill="#94a3b8" text-anchor="end">29</text>
+                        <text x="780" y="105" font-size="11" fill="#94a3b8" text-anchor="end">26.5</text>
+                        <text x="780" y="155" font-size="11" fill="#94a3b8" text-anchor="end">24.5</text>
+                        <text x="780" y="205" font-size="11" fill="#94a3b8" text-anchor="end">23</text>
+                        <text x="780" y="255" font-size="11" fill="#94a3b8" text-anchor="end">22</text>
+                        <text x="780" y="305" font-size="11" fill="#94a3b8" text-anchor="end">21.5</text>
+
+                        <!-- ABCDE结构标注 -->
+                        <g>
+                            <!-- A浪 -->
+                            <rect x="50" y="155" width="6" height="40" fill="#e74c3c"/>
+                            <rect x="65" y="175" width="6" height="30" fill="#e74c3c"/>
+                            <rect x="80" y="190" width="6" height="25" fill="#e74c3c"/>
+                            <text x="65" y="235" font-size="12" fill="#e74c3c" font-weight="bold">A</text>
+
+                            <!-- B浪 -->
+                            <rect x="95" y="170" width="6" height="25" fill="#27ae60"/>
+                            <rect x="110" y="155" width="6" height="20" fill="#27ae60"/>
+                            <rect x="125" y="145" width="6" height="15" fill="#27ae60"/>
+                            <text x="110" y="140" font-size="12" fill="#27ae60" font-weight="bold">B</text>
+
+                            <!-- C浪 -->
+                            <rect x="140" y="160" width="6" height="25" fill="#e74c3c"/>
+                            <rect x="155" y="175" width="6" height="30" fill="#e74c3c"/>
+                            <rect x="170" y="190" width="6" height="20" fill="#e74c3c"/>
+                            <text x="155" y="225" font-size="12" fill="#e74c3c" font-weight="bold">C</text>
+
+                            <!-- D浪 -->
+                            <rect x="185" y="165" width="6" height="30" fill="#27ae60"/>
+                            <rect x="200" y="150" width="6" height="20" fill="#27ae60"/>
+                            <rect x="215" y="140" width="6" height="15" fill="#27ae60"/>
+                            <text x="200" y="135" font-size="12" fill="#27ae60" font-weight="bold">D</text>
+
+                            <!-- E浪 -->
+                            <rect x="230" y="170" width="6" height="30" fill="#e74c3c"/>
+                            <rect x="245" y="185" width="6" height="25" fill="#e74c3c"/>
+                            <rect x="260" y="195" width="6" height="15" fill="#e74c3c"/>
+                            <text x="245" y="225" font-size="12" fill="#e74c3c" font-weight="bold">E</text>
+                        </g>
+
+                        <!-- 三底标注 -->
+                        <circle cx="83" cy="215" r="4" fill="#f39c12"/>
+                        <circle cx="173" cy="215" r="4" fill="#f39c12"/>
+                        <circle cx="260" cy="215" r="4" fill="#f39c12"/>
+
+                        <text x="320" y="215" font-size="10" fill="#f39c12">三底逐级抬高</text>
+                        <line x1="83" y1="230" x2="260" y2="230" stroke="#f39c12" stroke-width="1.5"/>
+
+                        <!-- 突破 -->
+                        <rect x="275" y="160" width="6" height="40" fill="#27ae60"/>
+                        <rect x="290" y="130" width="6" height="35" fill="#27ae60"/>
+                        <rect x="305" y="100" width="6" height="35" fill="#27ae60"/>
+                        <rect x="320" y="70" width="6" height="35" fill="#27ae60"/>
+
+                        <text x="300" y="90" font-size="11" fill="#27ae60" text-anchor="middle">突破后</text>
+                        <text x="300" y="102" font-size="11" fill="#27ae60" text-anchor="middle">加速上涨</text>
+
+                        <!-- 入场点 -->
+                        <circle cx="270" cy="200" r="6" fill="#3498db" opacity="0.9"/>
+                        <text x="270" y="220" font-size="11" fill="#3498db" text-anchor="middle" font-weight="bold">🔵 22.5</text>
+
+                        <!-- 止损 -->
+                        <text x="245" y="265" font-size="10" fill="#e74c3c" text-anchor="middle">止损 21</text>
+
+                        <!-- 目标 -->
+                        <circle cx="350" cy="55" r="6" fill="#27ae60" opacity="0.9"/>
+                        <text x="350" y="75" font-size="11" fill="#27ae60" text-anchor="middle" font-weight="bold">🎯 29</text>
+
+                        <!-- 底部说明 -->
+                        <rect x="200" y="450" width="400" height="25" fill="rgba(102,126,234,0.2)" rx="5"/>
+                        <text x="400" y="467" font-size="11" fill="#94a3b8" text-anchor="middle">ABCDE三浪 | 历时2个月 | 风险回报比 1:3.8 | 涨幅+35%</text>
+                    </svg>
+                    <p class="chart-caption">图4: 工业富联CPB-ABCDE三浪回调K线图</p>
+                </div>
+
+                <div class="analysis-box">
+                    <h4>✅ 操作要点</h4>
+                    <ul>
+                        <li><strong>A浪:</strong> 跌至23元(-13%)</li>
+                        <li><strong>B浪:</strong> 反弹至24.5元(+6.5%)</li>
+                        <li><strong>C浪:</strong> 跌至22元(-10%)</li>
+                        <li><strong>D浪:</strong> 反弹至23.5元(+6.8%)</li>
+                        <li><strong>E浪:</strong> 跌至21.5元(-8.5%),形成三底</li>
+                        <li><strong>形态特征:</strong> 三底逐级抬高(22→21.5→21.5)</li>
+                        <li><strong>入场点:</strong> 22.5元,E浪形成后突破下降趋势线</li>
+                        <li><strong>止损位:</strong> 21元,跌破E浪低点</li>
+                        <li><strong>目标位:</strong> 29元,突破前高后的测量涨幅</li>
+                        <li><strong>关键:</strong> 三浪回调往往孕育大行情,需要耐心持有2-3个月</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- 总结对比 -->
+        <div class="strategy-section">
+            <h2>📊 PB vs CPB 快速对比</h2>
+
+            <table style="width: 100%; border-collapse: collapse; color: #cbd5e1;">
+                <thead>
+                    <tr style="background: rgba(102, 126, 234, 0.3);">
+                        <th style="padding: 12px; text-align: left; border: 1px solid rgba(148, 163, 184, 0.2);">维度</th>
+                        <th style="padding: 12px; text-align: left; border: 1px solid rgba(148, 163, 184, 0.2);">PB策略</th>
+                        <th style="padding: 12px; text-align: left; border: 1px solid rgba(148, 163, 184, 0.2);">CPB策略</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td style="padding: 10px; border: 1px solid rgba(148, 163, 184, 0.2);">回调幅度</td>
+                        <td style="padding: 10px; border: 1px solid rgba(148, 163, 184, 0.2);">浅(3.4%-4%)</td>
+                        <td style="padding: 10px; border: 1px solid rgba(148, 163, 184, 0.2);">深(17%-29%)</td>
+                    </tr>
+                    <tr style="background: rgba(51, 65, 85, 0.3);">
+                        <td style="padding: 10px; border: 1px solid rgba(148, 163, 184, 0.2);">回调时间</td>
+                        <td style="padding: 10px; border: 1px solid rgba(148, 163, 184, 0.2);">2-3天</td>
+                        <td style="padding: 10px; border: 1px solid rgba(148, 163, 184, 0.2);">2-8周</td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 10px; border: 1px solid rgba(148, 163, 184, 0.2);">结构</td>
+                        <td style="padding: 10px; border: 1px solid rgba(148, 163, 184, 0.2);">简单1次</td>
+                        <td style="padding: 10px; border: 1px solid rgba(148, 163, 184, 0.2);">ABC/ABCDE</td>
+                    </tr>
+                    <tr style="background: rgba(51, 65, 85, 0.3);">
+                        <td style="padding: 10px; border: 1px solid rgba(148, 163, 184, 0.2);">风险回报比</td>
+                        <td style="padding: 10px; border: 1px solid rgba(148, 163, 184, 0.2);">1:4.5</td>
+                        <td style="padding: 10px; border: 1px solid rgba(148, 163, 184, 0.2);">1:5.5 ~ 1:3.8</td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 10px; border: 1px solid rgba(148, 163, 184, 0.2);">持仓时间</td>
+                        <td style="padding: 10px; border: 1px solid rgba(148, 163, 184, 0.2);">5-15天</td>
+                        <td style="padding: 10px; border: 1px solid rgba(148, 163, 184, 0.2);">6-8周</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="back-nav">
+            <a href="pb-strategy.html">← 返回PB策略</a>
+            <a href="cpb-strategy.html" style="margin-left: 20px;">返回CPB策略 →</a>
+        </div>
+    </div>
+</body>
+</html>
